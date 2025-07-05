@@ -1,0 +1,87 @@
+instances:
+  - url: https://promptless.docs.buildwithfern.com
+title: Promptless | Documentation
+
+layout:
+  searchbar-placement: header 
+
+navigation:
+  - section: Getting Started
+    icon: fa-regular fa-rocket
+    contents:
+      - page: Welcome
+        path: ./docs/getting-started.mdx
+  - section: Core Concepts
+    icon: fa-regular fa-lightbulb
+    contents:
+      - page: Triggers
+        path: ./docs/core-concepts/triggers.md
+      - page: Context Sources
+        path: ./docs/core-concepts/context-sources.md
+      - page: Doc CMSs
+        path: ./docs/core-concepts/doc-locations.md
+  - section: Frequently Asked Questions
+    icon: fa-regular fa-question-circle
+    contents:
+      - page: Frequently Asked Questions
+        path: ./docs/faq.mdx
+  - section: Integrations
+    icon: fa-regular fa-plug
+    path: ./docs/integrations/index.mdx
+    contents:
+      - page: Bitbucket Integration
+        path: ./docs/integrations/bitbucket.mdx
+      - page: Intercom Integration (Beta)
+        path: ./docs/integrations/intercom.md
+      - page: Webflow Integration (Beta)
+        path: ./docs/integrations/webflow.mdx
+      - page: Github Integration
+        path: ./docs/integrations/github.mdx
+      - page: Linear Integration
+        path: ./docs/integrations/linear.mdx
+      - page: Slack Integration
+        path: ./docs/integrations/slack.mdx
+      - page: Zendesk Integration
+        path: ./docs/integrations/zendesk.mdx
+  - section: Security and Privacy
+    icon: fa-regular fa-shield
+    path: ./docs/security-and-privacy/index.md
+    contents:
+      - page: Data Handling and Classification
+        path: ./docs/security-and-privacy/data-handling.md
+      - page: Network Architecture
+        path: ./docs/security-and-privacy/network-architecture.md
+      - page: Promptless Subprocessors
+        path: ./docs/security-and-privacy/subprocessors.md
+      - page: Privacy Policy
+        path: ./docs/security-and-privacy/privacy-policy.md
+  - section: Changelogs
+    icon: fa-regular fa-clock
+    contents:
+      - page: April 2025
+        path: ./docs/changelogs/2025-04.md
+      - page: May 2025
+        path: ./docs/changelogs/2025-05.md
+
+colors:
+  accentPrimary:
+    light: '#396DF1'
+    dark: '#396DF1'
+
+logo:
+  dark: ./docs/assets/logo_darkbg.svg
+  light: ./docs/assets/logo.svg
+  height: 40
+
+typography:
+  bodyFont:
+    name: Atlassian Sans
+    path: ./docs/assets/AtlassianSans.woff2
+    style: normal
+  headingsFont:
+    name: Atlassian Sans
+    path: ./docs/assets/font3.woff2
+    style: normal
+
+favicon: ./docs/assets/favicon.ico
+    
