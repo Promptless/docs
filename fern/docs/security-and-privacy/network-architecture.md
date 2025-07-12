@@ -4,8 +4,8 @@ Promptless utilizes a secure, modern cloud-based network architecture designed f
 
 ## Infrastructure Overview
 
-<Frame caption="Simplified Network Architecture">
-  <img src="../assets/simplified_network_architecture.png" alt="Simplified Network Architecture" />
+<Frame caption="Promptless Network Architecture">
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e549b619-c0f6-42a0-b495-e538f71fb1cb-network_architecture_diagram.png" alt="Promptless Network Architecture" />
 </Frame>
 
 
@@ -14,6 +14,19 @@ Our infrastructure is designed with the following key principles:
 - High availability and fault tolerance
 - Scalability and performance optimization
 - Comprehensive monitoring and observability
+
+## Multi-Tenant Security Model
+
+Promptless uses a strong logical separation model for multi-tenant data security:
+
+### Organization-Level Isolation
+
+- Every piece of data (users, suggestions, trigger events, etc.) is tagged with a specific organization ID
+- All database queries are automatically scoped to the requesting organization
+- Authorization mechanisms prevent cross-organization data access
+- No shared data contexts between different customer organizations
+
+Promptless's shared infrastructure provides increased scalability and security, since it reduces the number of infrastructure assets that need to be tracked and maintained and decreases the number of data access points across the system.
 
 ## Key Security Measures
 
