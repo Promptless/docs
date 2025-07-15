@@ -14,7 +14,7 @@ Promptless is designed with data minimization in mind, ensuring that we only sto
 
 Promptless stores minimal data, and otherwise operates in a stateless manner to avoid storing any data that is not necessary to provide the service.
 - **Documentation Copies**: Promptless stores copies of your documentation to enable our automation features and track changes. This documentation is typically public, and so is generally not considered sensitive data. 
-- **Feedback for Promptless**: Promptless stores feedback that you provide to it about the quality of documentation updates, which can take the form of edits that you've made to Promptless suggeestions, or direct feedback you've made on the Promptless dashboard. 
+- **Feedback for Promptless**: Promptless stores feedback that you provide to it about the quality of documentation updates, which can take the form of edits that you've made to Promptless suggestions, or direct feedback you've made on the Promptless dashboard. 
 - **Integration Auth Data**: When you link Promptless to a third party tool, we store the data necessary to integrate with that tool. This typically includes an authentication token, not the actual content of the data from the third party tool.
 
 ### Data that Promptless processes, but does not store
@@ -36,7 +36,7 @@ For example:
 ### Standard Authentication Features
 
 Our platform provides robust authentication mechanisms for all users:
-- SSO with Google or Github supported for all users 
+- SSO with Google or GitHub supported for all users 
 - Strong password policies enforcing complexity requirements
 - Two-factor authentication (2FA) support using industry-standard TOTP
 - Password reset workflows with secure verification

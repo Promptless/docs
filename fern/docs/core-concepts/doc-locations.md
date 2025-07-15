@@ -1,6 +1,6 @@
 # Doc CMSs
 
-Most often, no matter which hosting provider (Readme, Mintlify, Docusaurus) you use, as long as your docs are sync-ed to github, all you need is to install the Promptless Github App.
+Most often, no matter which hosting provider (ReadMe, Mintlify, Docusaurus) you use, as long as your docs are synced to GitHub, all you need is to install the Promptless GitHub App.
 
 We also offer beta support for additional CMS platforms including:
 - **Zendesk**: Help center articles and knowledge base content
