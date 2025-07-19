@@ -41,6 +41,8 @@ navigation:
         path: ./docs/integrations/github.mdx
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
+      - page: Microsoft Teams Integration
+        path: ./docs/integrations/microsoft-teams.mdx
       - page: Slack Integration
         path: ./docs/integrations/slack.mdx
       - page: Zendesk Integration
