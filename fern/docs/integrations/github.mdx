@@ -56,6 +56,19 @@ For example, in the below example, Promptless is only able to read the `promptle
   <img src="../assets/github-project.png" alt="Project Setup" />
 </Frame>
 
+## PR Replay for New Projects
+
+When creating a new GitHub project, you have the option to "Process last 30 days of PRs after project creation." This feature automatically replays all GitHub pull requests from the past 30 days across your selected trigger repositories, generating documentation suggestions for any changes that would have triggered Promptless.
+
+This is particularly useful during initial project setup to:
+- Catch up on recent development activity that may need documentation updates
+- Generate suggestions for PRs that were merged before Promptless was configured
+- Ensure your documentation reflects recent code changes without manual review
+
+The PR replay process runs as a background job after your project is created and may take several minutes to complete, depending on the number of recent PRs in your repositories. You'll receive notifications when the replay process begins and completes.
+
+Note that this feature is currently available only for GitHub triggers and processes PRs that were opened (or merged) within the last 30 days, excluding any PRs that were closed without being merged.
+
 ## Trigger Events in Pull Request Descriptions
 
 When Promptless creates a pull request for documentation updates, it automatically includes a list of the trigger events that led to those changes in the PR description. This provides valuable context for reviewers and creates clear traceability between documentation updates and their originating events.
