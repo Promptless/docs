@@ -37,7 +37,7 @@ navigation:
         path: ./docs/integrations/intercom.md
       - page: Webflow Integration (Beta)
         path: ./docs/integrations/webflow.mdx
-      - page: Github Integration
+      - page: GitHub Integration
         path: ./docs/integrations/github.mdx
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
