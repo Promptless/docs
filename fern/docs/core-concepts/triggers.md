@@ -5,7 +5,7 @@ Triggers are events that initiate automated documentation updates in Promptless.
 ## Supported Triggers
 
 <CardGroup cols={2}>
-  <Card title="GitHub/Bitbucket/GitLab" icon="brands github">
+  <Card title="GitHub/Bitbucket/GitLab" icon="fa-code-pull-request">
     Automatically triggered when PRs/MRs are opened in your source repositories
   </Card>
   
@@ -17,6 +17,8 @@ Triggers are events that initiate automated documentation updates in Promptless.
 ### GitHub / Bitbucket / GitLab
 
 Promptless automatically monitors your specified source repositories for new pull requests. When a PR/MR is opened, the system analyzes the changes to determine if documentation updates are needed.
+
+During analysis, Promptless processes information such as the code diff, PR title, and PR description to understand the context and scope of changes. This information is used solely for generating documentation suggestions and is not stored by Promptless.
 
 **How it works:**
 - By default, suggestions are available in the Promptless dashboard for review
@@ -39,9 +41,9 @@ Promptless automatically monitors your specified source repositories for new pul
   </Accordion>
 </AccordionGroup>
 
-<Note>
+<Warning>
 Promptless automatically skips draft pull requests. Documentation updates are only triggered when the pull request is marked as ready for review.
-</Note>
+</Warning>
 
 ### Slack Integration
 
