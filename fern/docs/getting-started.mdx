@@ -25,7 +25,7 @@ Get Promptless running in 2 simple steps:
 
 Visit the [Integrations page](https://app.gopromptless.ai/integrations) in your dashboard to connect:
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Triggers" icon="bolt">
     **GitHub/Bitbucket**: Auto-trigger from pull requests
     **Slack**: Manual triggers via @mentions or message actions
@@ -35,11 +35,9 @@ Visit the [Integrations page](https://app.gopromptless.ai/integrations) in your 
     **GitHub/Bitbucket repos**: Most common setup
     **ReadMe API**: For ReadMe-hosted docs not synced to GitHub
   </Card>
-
-  <Card title="Enhanced Context" icon="search">
-  Connect **Linear**, **Jira**, or **Slack** to provide Promptless with additional context for better suggestions.
-  </Card>
 </CardGroup>
+
+**Enhanced Context (optional)**: Connect **Linear**, **Jira**, or **Slack** to provide Promptless with additional context for better suggestions.
 
 <Tip>
 The more context sources you connect, the more accurate Promptless suggestions can become.
@@ -57,17 +55,9 @@ Visit the [Projects page](https://app.gopromptless.ai/projects) to create your f
 
 Choose your trigger type:
 
-<AccordionGroup>
-  <Accordion title="GitHub/Bitbucket Triggers">
-    Automatically runs when PRs are opened in specified source repositories.
+**GitHub/Bitbucket Triggers**: Automatically runs when PRs are opened in specified source repositories. Enable the auto-publish option to automatically create documentation PRs instead of requiring manual review.
     
-    **Auto-publish option**: Enable to automatically create documentation PRs instead of requiring manual review.
-  </Accordion>
-  
-  <Accordion title="Slack Triggers">
-    Runs when you @mention Promptless or use Slack message shortcuts.
-  </Accordion>
-</AccordionGroup>
+**Slack Triggers**: Runs when you @mention Promptless or use Slack message shortcuts.
 
 <Info>
 Need both trigger types? Create separate projects with identical settings for each trigger.
@@ -98,9 +88,7 @@ Create a dedicated Slack channel for documentation update notifications and conf
 
 ## What's Next?
 
-<Note>
 After creating a project, Promptless will index your documentation. This typically takes a few minutes, during which Promptless processes your documentation structure and content.
-</Note>
 
 Once setup is complete, Promptless will:
 - Listen for trigger events from your configured sources
