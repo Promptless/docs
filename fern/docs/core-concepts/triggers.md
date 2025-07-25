@@ -50,22 +50,7 @@ This feature is especially valuable in Slack Connect support channels where cust
 
 #### Image Processing in Slack Threads
 
-Promptless can analyze both text and images from Slack threads to create comprehensive documentation updates.
-
-**Image processing capabilities:**
-- Analyzes images shared in threads when Promptless is triggered
-- Includes relevant images in documentation updates when they provide valuable context
-- Securely stores images in a Promptless-managed S3 bucket
-- Formats images appropriately for your documentation platform
-
-<AccordionGroup>
-  <Accordion title="How Image Processing Works">
-    1. Tag @Promptless or use "Update docs" message action in a thread with images
-    2. Promptless analyzes both text content and images in the thread
-    3. Relevant images are included in the documentation suggestions
-    4. During review, you can approve or modify the images before publishing
-  </Accordion>
-</AccordionGroup>
+When triggered in threads containing images, Promptless will include relevant images in documentation updates and store them securely in a Promptless-managed S3 bucket.
 
 <Note>
 Need a trigger type that isn't currently supported? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we regularly add new trigger types based on user feedback.
