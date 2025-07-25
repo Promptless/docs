@@ -1,50 +1,97 @@
 # Triggers
 
-Triggers are events that tell Promptless that there might be a documentation update that is warranted. Promptless supports multiple trigger types to fit seamlessly into your team's workflow -- it is designed to minimize the friction of creating and updating documentation.
+Triggers are events that automatically initiate documentation updates in Promptless. They integrate seamlessly into your existing workflow to minimize friction when creating and maintaining documentation.
 
-## Supported Triggers
+<Info>
+Triggers detect when documentation updates might be needed and can either create suggestions for review or automatically publish changes based on your project settings.
+</Info>
 
-### GitHub Pull Requests
+## How Triggers Work
 
-When configured, Promptless automatically runs whenever a new pull request is opened in your specified source repositories. If there are any changes in the PR that might impact the documentation, Promptless will suggest documentation updates. By default, these suggestions will be available in the Promptless dashboard for review. If auto-publish is enabled for your project, Promptless will automatically create a new PR with the suggested documentation changes and link to it in a comment on the original PR. If there are no changes to the documentation, Promptless will leave a comment indicating that no documentation updates were necessary.
+<Steps>
+  <Step title="Event Detection">
+    Promptless monitors configured platforms for relevant events (PR creation, Slack messages, etc.)
+  </Step>
+  
+  <Step title="Analysis">
+    When triggered, Promptless analyzes the content to determine if documentation updates are warranted
+  </Step>
+  
+  <Step title="Action">
+    Based on your settings, Promptless either creates suggestions for review or auto-publishes documentation changes
+  </Step>
+</Steps>
 
-During the review process, if you need additional changes or have specific requests for the documentation updates, you can use the follow-on request feature. This allows you to provide additional instructions or feedback to Promptless, which will then process your request and suggest updated changes based on your input.
+## Available Triggers
 
-### Bitbucket Pull Requests
+<CardGroup cols={2}>
+  <Card title="GitHub Pull Requests" icon="brands github" href="/integrations/github">
+    Automatically triggered when PRs are opened in monitored repositories
+  </Card>
+  
+  <Card title="Bitbucket Pull Requests" icon="brands bitbucket" href="/integrations/bitbucket">
+    Monitors Bitbucket repositories for PR activity and code changes
+  </Card>
+  
+  <Card title="Slack Messages" icon="brands slack" href="/integrations/slack">
+    Triggered via @mentions or message actions in Slack channels
+  </Card>
+  
+  <Card title="Intercom Conversations" icon="regular comments" href="/integrations/intercom">
+    Monitors customer conversations for documentation opportunities
+  </Card>
+</CardGroup>
 
-Similar to GitHub, Promptless can be triggered by pull requests in Bitbucket repositories. When a new pull request is opened in your specified Bitbucket repositories, Promptless analyzes the changes and suggests documentation updates if needed. You can configure specific directories to monitor for changes, allowing you to focus documentation efforts on the most relevant parts of your codebase.
+## Trigger Details
 
-The workflow for Bitbucket triggers follows the same pattern as GitHub triggers, with options for auto-publishing and follow-on requests to streamline your documentation process. Promptless will add comments to your Bitbucket pull requests indicating whether documentation updates were necessary, and if so, provide links to review those changes.
+<AccordionGroup>
+  <Accordion title="GitHub & Bitbucket Pull Requests">
+    **When it triggers:** New pull requests in configured repositories
+    
+    **What it does:**
+    - Analyzes code changes for documentation impact
+    - Creates documentation suggestions or auto-publishes updates
+    - Adds comments to PRs with results and links
+    
+    **Key features:**
+    - Directory-specific monitoring
+    - Auto-publish or draft mode options
+    - Follow-on request support for additional changes
+    
+    <Note>
+    Bitbucket automatically skips draft pull requests - only ready-for-review PRs trigger documentation updates.
+    </Note>
+  </Accordion>
 
-Note that Promptless automatically skips draft pull requests in Bitbucket. Documentation updates will only be triggered when the pull request is marked as ready for review.
+  <Accordion title="Slack Integration">
+    **How to trigger:**
+    - Use the "Update docs" message action on any message
+    - Tag @Promptless in a channel or thread
+    
+    **Best for:** Support channels where customer questions reveal documentation gaps
+    
+    **Image processing:** Automatically includes relevant images from Slack threads in documentation updates, with secure S3 storage and proper formatting.
+    
+    <Tip>
+    Particularly useful in Slack Connect channels with customers to capture common questions for documentation.
+    </Tip>
+  </Accordion>
 
-### Slack Integration
+  <Accordion title="Intercom Conversations">
+    **Automatic triggers:**
+    - When customer conversations are closed
+    - When team members add notes to conversations
+    
+    **Purpose:** Identifies patterns in customer support to improve documentation and reduce future tickets.
+  </Accordion>
+</AccordionGroup>
 
-When configured, Promptless can be triggered from Slack channels to find documentation updates that may be warranted from a thread. Primarily, this is used in Slack Connect support channels with customers -- where in a thread, a customer asks a question about your product, your team has answered it, and when Promptless is triggered, it suggests documentation updates based on the content of the thread. This is particularly useful if you notice a common question that you think should be answered in the docs. 
+## Follow-on Requests
 
-Promptless can be triggered directly from Slack in two ways:
+<Info title="Iterative Improvements">
+After any trigger creates documentation suggestions, you can provide additional feedback or request specific changes. Promptless will process your follow-on requests and update the documentation accordingly.
+</Info>
 
-1. **Message Action**: Use the Promptless message shortcut on any Slack message to trigger documentation analysis
-2. **Mentions**: Tag Promptless in a channel to request documentation updates
+---
 
-#### Image Processing in Slack Threads
-
-Promptless can now process images shared in Slack threads when triggered:
-
-- When you tag @Promptless or use the "Update docs" message action in a thread containing images, Promptless will analyze both the text and images.
-- If an image provides valuable context, Promptless will include it in the documentation updates.
-- Images are securely stored in an S3 bucket managed by Promptless and properly formatted for your documentation platform.
-- During review, you can see and approve the images that Promptless has added to the documentation.
-
-This feature requires the latest version of the Slack integration with appropriate permissions. See the [Slack Integration](/integrations/slack) page for more details.
-
-### Intercom Integration
-
-When configured, Promptless monitors your Intercom conversations for potential documentation updates. This integration helps identify common questions or issues that arise in customer conversations, automatically suggesting documentation improvements to better serve your users. Promptless analyzes the conversation content to determine if any documentation updates or additions would be beneficial.
-
-Promptless is automatically triggered in Intercom in two ways:
-
-1. **Conversation Close**: When a conversation with a customer is closed, Promptless analyzes the conversation for potential documentation updates
-2. **Note Added**: When a team member adds a note to a conversation, Promptless reviews the context for documentation opportunities
-
-Promptless regularly adds new trigger types. If you need a specific trigger that isn't currently supported, please contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
+Need a trigger type that isn't supported? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we regularly add new trigger types based on user feedback.
