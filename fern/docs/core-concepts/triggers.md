@@ -4,17 +4,13 @@ Triggers are events that initiate automated documentation updates in Promptless.
 
 ## Supported Triggers
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="GitHub/Bitbucket/GitLab" icon="brands github">
     Automatically triggered when PRs/MRs are opened in your source repositories
   </Card>
   
   <Card title="Slack Integration" icon="brands slack">
     Trigger updates from Slack conversations and support threads
-  </Card>
-  
-  <Card title="Intercom Integration" icon="message-circle">
-    Monitor customer conversations for documentation opportunities
   </Card>
 </CardGroup>
 
@@ -77,16 +73,6 @@ Promptless can process images shared in Slack threads when triggered, enhancing 
 <Tip>
 This feature requires the latest version of the Slack integration with appropriate permissions. See the [Slack Integration](/integrations/slack) page for more details.
 </Tip>
-
-### Intercom Integration
-
-Intercom integration helps identify common questions or issues that arise in customer conversations, automatically suggesting documentation improvements to better serve your users.
-
-Promptless analyzes conversation content to determine if documentation updates or additions would be beneficial.
-
-**Automatic triggers:**
-- **Conversation Close**: When a customer conversation is closed, Promptless analyzes it for potential documentation updates
-- **Note Added**: When a team member adds a note to a conversation, Promptless reviews the context for documentation opportunities
 
 <Note>
 Need a trigger type that isn't currently supported? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we regularly add new trigger types based on user feedback.
