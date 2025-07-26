@@ -19,11 +19,15 @@ Get Promptless running in 2 simple steps:
 Visit the [Integrations page](https://app.gopromptless.ai/integrations) in your dashboard to connect:
 
 **Triggers**
+
     **GitHub/Bitbucket**: Auto-trigger from pull requests
+
     **Slack**: Manual triggers via @mentions or message actions
   
 **Documentation Platform**
+
     **GitHub/Bitbucket repos**: Most common setup
+
     **ReadMe API**: For ReadMe-hosted docs not synced to GitHub
 
 **Enhanced Context (optional)**: Connect **Linear**, **Jira**, or **Slack** to provide Promptless with additional context for better suggestions.
@@ -40,9 +44,14 @@ Visit the [Projects page](https://app.gopromptless.ai/projects) to create your f
 
 Choose your trigger type:
 
-**GitHub/Bitbucket Triggers**: Automatically runs when PRs are opened in specified source repositories.
-    
-**Slack Triggers**: Runs when you @mention Promptless or use Slack message shortcuts.
+<Cards>
+  <Card title="GitHub/Bitbucket Triggers" icon="github">
+    Automatically runs when PRs are opened in specified source repositories.
+  </Card>
+  <Card title="Slack Triggers" icon="slack">
+    Runs when you @mention Promptless or use Slack message shortcuts.
+  </Card>
+</Cards>
 
 <Info>
 Need both trigger types? Create separate projects with identical settings for each trigger.
@@ -73,7 +82,7 @@ Create a dedicated Slack channel for documentation update notifications and conf
 
 ## What's Next?
 
-After creating a project, Promptless will start ingesting and indexing your documentation. This process helps Promptless learn your documentation structure and content, and remember it for future suggestions.
+After creating a project, Promptless will start ingesting and indexing your documentation. This process helps Promptless learn your documentation structure and content, and remember it for future suggestions. This can take 5-30 minutes, depending on the size of your docs.
 
 Once setup is complete, Promptless will:
 - Listen for trigger events from your configured sources
