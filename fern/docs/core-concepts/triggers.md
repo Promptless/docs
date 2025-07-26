@@ -46,10 +46,6 @@ Slack integration enables documentation updates directly from your team conversa
 
 When triggered in threads containing images, Promptless analyzes both text and visual content. Relevant images are automatically included in documentation updates, securely stored, and formatted for your documentation platform.
 
-<Tip>
-This feature requires the latest version of the Slack integration with appropriate permissions. See the [Slack Integration](/integrations/slack) page for more details.
-</Tip>
-
 <Note>
 Need a trigger type that isn't currently supported? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we regularly add new trigger types based on user feedback.
 </Note>
