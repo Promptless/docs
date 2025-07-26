@@ -20,14 +20,13 @@ Promptless automatically monitors your specified source repositories for new pul
 
 During analysis, Promptless processes information such as the code diff, PR title, and PR description to understand the context and scope of changes. This information is used solely for generating documentation suggestions and is not stored by Promptless.
 
-By default, suggestions are available in the Promptless dashboard for review. If no documentation changes are needed, Promptless leaves a comment indicating this. You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase.
+You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase.
 
 <AccordionGroup>
   <Accordion title="Auto-publish Mode">
     When auto-publish is enabled for your project:
     - Promptless automatically creates a new PR with suggested documentation changes
     - The documentation PR is linked in a comment on the original code PR
-    - This streamlines the documentation process by integrating directly into your code review workflow
   </Accordion>
 </AccordionGroup>
 
@@ -45,13 +44,7 @@ Slack integration enables documentation updates directly from your team conversa
 
 #### Image Processing in Slack Threads
 
-Promptless can process images shared in Slack threads when triggered, enhancing documentation with visual context.
-
-**How it works:**
-- When you tag @Promptless or use the "Update docs" message action in a thread containing images, Promptless analyzes both text and images
-- If an image provides valuable context, Promptless includes it in the documentation updates
-- Images are securely stored in a Promptless-managed S3 bucket and properly formatted for your documentation platform
-- During review, you can see and approve the images that Promptless has added to the documentation
+When triggered in threads containing images, Promptless analyzes both text and visual content. Relevant images are automatically included in documentation updates, securely stored, and formatted for your documentation platform.
 
 <Tip>
 This feature requires the latest version of the Slack integration with appropriate permissions. See the [Slack Integration](/integrations/slack) page for more details.
