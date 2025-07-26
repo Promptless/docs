@@ -1,19 +1,34 @@
 # Welcome to Promptless
 
+Promptless automatically updates your docs, saving your team time and improving your customers' experience.
 
-Promptless automatically updates your docs, saving your team time and improving your customers' experience with your product.
+## Before You Start
 
-Before you start, you'll need a Promptless account. You can create a Promptless account at accounts.gopromptless.ai. If you've got more than 200 articles in your docs, or if you use uncommon triggers or documentation sources, you will need to contact our team at  [hello@gopromptless.ai](mailto:hello@gopromptless.ai) to get access. Once you have an account, you can configure Promptless in just two easy steps: (1) you'll set up integrations to connect Promptless to your triggers, context sources, and docs, and (2) you'll create a project to tell Promptless what to do when it's triggered.
+- Create an account at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
+- If you have more than 200 articles in your docs, contact our team at [hello@gopromptless.ai](mailto:hello@gopromptless.ai)
+
+## Quick Setup Overview
+
+Get Promptless running in 2 simple steps:
+
+1. **Set up integrations** - Set up integrations for triggers, context sources, and documentation platforms
+2. **Create a project** - Configure how and when Promptless should update your docs
 
 ## Step 1: Set up integrations
 
-Once you're signed into the [Promptless dashboard](https://app.gopromptless.ai/), visit the [Integrations page](https://app.gopromptless.ai/integrations). From there, you should set up the following integrations:
+Visit the [Integrations page](https://app.gopromptless.ai/integrations) in your dashboard to connect:
 
-* Your triggers (e.g. GitHub, Bitbucket, or Slack). You can trigger Promptless from new GitHub/Bitbucket PRs and from the Promptless Slack message action (primarily used in Slack Connect support channels). If you're connecting GitHub or Bitbucket, make sure to give Promptless access to your source code repos that you want Promptless to be triggered from, as well the repo containing your docs.  
-* [Optional] Your context sources (e.g. Linear, Jira, Google Drive). You can connect Promptless to your Linear, Jira, Google Drive, or Slack accounts to get context from these sources. The more relevant context you provide, the better Promptless will be at suggesting changes.
-* Your docs (typically a GitHub or Bitbucket repo). If your docs are in a directory within a repo, you'll be able to set the directory when you create a project. If your docs are hosted by [ReadMe](https://readme.com/) and are not synced to GitHub, use the ReadMe API key integration. 
+**Triggers**
 
-If you don't see the integration you need, please let us know at [help@gopromptless.ai](mailto:help@gopromptless.ai). Promptless adds new integrations every week. Once you're set up, your Integrations page might look like this:
+- **GitHub/Bitbucket**: Auto-trigger from pull requests
+- **Slack**: Manual triggers via @mentions or message actions
+  
+**Documentation Platform**
+
+- **GitHub/Bitbucket repos**: Most common setup
+- **ReadMe API**: For ReadMe-hosted docs not synced to GitHub
+
+**Enhanced Context (optional)**: Connect **Linear**, **Jira**, or **Slack** to provide Promptless with additional context for better suggestions.
 
 <Frame>
   <img src="./assets/integrations-page.png" alt="Integrations Page" />
@@ -21,29 +36,59 @@ If you don't see the integration you need, please let us know at [help@gopromptl
 
 ## Step 2: Create a project
 
-Once you've set up integrations, visit the [Projects page](https://app.gopromptless.ai/projects). Creating a project will let Promptless index your docs and find the right place to suggest a change. You can set up different types of triggers for different projects:
-- Slack: Promptless runs when you tag it or when you use the message shortcut in Slack
-- GitHub/Bitbucket: Promptless runs upon opening a PR in any of the source repos you specify in the Project
+Visit the [Projects page](https://app.gopromptless.ai/projects) to create your first project.
 
-If you want to have both triggers, create two separate projects with all other information the same. You'll also be able to set up context sources for each project, to instruct Promptless on which Linear Teams, Jira Projects, Google Drive folders, etc to search when generating suggestions. 
+### Trigger Configuration
 
-For GitHub or Bitbucket-based projects, you can enable the auto-publish checkbox to automatically create pull requests with documentation changes. When enabled, Promptless will create a new PR with suggested documentation updates whenever it detects necessary changes, rather than requiring manual review and PR creation through the dashboard.
+Choose your trigger type:
 
+<Cards>
+  <Card title="GitHub/Bitbucket Triggers" icon="fa-code-pull-request">
+    Automatically runs when PRs are opened in specified source repositories.
+  </Card>
+  <Card title="Slack Triggers" icon="brands slack">
+    Runs when you @mention Promptless or use Slack message shortcuts.
+  </Card>
+</Cards>
 
-You can also configure excluded directories to prevent Promptless from analyzing or making suggestions for specific directories in your documentation repository. This is useful for excluding internal documentation, deprecated content, or directories that shouldn't be modified by automated processes. Simply check the "Exclude specific directories from Promptless suggestions" option and specify the directory paths (separated by commas) that you want to exclude.
+<Info>
+Need both trigger types? Create separate projects with identical settings for each trigger.
+</Info>
 
-When reviewing documentation updates in the dashboard, you can use the follow-on request feature to ask Promptless for additional changes or refinements to its initial suggestions. This is particularly useful when you want to provide specific feedback or request modifications to the proposed documentation updates.
+### Project Configuration Options
 
-A new project for a GitHub PR trigger might look like this:
+<ParamField path="Context Sources" type="optional">
+  Select which Linear teams, Jira projects, or other sources to search for context
+</ParamField>
+
+<ParamField path="Excluded Directories" type="optional">
+  Specify directories to exclude from analysis (internal docs, deprecated content, etc.)
+</ParamField>
+
+<ParamField path="Auto-publish" type="boolean">
+  Automatically create PRs with documentation changes (GitHub/Bitbucket only)
+</ParamField>
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/80863009-2671-4d86-91d6-95633becce22-new-project-modal-updated.png" alt="Create New Project modal" />
 </Frame>
 
-After creating a project, Promptless will begin analyzing and indexing your documentation. This initialization process typically takes a few minutes to complete, during which Promptless processes your documentation structure and content to ensure accurate suggestions. You'll be notified once the system is ready to handle triggers for your project.
 
-## Step 3: Configure Notification Settings
+<Tip title="Best Practice">
+Create a dedicated Slack channel for documentation update notifications and configure it in your project settings. This helps your team stay coordinated and informed about doc updates.
+</Tip>
 
-After creating your project, you can configure how you want to be notified about documentation updates from Promptless. We recommend creating a dedicated Slack channel for all documentation update notifications, which will help your team stay informed and coordinate on documentation improvements. You can configure this in your project settings.
+## What's Next?
 
-And that's it! Promptless will start listening for events on your Projects' triggers, and draft documentation updates for you to review.
+After creating a project, Promptless will start ingesting and indexing your documentation. This process helps Promptless learn your documentation structure and content, and remember it for future suggestions. This can take 5-30 minutes, depending on the size of your docs.
+
+Once setup is complete, Promptless will:
+- Listen for trigger events from your configured sources
+- Analyze changes and gather relevant context
+- Generate documentation suggestions for your review
+
+<Success>
+You're all set! Promptless is now ready to help automate your documentation updates.
+</Success>
+
+Need help with integrations? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we add new integrations every week.
