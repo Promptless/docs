@@ -20,10 +20,7 @@ Promptless automatically monitors your specified source repositories for new pul
 
 During analysis, Promptless processes information such as the code diff, PR title, and PR description to understand the context and scope of changes. This information is used solely for generating documentation suggestions and is not stored by Promptless.
 
-**How it works:**
-- By default, suggestions are available in the Promptless dashboard for review
-- If no documentation changes are needed, Promptless leaves a comment indicating this
-- You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase
+By default, suggestions are available in the Promptless dashboard for review. If no documentation changes are needed, Promptless leaves a comment indicating this. You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase.
 
 <AccordionGroup>
   <Accordion title="Auto-publish Mode">
@@ -31,13 +28,6 @@ During analysis, Promptless processes information such as the code diff, PR titl
     - Promptless automatically creates a new PR with suggested documentation changes
     - The documentation PR is linked in a comment on the original code PR
     - This streamlines the documentation process by integrating directly into your code review workflow
-  </Accordion>
-
-  <Accordion title="Follow-on Requests (GitHub-Only)">
-    During the review process, you can request additional changes or provide specific feedback:
-    - Leave a single comment tagging @Promptless with your instructions
-    - Create comments as part of a review and tag Promptless in the final submission comment
-    - Promptless will process your request and suggest updated changes based on your input
   </Accordion>
 </AccordionGroup>
 
@@ -49,18 +39,9 @@ Promptless automatically skips draft pull requests. Documentation updates are on
 
 Slack integration enables documentation updates directly from your team conversations. This is particularly useful for support conversations or internal discussions where questions arise that could be better addressed in your documentation.
 
-**Common use cases:**
-- Slack Connect support channels where customers ask questions about your product
-- Internal team discussions that reveal documentation gaps
-- Support threads where your team provides answers that should be documented
-
 **Trigger methods:**
 - **Message Action**: Use the Promptless message shortcut on any Slack message to trigger documentation analysis
 - **Mentions**: Tag @Promptless in a channel to request documentation updates based on the conversation context
-
-<Tip>
-This feature is especially valuable in Slack Connect support channels where customer questions reveal documentation gaps that need to be addressed.
-</Tip>
 
 #### Image Processing in Slack Threads
 
