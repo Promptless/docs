@@ -485,15 +485,14 @@ Contact our team to discuss specific compliance requirements for your deployment
 The following diagram illustrates a typical EKS + Bedrock deployment architecture with self-hosted GitHub Enterprise and Slack integrations:
 
 ```mermaid
-graph TB
+graph TD
     %% User Access
     USER[Users<br/>promptless.corp.com]
 
-    %% External Services - Made taller to show bidirectional flow
+    %% External Services
     subgraph "Corporate Network"
-        direction TB
-        GHE[GitHub Enterprise<br/>github.corp.com<br/><br/>📤 Sends Webhooks<br/>📥 Receives API Calls]
-        SLACK[Slack Workspace<br/>corp.slack.com<br/><br/>📤 Sends Webhooks<br/>📥 Receives API Calls]
+        GHE[GitHub Enterprise<br/>github.corp.com]
+        SLACK[Slack Workspace<br/>corp.slack.com]
     end
 
     %% AWS VPC
@@ -501,27 +500,27 @@ graph TB
         %% EKS Cluster
         subgraph "EKS Cluster"
             subgraph "Promptless Namespace"
-                API[Promptless Backend API<br/>K8s Deployment]
-                DASH[Promptless Frontend Dashboard<br/>K8s Deployment]
-                WORKER[Worker Processes<br/>K8s Deployment]
+                API[Promptless Backend API]
+                DASH[Promptless Frontend Dashboard]
+                WORKER[Worker Processes]
             end
         end
 
         %% AWS Services
-        RDS[(RDS PostgreSQL<br/>Database)]
-        S3[(S3 Bucket<br/>Document Storage)]
+        RDS[(RDS PostgreSQL)]
+        S3[(S3 Bucket)]
         
         %% VPC Endpoints
         subgraph "VPC Endpoints"
-            VPCE_S3[S3 VPC Endpoint]
-            VPCE_RDS[RDS VPC Endpoint]
-            VPCE_BEDROCK[Bedrock VPC Endpoint]
+            VPCE_S3[S3 Endpoint]
+            VPCE_RDS[RDS Endpoint]
+            VPCE_BEDROCK[Bedrock Endpoint]
         end
     end
 
     %% AWS Bedrock
     subgraph "AWS Bedrock"
-        BEDROCK[Claude 3 Sonnet<br/>LLM Service]
+        BEDROCK[Claude 3 Sonnet]
     end
 
     %% User connections
@@ -545,16 +544,11 @@ graph TB
     WORKER --> VPCE_BEDROCK
     VPCE_BEDROCK --> BEDROCK
     
-    %% Bidirectional external integrations
-    %% Webhooks from external services (incoming)
-    GHE -->|Webhooks<br/>Push/PR Events| API
-    SLACK -->|Webhooks<br/>Slash Commands| API
-    
-    %% API calls to external services (outgoing)
-    API -->|API Calls<br/>Repo Access| GHE
-    API -->|API Calls<br/>Message Posting| SLACK
-    WORKER -->|API Calls<br/>Code Analysis| GHE
-    WORKER -->|API Calls<br/>Notifications| SLACK
+    %% External integrations (bidirectional)
+    GHE <--> API
+    SLACK <--> API
+    GHE <--> WORKER
+    SLACK <--> WORKER
 
     %% Styling
     classDef k8s fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
