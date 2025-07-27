@@ -480,3 +480,115 @@ Self-hosted Promptless supports various compliance requirements:
 - **FedRAMP**: Government cloud deployment options
 
 Contact our team to discuss specific compliance requirements for your deployment.
+## Example Architecture Diagram
+
+The following diagram illustrates a typical EKS + Bedrock deployment architecture with self-hosted GitHub Enterprise and Slack integrations:
+
+```mermaid
+graph TB
+    %% External Services
+    subgraph "Corporate Network"
+        GHE[GitHub Enterprise<br/>github.corp.com]
+        SLACK[Slack Workspace<br/>corp.slack.com]
+    end
+
+    %% AWS VPC
+    subgraph "AWS VPC"
+        %% EKS Cluster
+        subgraph "EKS Cluster"
+            subgraph "Promptless Namespace"
+                API[Promptless Backend API<br/>K8s Deployment]
+                DASH[Promptless Frontend Dashboard<br/>K8s Deployment]
+                WORKER[Worker Processes<br/>K8s Deployment]
+            end
+        end
+
+        %% AWS Services
+        RDS[(RDS PostgreSQL<br/>Database)]
+        S3[(S3 Bucket<br/>Document Storage)]
+        
+        %% VPC Endpoints
+        subgraph "VPC Endpoints"
+            VPCE_S3[S3 VPC Endpoint]
+            VPCE_RDS[RDS VPC Endpoint]
+            VPCE_BEDROCK[Bedrock VPC Endpoint]
+        end
+    end
+
+    %% AWS Bedrock
+    subgraph "AWS Bedrock"
+        BEDROCK[Claude 3 Sonnet<br/>LLM Service]
+    end
+
+    %% User Access
+    USER[Users<br/>promptless.corp.com]
+
+    %% Connections
+    USER --> DASH
+    DASH --> API
+    API --> WORKER
+    
+    API --> VPCE_RDS
+    VPCE_RDS --> RDS
+    
+    API --> VPCE_S3
+    WORKER --> VPCE_S3
+    VPCE_S3 --> S3
+    
+    API --> VPCE_BEDROCK
+    WORKER --> VPCE_BEDROCK
+    VPCE_BEDROCK --> BEDROCK
+    
+    %% External integrations via VPC
+    API -.-> GHE
+    API -.-> SLACK
+    WORKER -.-> GHE
+    WORKER -.-> SLACK
+
+    %% Styling
+    classDef k8s fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
+    classDef aws fill:#ff9900,stroke:#fff,stroke-width:2px,color:#fff
+    classDef external fill:#28a745,stroke:#fff,stroke-width:2px,color:#fff
+    classDef vpc fill:#17a2b8,stroke:#fff,stroke-width:2px,color:#fff
+
+    class API,DASH,WORKER k8s
+    class RDS,S3,BEDROCK aws
+    class GHE,SLACK external
+    class VPCE_S3,VPCE_RDS,VPCE_BEDROCK vpc
+```
+
+### Architecture Components
+
+<CardGroup cols={2}>
+  <Card title="Kubernetes Deployments" icon="dharmachakra">
+    - **Backend API**: Handles REST requests and core business logic
+    - **Frontend Dashboard**: Web interface served at `promptless.corp.com`
+    - **Worker Processes**: Background jobs for documentation generation
+  </Card>
+
+  <Card title="AWS Services" icon="aws">
+    - **RDS PostgreSQL**: Application database with VPC endpoint
+    - **S3 Bucket**: Document and asset storage with VPC endpoint
+    - **Bedrock**: LLM service for AI-powered documentation generation
+  </Card>
+
+  <Card title="External Integrations" icon="plug">
+    - **GitHub Enterprise**: Self-hosted Git platform integration
+    - **Slack**: Corporate messaging platform integration
+    - **VPC Connectivity**: Secure connections via VPC endpoints
+  </Card>
+
+  <Card title="Security Features" icon="shield-alt">
+    - **VPC Endpoints**: Private connectivity to AWS services
+    - **Security Groups**: Network-level access controls
+    - **IAM Roles**: Service-specific permissions with IRSA
+  </Card>
+</CardGroup>
+
+### Key Architectural Benefits
+
+- **Data Sovereignty**: All data remains within your AWS VPC
+- **Secure Connectivity**: VPC endpoints eliminate internet traffic for AWS services
+- **Scalable Design**: Kubernetes deployments can scale based on demand
+- **Enterprise Integration**: Direct connectivity to self-hosted GitHub and Slack
+- **Compliance Ready**: Architecture supports SOC 2, GDPR, HIPAA, and FedRAMP requirements
