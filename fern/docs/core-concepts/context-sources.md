@@ -17,7 +17,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
     Access Linear issues, projects, and team workflows for project management context
   </Card>
   
-  <Card title="Jira" icon="fa-jira" href="/integrations/zendesk">
+  <Card title="Jira" icon="fa-brands fa-jira">
     Query Jira tickets and project data using JQL search capabilities
   </Card>
   
