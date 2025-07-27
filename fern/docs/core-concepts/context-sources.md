@@ -40,7 +40,7 @@ If a GitHub PR references a Jira ticket (like "PROJ-123"), Promptless automatica
 
 ### Slack as a Context Source
 
-Slack serves as a repository of team knowledge and informal documentation that can enhance your formal docs. When documenting a new API endpoint, Promptless can search Slack for discussions about previous discussions or common questions from team members.
+For example, when documenting a new API endpoint, Promptless can search Slack for previous discussions among team members to incorporate decisions, edge cases, or common questions.
 
 <Note>
 Slack can serve as both a trigger source and context source. When used for context, Promptless searches your Slack workspace for relevant discussions to inform documentation updates.
