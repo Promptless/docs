@@ -32,7 +32,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
 
 ### Linear as a Context Source
 
-**Example Use Case**: When a GitHub PR mentions implementing a new feature, Promptless searches Linear for related issues to understand requirements, acceptance criteria, and project context. This ensures your documentation includes the "why" behind code changes, not just the "what."
+When a GitHub PR mentions a new feature, Promptless searches Linear for related issues to understand additional project context. This ensures your documentation includes the "why" behind code changes, not just the "what."
   
 ### Jira as a Context Source
 
