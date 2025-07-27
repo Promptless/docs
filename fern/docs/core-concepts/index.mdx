@@ -11,13 +11,13 @@ graph TB
     %% Triggers Section
     subgraph "Triggers"
         T1[GitHub/Bitbucket/GitLab<br/>Pull Requests]
-        T2[Slack Messages<br/>& Mentions]
-        T3[Microsoft Teams<br/>Mentions]
-        T4[Zendesk<br/>Support Tickets]
+        T2[Slack & Microsoft Teams<br/>Messages & Mentions]
+        T3[Zendesk<br/>Support Tickets]
     end
 
-    %% Context Sources Section  
+    %% Context Sources Section (vertical layout)
     subgraph "Context Sources"
+        direction TB
         C1[Linear Issues<br/>& Projects]
         C2[Jira Tickets<br/>& Workflows]
         C3[GitHub Code<br/>& Repository Data]
@@ -25,8 +25,7 @@ graph TB
 
     %% Promptless Core
     subgraph "Promptless AI Engine"
-        AI[AI Documentation<br/>Generator]
-        PROC[Content Processor<br/>& Analyzer]
+        AI[Promptless AI Agent]
     end
 
     %% Documentation CMSs
@@ -38,12 +37,9 @@ graph TB
     end
 
     %% Connections
-    T1 --> PROC
-    T2 --> PROC
-    T3 --> PROC
-    T4 --> PROC
-
-    PROC --> AI
+    T1 --> AI
+    T2 --> AI
+    T3 --> AI
     
     C1 -.-> AI
     C2 -.-> AI
@@ -55,14 +51,14 @@ graph TB
     AI --> D4
 
     %% Styling
-    classDef triggerStyle fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
-    classDef contextStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef coreStyle fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
-    classDef cmsStyle fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef triggerStyle fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000000
+    classDef contextStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000000
+    classDef coreStyle fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#000000
+    classDef cmsStyle fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000000
 
-    class T1,T2,T3,T4 triggerStyle
+    class T1,T2,T3 triggerStyle
     class C1,C2,C3 contextStyle
-    class AI,PROC coreStyle
+    class AI coreStyle
     class D1,D2,D3,D4 cmsStyle
 ```
 
