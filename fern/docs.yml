@@ -15,7 +15,6 @@ navigation:
         path: ./docs/getting-started.mdx
   - section: Core Concepts
     icon: fa-regular fa-lightbulb
-    path: ./docs/core-concepts/index.mdx
     contents:
       - page: Triggers
         path: ./docs/core-concepts/triggers.md
@@ -23,11 +22,6 @@ navigation:
         path: ./docs/core-concepts/context-sources.md
       - page: Doc CMSs
         path: ./docs/core-concepts/doc-locations.md
-  - section: Frequently Asked Questions
-    icon: fa-regular fa-question-circle
-    contents:
-      - page: Frequently Asked Questions
-        path: ./docs/faq.mdx
   - section: Integrations
     icon: fa-regular fa-plug
     path: ./docs/integrations/index.mdx
@@ -66,6 +60,11 @@ navigation:
         path: ./docs/security-and-privacy/subprocessors.md
       - page: Privacy Policy
         path: ./docs/security-and-privacy/privacy-policy.md
+  - section: Frequently Asked Questions
+    icon: fa-regular fa-question-circle
+    contents:
+      - page: Frequently Asked Questions
+        path: ./docs/faq.mdx
   - section: Changelogs
     icon: fa-regular fa-clock
     contents:
