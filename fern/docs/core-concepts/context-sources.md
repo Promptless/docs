@@ -7,7 +7,7 @@ Context sources are integrations that connect Promptless to your organization's 
 Think of context sources as Promptless's way of understanding your team's unique ecosystem. When triggered to create documentation updates, Promptless intelligently searches through your connected tools to gather the most relevant context. This creates documentation that feels like it was written by someone who truly understands your project.
 
 <Info>
-Context sources are **optional** but highly recommended. They significantly improve the quality and relevance of Promptless's documentation suggestions.
+Context sources are **optional** but highly recommended. They can improve the quality and relevance of Promptless's documentation suggestions.
 </Info>
 
 ## Available Context Sources
