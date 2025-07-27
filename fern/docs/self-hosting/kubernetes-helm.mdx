@@ -486,10 +486,14 @@ The following diagram illustrates a typical EKS + Bedrock deployment architectur
 
 ```mermaid
 graph TB
-    %% External Services
+    %% User Access
+    USER[Users<br/>promptless.corp.com]
+
+    %% External Services - Made taller to show bidirectional flow
     subgraph "Corporate Network"
-        GHE[GitHub Enterprise<br/>github.corp.com]
-        SLACK[Slack Workspace<br/>corp.slack.com]
+        direction TB
+        GHE[GitHub Enterprise<br/>github.corp.com<br/><br/>📤 Sends Webhooks<br/>📥 Receives API Calls]
+        SLACK[Slack Workspace<br/>corp.slack.com<br/><br/>📤 Sends Webhooks<br/>📥 Receives API Calls]
     end
 
     %% AWS VPC
@@ -520,30 +524,37 @@ graph TB
         BEDROCK[Claude 3 Sonnet<br/>LLM Service]
     end
 
-    %% User Access
-    USER[Users<br/>promptless.corp.com]
-
-    %% Connections
+    %% User connections
     USER --> DASH
+
+    %% Internal service connections
     DASH --> API
     API --> WORKER
     
+    %% Database connections
     API --> VPCE_RDS
     VPCE_RDS --> RDS
     
+    %% Storage connections
     API --> VPCE_S3
     WORKER --> VPCE_S3
     VPCE_S3 --> S3
     
+    %% LLM connections
     API --> VPCE_BEDROCK
     WORKER --> VPCE_BEDROCK
     VPCE_BEDROCK --> BEDROCK
     
-    %% External integrations via VPC
-    API -.-> GHE
-    API -.-> SLACK
-    WORKER -.-> GHE
-    WORKER -.-> SLACK
+    %% Bidirectional external integrations
+    %% Webhooks from external services (incoming)
+    GHE -->|Webhooks<br/>Push/PR Events| API
+    SLACK -->|Webhooks<br/>Slash Commands| API
+    
+    %% API calls to external services (outgoing)
+    API -->|API Calls<br/>Repo Access| GHE
+    API -->|API Calls<br/>Message Posting| SLACK
+    WORKER -->|API Calls<br/>Code Analysis| GHE
+    WORKER -->|API Calls<br/>Notifications| SLACK
 
     %% Styling
     classDef k8s fill:#326ce5,stroke:#fff,stroke-width:2px,color:#fff
