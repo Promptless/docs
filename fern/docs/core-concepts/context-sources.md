@@ -13,7 +13,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
 ## Available Context Sources
 
 <CardGroup cols={2}>
-  <Card title="Linear" icon="fa-linear" href="/integrations/linear">
+  <Card title="Linear" icon="brands linear" href="/integrations/linear">
     Access Linear issues, projects, and team workflows for project management context
   </Card>
   
