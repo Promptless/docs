@@ -1,6 +1,6 @@
 # Context Sources
 
-Context sources are integrations that connect Promptless to your organization's existing tools and data that could contain rich information for doc updates.
+Context sources are integrations that connect Promptless to your organization's existing tools and data. They often contain important information that can augment the trigger events.
 
 ## How Context Sources Work
 
