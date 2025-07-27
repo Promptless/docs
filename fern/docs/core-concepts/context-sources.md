@@ -48,7 +48,7 @@ Slack can serve as both a trigger source and context source.
 
 ### GitHub as a Context Source
 
-When creating documentation for a new feature, Promptless analyzes related GitHub issues, PR discussions, and code comments to understand implementation details, design decisions, and potential gotchas that should be documented.
+In addition to code diffs from trigger PRs, Promptless finds related GitHub issues and PR comments when you set GitHub as a context source.
 
 ## Configuration and Setup
 
