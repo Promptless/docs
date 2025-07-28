@@ -15,6 +15,7 @@ navigation:
         path: ./docs/getting-started.mdx
   - section: Core Concepts
     icon: fa-regular fa-lightbulb
+    path: ./docs/core-concepts/index.mdx
     contents:
       - page: Triggers
         path: ./docs/core-concepts/triggers.md
