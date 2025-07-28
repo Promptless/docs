@@ -1,0 +1,88 @@
+---
+title: Working with Slack
+description: Learn how to use Promptless directly in Slack through message actions, DMs, and channel mentions
+---
+
+# Working with Slack
+
+Promptless integrates deeply with Slack to enable documentation generation directly from your team conversations. Whether you're discussing internal processes or external customer issues, you can capture these discussions and turn them into documentation without leaving Slack.
+
+<Note>
+  Make sure you have the [Slack integration](/integrations/slack) set up before using these features.
+</Note>
+
+## Three Ways to Interact
+
+### 1. Message Actions
+
+Use Slack's message actions to quickly trigger documentation updates from any message or thread. This is best used in slack connect channels, where you don't want to interrupt the flow of the conversation.
+
+<Steps>
+  <Step title="Find the Message">
+    Navigate to any Slack message that contains information relevant to your documentation.
+  </Step>
+
+  <Step title="Access Message Actions">
+    Click the three dots (⋯) menu on the message to open the message actions menu.
+  </Step>
+
+  <Step title="Select Update Docs">
+    Choose "Update Docs" from the message actions menu to trigger Promptless. If you don't see the option, click on "More message shortcuts" and search for Promptless.
+  </Step>
+
+  <Step title="Review Generated Content">
+    Promptless will analyze the full thread to generate relevant documentation updates, and DM you once it's done.
+  </Step>
+</Steps>
+
+### 2. Channel Mentions
+
+Tag Promptless directly in any channel to trigger documentation updates from ongoing discussions.
+
+<Steps>
+  <Step title="Mention Promptless">
+    Tag Promptless bot in a new message or in a thread reply in a channel, along with instructions about how to update the docs, you can add internal and external links, slack links, as well as images. Don't forget to add Promptless bot to the channel if you're tagging it for the first time!
+  </Step>
+
+  <Step title="Thread Context Analysis">
+    Promptless will analyze the entire thread context to understand the discussion and generate relevant documentation. You can point Promptless to specific pages, or Promptless can infer based on the context.
+  </Step>
+</Steps>
+
+<Tip title="Editing Suggestions in Slack">
+  Promptless will reply in the thread once it's done draft updates. From there, you can add follow-on instructions in the same thread to tell Promptless to edit the suggestion. Simply reply to Promptless's response with additional guidance or corrections.
+</Tip>
+
+### Example Instructions
+
+```
+@Promptless please also add a troubleshooting section covering the error cases we discussed earlier in this thread
+```
+
+```
+@Promptless make sure to mention that this feature is only available in the Enterprise plan
+```
+
+```
+@Promptless create a mermaid chart for the system architecture discussed in this thread`
+```
+
+### 3. Direct Messages (DMs)
+
+Send direct messages to Promptless for private documentation requests or when you have very specific instructions.
+
+<Steps>
+  <Step title="Start a DM">
+    Go to the Apps section in Slack, click on the Promptless bot.
+  </Step>
+
+  <Step title="Describe Your Request">
+    Type your documentation request or paste content you'd like to turn into documentation. You can post internal or external links, slack links, images, etc. You don't have to tag Promptless here.
+  </Step>
+
+  <Step title="Wait for Promptless DM">
+    Promptless will DM you with the doc updates.
+  </Step>
+</Steps>
+
+Need help with Slack interactions? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).

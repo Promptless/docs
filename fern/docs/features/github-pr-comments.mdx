@@ -1,0 +1,109 @@
+# Interacting with Promptless PRs
+
+After Promptless opens a docs PR, you can provide follow-on instructions directly through GitHub comments. 
+
+## Two ways of providing feedback
+
+### 1. Individual comments
+
+Leave individual comments on specific lines or sections of the documentation PR for targeted feedback.
+
+<Steps>
+  <Step title="Add Line Comments">
+    In the "Files changed" tab, click the "+" icon next to any line to add a comment.
+  </Step>
+
+  <Step title="Submit Comment">
+    Tag Promptless (@Promptless) in the comment (Note: It won't show up in auto-complete), write your instruction, and click "Add single comment" to submit your instruction to Promptless.
+  </Step>
+</Steps>
+
+<Note>
+  When using single comments, Promptless doesn't yet have the ability to look at other previous comments. So instructions like "Same here" wouldn't work. You can either spell out the instruction completely, or use the PR review comments below, where Promptless will have context on other comments in the same review.
+</Note>
+
+### 2. PR reviews
+
+Start a review to provide multiple pieces of feedback that Promptless can handle all at once.
+
+<Steps>
+  <Step title="Start a Review">
+    You can either click "Review changes" to begin a formal review process, or when adding an in-line comment, select the "Start a review" option instead of the "Add single comment" option.
+  </Step>
+
+  <Step title="Add Multiple Comments">
+    Continue adding comments as part of the review. You don't have to tag Promptless in any of them.
+  </Step>
+
+  <Step title="Include General Feedback">
+    After you're done reviewing, click on "Finish your review", and in the text box, tag Promptless (@Promptless). And then Promptless will address all your review feedback at once.
+  </Step>
+</Steps>
+
+## Examples of feedback you can give to Promptless
+
+### Content updates
+
+Request specific changes to the documentation content:
+
+```
+Please add a section about error handling for this API endpoint
+```
+
+```
+This example should use TypeScript instead of JavaScript
+```
+
+```
+Add a note that this feature requires admin permissions
+```
+
+### Structural changes
+
+Suggest improvements to the documentation structure:
+
+```
+Move this section to the beginning of the page for better flow
+```
+
+```
+Split this into two separate sections: "Basic Usage" and "Advanced Configuration"
+```
+
+```
+Add a table of contents at the top of this page
+```
+
+### Technical corrections
+
+Point out technical inaccuracies or missing details:
+
+```
+The API endpoint should be /v2/users, not /v1/users
+```
+
+```
+Add the required headers for authentication
+```
+
+```
+Include the response status codes for each endpoint
+```
+
+### Style and formatting
+
+Request improvements to presentation and readability:
+
+```
+Format this as a code block instead of inline code
+```
+
+```
+Add syntax highlighting for the JSON examples
+```
+
+```
+Use a callout box to highlight this important warning
+```
+
+Need help with GitHub PR interactions? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
