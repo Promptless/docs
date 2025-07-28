@@ -16,7 +16,7 @@ The most common setup uses the **Promptless GitHub App** to integrate with docum
 - Nextra
 - Vocs
 
-For more detailed step-by-step instructions, go to the [GitHub integrations page](/integrations/github).
+For more detailed step-by-step instructions, go to the [GitHub integrations page](/integrations/github-integration).
 
 ## Direct CMS Platform Integrations
 
