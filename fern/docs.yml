@@ -28,7 +28,7 @@ navigation:
     path: ./docs/how-to-use-promptless/index.mdx
     contents:
       - page: Working with Slack
-        path: ./docs/features/slack-interactions.mdx
+        path: ./docs/how-to-use-promptless/slack-interactions.mdx
       - page: Interacting with Promptless PRs
         path: ./docs/features/github-pr-comments.mdx
       - page: Using the Web Interface
