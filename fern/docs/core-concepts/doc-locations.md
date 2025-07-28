@@ -16,36 +16,7 @@ The most common setup uses the **Promptless GitHub App** to integrate with docum
 - Nextra
 - Vocs
 
-### How GitHub-Synced Docs Work
-
-<Steps>
-  <Step title="Install GitHub App">
-    Install the Promptless GitHub App on your documentation repository with appropriate permissions.
-  </Step>
-  
-  <Step title="Configure Project">
-    Set up your project to target the documentation repository where your content is stored.
-  </Step>
-  
-  <Step title="Automatic Publishing">
-    Promptless creates pull requests with documentation updates that sync to your documentation platform.
-  </Step>
-</Steps>
-
-<AccordionGroup>
-  <Accordion title="Supported Workflow Options">
-    **Draft Review Workflow**: Promptless creates pull requests for team review before publishing.
-    
-    **Auto-publish Mode**: Automatically merge documentation updates for faster publishing cycles.
-  </Accordion>
-  
-  <Accordion title="Repository Permissions">
-    The GitHub App requires:
-    - **Read access** to source code repositories (for triggers)
-    - **Write access** to documentation repositories (for publishing updates)
-    - **Pull request permissions** to create and manage documentation PRs
-  </Accordion>
-</AccordionGroup>
+For more detailed step-by-step instructions, go to the [GitHub integrations page](/integrations/github).
 
 ## Direct CMS Platform Integrations
 
@@ -69,35 +40,9 @@ For teams using content management systems that don't sync with GitHub, Promptle
   </Card>
 </CardGroup>
 
-## Configuration and Setup
-
-Documentation locations are configured during project creation:
-
-<Steps>
-  <Step title="Choose Integration Type">
-    Select between GitHub-synced platforms or direct CMS integrations based on your documentation infrastructure.
-  </Step>
-  
-  <Step title="Configure Authentication">
-    Set up the appropriate authentication method (GitHub App installation or CMS OAuth) through the integrations page.
-  </Step>
-  
-  <Step title="Set Publishing Preferences">
-    Choose between draft review workflows and auto-publish modes based on your team's review process.
-  </Step>
-  
-  <Step title="Test Integration">
-    Verify the integration works correctly by triggering a test documentation update.
-  </Step>
-</Steps>
-
-<Warning>
-Some CMS integrations are currently in beta. Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) for access to beta features or if you need integration with additional platforms.
-</Warning>
-
 ## Multi-Platform Publishing
 
-Promptless supports publishing to multiple documentation locations simultaneously based on the same or different trigger events and context sources.
+Promptless can publish to multiple documentation locations simultaneously, allowing you to use the same trigger events and context sources across different platforms.
 
 <Tip title="Best Practice">
 For teams using multiple platforms, create separate projects for each documentation location to maintain clear separation of content and workflows.
