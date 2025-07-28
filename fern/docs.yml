@@ -30,7 +30,7 @@ navigation:
       - page: Working with Slack
         path: ./docs/how-to-use-promptless/slack-interactions.mdx
       - page: Interacting with Promptless PRs
-        path: ./docs/features/github-pr-comments.mdx
+        path: ./docs/how-to-use-promptless/github-pr-comments.mdx
       - page: Using the Web Interface
         path: ./docs/features/web-ui-feedback.mdx
   - section: Integrations
