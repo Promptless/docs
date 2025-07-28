@@ -15,6 +15,7 @@ The most common setup uses the **Promptless GitHub App** to integrate with docum
 - Ghost
 - Nextra
 - Vocs
+- Custom CMS as long as the content is in a repo
 
 For more detailed step-by-step instructions, go to the [GitHub integrations page](/integrations/github-integration).
 
