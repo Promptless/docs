@@ -32,7 +32,7 @@ navigation:
       - page: Interacting with Promptless PRs
         path: ./docs/how-to-use-promptless/github-pr-comments.mdx
       - page: Using the Web Interface
-        path: ./docs/features/web-ui-feedback.mdx
+        path: ./docs/how-to-use-promptless/web-ui-feedback.mdx
   - section: Integrations
     icon: fa-regular fa-plug
     path: ./docs/integrations/index.mdx
