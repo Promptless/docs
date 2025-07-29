@@ -42,15 +42,9 @@ navigation:
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
         slug: github-integration
-<<<<<<< HEAD
       - page: GitHub Enterprise Integration
         path: ./docs/integrations/github-enterprise.mdx
         slug: github-enterprise-integration
-||||||| ff0dd79
-=======
-      - page: GitHub Enterprise Integration
-        path: ./docs/integrations/github-enterprise.mdx
->>>>>>> origin/main
       - page: Jira Integration
         path: ./docs/integrations/jira.mdx
       - page: Linear Integration
