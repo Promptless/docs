@@ -45,14 +45,9 @@ navigation:
         path: ./docs/integrations/webflow.mdx
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
-<<<<<<< HEAD
         slug: github-integration
       - page: Jira Integration
         path: ./docs/integrations/jira.mdx
-||||||| cd707c5
-=======
-        slug: github-integration
->>>>>>> origin/main
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
       - page: Microsoft Teams Integration
