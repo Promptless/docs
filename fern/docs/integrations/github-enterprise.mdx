@@ -29,8 +29,8 @@ This setup is required for GitHub Enterprise Server instances and GitHub Enterpr
 Fill in the following fields in your GitHub App configuration:
 
 - **GitHub App name** (required): Enter a descriptive name like "Promptless Enterprise" or "Promptless (Your Company Name)"
-- **Description** (required): Use: "Promptless keeps your technical guides up-to-date using AI."
-- **Homepage URL** (required): Set to: `https://gopromptless.ai`
+- **Description**: Use: "Promptless keeps your technical guides up-to-date using AI."
+- **Homepage URL** (required): `https://gopromptless.ai`
 
 ## Step 2: Configure Authentication URLs
 
@@ -44,8 +44,8 @@ Set up the callback and redirect URLs for proper authentication flow:
 
 Configure the following URLs in your GitHub App settings:
 
-- **Callback URL** (required): Set to: `https://app.gopromptless.ai/integrations`
-- **Setup URL (Post installation)** (required): Set to: `https://app.gopromptless.ai/integrations/github-redirect`
+- **Callback URL** (required): `https://app.gopromptless.ai/integrations`
+- **Setup URL (Post installation)** (required): `https://app.gopromptless.ai/integrations/github-redirect`
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/b5b5ff40-d884-4086-acb6-4bb2973bfd97-github-enterprise-post-installation.png" alt="GitHub Enterprise Post Installation Setup" />
@@ -67,7 +67,7 @@ Set up webhooks to enable real-time communication between GitHub Enterprise and 
 
 Configure the following webhook settings in your GitHub App:
 
-- **Webhook URL** (required): Set to: `https://api.gopromptless.ai/integrations/github/events`
+- **Webhook URL** (required): `https://api.gopromptless.ai/integrations/github/events`
 - **Webhook secret** (optional): Leave this field empty or generate a secure secret if required by your security policies
 - **SSL verification** (required): Enable SSL verification (recommended for security)
 

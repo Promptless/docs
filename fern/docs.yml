@@ -42,7 +42,7 @@ navigation:
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
         slug: github-integration
-      - page: GitHub Enterprise Setup
+      - page: GitHub Enterprise Integration
         path: ./docs/integrations/github-enterprise.mdx
       - page: Jira Integration
         path: ./docs/integrations/jira.mdx
