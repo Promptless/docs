@@ -45,6 +45,7 @@ navigation:
         path: ./docs/integrations/webflow.mdx
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
+        slug: github-integration
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
       - page: Microsoft Teams Integration
