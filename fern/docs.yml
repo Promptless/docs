@@ -42,7 +42,7 @@ navigation:
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
         slug: github-integration
-      - page: GitHub Enterprise Setup
+      - page: GitHub Enterprise Integration
         path: ./docs/integrations/github-enterprise.mdx
       - page: Jira Integration
         path: ./docs/integrations/jira.mdx
@@ -84,10 +84,12 @@ navigation:
   - section: Changelogs
     icon: fa-regular fa-clock
     contents:
-      - page: April 2025
-        path: ./docs/changelogs/2025-04.md
+      - page: July 2025
+        path: ./docs/changelogs/2025-07.md
       - page: May 2025
         path: ./docs/changelogs/2025-05.md
+      - page: April 2025
+        path: ./docs/changelogs/2025-04.md
 
 colors:
   accentPrimary:
