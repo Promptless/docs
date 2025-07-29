@@ -46,10 +46,10 @@ navigation:
         path: ./docs/integrations/jira.mdx
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
-      - page: Microsoft Teams Integration
-        path: ./docs/integrations/microsoft-teams.mdx
       - page: Slack Integration
         path: ./docs/integrations/slack.mdx
+      - page: Microsoft Teams Integration
+        path: ./docs/integrations/microsoft-teams.mdx
       - page: Zendesk Integration
         path: ./docs/integrations/zendesk.mdx
       - page: Intercom Integration (Beta)
@@ -86,6 +86,8 @@ navigation:
         path: ./docs/changelogs/2025-04.md
       - page: May 2025
         path: ./docs/changelogs/2025-05.md
+      - page: June 2025
+        path: ./docs/changelogs/2025-06.md
 
 colors:
   accentPrimary:
