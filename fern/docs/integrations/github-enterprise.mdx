@@ -73,48 +73,64 @@ Configure the following webhook settings in your GitHub App:
 
 ## Step 4: Configure Repository Permissions
 
-Promptless requires specific repository permissions to function properly:
+Promptless requires specific repository permissions to function properly. Configure these permissions in your GitHub App settings:
 
 <Frame>
-  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/b5b5ff40-d884-4086-acb6-4bb2973bfd97-github-enterprise-repository-permissions.png" alt="GitHub Enterprise Repository Permissions" />
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-permissions-overview.png" alt="GitHub Enterprise Repository Permissions Overview" />
 </Frame>
 
 ### Required Repository Permissions
 
-<AccordionGroup>
-  <Accordion title="Pull Requests - Read and Write">
-    Allows Promptless to:
+Configure the following permissions for your GitHub App:
+
+#### Pull Requests - Read and Write
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-pull-requests-permission.png" alt="GitHub Enterprise Pull Requests Permission" />
+</Frame>
+
+This permission allows Promptless to:
     - Read pull request content and metadata
     - Create documentation update pull requests
     - Add comments to pull requests for feedback
-  </Accordion>
 
-  <Accordion title="Contents - Read and Write">
-    Allows Promptless to:
+#### Contents - Read and Write
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-contents-permission.png" alt="GitHub Enterprise Contents Permission" />
+</Frame>
+
+This permission allows Promptless to:
     - Read repository files and documentation
     - Create and update documentation files
     - Access repository structure and content
-  </Accordion>
 
-  <Accordion title="Webhooks - Read and Write">
-    Allows Promptless to:
+#### Commit Statuses - Read Only
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-commit-statuses-permission.png" alt="GitHub Enterprise Commit Statuses Permission" />
+</Frame>
+
+This permission allows Promptless to:
+- Read commit status information
+- Understand the state of pull requests and commits
+
+#### Webhooks - Read and Write
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-webhooks-permission.png" alt="GitHub Enterprise Webhooks Permission" />
+</Frame>
+
+This permission allows Promptless to:
     - Manage webhook configurations
     - Receive real-time notifications of repository events
-  </Accordion>
-
-  <Accordion title="Commit Statuses - Read Only">
-    Allows Promptless to:
-    - Read commit status information
-    - Understand the state of pull requests and commits
-  </Accordion>
-</AccordionGroup>
 
 ## Step 5: Configure Webhook Events
 
 Select the specific events that should trigger Promptless documentation updates:
 
 <Frame>
-  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/b5b5ff40-d884-4086-acb6-4bb2973bfd97-github-enterprise-webhook-events.png" alt="GitHub Enterprise Webhook Events" />
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-webhook-events-updated.png" alt="GitHub Enterprise Webhook Events" />
 </Frame>
 
 ### Required Webhook Events
