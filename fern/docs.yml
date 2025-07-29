@@ -39,10 +39,6 @@ navigation:
     contents:
       - page: Bitbucket Integration
         path: ./docs/integrations/bitbucket.mdx
-      - page: Intercom Integration (Beta)
-        path: ./docs/integrations/intercom.md
-      - page: Webflow Integration (Beta)
-        path: ./docs/integrations/webflow.mdx
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
         slug: github-integration
@@ -52,12 +48,16 @@ navigation:
         path: ./docs/integrations/jira.mdx
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
-      - page: Microsoft Teams Integration
-        path: ./docs/integrations/microsoft-teams.mdx
       - page: Slack Integration
         path: ./docs/integrations/slack.mdx
+      - page: Microsoft Teams Integration
+        path: ./docs/integrations/microsoft-teams.mdx
       - page: Zendesk Integration
         path: ./docs/integrations/zendesk.mdx
+      - page: Intercom Integration (Beta)
+        path: ./docs/integrations/intercom.md
+      - page: Webflow Integration (Beta)
+        path: ./docs/integrations/webflow.mdx
   - section: Self-Hosting
     icon: fa-regular fa-server
     path: ./docs/self-hosting/index.mdx
