@@ -13,6 +13,11 @@ navigation:
     contents:
       - page: Welcome
         path: ./docs/getting-started.mdx
+  - section: Access Management
+    icon: fa-regular fa-users
+    contents:
+      - page: Access Management
+        path: ./docs/access-management.mdx
   - section: Core Concepts
     icon: fa-regular fa-lightbulb
     path: ./docs/core-concepts/index.mdx
