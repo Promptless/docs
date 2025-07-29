@@ -46,6 +46,8 @@ navigation:
       - page: GitHub Integration
         path: ./docs/integrations/github.mdx
         slug: github-integration
+      - page: Jira Integration
+        path: ./docs/integrations/jira.mdx
       - page: Linear Integration
         path: ./docs/integrations/linear.mdx
       - page: Microsoft Teams Integration

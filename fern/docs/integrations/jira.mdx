@@ -1,0 +1,69 @@
+# Jira Integration
+
+**Used for: Context**
+
+Promptless integrates with Jira through OAuth 2.0, providing secure access to your project management data and issue tracking for documentation automation.
+
+## Installation
+
+1. Click "Connect Jira" from the [integrations page](https://app.gopromptless.ai/integrations).
+
+2. If you're not already logged in, you'll see the Atlassian login screen:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-atlassian-login.png" alt="Atlassian Login Screen" />
+</Frame>
+
+3. You'll be directed to the OAuth consent screen where you can review the permissions Promptless is requesting:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-oauth-consent.png" alt="Jira OAuth Consent Screen" />
+</Frame>
+
+4. Click "Accept", and you'll be redirected to Promptless, verify that Jira is connected. If you don't see the option to accept, you may not have the required permissions. You can invite your org's Jira admin to Promptless. For more information about adding new members, see our [FAQ](/frequently-asked-questions/frequently-asked-questions#how-do-i-add-team-members-to-my-account).
+
+After granting permission, you can manage Promptless by going to your avatar > Account settings > Connected apps:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-connected-apps.png" alt="Atlassian Connected Apps Management" />
+</Frame>
+
+## Project Setup and Permissions
+
+After connecting Jira, you can configure which projects you'd like Promptless to search in when setting up a Project in the [projects page](https://app.gopromptless.ai/projects). Promptless will not search projects not specified here.
+
+
+## JQL Search Capabilities
+
+Promptless leverages Jira's powerful JQL (Jira Query Language) search functionality to find relevant context:
+
+- **Automatic Issue Retrieval**: When a GitHub PR or other trigger mentions a Jira ticket (like "PROJ-123"), Promptless automatically retrieves that specific issue for additional context.
+
+- **Proactive JQL Searches**: Promptless can proactively search Jira using JQL queries to find related issues, epics, and project data that might be relevant to the documentation being generated.
+
+<Note>
+Promptless queries Jira data in real-time and does not store any of your Jira data. All searches are performed on-demand when documentation updates are needed.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection Issues">
+    If you're having trouble connecting to Jira:
+    - Ensure you have the necessary permissions in your Jira instance
+    - Check that your Jira instance allows OAuth 2.0 applications
+    - Contact your Jira administrator if you encounter permission errors
+  </Accordion>
+
+  <Accordion title="Search Results">
+    If Promptless isn't finding relevant Jira issues:
+    - Verify that the projects are configured correctly in your Promptless project settings
+    - Check that the issues exist in the configured projects
+    - Ensure the issues are accessible with your current Jira permissions
+  </Accordion>
+
+  <Accordion title="Re-authentication">
+    If you need to re-authenticate with Jira:
+    - Visit the [integrations page](https://app.gopromptless.ai/integrations)
+    - Delete and reconnect your Jira integration
+  </Accordion>
+</AccordionGroup>
+
+For additional support, contact [help@gopromptless.ai](mailto:help@gopromptless.ai).
