@@ -158,6 +158,7 @@ If your GitHub Enterprise instance is behind a firewall or uses IP restrictions,
 Add the following IP addresses to your whitelist:
 
 ```
+3.143.177.103
 3.131.121.250
 3.13.184.175
 18.223.104.40
@@ -166,6 +167,10 @@ Add the following IP addresses to your whitelist:
 <Warning>
 These IP addresses are required for webhook delivery and API communication. Failure to whitelist them will prevent Promptless from receiving GitHub events and accessing your repositories.
 </Warning>
+
+<Info>
+The primary egress IP address for Promptless infrastructure is `3.143.177.103` (NAT gateway). This is the IP address that will appear in your GitHub Enterprise logs for API requests and webhook communications.
+</Info>
 
 ## Step 7: Generate Credentials
 
