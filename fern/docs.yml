@@ -91,8 +91,8 @@ navigation:
         path: ./docs/changelogs/2025-05.md
       - page: April 2025
         path: ./docs/changelogs/2025-04.md
-      - page: December 2024
-        path: ./docs/changelogs/2024-12.md
+      - page: January 2025
+        path: ./docs/changelogs/2025-01.md
       - page: October 2024
         path: ./docs/changelogs/2024-10.md
 
