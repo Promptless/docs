@@ -7,7 +7,17 @@ title: Promptless | Documentation
 layout:
   searchbar-placement: header 
 
+tabs:
+  docs:
+    display-name: Docs
+    icon: fa-regular fa-book
+  changelog:
+    display-name: Changelog
+    icon: fa-regular fa-clock
+
 navigation:
+  - tab: docs
+    layout:
   - section: Getting Started
     icon: fa-regular fa-rocket
     contents:
@@ -82,8 +92,9 @@ navigation:
     contents:
       - page: Frequently Asked Questions
         path: ./docs/faq.mdx
+  - tab: changelog
+    layout:
   - section: Changelogs
-    icon: fa-regular fa-clock
     contents:
       - page: July 2025
         path: ./docs/changelogs/2025-07.md
