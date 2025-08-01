@@ -125,11 +125,11 @@ logo:
 typography:
   bodyFont:
     name: Inter
-    path: ./docs/assets/Inter-Regular.woff2
+    path: ./docs/assets/InterVariable.woff2
     style: normal
   headingsFont:
     name: Inter
-    path: ./docs/assets/Inter-Regular.woff2
+    path: ./docs/assets/InterVariable.woff2
     style: normal
 
 favicon: ./docs/assets/favicon.ico
