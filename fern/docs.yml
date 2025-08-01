@@ -99,8 +99,6 @@ navigation:
       contents:
         - page: July 2025
           path: ./docs/changelogs/2025-07.md
-        - page: June 2025
-          path: ./docs/changelogs/2025-06.md
         - page: May 2025
           path: ./docs/changelogs/2025-05.md
         - page: April 2025
@@ -126,12 +124,12 @@ logo:
 
 typography:
   bodyFont:
-    name: Atlassian Sans
-    path: ./docs/assets/AtlassianSans.woff2
+    name: Inter
+    path: ./docs/assets/InterVariable.woff2
     style: normal
   headingsFont:
-    name: Atlassian Sans
-    path: ./docs/assets/font3.woff2
+    name: Inter
+    path: ./docs/assets/InterVariable.woff2
     style: normal
 
 favicon: ./docs/assets/favicon.ico
