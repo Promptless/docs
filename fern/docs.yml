@@ -24,6 +24,11 @@ navigation:
       contents:
         - page: Welcome
           path: ./docs/getting-started.mdx
+    - section: Account Management
+      icon: fa-regular fa-users
+      contents:
+        - page: Account Management
+          path: ./docs/account-management.mdx
     - section: Core Concepts
       icon: fa-regular fa-lightbulb
       path: ./docs/core-concepts/index.mdx
