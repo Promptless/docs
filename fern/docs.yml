@@ -24,11 +24,6 @@ navigation:
       contents:
         - page: Welcome
           path: ./docs/getting-started.mdx
-    - section: Account Management
-      icon: fa-regular fa-users
-      contents:
-        - page: Account Management
-          path: ./docs/account-management.mdx
     - section: Core Concepts
       icon: fa-regular fa-lightbulb
       path: ./docs/core-concepts/index.mdx
@@ -75,6 +70,11 @@ navigation:
           path: ./docs/integrations/intercom.md
         - page: Webflow Integration (Beta)
           path: ./docs/integrations/webflow.mdx
+    - section: Account Management
+      icon: fa-regular fa-users
+      contents:
+        - page: Account Management
+          path: ./docs/account-management.mdx
     - section: Self-Hosting
       icon: fa-regular fa-server
       path: ./docs/self-hosting/index.mdx
