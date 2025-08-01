@@ -99,6 +99,8 @@ navigation:
       contents:
         - page: July 2025
           path: ./docs/changelogs/2025-07.md
+        - page: June 2025
+          path: ./docs/changelogs/2025-06.md
         - page: May 2025
           path: ./docs/changelogs/2025-05.md
         - page: April 2025
