@@ -6,6 +6,7 @@ title: Promptless | Documentation
 
 layout:
   searchbar-placement: header 
+  tabs-placement: header
 
 tabs:
   docs:
