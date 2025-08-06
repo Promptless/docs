@@ -22,7 +22,7 @@ Promptless integrates with Slack through our official Slack App, enabling automa
 </Frame>
 
 <Info title="Understanding Slack Permissions">
-  Promptless requests broader permissions than it currently uses to support potential future features like searching across Slack threads for relevant context. Currently, Promptless only accesses threads when you explicitly tag @Promptless or use the "Update Docs" message action. The number of "channels accessible" simply indicates how many channels you can tag Promptless in - it doesn't mean Promptless is actively monitoring or reading those channels.
+  Promptless requests broader permissions than it currently uses to support potential future features like searching across Slack threads for relevant context. Currently, Promptless only accesses threads when you explicitly tag @Promptless or use the "Update Docs" message action. Promptless does not actively monitor or read any channels.
 </Info>
 
 4. Verify that Slack is connected in the integrations page.
@@ -107,10 +107,6 @@ The Slack app requests broader permissions than currently used to support potent
 - **Future search capabilities**: We've designed the permission scope to potentially allow searching across Slack threads for relevant context (similar to searching through documentation)
 - **Customer-requested features**: Some customers have specifically asked for the ability to search historical Slack conversations for documentation context
 - **Optional future functionality**: If we add these features, they would be **opt-in configuration options** that you control
-
-<Note title="Channel Access Numbers">
-  When you see "X channels accessible" in Slack, this simply indicates how many channels you can tag Promptless in. It doesn't mean Promptless is actively reading or monitoring those channels.
-</Note>
 
 ## Authentication Model
 
