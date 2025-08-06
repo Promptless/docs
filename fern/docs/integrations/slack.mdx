@@ -21,6 +21,10 @@ Promptless integrates with Slack through our official Slack App, enabling automa
   <img src="../assets/slack-permissions.png" alt="Slack Permissions" />
 </Frame>
 
+<Info title="Understanding Slack Permissions">
+  Promptless requests broader permissions than it currently uses to support potential future features like searching across Slack threads for relevant context. Currently, Promptless only accesses threads when you explicitly tag @Promptless or use the "Update Docs" message action. The number of "channels accessible" simply indicates how many channels you can tag Promptless in - it doesn't mean Promptless is actively monitoring or reading those channels.
+</Info>
+
 4. Verify that Slack is connected in the integrations page.
 <Frame>
   <img src="../assets/integrations-complete.png" alt="Slack Integration Complete" />
@@ -38,7 +42,9 @@ Below is an example of a project that is set up to trigger from Slack.
 
 Once the Project is created, you will be able to trigger Promptless by writing @Promptless in a Slack channel, or by clicking Slack "Update Docs" message action on any thread. When you perform either of these actions, Promptless will pull the entire thread it was tagged in, and identify the right documentation updates based on the contents of that thread. 
 
-**Note:** Promptless cannot read threads in private channels that it has not been invited to. 
+<Warning title="Privacy and Channel Access">
+  Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. It does not monitor, scan, or automatically read messages in any channels. Promptless cannot access private channels unless it has been specifically invited to those channels.
+</Warning> 
 
 ## Image Processing in Slack Threads
 
@@ -83,6 +89,28 @@ This feature requires additional Slack permissions to access images in threads. 
 3. Re-add the Slack app to grant the new permissions
 
 **Note:** Currently, image processing is only supported for images directly shared in Slack threads. Images from other sources (such as changelogs or external links) are not automatically processed.
+
+## Permission Scope and Usage
+
+### What Promptless Actually Does
+
+Promptless operates on an **explicit trigger model** with Slack:
+
+- **Only reads content when triggered**: Promptless only accesses Slack messages when you explicitly tag @Promptless or use the "Update Docs" message action
+- **Thread-based processing**: When triggered, Promptless reads the entire thread to understand context, but only for that specific thread
+- **No background monitoring**: Promptless does not scan, monitor, or automatically read messages in any channels
+
+### Why Broader Permissions Are Requested
+
+The Slack app requests broader permissions than currently used to support potential future features:
+
+- **Future search capabilities**: We've designed the permission scope to potentially allow searching across Slack threads for relevant context (similar to searching through documentation)
+- **Customer-requested features**: Some customers have specifically asked for the ability to search historical Slack conversations for documentation context
+- **Optional future functionality**: If we add these features, they would be **opt-in configuration options** that you control
+
+<Note title="Channel Access Numbers">
+  When you see "X channels accessible" in Slack, this simply indicates how many channels you can tag Promptless in. It doesn't mean Promptless is actively reading or monitoring those channels.
+</Note>
 
 ## Authentication Model
 
