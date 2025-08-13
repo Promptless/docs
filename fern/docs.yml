@@ -27,7 +27,7 @@ navigation:
     - section: Getting Started
       icon: fa-regular fa-rocket
       contents:
-        - page: Setup & Installation
+        - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
     - section: Core Concepts
       icon: fa-regular fa-lightbulb
