@@ -60,10 +60,13 @@ navigation:
           slug: github-enterprise-integration
         - page: Jira Integration
           path: ./docs/integrations/jira.mdx
+          slug: jira-integration
         - page: Linear Integration
           path: ./docs/integrations/linear.mdx
+          slug: linear-integration
         - page: Slack Integration
           path: ./docs/integrations/slack.mdx
+          slug: slack-integration
         - page: Microsoft Teams Integration
           path: ./docs/integrations/microsoft-teams.mdx
         - page: Zendesk Integration
