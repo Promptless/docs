@@ -19,10 +19,15 @@ tabs:
 navigation:
   - tab: docs
     layout:
+    - section: Overview
+      icon: fa-regular fa-home
+      contents:
+        - page: Welcome
+          path: ./docs/index.mdx
     - section: Getting Started
       icon: fa-regular fa-rocket
       contents:
-        - page: Welcome
+        - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
     - section: Core Concepts
       icon: fa-regular fa-lightbulb
