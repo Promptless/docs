@@ -44,6 +44,8 @@ navigation:
           path: ./docs/features/github-pr-comments.mdx
         - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
+        - page: Workflow Management
+          path: ./docs/features/workflow-management.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
