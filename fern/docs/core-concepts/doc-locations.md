@@ -24,7 +24,7 @@ For more detailed step-by-step instructions, go to the [GitHub integrations page
 For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular CMS platforms.
 
 <CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-headset" href="/integrations/zendesk">
+  <Card title="Zendesk" icon="fa-solid fa-headset" href="/docs/integrations/zendesk-integration">
     Help center articles and knowledge base content management
   </Card>
   
