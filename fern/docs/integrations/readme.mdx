@@ -1,0 +1,49 @@
+# ReadMe Integration
+
+**Used for: Publishing**
+
+Promptless integrates with ReadMe through their native API to enable direct publishing of documentation updates to your ReadMe-hosted documentation platform.
+
+<Info>
+**ReadMe Refactored Users**: If you're using ReadMe Refactored (which syncs with GitHub), you should use the [GitHub Integration](/docs/integrations/github-integration) instead of the native ReadMe API integration. The ReadMe Refactored API key will not work for the native API sync outlined in the rest of this doc.
+</Info>
+
+## Installation
+
+1. Click "Connect ReadMe" from the [integrations page](https://app.gopromptless.ai/integrations).
+
+2. Enter your ReadMe API key and project subdomain when prompted.
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/9ccb6a38-36ab-4ee7-bca1-ecc1299386eb-readme-connection-form.png" alt="ReadMe API Connection Form" />
+</Frame>
+
+3. Verify that ReadMe is connected in the integrations page.
+
+## Project Setup and Permissions
+
+After connecting ReadMe, you can configure publishing settings in the [projects page](https://app.gopromptless.ai/projects). When setting up a project, you can:
+
+<Info>
+**Note**: ReadMe will only appear as an option in the docs location dropdown if you have successfully connected the ReadMe integration. If you don't see ReadMe listed, please ensure your integration is properly configured on the [integrations page](https://app.gopromptless.ai/integrations).
+</Info>
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/9ccb6a38-36ab-4ee7-bca1-ecc1299386eb-readme-docs-location-dropdown.png" alt="ReadMe shown in docs location dropdown" />
+</Frame>
+
+- Set up ReadMe as a publishing destination for documentation updates
+- Configure which files and sections should be published to ReadMe  
+- Use per-file publishing to update individual documentation pages
+
+### Configuration Options
+
+#### Include docs marked as hidden
+- **Enabled**: Promptless can read from and publish to all pages, including those marked as hidden in ReadMe
+- **Disabled**: Promptless will only interact with publicly visible pages in your ReadMe project
+
+This option is useful if you have draft content or internal documentation pages that you want to manage through Promptless but keep hidden from your public documentation.
+
+## Per-File Publishing
+
+ReadMe integration supports per-file publishing capabilities, allowing you to update individual documentation pages instead of requiring all files to be published at once.
