@@ -206,36 +206,34 @@ Store the private key and client secret in a secure location. These credentials 
 2. Choose which repositories Promptless should have access to
 3. Complete the installation process
 
-## Step 9: Configure Promptless
+## Step 9: Connect Your GitHub Enterprise Integration
 
-Contact the Promptless team at [hello@gopromptless.ai](mailto:hello@gopromptless.ai) with the following information to complete your GitHub Enterprise integration:
+After configuring your GitHub Enterprise integration, you'll need to connect it in your Promptless dashboard.
 
-<AccordionGroup>
-  <Accordion title="Required Information">
-    - **GitHub Enterprise URL**: Your GitHub Enterprise instance URL
-    - **App ID**: The numeric ID of your created GitHub App
-    - **Client ID**: Found in your GitHub App settings
-    - **Client Secret**: The secret you generated in Step 7
-    - **Private Key**: The `.pem` file you downloaded in Step 7
-    - **Installation ID**: Provided after installing the app to your organization
-  </Accordion>
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/8a5d1abd-3c56-4c5f-a7b1-340ecd794940-github-enterprise-connect-button.png" alt="GitHub Enterprise Connection Interface" />
+</Frame>
 
-  <Accordion title="Security Considerations">
-    - Send credentials through a secure channel (encrypted email or secure file sharing)
-    - Consider using your organization's preferred method for sharing sensitive information
-    - The Promptless team will securely configure your integration and delete any temporary credential storage
-  </Accordion>
-</AccordionGroup>
+### Completing the Connection
 
-## Verification and Testing
-
-Once configured by the Promptless team:
+To establish the connection:
 
 1. Log into your Promptless dashboard at [app.gopromptless.ai](https://app.gopromptless.ai)
-2. Navigate to the integrations page
-3. Verify that GitHub Enterprise appears as connected
-4. Create a test project to ensure proper functionality
-5. Test with a sample pull request to verify webhook delivery
+2. Navigate to the Integrations page  
+3. Locate the GitHub Enterprise integration tile
+4. Click **Connect GitHub Enterprise** to establish the connection
+
+<Info>
+You'll need to have the following information available during the connection process:
+- **GitHub Enterprise URL**: Your GitHub Enterprise instance URL
+- **App ID**: The numeric ID of your created GitHub App
+- **Client ID**: Found in your GitHub App settings
+- **Client Secret**: The secret you generated in Step 7
+- **Private Key**: The `.pem` file you downloaded in Step 7
+- **Installation ID**: Provided after installing the app to your organization
+</Info>
+
+The connection process will authenticate with your GitHub Enterprise instance using the configuration that was set up by the Promptless team. Once connected, you'll see confirmation that your GitHub Enterprise integration is active and ready to use.
 
 ## Troubleshooting
 
