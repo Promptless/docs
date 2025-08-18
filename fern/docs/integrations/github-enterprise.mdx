@@ -208,7 +208,7 @@ Store the private key and client secret in a secure location. These credentials 
 
 ## Step 9: Connect Your GitHub Enterprise Integration
 
-After the Promptless team has configured your GitHub Enterprise integration, you'll need to connect it in your Promptless dashboard.
+After configuring your GitHub Enterprise integration, you'll need to connect it in your Promptless dashboard.
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/8a5d1abd-3c56-4c5f-a7b1-340ecd794940-github-enterprise-connect-button.png" alt="GitHub Enterprise Connection Interface" />
@@ -224,20 +224,16 @@ To establish the connection:
 4. Click **Connect GitHub Enterprise** to establish the connection
 
 <Info>
-You'll only see the "Connect GitHub Enterprise" option after the Promptless team has successfully configured your integration with the credentials and settings you provided in Step 8.
+You'll need to have the following information available during the connection process:
+- **GitHub Enterprise URL**: Your GitHub Enterprise instance URL
+- **App ID**: The numeric ID of your created GitHub App
+- **Client ID**: Found in your GitHub App settings
+- **Client Secret**: The secret you generated in Step 7
+- **Private Key**: The `.pem` file you downloaded in Step 7
+- **Installation ID**: Provided after installing the app to your organization
 </Info>
 
 The connection process will authenticate with your GitHub Enterprise instance using the configuration that was set up by the Promptless team. Once connected, you'll see confirmation that your GitHub Enterprise integration is active and ready to use.
-
-## Verification and Testing
-
-Once configured by the Promptless team:
-
-1. Log into your Promptless dashboard at [app.gopromptless.ai](https://app.gopromptless.ai)
-2. Navigate to the integrations page
-3. Verify that GitHub Enterprise appears as connected
-4. Create a test project to ensure proper functionality
-5. Test with a sample pull request to verify webhook delivery
 
 ## Troubleshooting
 
