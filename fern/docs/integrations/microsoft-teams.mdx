@@ -74,6 +74,26 @@ First, download the Promptless Teams app package from the [Promptless integratio
 
 After installing the Teams app, you can configure new projects in the [projects page](https://app.gopromptless.ai/projects) to be set up to trigger from Microsoft Teams.
 
+## Teams Listening Behavior and Privacy
+
+Promptless operates on an **explicit trigger model** with Microsoft Teams:
+
+- **Only responds when tagged**: Promptless only accesses Teams messages when you explicitly tag @Promptless in a channel or chat
+- **No background monitoring**: Promptless does not scan, monitor, or automatically read messages in any Teams channels
+- **Thread-based processing**: When triggered, Promptless reads the entire thread to understand context, but only for that specific conversation where you tagged it
+
+<Warning title="Privacy and Channel Access">
+  Promptless only reads Teams content when you explicitly trigger it by tagging @Promptless. It does not monitor, scan, or automatically read messages in any channels. Promptless cannot access private channels unless it has been specifically added to those channels.
+</Warning>
+
+### Requesting Full Message Monitoring
+
+If your organization requires Promptless to monitor all messages automatically (without requiring @Promptless tags), this can be configured as a custom setup. Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) to discuss enabling comprehensive message monitoring for your Teams integration.
+
+<Note>
+  Full message monitoring is an enterprise feature that requires additional configuration and may have different privacy and compliance considerations for your organization.
+</Note>
+
 ## Support and Troubleshooting
 
 If you encounter issues during installation or setup:
