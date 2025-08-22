@@ -4,7 +4,7 @@ Promptless automates documentation creation and maintenance through three interc
 
 ## Overview
 
-The diagram below illustrates how triggers, context sources, and documentation CMSs interact within the Promptless ecosystem:
+The diagram below illustrates how triggers, context sources, and doc collections interact within the Promptless ecosystem:
 
 ```mermaid
 graph TB
@@ -28,8 +28,8 @@ graph TB
         AI[Promptless AI Agent]
     end
 
-    %% Documentation CMSs
-    subgraph "Documentation CMSs"
+    %% Doc Collections
+    subgraph "Doc Collections"
         D1[GitHub-synced Docs<br/>ReadMe, Mintlify, Docusaurus]
         D2[Zendesk<br/>Help Center]
         D3[Intercom<br/>Help Center]
@@ -84,9 +84,9 @@ graph TB
 Context sources are queried in real-time and no customer data is stored by Promptless, ensuring your sensitive information remains secure.
 </Note>
 
-### 3. Documentation CMSs Receive Updates
+### 3. Documentation Collections Receive Updates
 
-**Documentation CMSs** are where the final documentation updates are published:
+**Documentation Collections** are where the final documentation updates are published:
 
 - **GitHub-synced Platforms**: Most common setup where docs are stored in Git and synced to hosting providers
 - **Direct CMS Integration**: Beta support for publishing directly to Zendesk, Intercom, and Webflow
