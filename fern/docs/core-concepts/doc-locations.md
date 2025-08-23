@@ -24,19 +24,19 @@ For more detailed step-by-step instructions, go to the [GitHub integrations page
 For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular CMS platforms.
 
 <CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-headset" href="/docs/integrations/zendesk-integration">
+  <Card title="Zendesk" href="/docs/integrations/zendesk-integration">
     Help center articles and knowledge base content management
   </Card>
   
-  <Card title="Intercom" icon="fa-solid fa-comments" href="/integrations/intercom">
+  <Card title="Intercom" href="/integrations/intercom">
     Customer support documentation and help center content
   </Card>
   
-  <Card title="Webflow" icon="fa-solid fa-globe" href="/integrations/webflow">
+  <Card title="Webflow" href="/integrations/webflow">
     Blog posts, collection items, and marketing site content
   </Card>
   
-  <Card title="ReadMe API" icon="fa-solid fa-book-open">
+  <Card title="ReadMe API">
     Direct API integration for ReadMe-hosted docs not synced to GitHub
   </Card>
 </CardGroup>
