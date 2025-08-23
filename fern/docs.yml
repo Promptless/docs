@@ -83,6 +83,7 @@ navigation:
     - section: Self-Hosting
       icon: fa-regular fa-server
       path: ./docs/self-hosting/index.mdx
+      hidden: true
       contents:
         - page: Kubernetes + Helm
           path: ./docs/self-hosting/kubernetes-helm.mdx
@@ -90,8 +91,6 @@ navigation:
       icon: fa-regular fa-shield
       path: ./docs/security-and-privacy/index.md
       contents:
-        - page: Single Sign-On (SSO) Setup
-          path: ./docs/security-and-privacy/sso-setup.md
         - page: Data Handling and Classification
           path: ./docs/security-and-privacy/data-handling.md
         - page: Network Architecture
