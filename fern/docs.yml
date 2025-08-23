@@ -98,8 +98,8 @@ navigation:
           path: ./docs/security-and-privacy/network-architecture.md
         - page: Promptless Subprocessors
           path: ./docs/security-and-privacy/subprocessors.md
-        - page: Privacy Policy
-          path: ./docs/security-and-privacy/privacy-policy.md
+        - link: Privacy Policy
+          href: https://www.gopromptless.ai/privacy
     - section: Frequently Asked Questions
       icon: fa-regular fa-question-circle
       contents:
