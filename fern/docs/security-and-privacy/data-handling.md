@@ -86,14 +86,6 @@ Promptless maintains data retention policies that align with our data minimizati
 - Notifying the Promptless team about subscription termination and account closure
 - Contacting help@gopromptless.ai for specific deletion requests
 
-### Customer Rights
-
-You have the right to:
-- Request information about what data we store and for how long
-- Request immediate deletion of your data (subject to legal requirements)
-- Export/publish your documentation copies before account closure
-- Receive confirmation when data has been deleted
-
 For specific questions about data retention or to request data deletion, contact us at help@gopromptless.ai.
 
 ## Questions About Data Handling?
