@@ -64,6 +64,29 @@ Enterprise plan customers receive access to advanced authentication capabilities
 
 Enterprise customers may request additional security features and support, such as custom data retention policies. 
 
+## Data Retention and Disposal Policies
+
+Promptless maintains data retention policies that align with our data minimization approach.
+
+### Retention Periods by Data Category
+
+| Data Category | Retention Period | Disposal Timeline |
+|---------------|-----------------|------------------|
+| Documentation Copies | Retained while account is active | Deleted within 30 days of account closure |
+| Feedback Data | 2 years from creation | Automatically purged after retention period |
+| Integration Auth Data | Retained while integration is active | Deleted immediately when integration is removed |
+| Account Information | Retained while account is active | Deleted within 30 days of account closure, except as required for legal compliance |
+
+### Data Disposal Procedures
+
+**Automated Disposal**: Most data is automatically deleted according to the retention schedules above. Our systems perform regular automated cleanup to ensure data is not retained longer than necessary.
+
+**Customer-Initiated Deletion**: Customers can request immediate deletion of their data by:
+- Removing integrations and projects through the dashboard  
+- Notifying the Promptless team about subscription termination and account closure
+- Contacting help@gopromptless.ai for specific deletion requests
+
+For specific questions about data retention or to request data deletion, contact us at help@gopromptless.ai.
 
 ## Questions About Data Handling?
 
