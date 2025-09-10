@@ -90,6 +90,55 @@ This feature requires additional Slack permissions to access images in threads. 
 
 **Note:** Currently, image processing is only supported for images directly shared in Slack threads. Images from other sources (such as changelogs or external links) are not automatically processed.
 
+## Enhanced PDF Processing in Slack Threads
+
+Promptless now provides advanced PDF processing capabilities when PDFs are shared in Slack threads, delivering significant improvements in documentation quality and visual content extraction.
+
+### Key Enhancements
+
+When you share a PDF in a Slack thread and tag @Promptless or use the "Update docs" message action, Promptless will automatically:
+
+<Steps>
+  <Step title="Extract Images from PDFs">
+    Automatically identify and extract all images embedded within PDF files, making them available for inclusion in your documentation. Each extracted image is saved with a descriptive filename (e.g., `pdf_page1_img1.png`) for easy reference.
+  </Step>
+
+  <Step title="Preserve Table Structure">
+    Maintain the formatting and structure of tables when converting PDFs to markdown, ensuring complex data presentations remain readable and properly formatted in your documentation.
+  </Step>
+
+  <Step title="Generate High-Quality Markdown">
+    Convert PDF content to clean, well-structured markdown that preserves the document's original formatting while making it easily editable and maintainable.
+  </Step>
+
+  <Step title="Include Visual Elements">
+    Automatically incorporate extracted images into the generated documentation at appropriate locations, creating comprehensive visual documentation without manual effort.
+  </Step>
+</Steps>
+
+### Usage Examples
+
+<Info title="PDF Documentation Workflows">
+  Enhanced PDF processing is particularly valuable for:
+  - **API Specifications**: Convert PDF API docs while preserving complex tables and diagrams
+  - **Technical Reports**: Extract charts, graphs, and technical diagrams for reuse
+  - **Requirements Documents**: Maintain formatting of structured requirement lists and flowcharts
+  - **Training Materials**: Preserve instructional images and step-by-step diagrams
+</Info>
+
+### What You'll See
+
+When Promptless processes a PDF with embedded images, you'll notice:
+
+1. **Extracted images** are automatically saved as trigger assets (viewable in your workspace)
+2. **Improved markdown quality** with properly formatted tables and preserved structure
+3. **Integrated visuals** where extracted images are contextually placed within the documentation
+4. **Enhanced review interface** showing both the converted text and extracted images for approval
+
+<Note title="Automatic Processing">
+  PDF processing improvements work automatically with existing Slack workflows. No additional setup or configuration is required beyond your standard Promptless integration.
+</Note>
+
 ## Permission Scope and Usage
 
 ### What Promptless Actually Does
