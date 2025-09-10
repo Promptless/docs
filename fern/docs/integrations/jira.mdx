@@ -2,7 +2,7 @@
 
 **Used for: Context**
 
-Promptless integrates with both Jira Cloud and Jira Data Center instances, providing secure access to your project management data and issue tracking for documentation automation.
+Promptless integrates with both Jira Cloud and Jira Data Center instances.
 
 ## Integration Types
 
@@ -13,13 +13,10 @@ Promptless supports two types of Jira integrations depending on your Jira deploy
     For Atlassian-hosted Jira instances. Uses OAuth 2.0 authentication through Atlassian's secure connection process.
   </Card>
   <Card title="Jira Data Center" icon="fa-solid fa-server">
+    <Chip variant="beta">Beta</Chip>
     For self-hosted Jira Data Center installations. Uses username and password authentication with your organization's instance.
   </Card>
 </CardGroup>
-
-<Info>
-  Both integration types provide the same powerful JQL search capabilities and project management context for your documentation automation.
-</Info>
 
 ## Jira Cloud Installation
 
@@ -56,40 +53,15 @@ After connecting, manage Promptless access by going to your avatar > Account set
 
 ## Jira Data Center Installation
 
-For self-hosted Jira Data Center instances:
-
-<Steps>
-  <Step title="Connect Jira Data Center">
-    Click "Connect Jira Data Center" from the [integrations page](https://app.gopromptless.ai/integrations).
-  </Step>
-
-  <Step title="Instance Configuration">
-    Provide your Jira Data Center instance details:
-    - **Base URL**: Your organization's Jira Data Center URL (e.g., `https://jira.yourcompany.com`)
-    - **Username**: Your Jira username with appropriate project access permissions
-    - **Password**: Your Jira password or application-specific password
-  </Step>
-
-  <Step title="Verify Connection">
-    Promptless will test the connection and display available projects from your instance. Verify the connection is successful before proceeding.
-  </Step>
-</Steps>
-
-<Info>
-  For enhanced security, consider using application-specific passwords instead of your main account password. Consult your Jira administrator for guidance on authentication best practices.
-</Info>
+To connect your self-hosted Jira Data Center instance, contact our team at [help@gopromptless.ai](mailto:help@gopromptless.ai) to provision username and password credentials for your Jira Data Center integration.
 
 ## Project Setup and Permissions
 
-After connecting your Jira integration (either Cloud or Data Center), configure which projects Promptless should search when setting up a project in the [projects page](https://app.gopromptless.ai/projects). Promptless will only search projects specified here.
+After connecting Jira, you can configure which projects you'd like Promptless to search in when setting up a Project in the [projects page](https://app.gopromptless.ai/projects). Promptless will not search projects not specified here.
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e3bdab51-fb59-4971-aaac-32ed7dddf07b-project-context-sources-configuration.png" alt="Project configuration screen showing context sources setup with Jira integration" />
 </Frame>
-
-The project configuration interface will display different options based on your connected Jira integration type:
-- **Jira Cloud**: Shows projects accessible through your OAuth connection
-- **Jira Data Center**: Shows projects available with your configured credentials
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e3bdab51-fb59-4971-aaac-32ed7dddf07b-jira-context-configuration-interface.png" alt="Jira context configuration interface showing connected status and accessible projects" />
@@ -97,7 +69,7 @@ The project configuration interface will display different options based on your
 
 ## JQL Search Capabilities
 
-Both Jira Cloud and Data Center integrations leverage Jira's powerful JQL (Jira Query Language) search functionality to find relevant context:
+Promptless leverages Jira's powerful JQL (Jira Query Language) search functionality to find relevant context:
 
 - **Automatic Issue Retrieval**: When a GitHub PR or other trigger mentions a Jira ticket (like "PROJ-123"), Promptless automatically retrieves that specific issue for additional context.
 
@@ -109,38 +81,26 @@ Promptless queries Jira data in real-time and does not store any of your Jira da
 
 ## Troubleshooting
 
-### Jira Cloud Issues
-
-**Connection Problems**
-- Ensure you have the necessary permissions in your Jira Cloud instance
+<AccordionGroup>
+  <Accordion title="Connection Issues">
+    If you're having trouble connecting to Jira:
+    - Ensure you have the necessary permissions in your Jira instance
     - Check that your Jira instance allows OAuth 2.0 applications
     - Contact your Jira administrator if you encounter permission errors
+  </Accordion>
 
-**Search Results Not Found**
+  <Accordion title="Search Results">
+    If Promptless isn't finding relevant Jira issues:
     - Verify that the projects are configured correctly in your Promptless project settings
     - Check that the issues exist in the configured projects
     - Ensure the issues are accessible with your current Jira permissions
+  </Accordion>
 
-**Re-authentication Required**
+  <Accordion title="Re-authentication">
+    If you need to re-authenticate with Jira:
     - Visit the [integrations page](https://app.gopromptless.ai/integrations)
-- Delete and reconnect your Jira Cloud integration
-
-### Jira Data Center Issues
-
-**Connection Problems**
-- Verify your Jira Data Center base URL is correct and accessible
-- Ensure your username and password credentials are valid
-- Check that your account has appropriate project access permissions
-- Confirm your Jira Data Center instance is reachable from Promptless
-
-**Authentication Failures**
-- Verify your username and password are correct
-- Consider using application-specific passwords if required by your organization
-- Contact your Jira administrator about account permissions or security policies
-
-**Search Results Not Found**
-- Verify that the projects are configured correctly in your Promptless project settings
-- Check that your account has read permissions for the configured projects
-- Ensure the issues exist and are accessible with your current account permissions
+    - Delete and reconnect your Jira integration
+  </Accordion>
+</AccordionGroup>
 
 For additional support, contact [help@gopromptless.ai](mailto:help@gopromptless.ai).
