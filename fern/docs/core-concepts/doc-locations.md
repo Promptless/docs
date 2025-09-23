@@ -4,18 +4,28 @@ Documentation platforms are where your docs live. Whether you're using Git-synce
 
 ## GitHub-Synced Documentation Platforms
 
-The most common setup uses the **Promptless GitHub App** to integrate with documentation platforms that sync content from GitHub repositories. A list of platforms supported by the github integration:
-- Fern
-- Mintlify
+The most common setup uses the **Promptless GitHub App** to integrate with documentation platforms that sync content from GitHub repositories. 
+
+### First-Class Supported Platforms
+
+Promptless provides native configuration support for these popular documentation platforms:
+
+- **Fern** - Uses `docs.yml` configuration file
+- **Mintlify** - Uses `docs.json` configuration file  
+- **GitBook** - Uses `gitbook.yaml` or `.gitbook.yaml` configuration file
+- **Docusaurus** - Uses `docusaurus.config.js` configuration file
+
+### Additional Supported Platforms
+
 - Readme (Refactored)
-- Gitbook
-- Docusaurus
-- Mkdocs
+- MkDocs
 - Hugo
 - Ghost
 - Nextra
 - Vocs
 - Custom CMS as long as the content is in a repo
+
+When setting up a project with any of these platforms, Promptless will automatically detect the appropriate configuration files and provide platform-specific setup guidance.
 
 For more detailed step-by-step instructions, go to the [GitHub integrations page](/docs/integrations/github-integration).
 
