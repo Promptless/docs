@@ -101,4 +101,24 @@ Add syntax highlighting for the JSON examples
 Use a callout box to highlight this important warning
 ```
 
+## Promptless Transparency Comments
+
+When Promptless makes changes to your documentation in response to your feedback, it automatically adds a comment to the PR showing exactly what it did. These transparency comments include:
+
+- Confirmation that Promptless processed your feedback
+- The specific commit SHA where the changes were made (shortened to 7 characters)
+- A direct link to view the exact changes in that commit
+
+For example, after you provide feedback on a documentation PR, you'll see a comment like:
+
+'I've added the requested changes in commit a1b2c3d'
+
+This provides complete transparency into Promptless's actions and makes it easy to track exactly what changes were made in response to your feedback. You can click on the commit SHA to see the full diff of changes.
+
+### Benefits
+- **Clear audit trail**: Know exactly when and what Promptless changed
+- **Easy verification**: Click commit links to review specific changes  
+- **Improved workflow**: No guessing about whether your feedback was processed
+- **Team transparency**: All team members can see what updates were made
+
 Need help with GitHub PR interactions? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
