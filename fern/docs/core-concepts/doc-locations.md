@@ -21,7 +21,7 @@ For more detailed step-by-step instructions, go to the [GitHub integrations page
 
 ## Direct Platform Integrations
 
-For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
+For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular CMS platforms.
 
 <CardGroup cols={2}>
   <Card title="Zendesk" href="/docs/integrations/zendesk-integration">
