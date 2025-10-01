@@ -22,52 +22,19 @@ Promptless operates through three interconnected components that work together t
 
 ```mermaid
 graph LR
-    subgraph triggers["Triggers"]
-        PR["GitHub PR<br/>Opened"]
-        SLACK["Slack Thread<br/>Tagged"]
-        TICKET["Support Ticket<br/>Solved"]
-    end
+    TRIGGERS["GitHub PR, Slack message,<br/>Support ticket"]
+    CONTEXT["Linear, Jira, GitHub,<br/>Slack, Google Drive"]
+    DOCS["Git-hosted docs, ReadMe,<br/>Help Center"]
     
-    subgraph context["Context Sources"]
-        LINEAR["Linear Issues"]
-        JIRA["Jira Tickets"]
-        GITHUB["GitHub Code"]
-        SLACKC["Slack History"]
-        DRIVE["Google Drive"]
-    end
-    
-    subgraph docs["Documentation"]
-        FERN["Fern Docs"]
-        README["ReadMe"]
-        ZENDESK["Help Center"]
-    end
-    
-    PR --> PROMPTLESS
-    SLACK --> PROMPTLESS
-    TICKET --> PROMPTLESS
-    
+    TRIGGERS --> PROMPTLESS
     PROMPTLESS["Promptless"]
+    CONTEXT -.-> PROMPTLESS
+    PROMPTLESS --> DOCS
     
-    LINEAR -.-> PROMPTLESS
-    JIRA -.-> PROMPTLESS
-    GITHUB -.-> PROMPTLESS
-    SLACKC -.-> PROMPTLESS
-    DRIVE -.-> PROMPTLESS
-    
-    PROMPTLESS --> FERN
-    PROMPTLESS --> README
-    PROMPTLESS --> ZENDESK
-    
-    style triggers fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
-    style context fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
-    style docs fill:#d1fae5,stroke:#10b981,stroke-width:2px
+    style TRIGGERS fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+    style CONTEXT fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px
+    style DOCS fill:#d1fae5,stroke:#10b981,stroke-width:2px
     style PROMPTLESS fill:#8b5cf6,stroke:#6d28d9,stroke-width:3px,color:#fff
-    style PR fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
-    style SLACK fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
-    style TICKET fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
-    style FERN fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
-    style README fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
-    style ZENDESK fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
 ```
 
 <CardGroup cols={1}>
