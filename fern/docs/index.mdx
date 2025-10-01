@@ -20,6 +20,16 @@ Promptless automatically generates and updates docs based on your existing produ
 
 Promptless operates through three interconnected components that work together to understand your codebase, gather context, and publish updates automatically.
 
+```mermaid
+graph LR
+    A[Triggers<br/>Pull Requests, Slack,<br/>Support Tickets] --> B[Context<br/>Linear, Jira, GitHub,<br/>Team Conversations]
+    B --> C[Publishing<br/>GitHub-synced Platforms,<br/>Help Centers, CMS]
+    
+    style A fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    style B fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#fff
+    style C fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+```
+
 <CardGroup cols={1}>
   <Card title="Intelligent Triggers" icon="fa-regular fa-bolt" href="/docs/core-concepts/triggers">
     Monitor your development ecosystem for events that indicate documentation needs—from pull requests and code changes to team discussions and support tickets.
