@@ -35,10 +35,6 @@ For teams using content management systems that don't sync with GitHub, Promptle
   <Card title="Webflow" href="/integrations/webflow">
     Blog posts, collection items, and marketing site content
   </Card>
-  
-  <Card title="ReadMe API">
-    Direct API integration for ReadMe-hosted docs not synced to GitHub
-  </Card>
 </CardGroup>
 
 ## Multi-Platform Publishing
