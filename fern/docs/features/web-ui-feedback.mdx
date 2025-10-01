@@ -1,25 +1,171 @@
 ---
 title: Using the Web Interface
-description: Learn how to use Promptless's web interface to highlight text, provide feedback, and guide documentation improvements
+description: Learn how to review, edit, and provide feedback on documentation suggestions through Promptless's web interface
 ---
 
-### Comment and feedback
+Promptless's web interface lets you review documentation changes, make edits, add comments, and provide feedback to improve future suggestions.
 
-Select to highlight specific portions of documentation to provide targeted comment or feedback.
+## Reviewing Changes
 
-When providing feedback through the web interface, you'll see two checkbox options that control how your feedback is processed:
+When you open a suggestion, you'll see a diff editor showing what changed in each file. Original content appears alongside proposed changes, with additions in green and deletions in red.
 
-**1. Request changes on this suggestion**
+### Navigating Files
 
-    When checked, this option tells Promptless to apply your feedback and make changes to the current documentation suggestion. You'll be able to add more comments and submit them for implementaion all in one go.
+Each suggestion shows a list of changed files at the top. Click the "goto" link next to any filename to jump directly to that file's diff.
 
-**2. Remember feedback for future suggestions**
+For existing articles, you'll see a link icon next to the filename. Click it to view the live version on your site.
 
-    When checked, this option saves your feedback preferences and applies them to future documentation suggestions. This helps Promptless learn your style preferences and documentation standards over time.
+### Marking Files as Viewed
+
+Check the **Viewed** box on any file to mark it as reviewed. This hides the diff and helps you track progress through larger suggestions with many files.
+
+## Editing Files
+
+You can edit documentation directly in the web interface. Changes appear in real-time in the modified version of the diff.
+
+### Keyboard Shortcuts
+
+- **Cmd+S (or Ctrl+S)**: Save all changes across all files
+- **Cmd+M (or Ctrl+Alt+M)**: Add a comment to selected text
+- **Cmd+I (or Ctrl+Alt+I)**: Provide feedback on selected text
+
+### File Actions
+
+Each file has several action buttons:
+
+- **SAVE**: Save your edits to this file (button turns blue when you have unsaved changes)
+- **REJECT**: Remove this file from the suggestion
+- **PREVIEW HTML** or **PREVIEW CONTENT**: Preview how the file will look (for HTML and XWiki files)
+- Platform-specific publish buttons for ReadMe, Webflow, Document360, and Zendesk integrations
+
+<Tip>
+Use **Cmd+S** to save all files at once instead of clicking **SAVE** on each file individually.
+</Tip>
+
+### Editing File Paths
+
+For new files, you can change where the file will be created. Click the edit icon next to the filename, update the path, and click the checkmark to confirm.
+
+## Comments
+
+Comments let you discuss specific parts of the documentation with your team or leave notes for yourself.
+
+<Steps>
+  <Step title="Select Text">
+    Highlight the text you want to comment on.
+  </Step>
+
+  <Step title="Add Comment">
+    Press **Cmd+M** (or right-click and choose "Add Comment").
+  </Step>
+
+  <Step title="Write and Save">
+    Type your comment and click **Save** to post it.
+  </Step>
+</Steps>
+
+Comments appear in a sidebar next to the diff editor. Your team members can see all comments and add their own.
+
+### Resolving Comments
+
+Click **Resolve** on any comment to mark it as addressed. Resolved comments are hidden from view but remain in the history.
+
+## Providing Feedback
+
+Feedback helps Promptless learn your documentation preferences and improve future suggestions.
+
+<Steps>
+  <Step title="Select Text">
+    Highlight the text you want to give feedback on.
+  </Step>
+
+  <Step title="Open Feedback">
+    Press **Cmd+I** (or right-click and choose "Feedback for Promptless").
+  </Step>
+
+  <Step title="Describe Changes">
+    Write what you'd like changed.
+  </Step>
+
+  <Step title="Choose Options">
+    Select your feedback preferences:
     
-    **Examples of feedback to remember:**
-    - "Always include code examples for API endpoints"
-    - "Use active voice instead of passive voice"
-    - "Include troubleshooting sections for configuration guides"
+    - **Request changes on this suggestion**: Promptless will update the current suggestion based on your feedback
+    - **Remember feedback for future suggestions**: Promptless will apply this preference to all future documentation
+  </Step>
+</Steps>
+
+### When to Provide Feedback
+
+Use feedback to change the tone or voice, request more or less technical detail, ask for different examples, or set style preferences for future suggestions.
+
+**Examples of good feedback:**
+
+- "Always include code examples for API endpoints"
+- "Use active voice instead of passive voice"
+- "Keep explanations concise - avoid lengthy descriptions"
+
+## Requesting Follow-On Changes
+
+After reviewing a suggestion, you can request follow-on changes without starting a new workflow.
+
+Click **Request Additional Changes** at the bottom of the page to expand the section. Describe what you'd like changed, then click **Submit Request.**
+
+Promptless will process your request and update the suggestion. The page automatically refreshes when the updates are ready.
+
+<Note>
+Make sure to save any edits before submitting a follow-on request.
+</Note>
+
+## Images
+
+When a suggestion includes images, you'll see them displayed in a grid below the file list.
+
+For each image, you can:
+
+- Click the image to view it full-size
+- Click the export icon to open it in a new tab
+- Copy the image URL to use elsewhere
+- Delete the image (only for images uploaded during this suggestion)
+
+<Note>
+If you try to delete an image that's referenced in a file, you'll see a warning showing which files still reference it. Remove those references before deleting the image.
+</Note>
+
+## Timeline
+
+The Change Timeline shows the complete history of a suggestion:
+
+- **Commits**: Changes made by you or Promptless, with the option to view diffs
+- **Feedback Events**: When feedback was submitted
+- **View Events**: When team members viewed the suggestion
+
+Click **View diff** on any commit to see exactly what changed in that update.
+
+For suggestions with many commits, the timeline automatically collapses to show just the first few and the most recent. Click "show more" to expand the full history.
+
+## Metadata
+
+At the top of each suggestion, you can update:
+
+- **Status**: Automatically updated as you work (Draft, In Progress, Published, etc.)
+- **Assignees**: Assign team members to review or work on the suggestion
+- **Labels**: Add tags to organize and filter suggestions
+
+Click the edit icon next to any field to make changes.
+
+## Actions
+
+### Save All & Open PR
+
+For GitHub-synced documentation, click **Save All & Open PR** to save all changes and create a pull request. This lets you review the changes in GitHub before merging.
+
+### Reject All
+
+Click **Reject All** to reject all files in the suggestion at once. Use this when the suggestion isn't helpful and you'd rather start fresh.
+
+### Provide Overall Feedback
+
+Not happy with a suggestion? Click the red **Bad Suggestion? Provide Feedback!** button to open a detailed feedback form. This helps us understand what went wrong and improve Promptless for your specific use case.
 
 Need help with the web interface? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
