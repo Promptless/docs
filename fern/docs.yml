@@ -15,6 +15,9 @@ tabs:
   changelog:
     display-name: Changelog
     icon: fa-regular fa-clock
+  case-studies:
+    display-name: Case Studies
+    icon: fa-regular fa-briefcase
 
 navigation:
   - tab: docs
@@ -105,6 +108,12 @@ navigation:
       contents:
         - page: Frequently Asked Questions
           path: ./docs/faq.mdx
+  - tab: case-studies
+    layout:
+    - section: Case Studies
+      contents:
+        - page: Vellum
+          path: ./docs/case-studies/vellum.mdx
   - tab: changelog
     layout:
     - section: Changelogs
