@@ -80,12 +80,6 @@ navigation:
       contents:
         - page: Account Management
           path: ./docs/account-management.mdx
-    - section: Self-Hosting
-      icon: fa-regular fa-server
-      path: ./docs/self-hosting/index.mdx
-      contents:
-        - page: Kubernetes + Helm
-          path: ./docs/self-hosting/kubernetes-helm.mdx
     - section: Security and Privacy
       icon: fa-regular fa-shield
       path: ./docs/security-and-privacy/index.md
