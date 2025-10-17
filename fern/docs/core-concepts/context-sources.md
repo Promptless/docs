@@ -13,7 +13,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
 ## Available Context Sources
 
 <CardGroup cols={2}>
-  <Card title="Linear" href="/docs/integrations/linear-integration">
+  <Card title="Linear" icon="fa-solid fa-list-check" href="/docs/integrations/linear-integration">
     Access Linear issues, projects, and team workflows for project management context
   </Card>
   
@@ -23,7 +23,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
   
   
   <Card title="GitHub" href="/docs/integrations/github-integration">
-    Analyze code repositories, issues, and pull request discussions for technical context
+    Access code repositories, issues, and pull request discussions for technical context
   </Card>
 </CardGroup>
 
