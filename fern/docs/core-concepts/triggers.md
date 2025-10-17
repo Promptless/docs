@@ -41,6 +41,7 @@ Slack integration enables documentation updates directly from your team conversa
 **Trigger methods:**
 - **Message Action**: Use the Promptless message shortcut on any Slack message to trigger documentation analysis
 - **Mentions**: Tag @Promptless in a channel to request documentation updates based on the conversation context
+- **Passive Listening** (optional): Enable automatic monitoring of specific channels for hands-free documentation updates when threads go quiet
 
 #### Image Processing in Slack Threads
 
