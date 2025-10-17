@@ -13,7 +13,7 @@ Context sources are **optional** but highly recommended. They can improve the qu
 ## Available Context Sources
 
 <CardGroup cols={2}>
-  <Card title="Linear" icon="fa-solid fa-list-check" href="/docs/integrations/linear-integration">
+  <Card title="Linear" icon="fa-solid fa-diagram-project" href="/docs/integrations/linear-integration">
     Access Linear issues, projects, and team workflows for project management context
   </Card>
   
@@ -21,9 +21,12 @@ Context sources are **optional** but highly recommended. They can improve the qu
     Query Jira tickets and project data using JQL search capabilities
   </Card>
   
+  <Card title="Slack" icon="brands slack" href="/docs/integrations/slack-integration">
+    Search Slack conversations and threads for team discussions and decisions
+  </Card>
   
   <Card title="GitHub" href="/docs/integrations/github-integration">
-    Access code repositories, issues, and pull request discussions for technical context
+    Search code repositories, issues, and pull requests for technical context
   </Card>
 </CardGroup>
 
