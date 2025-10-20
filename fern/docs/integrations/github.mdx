@@ -50,6 +50,19 @@ After the initial installation, you may need to add new repositories or modify w
 
 After updating repository access, the new repositories will be available when creating or editing projects in Promptless. Note that it may take a few minutes for the changes to be reflected in the Promptless dashboard. If you don't see newly added repositories immediately, you may need to click the "refresh repos" icon in the integrations page to update the repository list.
 
+## Connecting Multiple GitHub Organizations
+
+Connect multiple GitHub organizations to a single Promptless account. Each organization shows up as its own card on the integrations page with separate repository lists and management controls.
+
+To connect an additional organization:
+
+1. Navigate to the [integrations page](https://app.gopromptless.ai/integrations)
+2. Click "Connect another GitHub Org" 
+3. Follow the same installation flow to authorize Promptless for the new organization
+4. Select which repositories to grant access to
+
+When creating or editing projects, you'll select your GitHub organization from a dropdown (e.g., "Github (Promptless)" or "Github (YourCompany)"), then choose from that organization's repositories. This lets you work across multiple organizations or manage both company and personal projects in one place.
+
 ## Project Setup and Permissions
 
 After setting up the integration, you'll be able to create a project in the [projects page](https://app.gopromptless.ai/projects). When creating a project, you'll be able to select trigger repositories and documentation repositories. Promptless will have read-only access to the repositories that you select as trigger repositories, and will have write access to the repositories that you select as documentation repositories. 
@@ -100,6 +113,10 @@ This ensures that Promptless has read and write access to the repositories that 
 ### How do I add more repositories after installing the GitHub integration?
 
 Add additional repositories anytime by visiting your GitHub organization settings. In GitHub, head to `Settings -> Third-party Access -> GitHub Apps` then find the Promptless GitHub App and click "Configure." Add or remove repositories in the "Repository access" section, then click "Save." You'll be able to choose from the newly added repositories when creating or editing your Promptless projects.
+
+### Can I connect multiple GitHub organizations to Promptless?
+
+Yes! You can connect multiple GitHub organizations to a single Promptless account. Each organization shows up as its own card on the integrations page with its own repository list and management controls. When you create a project, select the organization from the dropdown, then choose repositories from that org. Great for managing both company and personal projects, or working across multiple organizations.
 
 ### Can I remove GitHub repository access from Promptless?
 
