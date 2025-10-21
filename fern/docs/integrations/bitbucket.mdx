@@ -63,28 +63,33 @@ This authentication model ensures that Promptless only has access to the reposit
 
 ## Repository Refresh
 
-If you add new repositories to your Bitbucket workspace after setting up the integration, you can refresh the repository list:
+After adding new repositories to your Bitbucket workspace, you can choose to update the repository list in Promptless:
 
-1. Go to the **Integrations** page in your Promptless dashboard
-2. Find the Bitbucket integration
-3. Click the **Refresh Repositories** button to update the list of available repositories
+1. Go to the [integrations page](https://app.gopromptless.ai/integrations)
+2. Find the Bitbucket integration card
+3. Click the "refresh repos" icon (circular arrow) to update the repository list
+
+The new repositories will be available when creating or editing projects in Promptless. Note that it may take a few minutes for the changes to be reflected in the Promptless dashboard.
 
 ## Webhook Management
 
-Promptless automatically sets up webhooks in your Bitbucket repositories to monitor for pull request events. These webhooks:
+Promptless automatically sets up webhooks in your Bitbucket workspace when you connect a repository. These webhooks listen for pull request events (opened, updated, merged, or declined) and trigger documentation updates when changes are detected.
 
-- Trigger Promptless when pull requests are created or updated
-- Send only the necessary information about changes to Promptless
-- Can be customized to focus on specific events
+To view the webhooks:
+
+1. Go to your Bitbucket workspace settings
+2. Navigate to **Webhooks** under **Workspace settings**
+3. Look for webhooks created by Promptless
+
+Need help modifying or troubleshooting webhook behavior? Reach out to [help@gopromptless.ai](mailto:help@gopromptless.ai).
 
 ## Usage
 
-Once configured, the Bitbucket integration works similarly to the GitHub integration:
+Once configured, the Bitbucket integration works as follows:
 
-1. When a pull request is opened or updated in your monitored repositories, Promptless is automatically triggered
-2. Promptless analyzes the changes to determine if documentation updates are needed
-3. If updates are needed, Promptless generates the appropriate documentation changes
-4. Promptless adds a comment to your Bitbucket pull request with a link to review the documentation changes
-5. You can review and approve the suggested documentation updates in the Promptless dashboard
+1. When a pull request is opened or updated in your monitored repositories, Promptless analyzes the changes to determine if documentation updates are needed
+2. If updates are needed, Promptless creates the documentation changes and stores them in your Promptless dashboard
+3. Promptless adds a comment to your Bitbucket pull request with a link to review the changes. You can provide follow-up instructions or approve the changes
+4. Approved documentation updates are published to your configured documentation repository
 
 For more information on how triggers work in general, see the [Triggers](/docs/core-concepts/triggers) documentation.
