@@ -3,7 +3,7 @@
 Single Sign-On (SSO) integration enables enterprise organizations to authenticate users through their existing identity provider, streamlining access management and enhancing security across your documentation workflow.
 
 <Info>
-SSO integration is available exclusively for enterprise customers. Contact our team at [help@gopromptless.ai](mailto:help@gopromptless.ai) to learn more about enterprise plans and pricing.
+SSO integration is available exclusively for enterprise customers. Schedule a call with our team or email us at [help@gopromptless.ai](mailto:help@gopromptless.ai) to discuss enterprise plans and your SSO requirements.
 </Info>
 
 ## Supported Authentication Methods
@@ -45,7 +45,7 @@ SSO setup requires coordination between your IT team and Promptless. The process
   </Step>
 
   <Step title="Submit Configuration Request">
-    Contact our support team (either via your dedicated account manager or by emailing [help@gopromptless.ai](mailto:help@gopromptless.ai), and send the following info:
+    Schedule a call with our team or reach out via email at [help@gopromptless.ai](mailto:help@gopromptless.ai) to discuss your setup. If you have a dedicated account manager, you can also coordinate directly with them. Share:
 
     - Your organization name and verified domain
     - Preferred authentication method (SAML 2.0 or OIDC)
@@ -80,6 +80,6 @@ SSO integration provides enhanced security controls:
 
 ## Support and Implementation
 
-For questions about SSO setup or to discuss your organization's specific authentication requirements, contact our enterprise support team at [help@gopromptless.ai](mailto:help@gopromptless.ai).
+Have questions about SSO setup or want to discuss your organization's specific authentication requirements? Hop on a call with our enterprise support team—reach out at [help@gopromptless.ai](mailto:help@gopromptless.ai) to schedule.
 
-Our team will work directly with your IT department to ensure smooth implementation and integration with your existing security infrastructure.
+We'll work directly with you and your IT department to ensure smooth implementation and integration with your existing security infrastructure.
