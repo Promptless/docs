@@ -45,7 +45,7 @@ SSO setup requires coordination between your IT team and Promptless. The process
   </Step>
 
   <Step title="Submit Configuration Request">
-    Schedule a call with our team or reach out via email at [help@gopromptless.ai](mailto:help@gopromptless.ai) to discuss your setup. If you have a dedicated account manager, you can also coordinate directly with them. Share:
+    Contact our support team at [help@gopromptless.ai](mailto:help@gopromptless.ai) to discuss your setup. If you have a dedicated account manager, you can also coordinate directly with them. Share:
 
     - Your organization name and verified domain
     - Preferred authentication method (SAML 2.0 or OIDC)
