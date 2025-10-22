@@ -52,9 +52,11 @@ navigation:
       contents:
         - page: Bitbucket Integration
           path: ./docs/integrations/bitbucket.mdx
-        - path: ./docs/integrations/clickup.mdx
+        - page: ClickUp Integration
+          path: ./docs/integrations/clickup.mdx
           slug: clickup-integration
-        - path: ./docs/integrations/document360.mdx
+        - page: Document360 Integration
+          path: ./docs/integrations/document360.mdx
           slug: document360-integration
         - page: GitHub Integration
           path: ./docs/integrations/github.mdx
