@@ -84,8 +84,7 @@ navigation:
       icon: fa-regular fa-shield
       path: ./docs/security-and-privacy/index.md
       contents:
-        - page: Single Sign-On (SSO) Setup
-          path: ./docs/security-and-privacy/sso-setup.md
+        - path: ./docs/security-and-privacy/sso-setup.md
         - page: Data Handling and Classification
           path: ./docs/security-and-privacy/data-handling.md
         - page: Network Architecture
