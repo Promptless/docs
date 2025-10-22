@@ -80,7 +80,7 @@ Promptless queries Jira data in real-time and does not store any of your Jira da
 
 ## Provisioning a Jira Account for Promptless
 
-We recommend creating a dedicated Jira account for Promptless. This way when Promptless creates Jira issues or leave comments, you can trace these activities to the connected account. It also allows you to tag the Promptless bot or assign issues to it to process.
+We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system.
 
 Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
 
@@ -100,9 +100,9 @@ Create the account using an email alias like `your_email+promptless@company.com`
       <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-invite-people-screen-1761099982.png" alt="Invite people to Jira screen with email and User role selected" />
     </Frame>
     
-    <Tip>
+    <Warning>
       When accepting the invite, make sure you're logged out of your person account, and logged into the Jira account you created for Promptless, otherwise this won't work.
-    </Tip>
+    </Warning>
   </Step>
 
   <Step title="Accept the invitation">
@@ -114,13 +114,16 @@ Create the account using an email alias like `your_email+promptless@company.com`
     
     When setting up the account, you can use the name "Promptless Bot".
     
-    Once complete, you'll see the account listed as ACTIVE. It might take a few minutes for the status to update from INVITED to ACTIVE after you accept the invite.
+    Once complete, you'll see the account listed as ACTIVE. It might take up to an hour for the status to update from INVITED to ACTIVE after you accept the invite.
     
     <Frame>
       <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-promptless-bot-active-1761099983.png" alt="Promptless Bot account showing as ACTIVE in user list" />
     </Frame>
   </Step>
 
+  <Step title="Connect to Promptless">
+    When connecting Jira in Promptless, make sure you're logged into the Jira account you created for Promptless (not your personal account) when completing the OAuth connection.
+  </Step>
 </Steps>
 
 ---
