@@ -42,8 +42,20 @@ Below is an example of a project that is set up to trigger from Slack.
 
 Once the Project is created, you will be able to trigger Promptless by writing @Promptless in a Slack channel, or by clicking Slack "Update Docs" message action on any thread. When you perform either of these actions, Promptless will pull the entire thread it was tagged in, and identify the right documentation updates based on the contents of that thread. 
 
+### Optional: Passive Channel Listening
+
+You can optionally enable passive listening for specific channels. When enabled, Promptless will automatically monitor conversations in your selected channels and create documentation suggestions when threads become inactive.
+
+To enable passive listening:
+1. Edit your Slack trigger project
+2. Check the box for "Listen for all messages in specific channels"
+3. Select which channels to monitor
+4. Save your configuration
+
+Passive listening is completely opt-in and only applies to channels you explicitly select. For more details, see [Working with Slack](/docs/features/slack-interactions#4-passive-channel-listening).
+
 <Warning title="Privacy and Channel Access">
-  Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. It does not monitor, scan, or automatically read messages in any channels. Promptless cannot access private channels unless it has been specifically invited to those channels.
+  By default, Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. If you enable passive listening, Promptless will monitor only the specific channels you select in your project configuration. Promptless cannot access private channels unless it has been specifically invited to those channels.
 </Warning> 
 
 ## Image Processing in Slack Threads
@@ -94,11 +106,16 @@ This feature requires additional Slack permissions to access images in threads. 
 
 ### What Promptless Actually Does
 
-Promptless operates on an **explicit trigger model** with Slack:
+By default, Promptless operates on an **explicit trigger model** with Slack:
 
 - **Only reads content when triggered**: Promptless only accesses Slack messages when you explicitly tag @Promptless or use the "Update Docs" message action
 - **Thread-based processing**: When triggered, Promptless reads the entire thread to understand context, but only for that specific thread
-- **No background monitoring**: Promptless does not scan, monitor, or automatically read messages in any channels
+- **No background monitoring by default**: Unless you enable passive listening for specific channels, Promptless does not scan, monitor, or automatically read messages in any channels
+
+If you enable **passive channel listening** (optional):
+- **Selective monitoring**: Promptless will monitor only the specific channels you explicitly select in your project configuration
+- **Automatic suggestions**: When threads become inactive, Promptless analyzes the conversation and creates documentation suggestions when appropriate
+- **Full control**: You can add or remove channels from passive listening at any time
 
 ### Why Broader Permissions Are Requested
 
