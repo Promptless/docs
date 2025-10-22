@@ -78,6 +78,56 @@ Promptless leverages Jira's powerful JQL (Jira Query Language) search functional
 Promptless queries Jira data in real-time and does not store any of your Jira data. All searches are performed on-demand when documentation updates are needed.
 </Note>
 
+## Provisioning a Jira Account for Promptless
+
+We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system.
+
+Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
+
+<Steps>
+  <Step title="Navigate to User management">
+    In Atlassian, go to your settings and select **User management** under Atlassian admin settings.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-user-management-settings-1761099982.png" alt="Atlassian admin settings showing User management option" />
+    </Frame>
+  </Step>
+
+  <Step title="Invite the Promptless account">
+    Click "Invite people" and enter the email address for your Promptless account. Under the Jira app, select the **User** role (not User access admin).
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-invite-people-screen-1761099982.png" alt="Invite people to Jira screen with email and User role selected" />
+    </Frame>
+    
+    <Warning>
+      When accepting the invite, make sure you're logged out of your person account, and logged into the Jira account you created for Promptless, otherwise this won't work.
+    </Warning>
+  </Step>
+
+  <Step title="Accept the invitation">
+    Check your own email inbox (if you're using the alias), or Promptless's email inbox.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-email-invitation-1761099983.png" alt="Email invitation from Jira to join the team" />
+    </Frame>
+    
+    When setting up the account, you can use the name "Promptless Bot".
+    
+    Once complete, you'll see the account listed as ACTIVE. It might take up to an hour for the status to update from INVITED to ACTIVE after you accept the invite.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-promptless-bot-active-1761099983.png" alt="Promptless Bot account showing as ACTIVE in user list" />
+    </Frame>
+  </Step>
+
+  <Step title="Connect to Promptless">
+    When connecting Jira in Promptless, make sure you're logged into the Jira account you created for Promptless (not your personal account) when completing the OAuth connection.
+  </Step>
+</Steps>
+
+---
+
 ## Troubleshooting
 
 <AccordionGroup>
