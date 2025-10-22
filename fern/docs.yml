@@ -54,10 +54,8 @@ navigation:
           path: ./docs/integrations/bitbucket.mdx
         - page: ClickUp Integration
           path: ./docs/integrations/clickup.mdx
-          slug: clickup-integration
         - page: Document360 Integration
           path: ./docs/integrations/document360.mdx
-          slug: document360-integration
         - page: GitHub Integration
           path: ./docs/integrations/github.mdx
           slug: github-integration
@@ -79,12 +77,10 @@ navigation:
           path: ./docs/integrations/zendesk.mdx
         - page: Google Drive Integration (Beta)
           path: ./docs/integrations/google-drive.mdx
-          slug: google-drive-integration
         - page: Intercom Integration (Beta)
           path: ./docs/integrations/intercom.md
         - page: Notion Integration (Beta)
           path: ./docs/integrations/notion.mdx
-          slug: notion-integration
         - page: Webflow Integration (Beta)
           path: ./docs/integrations/webflow.mdx
     - section: Account Management
