@@ -85,34 +85,40 @@ We recommend creating a dedicated Jira account for Promptless. This way when Pro
 Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
 
 <Steps>
-  <Step title="Invite the account to Jira">
-    In your Jira workspace, click "Invite people to Jira" and invite the new account.
+  <Step title="Navigate to User management">
+    In Atlassian, go to your settings and select **User management** under Atlassian admin settings.
     
     <Frame>
-      **[SCREENSHOT: Jira invite screen]**
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-user-management-settings-1761099736.png" alt="Atlassian admin settings showing User management option" />
     </Frame>
   </Step>
 
-  <Step title="Accept the invitation">
-    Accept the email invite from Jira for your new account. You'll need to sign out of your existing Jira account to accept this invite.
-    
-    <Tip>
-      Use the name "Promptless" (not your personal name) when setting up the account. This name will appear in any audit logs.
-    </Tip>
+  <Step title="Invite the Promptless account">
+    Click "Invite people" and enter the email address for your Promptless account. Under the Jira app, select the **User** role (not User access admin).
     
     <Frame>
-      **[SCREENSHOT: Jira account setup screen]**
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-invite-people-screen-1761099736.png" alt="Invite people to Jira screen with email and User role selected" />
+    </Frame>
+    
+    <Tip>
+      Log out of your Jira account before accepting the invite.
+    </Tip>
+  </Step>
+
+  <Step title="Accept the invitation">
+    Check the email inbox for your Promptless account and accept the invitation. When setting up the account, use the name "Promptless Bot" so it's clear in audit logs.
+    
+    Once complete, you'll see the account listed as ACTIVE:
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-promptless-bot-active-1761099736.png" alt="Promptless Bot account showing as ACTIVE in user list" />
     </Frame>
   </Step>
 
   <Step title="Connect to Promptless">
-    Make sure you're logged into the Jira account you created for Promptless (not your personal account) when completing the OAuth connection in Promptless.
+    When connecting Jira in Promptless, make sure you're logged into the Jira account you created for Promptless (not your personal account) when completing the OAuth connection.
   </Step>
 </Steps>
-
-<Warning>
-  Only add this Jira account to one workspace to maintain clear boundaries and permissions.
-</Warning>
 
 ---
 
