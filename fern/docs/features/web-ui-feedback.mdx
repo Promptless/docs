@@ -1,33 +1,75 @@
 ---
 title: Using the Web Interface
-description: Learn how to use Promptless's web interface to highlight text, provide feedback, and guide documentation improvements
+description: Learn how to use Promptless's web interface to review, edit, and publish documentation suggestions
 ---
 
-### Comment and feedback
+When Promptless creates a documentation suggestion, you can review and refine it through the web interface before publishing to your repository.
 
-Select to highlight specific portions of documentation to provide targeted comment or feedback.
+## Three tabs for reviewing
 
-<Frame>
-  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/web-ui-add-comment-button-1759356264.png" alt="Add Comment button in web interface" />
-</Frame>
+The web interface organizes each suggestion into three tabs:
 
-When providing feedback through the web interface, you'll see two checkbox options that control how your feedback is processed:
+- **Review Suggestion** - View and edit the proposed documentation changes
+- **Triggers & Analysis** - See what triggered the suggestion and Promptless's analysis
+- **History & Collaboration** - Track commits, comments, labels, and assignees
 
-<Frame>
-  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/web-ui-feedback-panel-1759356264.png" alt="Feedback panel showing two checkbox options" />
-</Frame>
+### How the editor works
 
-**1. Request changes on this suggestion**
+Each changed file appears in its own card. The editor uses color coding to show what Promptless is suggesting:
 
-    When checked, this option tells Promptless to apply your feedback and make changes to the current documentation suggestion. You'll be able to add more comments and submit them for implementaion all in one go.
+- **Green highlighting** - Content Promptless suggests adding
+- **Red highlighting** - Content Promptless suggests removing
 
-**2. Remember feedback for future suggestions**
+## Four actions for individual files
 
-    When checked, this option saves your feedback preferences and applies them to future documentation suggestions. This helps Promptless learn your style preferences and documentation standards over time.
-    
-    **Examples of feedback to remember:**
-    - "Always include code examples for API endpoints"
-    - "Use active voice instead of passive voice"
-    - "Include troubleshooting sections for configuration guides"
+Each file card includes action buttons to control how that file is handled:
+
+**Approve** - Accept the changes to this file as-is. Approved files are marked with a checkmark and won't be included in further edit requests.
+
+**Edit** - Switch the file into edit mode, where you can make changes directly or request AI-powered edits.
+
+**Reject** - Discard the suggested changes to this file. Rejected files are removed from the suggestion.
+
+**Show X citations** - When available, this button reveals the sources Promptless used when making changes to this file.
+
+<Tip title="Review citations when available">
+  Check the citations to understand what sources informed Promptless's suggestions. This helps you verify accuracy and understand the context.
+</Tip>
+
+### Two ways to edit files
+
+When you click **Edit** on a file, you have two options:
+
+**1. Direct editing**
+
+Type directly in the editor to modify the content yourself. This works just like editing in a standard text editor.
+
+**2. AI-powered feedback**
+
+Highlight text and click the **Feedback for Promptless** button to describe what changes you want. Promptless will process your feedback and update the file automatically. The text input box is expandable, so you can provide detailed instructions.
+
+You can use both methods together - make some edits directly and request AI assistance for others.
+
+<Note>
+  When requesting changes, be specific about what you want. Instead of "fix this section," try "add a code example showing how to authenticate with an API key."
+</Note>
+
+## Bulk actions
+
+At the top of the Review Suggestion tab, you'll find buttons for managing all files at once:
+
+**Open PR** - Create a pull request with all approved changes. This autosaves your edits and then publishes the documentation changes to GitHub and makes it available for final review in your repository.
+
+**Request Changes** - Submit feedback for multiple files at once. You can select files, provide instructions, and Promptless will update all of them together.
+
+**Reject All** - Discard all suggested changes and close the suggestion.
+
+<Tip title="Approve incrementally">
+  You don't need to approve or reject everything at once. Review and approve files as you go, then request changes for anything that needs refinement.
+</Tip>
+
+<Tip title="Save your style preferences">
+  If you have style preferences or documentation standards that apply across multiple suggestions, include them in your feedback so Promptless can learn and apply them to future suggestions.
+</Tip>
 
 Need help with the web interface? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
