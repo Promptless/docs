@@ -50,10 +50,11 @@ navigation:
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
       contents:
-        - page: Bitbucket Integration
+        - page: THE BITBUCKET INTEGRATION
           path: ./docs/integrations/bitbucket.mdx
-        - page: THE CLICKUP INTEGRATION
+        - page: ClickUp Integration
           path: ./docs/integrations/clickup.mdx
+          slug: clickup-integration
         - page: Document360 Integration
           path: ./docs/integrations/document360.mdx
         - page: GitHub Integration
