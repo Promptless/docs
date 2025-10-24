@@ -40,11 +40,11 @@ navigation:
       icon: fa-regular fa-star
       path: ./docs/features/index.mdx
       contents:
-        page: Working with Slack
+        - page: Working with Slack
           path: ./docs/features/slack-interactions.mdx
         - page: Interacting with Promptless PRs
           path: ./docs/features/github-pr-comments.mdx
-        page: Using the Web Interface
+        - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
     - section: Integrations
       icon: fa-regular fa-plug
