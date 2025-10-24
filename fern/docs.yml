@@ -30,7 +30,8 @@ navigation:
       icon: fa-regular fa-lightbulb
       path: ./docs/core-concepts/index.mdx
       contents:
-        - path: ./docs/core-concepts/triggers.md
+        - page: Triggers
+          path: ./docs/core-concepts/triggers.md
         - page: Context Sources
           path: ./docs/core-concepts/context-sources.md
         - page: Doc CMSs
@@ -49,13 +50,14 @@ navigation:
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
       contents:
-        - page: THE BITBUCKET INTEGRATION
+        - page: Bitbucket Integration
           path: ./docs/integrations/bitbucket.mdx
         - page: ClickUp Integration
           path: ./docs/integrations/clickup.mdx
           slug: clickup-integration
         - page: Document360 Integration
           path: ./docs/integrations/document360.mdx
+          slug: document360-integration
         - page: GitHub Integration
           path: ./docs/integrations/github.mdx
           slug: github-integration
@@ -77,10 +79,12 @@ navigation:
           path: ./docs/integrations/zendesk.mdx
         - page: Google Drive Integration (Beta)
           path: ./docs/integrations/google-drive.mdx
+          slug: google-drive-integration
         - page: Intercom Integration (Beta)
           path: ./docs/integrations/intercom.md
         - page: Notion Integration (Beta)
           path: ./docs/integrations/notion.mdx
+          slug: notion-integration
         - page: Webflow Integration (Beta)
           path: ./docs/integrations/webflow.mdx
     - section: Account Management
