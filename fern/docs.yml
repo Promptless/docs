@@ -137,9 +137,9 @@ navigation:
           path: ./docs/changelogs/2024-10.md
 
 colors:
-accentPrimary:
-  light: '#396DF1'
-  dark: '#396DF1'
+  accentPrimary:
+    light: '#396DF1'
+    dark: '#396DF1'
 
 logo:
   dark: ./docs/assets/logo_darkbg.svg
