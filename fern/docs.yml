@@ -30,8 +30,7 @@ navigation:
       icon: fa-regular fa-lightbulb
       path: ./docs/core-concepts/index.mdx
       contents:
-        - page: Triggers
-          path: ./docs/core-concepts/triggers.md
+        - path: ./docs/core-concepts/triggers.md
         - page: Context Sources
           path: ./docs/core-concepts/context-sources.md
         - page: Doc CMSs
