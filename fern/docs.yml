@@ -137,7 +137,7 @@ navigation:
           path: ./docs/changelogs/2024-10.md
 
 colors:
-  primary:
+  accentPrimary:
     light: '#396DF1'
     dark: '#396DF1'
 
