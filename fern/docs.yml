@@ -136,9 +136,9 @@ navigation:
         - page: October 2024
           path: ./docs/changelogs/2024-10.md
 
-  accentPrimary:
-    light: '#396DF1'
-    dark: '#396DF1'
+accentPrimary:
+  light: '#396DF1'
+  dark: '#396DF1'
 
 logo:
   dark: ./docs/assets/logo_darkbg.svg
