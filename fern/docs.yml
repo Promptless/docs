@@ -103,6 +103,10 @@ navigation:
     layout:
     - section: Changelogs
       contents:
+        - page: October 2025
+          path: ./docs/changelogs/2025-10.md
+        - page: September 2025
+          path: ./docs/changelogs/2025-09.md
         - page: August 2025
           path: ./docs/changelogs/2025-08.md
         - page: July 2025
