@@ -4,7 +4,7 @@ Promptless automates documentation creation and maintenance through three interc
 
 ## Overview
 
-The diagram below illustrates how triggers, context sources, and documentation CMSs interact within the Promptless ecosystem:
+The diagram below illustrates how triggers, context sources, and documentation platforms interact within the Promptless ecosystem:
 
 ```mermaid
 graph TB
@@ -28,8 +28,8 @@ graph TB
         AI[Promptless AI Agent]
     end
 
-    %% Documentation CMSs
-    subgraph "Documentation CMSs"
+    %% Documentation Platforms
+    subgraph "Documentation Platforms"
         D1[GitHub-synced Docs<br/>ReadMe, Mintlify, Docusaurus]
         D2[Zendesk<br/>Help Center]
         D3[Intercom<br/>Help Center]
@@ -54,12 +54,12 @@ graph TB
     classDef triggerStyle fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000000
     classDef contextStyle fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000000
     classDef coreStyle fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#000000
-    classDef cmsStyle fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000000
+    classDef platformStyle fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000000
 
     class T1,T2,T3 triggerStyle
     class C1,C2,C3 contextStyle
     class AI coreStyle
-    class D1,D2,D3,D4 cmsStyle
+    class D1,D2,D3,D4 platformStyle
 ```
 
 ## How the Components Work Together
@@ -84,12 +84,12 @@ graph TB
 Context sources are queried in real-time and no customer data is stored by Promptless, ensuring your sensitive information remains secure.
 </Note>
 
-### 3. Documentation CMSs Receive Updates
+### 3. Documentation Platforms Receive Updates
 
-**Documentation CMSs** are where the final documentation updates are published:
+**Documentation Platforms** are where the final documentation updates are published:
 
 - **GitHub-synced Platforms**: Most common setup where docs are stored in Git and synced to hosting providers
-- **Direct CMS Integration**: Beta support for publishing directly to Zendesk, Intercom, and Webflow
+- **Direct Platform Integration**: Beta support for publishing directly to Zendesk, Intercom, and Webflow
 - **Multi-platform Publishing**: Single trigger can update multiple documentation platforms simultaneously
 
 ## Key Benefits of This Architecture
