@@ -46,7 +46,7 @@ navigation:
           path: ./docs/features/github-pr-comments.mdx
         - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
-         page: Giving Feedback to Promptless
+        - page: Giving Feedback to Promptless
           path: ./docs/features/giving-feedback.mdx
     - section: Integrations
       icon: fa-regular fa-plug
