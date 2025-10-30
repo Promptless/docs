@@ -1,0 +1,144 @@
+---
+title: Giving Feedback to Promptless
+description: Learn how to give feedback to Promptless and help it improve documentation quality over time
+---
+
+Promptless learns from your feedback to improve documentation suggestions and understand your team's preferences. You can provide feedback through the web interface or directly on GitHub PRs.
+
+## Three ways to give feedback
+
+### 1. Request changes in the web interface
+
+Use this when you want Promptless to modify the current documentation suggestion immediately.
+
+<Steps>
+  <Step title="Navigate to your suggestion">
+    Open your suggestion in the Promptless web interface.
+  </Step>
+
+  <Step title="Highlight and comment">
+    Highlight any text you want to comment on and add your feedback in the comment box.
+  </Step>
+
+  <Step title="Request changes">
+    Check the box **"Request changes on this suggestion"** and submit your feedback.
+  </Step>
+</Steps>
+
+Promptless will process your comments and update the documentation suggestion based on your instructions. You can add multiple comments before submitting.
+
+**Examples:**
+
+```txt wordWrap
+Add a code example showing the API request
+```
+
+```txt wordWrap
+Move this section to the beginning of the page
+```
+
+```txt wordWrap
+Change the endpoint from /v1/users to /v2/users
+```
+
+### 2. Remember feedback for future suggestions
+
+Use this when you want Promptless to learn your preferences and apply them to future documentation suggestions.
+
+<Steps>
+  <Step title="Navigate to your suggestion">
+    Open your suggestion in the Promptless web interface.
+  </Step>
+
+  <Step title="Highlight and provide feedback">
+    Highlight specific text you want to provide feedback on and add your feedback in the comment box.
+  </Step>
+
+  <Step title="Save for future">
+    Check the box **"Remember feedback for future suggestions"** and submit your feedback.
+  </Step>
+</Steps>
+
+This helps Promptless learn your documentation standards and style preferences over time. The feedback won't change the current suggestion immediately, but will influence future documentation.
+
+**Examples:**
+
+```txt wordWrap
+Always include code examples for API endpoints
+```
+
+```txt wordWrap
+Use active voice instead of passive voice
+```
+
+```txt wordWrap
+Include troubleshooting sections for configuration guides
+```
+
+<Tip>
+You can check both boxes to apply changes immediately AND save the feedback for future suggestions.
+</Tip>
+
+### 3. Comment on GitHub PRs
+
+Use this when you're reviewing a documentation PR that Promptless opened and want to request follow-up changes.
+
+**Individual comments**
+
+Leave individual comments on specific lines or sections of the documentation PR for targeted feedback.
+
+Tag Promptless (@Promptless) in the comment (Note: It won't show up in auto-complete), write your instruction, and click "Add single comment" to submit your instruction to Promptless.
+
+<Note>
+When using single comments, Promptless doesn't yet have the ability to look at other previous comments. So instructions like "Same here" wouldn't work. You can either spell out the instruction completely, or use the PR review method below, where Promptless will have context on other comments in the same review.
+</Note>
+
+**PR reviews**
+
+Start a review to provide multiple pieces of feedback that Promptless can handle all at once.
+
+<Steps>
+  <Step title="Start a Review">
+    Click "Review changes" to begin a review, or when adding an in-line comment, select "Start a review" instead of "Add single comment".
+  </Step>
+
+  <Step title="Add Multiple Comments">
+    Add comments throughout the PR. You don't have to tag Promptless in any of them.
+  </Step>
+
+  <Step title="Include General Feedback">
+    Click "Finish your review", and in the text box, tag Promptless (@Promptless). Promptless will address all your review feedback at once.
+  </Step>
+</Steps>
+
+**Examples:**
+
+```txt wordWrap
+Please add a section about error handling
+```
+
+```txt wordWrap
+This example should use TypeScript instead of JavaScript
+```
+
+```txt wordWrap
+Add a note that this feature requires admin permissions
+```
+
+## Choosing the right method
+
+<CardGroup cols={3}>
+  <Card title="Immediate Changes" icon="bolt">
+    Use **Request changes** in the web interface when you need quick updates to the current suggestion.
+  </Card>
+  
+  <Card title="Long-term Learning" icon="brain">
+    Use **Remember feedback** when you want to teach Promptless your team's documentation standards.
+  </Card>
+  
+  <Card title="PR Review Workflow" icon="brands github">
+    Use **GitHub comments** when you're already reviewing the PR in your normal workflow.
+  </Card>
+</CardGroup>
+
+Need help? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
