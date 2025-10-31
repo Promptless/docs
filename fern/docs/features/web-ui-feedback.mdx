@@ -30,6 +30,76 @@ When providing feedback through the web interface, you'll see two checkbox optio
     - "Use active voice instead of passive voice"
     - "Include troubleshooting sections for configuration guides"
 
+### Examples: Using Feedback Effectively
+
+#### Request changes on this suggestion
+
+Use this mode when you want Promptless to update the current documentation suggestion right away. You can request changes like:
+
+```txt wordWrap
+Change 'authetication' to 'authentication' in the first paragraph
+```
+
+```txt wordWrap
+Move the troubleshooting section to the end of the page, after the examples
+```
+
+```txt wordWrap
+Add a code example showing how to configure the webhook URL
+```
+
+```txt wordWrap
+Remove the section about OAuth 1.0 - we only support OAuth 2.0
+```
+
+```txt wordWrap
+Expand the rate limiting explanation to mention the 100 requests per minute limit
+```
+
+#### Remember feedback for future suggestions
+
+Use this mode to teach Promptless your team's standards and preferences. Your feedback will apply to all future documentation:
+
+```txt wordWrap
+Always use active voice instead of passive voice
+```
+
+```txt wordWrap
+Write in second person (you/your) rather than first person (we/our)
+```
+
+```txt wordWrap
+Include a Prerequisites section at the start of all setup guides
+```
+
+```txt wordWrap
+Use numbered lists for sequential steps and bullet points for non-ordered items
+```
+
+```txt wordWrap
+Always include code examples for API endpoints
+```
+
+```txt wordWrap
+Show both success and error response examples for all API calls
+```
+
+```txt wordWrap
+Use 'documentation project' instead of 'doc project'
+```
+
+```txt wordWrap
+Always capitalize 'Promptless' when referring to the product
+```
+
+#### When to use both
+
+You can check both boxes to fix the current suggestion and save your feedback for the future.
+
+For example, if the current suggestion uses passive voice throughout, check both boxes and provide feedback like "Rewrite all passive voice to active voice." Promptless will update the current suggestion and remember to use active voice in future docs.
+
+Or if the current suggestion lacks a troubleshooting section, check both boxes and say "Add a Troubleshooting section with common error messages." Promptless will add the section now and include troubleshooting in future configuration guides.
+
 ### Triggers page
 
 The Triggers page shows all events that triggered Promptless to review your documentation over the last 30 days. Each entry displays:
