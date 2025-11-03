@@ -20,7 +20,7 @@ Each changed file appears in its own card. The editor uses color coding to show 
 - **Green highlighting** - Content Promptless suggests adding
 - **Red highlighting** - Content Promptless suggests removing
 
-## Four actions for individual files
+## Five actions for individual files
 
 Each file card includes action buttons to control how that file is handled:
 
@@ -29,6 +29,8 @@ Each file card includes action buttons to control how that file is handled:
 **Edit** - Switch the file into edit mode, where you can make changes directly or request AI-powered edits.
 
 **Reject** - Discard the suggested changes to this file. Rejected files are removed from the suggestion.
+
+**Expand** - Toggle between collapsed and expanded views. Large diffs show a summary line when collapsed (like "20 hidden lines").
 
 **Show X citations** - When available, this button reveals the sources Promptless used when making changes to this file.
 
@@ -56,11 +58,20 @@ You can use both methods together - make some edits directly and request AI assi
 
 ## Bulk actions
 
-At the top of the Review Suggestion tab, you'll find buttons for managing all files at once:
+At the top of the Review Suggestion tab, you'll find buttons for managing all files at once. The bulk actions bar shows approved and rejected file counts to help you track your progress.
 
 **Open PR** - Create a pull request with all approved changes. This autosaves your edits and then publishes the documentation changes to GitHub and makes it available for final review in your repository.
 
-**Request Changes** - Submit feedback for multiple files at once. You can select files, provide instructions, and Promptless will update all of them together.
+When you click **Open PR**, you can customize:
+
+- **PR title** - The title for your pull request
+- **PR description** - Additional context about the changes
+- **Branch name** - The name of the branch to create
+- **Draft option** - Whether to open the PR as a draft for early feedback
+
+Promptless automatically suggests defaults based on the suggestion content.
+
+**Request Changes** - Submit feedback for multiple files at once. You can select files, provide instructions, and Promptless will update all of them together. The interface includes quick-select suggestion pills for common feedback patterns. Use these to move content between files or apply style preferences across all future suggestions.
 
 **Reject All** - Discard all suggested changes and close the suggestion.
 
