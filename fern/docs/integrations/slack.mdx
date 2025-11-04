@@ -46,22 +46,25 @@ Once the Project is created, you will be able to trigger Promptless by writing @
   Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. It does not monitor, scan, or automatically read messages in any channels. Promptless cannot access private channels unless it has been specifically invited to those channels.
 </Warning> 
 
-## Image Processing in Slack Threads
+## Image and File Attachment Processing
 
-Promptless can now process images shared in Slack threads when triggered, enhancing documentation with visual elements when appropriate.
+Promptless can process images and file attachments shared in Slack threads when triggered, enhancing documentation with visual elements and additional context when appropriate.
 
 ### How It Works
 
-1. When you tag @Promptless or use the "Update docs" message action in a thread containing images, Promptless will analyze both the text and images in the thread.
+1. When you tag @Promptless or use the "Update docs" message action in a thread containing images or file attachments, Promptless will analyze both the text and attached files in the thread.
 
-2. Promptless evaluates whether the images provide valuable context that should be included in the documentation.
+2. Promptless evaluates whether the images or file content provide valuable context that should be included in the documentation.
 
-3. If an image is deemed relevant, Promptless will:
+3. If an image or file is deemed relevant, Promptless will:
    - Upload the image to a secure S3 bucket managed by Promptless
+   - Extract and incorporate relevant content from file attachments (including images from PDFs)
    - Include the image in the documentation updates it suggests
    - Format the image appropriately for the documentation platform
 
 4. When reviewing the suggestion in the Promptless app, you'll see the added images at the bottom of the review interface, allowing you to approve or reject their inclusion.
+
+For practical examples of using images and file attachments when triggering Promptless, see [Working with Slack](/docs/features/slack-interactions).
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/d73f2ccf-8711-46a6-a558-b5a0da20bc51-slack-image-support.png" alt="Image Processing in Slack Threads" />
@@ -88,7 +91,7 @@ This feature requires additional Slack permissions to access images in threads. 
 2. Delete the existing Slack integration
 3. Re-add the Slack app to grant the new permissions
 
-**Note:** Currently, image processing is only supported for images directly shared in Slack threads. Images from other sources (such as changelogs or external links) are not automatically processed.
+**Note:** File attachment processing supports images, PDFs, and other common file types directly shared in Slack threads, including files from external links.
 
 ## Permission Scope and Usage
 

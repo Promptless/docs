@@ -81,4 +81,44 @@ Send direct messages to Promptless for private documentation requests or when yo
   </Step>
 </Steps>
 
+## Using Images and File Attachments
+
+You can attach images and files when you trigger Promptless in Slack to provide additional context. Include screenshots, diagrams, design mockups, API responses, or configuration files in the same thread where you tag @Promptless or use the "Update Docs" action.
+
+When you trigger Promptless, it reviews all text and attached files in the thread. If an image or file content is valuable for the documentation, Promptless incorporates it into the suggested updates.
+
+### Examples
+
+**Adding a screenshot to explain a feature**
+
+```txt wordWrap
+@Promptless please document this new export feature. I've attached a screenshot showing the new export dialog.
+```
+
+**Including an architecture diagram**
+
+```txt wordWrap
+@Promptless update the technical architecture page with this new system diagram (attached)
+```
+
+**Documenting an error message**
+
+```txt wordWrap
+@Promptless we need to add troubleshooting docs for this error. See the screenshot above for the exact error message users are seeing.
+```
+
+**Using design specs**
+
+```txt wordWrap
+@Promptless here's the design spec for the new onboarding flow (PDF attached). Please create documentation that matches this flow.
+```
+
+<Tip title="Best Practices">
+  - Include clear instructions about what to do with the attached files
+  - Reference specific attachments if there are multiple files in the thread
+  - Provide context about why the image or file is relevant to the documentation
+</Tip>
+
+For technical details about how images are processed and managed, see the [Slack Integration page](/docs/integrations/slack-integration).
+
 Need help with Slack interactions? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
