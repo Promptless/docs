@@ -115,7 +115,7 @@ navigation:
           path: ./docs/changelogs/2025-06.md
         - page: May 2025
           path: ./docs/changelogs/2025-05.md
-        page: April 2025
+        - page: April 2025
           path: ./docs/changelogs/2025-04.md
         - page: March 2025
           path: ./docs/changelogs/2025-03.md
