@@ -109,24 +109,20 @@ This feature requires additional Slack permissions to access images in threads. 
 
 ### What Promptless Actually Does
 
-By default, Promptless operates on an **explicit trigger model** with Slack:
+Promptless only reads Slack messages when you explicitly trigger it - either by tagging @Promptless or using the "Update Docs" message action. When triggered, it reads the entire thread to understand context, but only that specific thread.
 
-- **Only reads content when triggered**: Promptless only accesses Slack messages when you explicitly tag @Promptless or use the "Update Docs" message action
-- **Thread-based processing**: When triggered, Promptless reads the entire thread to understand context, but only for that specific thread
-- **No background monitoring by default**: Unless you enable passive listening for specific channels, Promptless does not scan, monitor, or automatically read messages in any channels
+By default, Promptless doesn't monitor or automatically read any channels.
 
-If you enable **passive channel listening** (optional):
-- **Selective monitoring**: Promptless will monitor only the specific channels you explicitly select in your project configuration
-- **Automatic suggestions**: When threads become inactive, Promptless analyzes the conversation and creates documentation suggestions when appropriate
-- **Full control**: You can add or remove channels from passive listening at any time
+**Optional passive listening:** You can enable passive listening for specific channels in your project configuration. When enabled:
+- Promptless monitors only the channels you select
+- When threads become inactive, Promptless analyzes them and creates suggestions when appropriate
+- You can add or remove channels anytime
 
 ### Why Broader Permissions Are Requested
 
-The Slack app requests broader permissions than currently used to support potential future features:
+The Slack app requests broader permissions than it currently uses. We've designed the permission scope to support potential future features like searching across Slack threads for relevant context (similar to searching through documentation). Some customers have asked for this capability.
 
-- **Future search capabilities**: We've designed the permission scope to potentially allow searching across Slack threads for relevant context (similar to searching through documentation)
-- **Customer-requested features**: Some customers have specifically asked for the ability to search historical Slack conversations for documentation context
-- **Optional future functionality**: If we add these features, they would be **opt-in configuration options** that you control
+If we add these features in the future, you'll be able to choose whether to enable them - they won't be turned on automatically.
 
 ## Authentication Model
 
