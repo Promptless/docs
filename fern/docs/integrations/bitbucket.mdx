@@ -1,8 +1,6 @@
 # Bitbucket Integration
 
-**Used for: Triggers**
-
-Promptless integrates with Bitbucket using app password authentication, monitoring pull requests in your repositories for documentation updates.
+Promptless integrates with Bitbucket to automatically update your documentation when code changes are made. This integration allows you to connect your Bitbucket workspace and repositories, monitor pull requests for changes that might require documentation updates, and automate the documentation process.
 
 ## Installation
 
@@ -10,10 +8,19 @@ To set up the Bitbucket integration:
 
 1. Navigate to the **Integrations** page in your Promptless dashboard
 2. Click on **Connect** next to the Bitbucket option
+
+<Frame>
+  [TODO: add screenshot showing the Promptless integrations page with the Bitbucket "Connect" button highlighted]
+</Frame>
+
 3. Enter your Bitbucket credentials:
    - **Username**: Your Bitbucket username
    - **App Password**: A Bitbucket app password with appropriate permissions
    - **Workspace Name**: The name of your Bitbucket workspace
+
+<Frame>
+  [TODO: add screenshot showing the Bitbucket credentials form in Promptless with username, app password, and workspace name fields]
+</Frame>
 
 <Tip title="Creating a Bitbucket App Password">
 To create an app password with the right permissions:
@@ -25,6 +32,10 @@ To create an app password with the right permissions:
    - **Repositories**: Read
    - **Pull requests**: Read and Write
    - **Webhooks**: Read and Write
+
+<Frame>
+  [TODO: add screenshot showing the Bitbucket app password creation interface with the required permissions selected]
+</Frame>
 </Tip>
 
 ## Project Setup
@@ -38,6 +49,10 @@ When setting up a project with Bitbucket as a trigger source:
 1. Select the repositories you want Promptless to monitor for changes
 2. Choose whether Promptless should have read-only access or write access to your documentation repositories
 3. Optionally, configure directory-specific triggers to focus on particular parts of your codebase
+
+<Frame>
+  [TODO: add screenshot showing the project configuration interface with Bitbucket repository selection and access controls]
+</Frame>
 
 ### Directory-Specific Triggers
 
