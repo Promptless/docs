@@ -60,6 +60,30 @@ Enterprise plan customers receive access to advanced authentication capabilities
 - Data at rest (both in primary data stores and secondary backups) is protected using AES-256 encryption, with keys managed through a secure key management system
 - Backup data is encrypted using independent encryption keys for additional security
 
+## Compliance and Certifications
+
+Promptless has SOC 2 Type II compliance, and our infrastructure providers maintain SOC 2, ISO 27001, and other industry-standard security certifications (enterprise customers requiring additional compliance documentation should contact help@gopromptless.ai).
+
+## Vulnerability Management
+
+We manage security vulnerabilities through regular scanning of infrastructure and applications, risk-based prioritization, and quick remediation of critical and high-severity issues.
+
+## Audit Logging and Monitoring
+
+Promptless logs system events, administrative activities, and user actions across our platform with real-time monitoring and alerting for security events, and enterprise customers can request audit log access for their organization's activities.
+
+## Vendor Security
+
+We review the security of all third-party services through security assessments (including review of SOC 2, ISO 27001, and other compliance reports), regular reviews of vendor security practices, and contractual security requirements (see our [Subprocessors page](./subprocessors.md) for details).
+
+## Security Program Maintenance
+
+We keep our security program up to date through annual reviews and updates of security policies, regular risk assessments, security awareness training for all team members, and continuous improvement based on industry best practices.
+
+## Reporting Security Concerns
+
+If you discover a potential security vulnerability or have security concerns about Promptless, contact our security team at founders@gopromptless.ai.
+
 ## Enterprise Security Support
 
 Enterprise customers may request additional security features and support, such as custom data retention policies. 
