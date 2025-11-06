@@ -50,11 +50,14 @@ navigation:
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
       contents:
-        - page: Bitbucket Integration
-          path: ./docs/integrations/bitbucket.mdx
         - page: GitHub Integration
           path: ./docs/integrations/github.mdx
           slug: github-integration
+        - page: Slack Integration
+          path: ./docs/integrations/slack.mdx
+          slug: slack-integration
+        - page: Bitbucket Integration
+          path: ./docs/integrations/bitbucket.mdx
         - page: GitHub Enterprise Integration
           path: ./docs/integrations/github-enterprise.mdx
           slug: github-enterprise-integration
@@ -64,9 +67,6 @@ navigation:
         - page: Linear Integration
           path: ./docs/integrations/linear.mdx
           slug: linear-integration
-        - page: Slack Integration
-          path: ./docs/integrations/slack.mdx
-          slug: slack-integration
         - page: Microsoft Teams Integration
           path: ./docs/integrations/microsoft-teams.mdx
         - page: Zendesk Integration
