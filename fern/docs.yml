@@ -26,8 +26,6 @@ navigation:
           path: ./docs/index.mdx
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
-        - page: Maximizing Value with Promptless
-          path: ./docs/onboard-promptless.mdx
         - page: Your Promptless Pilot
           path: ./docs/promptless-pilot.mdx
     - section: Core Concepts
