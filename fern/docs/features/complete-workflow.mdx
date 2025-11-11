@@ -1,0 +1,331 @@
+---
+title: Complete Workflow - Slack to PR
+description: A comprehensive walkthrough for creating documentation PRs from Slack all the way through to merging on GitHub
+---
+
+This guide walks you through creating documentation PRs with Promptless—from tagging in Slack to merging on GitHub.
+
+## Workflow Overview
+
+1. **Trigger** - Tag Promptless in Slack with your documentation request
+2. **Review** - View the generated suggestion in the web interface
+3. **Refine** - Make edits using Slack follow-ups or web interface feedback
+4. **Publish** - Create a PR from the approved suggestion
+5. **Iterate** - Request additional changes via GitHub PR comments
+
+## Step 1: Tag Promptless in Slack
+
+Trigger a documentation update from Slack using one of these methods:
+
+### Option A: Use a Message Action (Recommended)
+
+Use this to turn existing conversations into documentation.
+
+<Steps>
+  <Step title="Open Message Actions">
+    Click the three dots (⋯) menu on any Slack message you want to document.
+  </Step>
+
+  <Step title="Select Update Docs">
+    Choose "Update Docs" from the menu. If you don't see it, click "More message shortcuts" and search for Promptless.
+  </Step>
+
+  <Step title="Wait for Notification">
+    Promptless will analyze the thread and DM you when ready.
+  </Step>
+</Steps>
+
+### Option B: Mention Promptless in a Channel
+
+Use this to provide specific instructions or context.
+
+<Steps>
+  <Step title="Tag Promptless">
+    Type `@Promptless` followed by your request. Include relevant links, context, or instructions.
+    
+    Example:
+    ```txt wordWrap
+    @Promptless please document the new authentication flow we discussed in this thread, including the error handling section
+    ```
+  </Step>
+
+  <Step title="Add Promptless to Channel">
+    If this is your first time tagging Promptless in the channel, add the bot first.
+  </Step>
+
+  <Step title="Wait for Response">
+    Promptless will reply in the thread when ready.
+  </Step>
+</Steps>
+
+### Option C: Send a Direct Message
+
+Use this for private requests or very specific instructions.
+
+<Steps>
+  <Step title="Open DM with Promptless">
+    Go to Apps in Slack and click the Promptless bot to open a DM.
+  </Step>
+
+  <Step title="Send Your Request">
+    Type your request (no need to tag in DMs). Include links, images, or other context.
+  </Step>
+
+  <Step title="Wait for Notification">
+    Promptless will DM you when ready.
+  </Step>
+</Steps>
+
+<Tip>
+Learn more about Slack interactions in our [Working with Slack](/docs/how-to-use-promptless/working-with-slack) guide.
+</Tip>
+
+## Step 2: View the Suggestion
+
+You'll receive a notification with a link to view your suggestion in the web interface.
+
+<Steps>
+  <Step title="Click the Suggestion Link">
+    Click the link in the Slack notification to open the suggestion in your browser.
+  </Step>
+
+  <Step title="Review the Changes">
+    The suggestion shows:
+    - A preview of the documentation changes
+    - Which files will be created or modified
+    - The specific content that will be added or updated
+  </Step>
+
+  <Step title="Check the Content">
+    Make sure the documentation is accurate, complete, and matches your requirements. Check:
+    - Technical accuracy
+    - Completeness of information
+    - Appropriate tone and style
+    - Correct formatting and structure
+  </Step>
+</Steps>
+
+## Step 3: Refine the Suggestion (Optional)
+
+If the suggestion needs adjustments, provide feedback using either method below.
+
+### Option A: Slack Follow-up Instructions
+
+Use this for quick iterations and conversational feedback.
+
+<Steps>
+  <Step title="Reply in the Original Thread">
+    Go back to the Slack thread where Promptless notified you.
+  </Step>
+
+  <Step title="Tag Promptless with Instructions">
+    **Important:** You must tag `@Promptless` in your follow-up message.
+    
+    Example:
+    ```txt wordWrap
+    @Promptless please also add a troubleshooting section covering the connection timeout error
+    ```
+  </Step>
+
+  <Step title="Wait for Updated Suggestion">
+    Promptless will update the suggestion and notify you when ready.
+  </Step>
+</Steps>
+
+<Note>
+You can provide multiple rounds of feedback. Just remember to tag @Promptless in each follow-up message.
+</Note>
+
+### Option B: Web Interface Feedback
+
+Use this for detailed, line-specific feedback on multiple sections.
+
+<Steps>
+  <Step title="Highlight Text">
+    In the suggestion view, select text you want to comment on. An "Add Comment" button will appear.
+  </Step>
+
+  <Step title="Provide Feedback">
+    Click "Add Comment" and type your feedback. You can add multiple comments to different sections.
+  </Step>
+
+  <Step title="Choose Feedback Options">
+    Before submitting, you'll see two checkboxes:
+    - **Request changes on this suggestion** - Updates this suggestion based on your feedback
+    - **Remember feedback for future suggestions** - Applies this feedback to future documentation
+  </Step>
+
+  <Step title="Submit Feedback">
+    Click submit. If you requested changes, Promptless will update the suggestion and notify you when ready.
+  </Step>
+</Steps>
+
+<Tip>
+Learn more about web interface feedback in our [Using the Web Interface](/docs/how-to-use-promptless/using-the-web-interface) guide.
+</Tip>
+
+## Step 4: Create the PR
+
+Once you're satisfied with the suggestion, create a GitHub PR.
+
+<Steps>
+  <Step title="Approve the Suggestion">
+    In the suggestion view, look for the "Create PR" or "Publish" button.
+  </Step>
+
+  <Step title="Click Create PR">
+    Click the button to create a pull request. Promptless will:
+    - Create a new branch with your changes
+    - Open a pull request with a descriptive title
+    - Include the documentation changes
+  </Step>
+
+  <Step title="Review the PR on GitHub">
+    Click the link to view your PR on GitHub. Do a final review to make sure everything looks correct.
+  </Step>
+</Steps>
+
+<Info>
+If your project has auto-publish enabled, PRs may be created automatically. Check your project settings to configure this behavior.
+</Info>
+
+## Step 5: Request Changes via GitHub
+
+If you need additional changes after the PR is created, provide feedback directly on GitHub.
+
+### Option A: Single Line Comments
+
+Use this for quick, isolated feedback on specific lines.
+
+<Steps>
+  <Step title="Add Line Comment">
+    In the GitHub PR, click the "+" icon next to the line you want to comment on.
+  </Step>
+
+  <Step title="Tag Promptless">
+    Type `@Promptless` in your comment (it won't autocomplete, but it works). Then provide your instruction.
+    
+    Example:
+    ```txt wordWrap
+    @Promptless please add a code example for this API endpoint
+    ```
+  </Step>
+
+  <Step title="Submit as Single Comment">
+    Click "Add single comment" (not "Start a review") to submit immediately.
+  </Step>
+</Steps>
+
+<Note>
+Each single comment is processed independently. Promptless doesn't have context from other comments, so avoid instructions like "Same here" or "Apply this to the section above too."
+</Note>
+
+### Option B: GitHub PR Review
+
+Use this for multiple pieces of feedback that should be addressed together.
+
+<Steps>
+  <Step title="Start a Review">
+    Click "Review changes" at the top of the PR, or when adding an inline comment, select "Start a review" instead of "Add single comment".
+  </Step>
+
+  <Step title="Add Multiple Comments">
+    Add comments throughout the PR as part of your review. You don't need to tag Promptless in individual review comments.
+  </Step>
+
+  <Step title="Finish the Review">
+    Click "Finish your review", then tag `@Promptless` in the summary text box and provide general instructions or context.
+    
+    Example:
+    ```txt wordWrap
+    @Promptless please address all the comments in this review. Also, ensure all code examples use TypeScript.
+    ```
+  </Step>
+
+  <Step title="Submit Review">
+    Select "Comment" (or "Request changes") and click "Submit review". Promptless will process all comments together and update the PR.
+  </Step>
+</Steps>
+
+<Tip>
+Learn more about GitHub PR interactions in our [Interacting with Promptless PRs](/docs/how-to-use-promptless/interacting-with-promptless-prs) guide.
+</Tip>
+
+## Step 6: Merge the PR
+
+Once you're satisfied with the documentation:
+
+<Steps>
+  <Step title="Final Review">
+    Do a final review of the PR to make sure everything is correct and complete.
+  </Step>
+
+  <Step title="Get Approvals">
+    If your team requires PR approvals, request reviews from team members.
+  </Step>
+
+  <Step title="Merge">
+    Click "Merge pull request" on GitHub to merge the changes into your main branch.
+  </Step>
+
+  <Step title="Verify Publication">
+    Verify the changes appear correctly on your published documentation site.
+  </Step>
+</Steps>
+
+## Example Workflow
+
+Here's how this might look in practice:
+
+**1. Trigger in Slack:**
+```txt wordWrap
+@Promptless please document our new OAuth 2.0 authentication flow. Include setup steps, code examples, and common troubleshooting issues from this thread.
+```
+
+**2. Review suggestion:** Promptless DMs you → Click link → Review docs
+
+**3. Request refinement (Slack):**
+```txt wordWrap
+@Promptless please add a section about refresh token handling and token expiration
+```
+
+**4. Create PR:** Click "Create PR" in web interface
+
+**5. Request changes (GitHub PR Review):**
+- Comment 1: "Add rate limiting information to this section"
+- Comment 2: "Update this code example to use our latest SDK version"
+- Review summary: "@Promptless please address the comments above and ensure all examples use async/await syntax"
+
+**6. Final review and merge:** Approve → Merge → Done!
+
+## Tips for Success
+
+<AccordionGroup>
+  <Accordion title="Be specific in your initial request">
+    The more context you provide upfront, the better the initial suggestion. Include relevant thread context, links to specs, and specific requirements.
+  </Accordion>
+
+  <Accordion title="Use the right feedback method">
+    - Slack follow-ups: Quick iterations and adding sections
+    - Web interface: Line-specific feedback on existing content
+    - GitHub comments: Technical corrections and code example updates
+  </Accordion>
+
+  <Accordion title="Remember to tag @Promptless">
+    You must tag @Promptless in Slack threads and GitHub comments. The only exception is DMs with Promptless.
+  </Accordion>
+
+  <Accordion title="Review before creating PRs">
+    Review suggestions thoroughly before creating PRs. It's easier to iterate in the suggestion phase.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+Explore related guides:
+
+- [Working with Slack](/docs/how-to-use-promptless/working-with-slack) - Detailed guide on Slack interactions
+- [Interacting with Promptless PRs](/docs/how-to-use-promptless/interacting-with-promptless-prs) - More examples of GitHub feedback
+- [Using the Web Interface](/docs/how-to-use-promptless/using-the-web-interface) - Advanced web interface features
+
+Need help? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai)

@@ -40,6 +40,8 @@ navigation:
       icon: fa-regular fa-star
       path: ./docs/features/index.mdx
       contents:
+        - page: Complete Workflow - Slack to PR
+          path: ./docs/features/complete-workflow.mdx
         - page: Working with Slack
           path: ./docs/features/slack-interactions.mdx
         - page: Interacting with Promptless PRs
@@ -80,6 +82,12 @@ navigation:
       contents:
         - page: Account Management
           path: ./docs/account-management.mdx
+    - section: Self-Hosting
+      icon: fa-regular fa-server
+      path: ./docs/self-hosting/index.mdx
+      contents:
+        - page: Kubernetes + Helm
+          path: ./docs/self-hosting/kubernetes-helm.mdx
     - section: Security and Privacy
       icon: fa-regular fa-shield
       path: ./docs/security-and-privacy/index.md
@@ -103,12 +111,6 @@ navigation:
     layout:
     - section: Changelogs
       contents:
-        - page: October 2025
-          path: ./docs/changelogs/2025-10.md
-        - page: September 2025
-          path: ./docs/changelogs/2025-09.md
-        - page: August 2025
-          path: ./docs/changelogs/2025-08.md
         - page: July 2025
           path: ./docs/changelogs/2025-07.md
         - page: June 2025
