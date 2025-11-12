@@ -79,7 +79,7 @@ navigation:
       icon: fa-regular fa-users
       contents:
         - page: Account Management
-          path: ./docs/account-management.mdx
+          path: ./docs/managing-accounts.mdx
     - section: Security and Privacy
       icon: fa-regular fa-shield
       path: ./docs/security-and-privacy/index.md
