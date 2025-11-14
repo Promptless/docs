@@ -60,64 +60,41 @@ Enterprise plan customers receive access to advanced authentication capabilities
 - Data at rest (both in primary data stores and secondary backups) is protected using AES-256 encryption, with keys managed through a secure key management system
 - Backup data is encrypted using independent encryption keys for additional security
 
-## Compliance and Certifications
-
-We maintain compliance with industry-leading security and privacy standards:
-
-- **SOC 2 Type II**: We undergo annual SOC 2 audits to verify our security controls and practices
-- **GDPR Compliance**: Our data handling practices align with GDPR requirements for customer data protection
-- **HIPAA-Ready**: Enterprise customers can deploy Promptless in HIPAA-compliant configurations with appropriate Business Associate Agreements (BAAs)
-
-For compliance documentation or to discuss specific regulatory requirements, contact us at help@gopromptless.ai.
-
-## Security Programs
-
-### Vulnerability Management
-
-We operate a proactive vulnerability management program that includes:
-- Regular vulnerability assessments of our infrastructure and applications
-- Risk-based prioritization and remediation of identified vulnerabilities
-- Automated patch management for critical security updates
-- Continuous monitoring for emerging threats
-
-### Incident Response
-
-We maintain a comprehensive incident response plan to handle security events:
-- 24/7 monitoring and detection capabilities
-- Defined procedures for incident classification and escalation
-- Rapid response protocols to contain and remediate security incidents
-- Post-incident analysis and documentation
-
-If you discover a potential security issue, please report it immediately to help@gopromptless.ai.
-
-### Access Controls and Auditing
-
-We implement strict access controls across all systems:
-- **Principle of Least Privilege**: Team members receive only the minimum access required for their role
-- **Regular Access Audits**: Periodic reviews ensure access permissions remain appropriate
-- **Immediate Revocation**: Access is removed immediately upon termination or role change
-- **Audit Logging**: All system access and administrative activities are logged and retained for one year
-
-### Change Management
-
-Production system changes follow a rigorous change management process:
-- All changes require documentation, testing, and approval before deployment
-- Separation of development and production environments
-- Code review requirements for all production changes
-- Rollback procedures for emergency situations
-
-## Additional Security Measures
-
-### Data Loss Prevention
-Data Loss Prevention (DLP) software monitors outbound communications and automated controls prevent accidental transmission of sensitive information.
-
-### Vendor Security Management
-All third-party vendors undergo security assessments before integration. We review vendor compliance certifications (SOC 2, ISO 27001, etc.) and conduct regular reviews to ensure ongoing vendor security standards. See our [Subprocessors](./subprocessors.md) page for current vendors.
-
 ## Enterprise Security Support
 
 Enterprise customers may request additional security features and support, such as custom data retention policies. 
 
+
+## Additional Data Protection Measures
+
+### Data Loss Prevention
+We use Data Loss Prevention (DLP) software to prevent accidental transmission of sensitive information via email. These controls help protect sensitive data even when human error occurs.
+
+### Backup Encryption
+In addition to encrypting data at rest in our primary data stores, all backup data is encrypted using independent encryption keys. This provides additional security for data recovery scenarios.
+
+### Key Management
+Encryption keys are managed through secure key management systems provided by our cloud infrastructure provider. Access to production encryption keys is restricted to authorized personnel only.
+
+## Audit and Compliance Capabilities
+
+### Activity Logging
+We maintain activity logs across all systems, including:
+- Administrative activities and configuration changes
+- User authentication and access events
+- Data access and modifications
+- System-level security events
+
+Logs are securely stored and retained for a minimum of one year to support auditing, troubleshooting, and compliance requirements.
+
+### Access Controls
+We control access to logs and sensitive systems using a combination of security measures:
+- Role-based access control (RBAC)
+- Principle of least privilege
+- Regular access reviews and audits
+- Immediate access revocation upon termination
+
+Only authorized personnel can access sensitive data, and all access is logged and monitored.
 
 ## Questions About Data Handling?
 
