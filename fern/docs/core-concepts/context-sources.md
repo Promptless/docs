@@ -36,7 +36,7 @@ When a GitHub PR mentions a new feature, Promptless searches Linear for related 
   
 ### Jira as a Context Source
 
-If a GitHub PR references a Jira ticket (like "PROJ-123"), Promptless automatically reads that Jira ticket for additional context. It also proactively search Jira using JQL for related issues and epics.
+If a GitHub PR references a Jira ticket (like "PROJ-123"), Promptless automatically reads that Jira ticket for additional context. It also proactively searches Jira using JQL for related issues and epics.
 
 ### Slack as a Context Source
 
