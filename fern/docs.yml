@@ -26,6 +26,9 @@ navigation:
           path: ./docs/index.mdx
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
+        - page: Pilot Overview
+          hidden: true
+          path: ./docs/pilot-guide.mdx
     - section: Core Concepts
       icon: fa-regular fa-lightbulb
       path: ./docs/core-concepts/index.mdx
