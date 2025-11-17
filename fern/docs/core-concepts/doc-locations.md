@@ -8,9 +8,9 @@ The most common setup uses the **Promptless GitHub App** to integrate with docum
 - Fern
 - Mintlify
 - ReadMe (Refactored)
-- Gitbook
+- GitBook
 - Docusaurus
-- Mkdocs
+- MkDocs
 - Hugo
 - Ghost
 - Nextra
