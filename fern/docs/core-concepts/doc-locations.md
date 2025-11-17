@@ -1,13 +1,13 @@
 # Documentation Platforms
 
-Documentation platforms are where your docs live. Whether you're using Git-synced CMSs such as Fern, Mintlify, Docusaurus, or other platforms such as Readme, Zendesk, and Intercom, you'll need to enable Promptless integrations to read from and publish to your existing docs.
+Documentation platforms are where your docs live. Whether you're using Git-synced CMSs such as Fern, Mintlify, Docusaurus, or other platforms such as ReadMe, Zendesk, and Intercom, you'll need to enable Promptless integrations to read from and publish to your existing docs.
 
 ## GitHub-Synced Documentation Platforms
 
-The most common setup uses the **Promptless GitHub App** to integrate with documentation platforms that sync content from GitHub repositories. A list of platforms supported by the github integration:
+The most common setup uses the **Promptless GitHub App** to integrate with documentation platforms that sync content from GitHub repositories. A list of platforms supported by the GitHub integration:
 - Fern
 - Mintlify
-- Readme (Refactored)
+- ReadMe (Refactored)
 - Gitbook
 - Docusaurus
 - Mkdocs
