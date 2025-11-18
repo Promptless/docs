@@ -2,52 +2,86 @@
 
 **Used for: Publishing**
 
-Promptless offers beta support for updating content directly in Webflow CMS. This integration allows you to manage your Webflow blog posts, collection items, and other CMS content through the Promptless platform. Contact help@gopromptless.ai for access to this integration. 
+Promptless offers beta support for updating content directly in Webflow CMS. Manage your Webflow blog posts, collection items, and other CMS content through Promptless. Contact help@gopromptless.ai for access. 
 
 ## Setup
 
 To set up the Webflow integration:
 
 1. Contact us at hello@gopromptless.ai to enable the Webflow integration for your account
+
+[TODO: add screenshot]
+
 2. Generate a Webflow API token from your Webflow project settings
+3. 
+<Frame>
+  [TODO: add screenshot showing the Webflow API token generation interface in Webflow project settings]
+</Frame>
+
 3. Configure your Webflow credentials in the Promptless dashboard
+
+<Frame>
+  [TODO: add screenshot showing the Webflow integration configuration form in Promptless dashboard]
+</Frame>
 4. Select Webflow as your documentation platform when creating a new project
 
 ## Publishing Updates to Webflow
 
-When you're ready to publish documentation updates to Webflow:
+To publish documentation updates to Webflow:
 
+<<<<<<< HEAD
+1. Review your changes on the Change History page
+2. Click "Save All & Update Webflow"
+3. Promptless creates or updates content in your Webflow CMS
+4. Content is automatically published to your live site (if auto-publish is enabled)
+||||||| 536b620
 1. Review your changes in the Change History page
 2. Click the "Save All & Update Webflow" button
 3. Promptless will create or update content in your Webflow CMS
 4. Content will be automatically published to your live site (if auto-publish is enabled)
+=======
+1. Review your changes in the Change History page
+
+<Frame>
+  [TODO: add screenshot showing the Change History page with documentation updates ready for review]
+</Frame>
+
+2. Click the "Save All & Update Webflow" button
+
+<Frame>
+  [TODO: add screenshot showing the "Save All & Update Webflow" button in the Promptless interface]
+</Frame>
+
+3. Promptless will create or update content in your Webflow CMS
+4. Content will be automatically published to your live site (if auto-publish is enabled)
+>>>>>>> main
 
 ## Blog Post Management
 
-Promptless can help you manage your Webflow blog posts by:
+Promptless manages your Webflow blog posts:
 
-- **Creating new blog posts**: Add new articles, announcements, or content pages
-- **Updating existing posts**: Modify content, add new sections, or update information
+- **Creating new blog posts**: Add articles, announcements, or content pages
+- **Updating existing posts**: Modify content, add sections, or update information
 - **Managing metadata**: Update titles, descriptions, tags, and other CMS fields
-- **Adding images**: Include screenshots, diagrams, and other visual content
+- **Adding images**: Include screenshots, diagrams, and visual content
 
 ### Creating a New Blog Post
 
-To create a new blog post through Promptless:
+To create a new blog post:
 
-1. Trigger a documentation update (via Slack, GitHub PR, or other configured triggers)
-2. Promptless will analyze the content and suggest creating a new blog post if appropriate
-3. Review the suggested content in your Promptless dashboard
-4. Approve the changes to publish the new post to your Webflow site
+1. Trigger a documentation update (via Slack, GitHub PR, or other triggers)
+2. Promptless analyzes the content and suggests creating a new blog post if appropriate
+3. Review the suggested content in your dashboard
+4. Approve the changes to publish to your Webflow site
 
 ### Example: Adding a Joke Page
 
-If you want to add a lighthearted page with a joke to your blog, you can:
+To add a lighthearted page with a joke:
 
 1. Mention @Promptless in Slack with your request
-2. Promptless will create a new blog post with your joke content
-3. The post will include proper formatting, metadata, and be ready for publication
-4. Review and approve the content before it goes live
+2. Promptless creates a new blog post with your joke content
+3. The post includes proper formatting and metadata
+4. Review and approve before it goes live
 
 ## Content Types Supported
 
@@ -60,11 +94,11 @@ Webflow integration supports various content types:
 
 ## Publishing Options
 
-You can configure how Promptless publishes to Webflow:
+Configure how Promptless publishes to Webflow:
 
-- **Draft mode**: Create content as drafts for manual review and publishing
+- **Draft mode**: Create content as drafts for manual review
 - **Auto-publish**: Automatically publish approved content to your live site
-- **Staging**: Publish to a staging environment first for testing
+- **Staging**: Publish to a staging environment first
 
 ## Limitations
 
@@ -77,11 +111,11 @@ As this is a beta feature:
 
 ## Authentication Model
 
-Promptless uses Webflow's [official API](https://developers.webflow.com/) with:
+Promptless uses Webflow's [official API](https://developers.webflow.com/):
 
 - Secure API token authentication
 - Site-specific access controls
-- Ability to revoke access at any time
+- Revoke access at any time
 - Granular permissions for different content types
 
-For any questions or issues with the Webflow integration, please contact our support team at help@gopromptless.ai.
+For questions or issues, contact help@gopromptless.ai.

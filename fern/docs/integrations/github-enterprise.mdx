@@ -2,16 +2,16 @@
 
 **For GitHub Enterprise Server and GitHub Enterprise Cloud users**
 
-If your organization uses GitHub Enterprise Server (self-hosted) or GitHub Enterprise Cloud with specific security requirements, you'll need to create a custom GitHub App within your enterprise environment to integrate with Promptless.
+If your organization uses GitHub Enterprise Server (self-hosted) or GitHub Enterprise Cloud with specific security requirements, create a custom GitHub App within your enterprise environment.
 
 <Warning>
-This setup is required for GitHub Enterprise Server instances and GitHub Enterprise Cloud organizations that don't allow third-party GitHub Apps. For standard GitHub.com organizations, use the [standard GitHub integration](/docs/integrations/github-integration) instead.
+This setup is required for GitHub Enterprise Server instances and GitHub Enterprise Cloud organizations that don't allow third-party GitHub Apps. For standard GitHub.com organizations, use the [standard GitHub integration](/docs/integrations/github-integration).
 </Warning>
 
 ## Prerequisites
 
 - GitHub Enterprise admin access to create and configure GitHub Apps
-- Network access to Promptless endpoints (see [IP whitelisting](#ip-whitelisting) section)
+- Network access to Promptless endpoints (see [IP whitelisting](#ip-whitelisting))
 - Ability to generate and securely store private keys and client secrets
 
 ## Step 1: Register New GitHub App
@@ -81,7 +81,7 @@ Promptless requires specific repository permissions to function properly. Config
 
 ### Required Repository Permissions
 
-Configure the following permissions for your GitHub App:
+Configure these permissions for your GitHub App:
 
 #### Pull Requests - Read and Write
 
@@ -89,7 +89,7 @@ Configure the following permissions for your GitHub App:
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-pull-requests-permission.png" alt="GitHub Enterprise Pull Requests Permission" />
 </Frame>
 
-This permission allows Promptless to:
+Promptless uses this to:
     - Read pull request content and metadata
     - Create documentation update pull requests
     - Add comments to pull requests for feedback
@@ -100,7 +100,7 @@ This permission allows Promptless to:
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-contents-permission.png" alt="GitHub Enterprise Contents Permission" />
 </Frame>
 
-This permission allows Promptless to:
+Promptless uses this to:
     - Read repository files and documentation
     - Create and update documentation files
     - Access repository structure and content
@@ -111,7 +111,7 @@ This permission allows Promptless to:
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-commit-statuses-permission.png" alt="GitHub Enterprise Commit Statuses Permission" />
 </Frame>
 
-This permission allows Promptless to:
+Promptless uses this to:
 - Read commit status information
 - Understand the state of pull requests and commits
 
@@ -121,13 +121,13 @@ This permission allows Promptless to:
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-webhooks-permission.png" alt="GitHub Enterprise Webhooks Permission" />
 </Frame>
 
-This permission allows Promptless to:
+Promptless uses this to:
     - Manage webhook configurations
     - Receive real-time notifications of repository events
 
 ## Step 5: Configure Webhook Events
 
-Select the specific events that should trigger Promptless documentation updates:
+Select events that should trigger Promptless documentation updates:
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/41ffdf0d-27c1-4927-b1fc-b0183443a066-github-enterprise-webhook-events-updated.png" alt="GitHub Enterprise Webhook Events" />
@@ -135,22 +135,22 @@ Select the specific events that should trigger Promptless documentation updates:
 
 ### Required Webhook Events
 
-Select the following events to ensure Promptless receives all necessary notifications:
+Select these events to ensure Promptless receives necessary notifications:
 
-- **Pull Request** - Triggers when pull requests are opened, updated, or closed
-- **Pull Request Review** - Triggers when pull request reviews are submitted
-- **Pull Request Review Thread** - Triggers when review threads are created or updated
-- **Pull Request Review Comment** - Triggers when individual review comments are made
-- **Push** - Triggers when code is pushed to repositories
-- **Release** - Triggers when releases are created or updated
-- **Repository** - Triggers when repository settings change
+- **Pull Request** - Pull requests opened, updated, or closed
+- **Pull Request Review** - Pull request reviews submitted
+- **Pull Request Review Thread** - Review threads created or updated
+- **Pull Request Review Comment** - Individual review comments made
+- **Push** - Code pushed to repositories
+- **Release** - Releases created or updated
+- **Repository** - Repository settings changed
 
 ## Step 6: IP Whitelisting
 
-Add Promptless IP addresses to your network whitelist to ensure proper connectivity:
+Add Promptless IP addresses to your network whitelist:
 
 <Info>
-If your GitHub Enterprise instance is behind a firewall or uses IP restrictions, you must whitelist these IP addresses for Promptless to function properly.
+If your GitHub Enterprise instance is behind a firewall or uses IP restrictions, whitelist these IP addresses for Promptless to function.
 </Info>
 
 ### Promptless IP Addresses
@@ -165,11 +165,11 @@ Add the following IP addresses to your whitelist:
 ```
 
 <Warning>
-These IP addresses are required for webhook delivery and API communication. Failure to whitelist them will prevent Promptless from receiving GitHub events and accessing your repositories.
+These IP addresses are required for webhook delivery and API communication. Without them, Promptless cannot receive GitHub events or access your repositories.
 </Warning>
 
 <Info>
-The primary egress IP address for Promptless infrastructure is `3.143.177.103` (NAT gateway). This is the IP address that will appear in your GitHub Enterprise logs for API requests.
+The primary egress IP address is `3.143.177.103` (NAT gateway). This IP appears in your GitHub Enterprise logs for API requests.
 </Info>
 
 ## Step 7: Generate Credentials
@@ -181,23 +181,23 @@ After configuring all settings, generate the necessary credentials:
     1. Scroll to the bottom of the GitHub App settings page
     2. Click "Generate a private key"
     3. Download and securely store the `.pem` file
-    4. This key will be needed for Promptless configuration
+    4. You'll need this key for Promptless configuration
   </Step>
 
   <Step title="Generate Client Secret">
-    1. In the "Client secrets" section, click "Generate a new client secret"
+    1. In "Client secrets", click "Generate a new client secret"
     2. Copy and securely store the generated secret
-    3. This secret will be needed for OAuth authentication
+    3. You'll need this secret for OAuth authentication
   </Step>
 
   <Step title="Note the App ID">
     1. Find the "App ID" at the top of the settings page
-    2. Record this ID as it will be needed for configuration
+    2. Record this ID for configuration
   </Step>
 </Steps>
 
 <Warning>
-Store the private key and client secret in a secure location. These credentials provide access to your GitHub Enterprise instance and should be treated as highly sensitive information.
+Store the private key and client secret securely. These credentials provide access to your GitHub Enterprise instance.
 </Warning>
 
 ## Step 8: Install the App
@@ -208,7 +208,7 @@ Store the private key and client secret in a secure location. These credentials 
 
 ## Step 9: Connect Your GitHub Enterprise Integration
 
-After configuring your GitHub Enterprise integration, you'll need to connect it in your Promptless dashboard.
+After configuring your GitHub Enterprise integration, connect it in your Promptless dashboard.
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/8a5d1abd-3c56-4c5f-a7b1-340ecd794940-github-enterprise-connect-button.png" alt="GitHub Enterprise Connection Interface" />
@@ -224,39 +224,39 @@ To establish the connection:
 4. Click **Connect GitHub Enterprise** to establish the connection
 
 <Info>
-You'll need to have the following information available during the connection process:
+You'll need this information during connection:
 - **GitHub Enterprise URL**: Your GitHub Enterprise instance URL
-- **App ID**: The numeric ID of your created GitHub App
+- **App ID**: The numeric ID of your GitHub App
 - **Client ID**: Found in your GitHub App settings
-- **Client Secret**: The secret you generated in Step 7
-- **Private Key**: The `.pem` file you downloaded in Step 7
-- **Installation ID**: Provided after installing the app to your organization
+- **Client Secret**: The secret from Step 7
+- **Private Key**: The `.pem` file from Step 7
+- **Installation ID**: Provided after app installation
 </Info>
 
-The connection process will authenticate with your GitHub Enterprise instance using the configuration that was set up by the Promptless team. Once connected, you'll see confirmation that your GitHub Enterprise integration is active and ready to use.
+Once connected, you'll see confirmation that your GitHub Enterprise integration is active.
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Webhook Delivery Issues">
     - Verify IP addresses are whitelisted
-    - Check that the webhook URL is accessible from your GitHub Enterprise instance
-    - Ensure SSL verification settings match your security requirements
-    - Review GitHub Enterprise logs for webhook delivery errors
+    - Check webhook URL is accessible from your GitHub Enterprise instance
+    - Ensure SSL verification settings match your requirements
+    - Review GitHub Enterprise logs for delivery errors
   </Accordion>
 
   <Accordion title="Authentication Problems">
     - Verify all URLs are correctly configured
-    - Ensure the private key and client secret are valid
-    - Check that the App ID matches your created GitHub App
-    - Confirm the installation was completed successfully
+    - Ensure private key and client secret are valid
+    - Check App ID matches your GitHub App
+    - Confirm installation completed successfully
   </Accordion>
 
   <Accordion title="Permission Errors">
-    - Review that all required repository permissions are granted
-    - Ensure the app is installed to the correct repositories
-    - Verify that webhook events are properly configured
-    - Check that users have appropriate access to repositories
+    - Review that all required permissions are granted
+    - Ensure app is installed to correct repositories
+    - Verify webhook events are configured
+    - Check users have appropriate repository access
   </Accordion>
 </AccordionGroup>
 

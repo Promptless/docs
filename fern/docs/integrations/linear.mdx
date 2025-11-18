@@ -2,7 +2,7 @@
 
 **Used for: Context**
 
-Promptless integrates with Linear through OAuth 2.0, providing secure access to your project management data for documentation automation.
+Promptless integrates with Linear through OAuth 2.0. This provides secure access to your project management data.
 
 ## Installation
 
@@ -27,9 +27,9 @@ Promptless integrates with Linear through OAuth 2.0, providing secure access to 
 
 ## Project Setup and Permissions
 
-After connecting Linear, you can configure which teams you'd like Promptless to search within when setting up a Project in the [projects page](https://app.gopromptless.ai/projects). Promptless will not be able to search within teams that you do not select. 
+After connecting Linear, configure which teams Promptless can search when setting up a Project on the [projects page](https://app.gopromptless.ai/projects). Promptless only searches teams you select. 
 
-For example, in the below example project, Promptless will only search within the `PRO` team for relevant issues.  
+In the example below, Promptless only searches within the `PRO` team for relevant issues.  
 
 <Frame>
   <img src="../assets/github-project.png" alt="Project Setup" />
@@ -37,10 +37,10 @@ For example, in the below example project, Promptless will only search within th
 
 ## Authentication Model
 
-Promptless uses OAuth 2.0 to authenticate with Linear, following their [official Linear OAuth 2.0 specification](https://developers.linear.app/docs/oauth/authentication). This ensures:
+Promptless uses OAuth 2.0 to authenticate with Linear, following their [official Linear OAuth 2.0 specification](https://developers.linear.app/docs/oauth/authentication):
 
 - Secure token-based authentication
-- Ability to revoke access at any time
+- Revoke access at any time
 - Granular permission control at the team level
-- Regular token rotation for enhanced security
+- Regular token rotation
 

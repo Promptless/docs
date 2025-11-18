@@ -3,7 +3,7 @@ title: Interacting with Promptless PRs
 description: Learn how to provide follow-up instructions through GitHub PR comments and reviews after your documentation PR is opened
 ---
 
-After Promptless opens a docs PR, you can provide follow-on instructions directly through GitHub comments. Promptless automatically handles quality issues (like linter failures, Vale warnings, or broken links) that arise in documentation PRs, so manual feedback can focus on content improvements rather than technical fixes.
+After Promptless opens a docs PR, you can provide follow-on instructions directly through GitHub comments. 
 
 ## Two ways of providing feedback
 
@@ -13,7 +13,12 @@ Leave individual comments on specific lines or sections of the documentation PR 
 
     Tag Promptless (@Promptless) in the comment (Note: It won't show up in auto-complete), write your instruction, and click "Add single comment" to submit your instruction to Promptless.
 
-When you tag Promptless, it automatically reads all previous comments in the PR to understand the full context. This means that your instructions can be as simple as "Same here" or "Apply this change to the other section too," and Promptless will understand what you mean.
+<Frame>
+  [TODO: add screenshot showing the GitHub single comment interface with @Promptless tagged in a comment and the "Add single comment" button highlighted]
+</Frame>
+<Note>
+  When using single comments, Promptless doesn't yet have the ability to look at other previous comments. So instructions like "Same here" wouldn't work. You can either spell out the instruction completely, or use the PR review comments below, where Promptless will have context on other comments in the same review.
+</Note>
 
 ### 2. PR reviews
 
@@ -22,14 +27,25 @@ Start a review to provide multiple pieces of feedback that Promptless can handle
 <Steps>
   <Step title="Start a Review">
     You can either click "Review changes" to begin a formal review process, or when adding an in-line comment, select the "Start a review" option instead of the "Add single comment" option.
+
+<Frame>
+  [TODO: add screenshot showing the GitHub PR interface with the "Review changes" button and the "Start a review" option when adding an inline comment]
+</Frame>
+
   </Step>
 
   <Step title="Add Multiple Comments">
     Continue adding comments as part of the review. You don't have to tag Promptless in any of them.
+
+[TODO: add screenshot]
   </Step>
 
   <Step title="Include General Feedback">
     After you're done reviewing, click on "Finish your review", and in the text box, tag Promptless (@Promptless). And then Promptless will address all your review feedback at once.
+
+<Frame>
+  [TODO: add screenshot showing the "Finish your review" dialog with @Promptless tagged in the comment box and the submit review button]
+</Frame>
   </Step>
 </Steps>
 

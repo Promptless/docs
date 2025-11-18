@@ -1,8 +1,6 @@
 # Bitbucket Integration
 
-**Used for: Triggers**
-
-Promptless integrates with Bitbucket using app password authentication, monitoring pull requests in your repositories for documentation updates.
+Promptless integrates with Bitbucket to automatically update your documentation when code changes are made. Connect your Bitbucket workspace and repositories. Monitor pull requests for changes that require documentation updates. Automate the documentation process.
 
 ## Installation
 
@@ -10,10 +8,19 @@ To set up the Bitbucket integration:
 
 1. Navigate to the **Integrations** page in your Promptless dashboard
 2. Click on **Connect** next to the Bitbucket option
+
+<Frame>
+  [TODO: add screenshot showing the Promptless integrations page with the Bitbucket "Connect" button highlighted]
+</Frame>
+
 3. Enter your Bitbucket credentials:
    - **Username**: Your Bitbucket username
    - **App Password**: A Bitbucket app password with appropriate permissions
    - **Workspace Name**: The name of your Bitbucket workspace
+
+<Frame>
+  [TODO: add screenshot showing the Bitbucket credentials form in Promptless with username, app password, and workspace name fields]
+</Frame>
 
 <Tip title="Creating a Bitbucket App Password">
 To create an app password with the right permissions:
@@ -25,68 +32,93 @@ To create an app password with the right permissions:
    - **Repositories**: Read
    - **Pull requests**: Read and Write
    - **Webhooks**: Read and Write
+
+<Frame>
+  [TODO: add screenshot showing the Bitbucket app password creation interface with the required permissions selected]
+</Frame>
 </Tip>
 
 ## Project Setup
 
-After connecting your Bitbucket account, you can configure how Promptless interacts with your repositories:
+After connecting your Bitbucket account, configure how Promptless interacts with your repositories:
 
 ### Repository Access
 
 When setting up a project with Bitbucket as a trigger source:
 
+<<<<<<< HEAD
+1. Select repositories to monitor for changes
+2. Choose read-only or write access for documentation repositories
+3. Optionally, configure directory-specific triggers for specific parts of your codebase
+||||||| 536b620
 1. Select the repositories you want Promptless to monitor for changes
 2. Choose whether Promptless should have read-only access or write access to your documentation repositories
 3. Optionally, configure directory-specific triggers to focus on particular parts of your codebase
+=======
+1. Select the repositories you want Promptless to monitor for changes
+
+[TODO: add screenshot]
+
+2. Choose whether Promptless should have read-only access or write access to your documentation repositories
+3. Optionally, configure directory-specific triggers to focus on particular parts of your codebase
+>>>>>>> main
+
+<Frame>
+  [TODO: add screenshot showing the project configuration interface with Bitbucket repository selection and access controls]
+</Frame>
 
 ### Directory-Specific Triggers
 
-Similar to the GitHub integration, you can configure Promptless to only trigger documentation updates when changes are made to specific directories in your Bitbucket repositories. This is useful for:
+Configure Promptless to trigger only on changes to specific directories. This is useful for:
 
-- Focusing on code that directly impacts user-facing features
-- Monitoring API changes that require documentation updates
-- Ignoring internal tooling or test changes that don't affect documentation
+- Focusing on code that impacts user-facing features
+- Monitoring API changes requiring documentation updates
+- Ignoring internal tooling or test changes
 
 To set up directory-specific triggers:
 
 1. In your project configuration, select the Bitbucket repository
 2. Under **Advanced Options**, enable **Directory-Specific Triggers**
-3. Enter the directories you want to monitor, separated by commas (e.g., `src/api, docs/reference`)
+3. Enter directories to monitor, separated by commas (e.g., `src/api, docs/reference`)
+
+[TODO: add screenshot]
 
 ## Authentication Model
 
-The Bitbucket integration uses a username and app password authentication model:
+The Bitbucket integration uses username and app password authentication:
 
 - **Username**: Your Bitbucket username for API authentication
-- **App Password**: A secure token with specific permissions for the Promptless integration
-- **Workspace Access**: Limited to the specific workspace you connect
+- **App Password**: A secure token with specific permissions
+- **Workspace Access**: Limited to the workspace you connect
 
-This authentication model ensures that Promptless only has access to the repositories and actions you explicitly authorize.
+Promptless only accesses repositories and actions you explicitly authorize.
 
 ## Repository Refresh
 
-If you add new repositories to your Bitbucket workspace after setting up the integration, you can refresh the repository list:
+If you add new repositories after setup, refresh the repository list:
 
-1. Go to the **Integrations** page in your Promptless dashboard
+1. Go to the **Integrations** page
 2. Find the Bitbucket integration
-3. Click the **Refresh Repositories** button to update the list of available repositories
+3. Click **Refresh Repositories**
+
+[TODO: add screenshot]
 
 ## Webhook Management
 
-Promptless automatically sets up webhooks in your Bitbucket repositories to monitor for pull request events. These webhooks:
+Promptless automatically sets up webhooks in your Bitbucket repositories. These webhooks:
 
 - Trigger Promptless when pull requests are created or updated
-- Send only the necessary information about changes to Promptless
+- Send only necessary information about changes
 - Can be customized to focus on specific events
 
 ## Usage
 
-Once configured, the Bitbucket integration works similarly to the GitHub integration:
+Once configured, the Bitbucket integration works similarly to GitHub:
 
-1. When a pull request is opened or updated in your monitored repositories, Promptless is automatically triggered
-2. Promptless analyzes the changes to determine if documentation updates are needed
-3. If updates are needed, Promptless generates the appropriate documentation changes
-4. Promptless adds a comment to your Bitbucket pull request with a link to review the documentation changes
-5. You can review and approve the suggested documentation updates in the Promptless dashboard
+1. Pull requests in monitored repositories automatically trigger Promptless
+2. Promptless analyzes changes to determine if documentation updates are needed
+3. If needed, Promptless generates documentation changes
+4. Promptless adds a comment to your pull request with a review link
+5. Review and approve suggested updates in the Promptless dashboard
 
-For more information on how triggers work in general, see the [Triggers](/docs/core-concepts/triggers) documentation.
+For more information, see the [Triggers](/docs/core-concepts/triggers) documentation.
