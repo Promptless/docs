@@ -7,7 +7,14 @@ Promptless offers beta support for updating documentation directly in Intercom. 
 To set up the Intercom integration:
 
 1. Contact us at hello@gopromptless.ai to enable the Intercom integration for your account
+
+[TODO: add screenshot]
+
 2. Configure your Intercom credentials in the Promptless dashboard
+
+<Frame>
+  [TODO: add screenshot showing the Intercom integration configuration form in Promptless dashboard]
+</Frame>
 3. Select Intercom as your documentation platform when creating a new project
 
 ## Publishing Updates to Intercom
@@ -15,8 +22,20 @@ To set up the Intercom integration:
 When you're ready to publish documentation updates to Intercom:
 
 1. Review your changes in the Change History page
+
+<Frame>
+  [TODO: add screenshot showing the Change History page with documentation updates ready for Intercom]
+</Frame>
+
 2. Click the "Save All & Update Intercom" button
+<Frame>
+  [TODO: add screenshot showing the "Save All & Update Intercom" button in the Promptless interface]
+</Frame>
+
 3. Promptless will create or update drafts in your Intercom help center
+
+[TODO: add screenshot]
+
 4. Review and publish the drafts in Intercom when ready
 
 :::note
