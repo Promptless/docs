@@ -17,7 +17,7 @@ The most common setup uses the **Promptless GitHub App** to integrate with docum
 - Vocs
 - Custom CMS as long as the content is in a repo
 
-<!-- [TODO: include screenshot of the Promptless dashboard showing the hosting provider dropdown menu when creating or editing a project (Fern, Mintlify, Readme, Gitbook, etc.)] -->
+{/* [TODO: include screenshot of the Promptless dashboard showing the hosting provider dropdown menu when creating or editing a project (Fern, Mintlify, Readme, Gitbook, etc.)] */}
 
 For more detailed step-by-step instructions, go to the [GitHub integrations page](/docs/integrations/github-integration).
 
@@ -25,7 +25,7 @@ For more detailed step-by-step instructions, go to the [GitHub integrations page
 
 For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular CMS platforms.
 
-<!-- [TODO: include screenshot of the Promptless integrations page showing the CMS platform cards (Zendesk, Intercom, Webflow)] -->
+{/* [TODO: include screenshot of the Promptless integrations page showing the CMS platform cards (Zendesk, Intercom, Webflow)] */}
 
 <CardGroup cols={2}>
   <Card title="Zendesk" href="/docs/integrations/zendesk-integration">
@@ -45,7 +45,7 @@ For teams using content management systems that don't sync with GitHub, Promptle
 
 Promptless can publish to multiple documentation locations simultaneously, allowing you to use the same trigger events and context sources across different platforms.
 
-<!-- [TODO: include screenshot of a Promptless project configuration showing multiple documentation platforms enabled] -->
+{/* [TODO: include screenshot of a Promptless project configuration showing multiple documentation platforms enabled] */}
 
 <Tip title="Best Practice">
 For teams using multiple platforms, create separate projects for each documentation location to maintain clear separation of content and workflows.
