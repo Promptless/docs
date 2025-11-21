@@ -19,7 +19,7 @@ Enterprise customers have additional flexibility:
 * Model performance monitoring and optimization
 * Dedicated model resources
 
-**Note:** The Promptless team may recommend certain models for different parts of the documentation process based on output quality considerations for different use-cases, but the final choice of architecture is up to the customer. Currently, the default configuration that results in the highest quality output is generated using a mixture of models, from Anthropic, OpenAI, and open-source model providers. 
+**Note:** We may recommend certain models for different parts of the documentation process based on what produces the best output for each use-case, but the final choice of architecture is up to you. Currently, the default configuration for cloud-hosted customers uses AWS Bedrock, though the system works with a variety of models including Anthropic, OpenAI, and open-source providers.
 
 **Note:** Regardless of model choice, Promptless does not use customer data for pre-training or fine-tuning language models. 
 
