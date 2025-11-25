@@ -6,7 +6,7 @@ Triggers are events that initiate automated documentation updates in Promptless.
 
 <CardGroup cols={2}>
   <Card title="GitHub/Bitbucket/GitLab" icon="fa-code-pull-request">
-    Automatically triggered when PRs/MRs are opened in your source repositories
+    Automatically triggered when PRs/MRs are opened or commits are pushed to your source repositories
   </Card>
   
   <Card title="Slack Integration" icon="brands slack">
@@ -16,13 +16,23 @@ Triggers are events that initiate automated documentation updates in Promptless.
 
 ### GitHub / Bitbucket / GitLab
 
-Promptless automatically monitors your specified source repositories for new pull requests. When a PR/MR is opened, the system analyzes the changes to determine if documentation updates are needed.
+Promptless automatically monitors your specified source repositories for new pull requests or direct commits. When a PR/MR is opened or a commit is pushed to your default branch, the system analyzes the changes to determine if documentation updates are needed.
 
 During analysis, Promptless processes information such as the code diff, PR title, and PR description to understand the context and scope of changes. This information is used solely for generating documentation suggestions and is not stored by Promptless.
 
 You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase.
 
 <AccordionGroup>
+  <Accordion title="GitHub Commit Triggers">
+    In addition to monitoring pull requests, GitHub can be configured to trigger on direct commits to your default branch. This is useful for teams that commit directly to main/master without using pull requests.
+    
+    When you create or edit a project, select "GitHub Commit" as your trigger type and choose which repository to monitor. Promptless will analyze commits to your default branch and automatically skip commits that originated from pull requests we already processed.
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/github-commit-trigger-project-config.png" alt="GitHub Commit trigger project configuration showing branch monitoring" />
+</Frame>
+  </Accordion>
+  
   <Accordion title="Auto-publish Mode">
     When auto-publish is enabled for your project:
     - Promptless automatically creates a new PR with suggested documentation changes
