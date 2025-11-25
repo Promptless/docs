@@ -12,6 +12,9 @@ tabs:
   docs:
     display-name: Docs
     icon: fa-regular fa-book
+  blog:
+    display-name: Blog
+    icon: fa-regular fa-newspaper
   changelog:
     display-name: Changelog
     icon: fa-regular fa-clock
@@ -102,6 +105,13 @@ navigation:
       contents:
         - page: Frequently Asked Questions
           path: ./docs/faq.mdx
+  - tab: blog
+    layout:
+    - section: Customer Stories
+      icon: fa-regular fa-users
+      contents:
+        - page: How Vellum Drafts 50%+ of Docs with Promptless
+          path: ./docs/customer-stories/vellum.mdx
   - tab: changelog
     layout:
     - section: Changelogs
