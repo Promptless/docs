@@ -1,0 +1,48 @@
+---
+title: Using the Web Interface
+description: Learn how to use Promptless's web interface to highlight text, provide feedback, and guide documentation improvements
+---
+
+### Comment and feedback
+
+Select to highlight specific portions of documentation to provide targeted comment or feedback.
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/web-ui-add-comment-button-1759356264.png" alt="Add Comment button in web interface" />
+</Frame>
+
+When providing feedback through the web interface, you'll see two checkbox options that control how your feedback is processed:
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/web-ui-feedback-panel-1759356264.png" alt="Feedback panel showing two checkbox options" />
+</Frame>
+
+**1. Request changes on this suggestion**
+
+    When checked, this option tells Promptless to apply your feedback and make changes to the current documentation suggestion. You'll be able to add more comments and submit them for implementaion all in one go.
+
+**2. Remember feedback for future suggestions**
+
+    When checked, this option saves your feedback preferences and applies them to future documentation suggestions. This helps Promptless learn your style preferences and documentation standards over time.
+    
+    **Examples of feedback to remember:**
+    - "Always include code examples for API endpoints"
+    - "Use active voice instead of passive voice"
+    - "Include troubleshooting sections for configuration guides"
+
+### Triggers page
+
+The Triggers page shows all events that triggered Promptless to review your documentation over the last 30 days. Each entry displays:
+
+- **Trigger source**: The event that fired (like a GitHub PR or Slack message)
+- **Status**: Whether Promptless completed processing, is still working, or hit an error
+- **Suggestions created**: Whether documentation updates were created from this trigger
+- **Timestamp**: When the trigger happened
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/triggers-page-dashboard-1759623397.png" alt="Triggers page showing recent trigger events" />
+</Frame>
+
+Use the filters at the top to narrow down by trigger type or suggestion status. Click any trigger to see the full details, including what research Promptless did and why it decided to create (or skip) documentation updates.
+
+Need help with the web interface? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai).
