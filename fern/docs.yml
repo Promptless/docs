@@ -105,6 +105,9 @@ navigation:
       contents:
         - page: Frequently Asked Questions
           path: ./docs/faq.mdx
+        - page: Recommended Docs Providers
+          path: ./docs/recommended-docs-providers.mdx
+          hidden: true
   - tab: blog
     layout:
     - section: Customer Stories
