@@ -115,6 +115,11 @@ navigation:
       contents:
         - page: How Vellum Drafts 50%+ of Docs with Promptless
           path: ./docs/customer-stories/vellum.mdx
+    - section: Life at Promptless
+      icon: fa-regular fa-lightbulb
+      contents:
+        - page: Running a Lightweight Research Paper Club
+          path: ./docs/life-at-promptless/paper-club.mdx
   - tab: changelog
     layout:
     - section: Changelogs
