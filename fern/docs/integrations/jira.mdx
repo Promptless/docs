@@ -60,7 +60,7 @@ After connecting, manage Promptless access by going to your avatar > Account set
 
 ## Project Setup and Permissions
 
-After connecting Jira, you can configure which projects you'd like Promptless to search in when setting up a Project in the [projects page](https://app.gopromptless.ai/projects). Promptless will not search projects not specified here.
+After connecting Jira, configure which projects you'd like Promptless to search in your [project settings](https://app.gopromptless.ai/projects). Promptless inherits the permissions of the Jira account used during OAuth connection and will only search projects you explicitly configure.
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e3bdab51-fb59-4971-aaac-32ed7dddf07b-project-context-sources-configuration.png" alt="Project configuration screen showing context sources setup with Jira integration" />
@@ -84,7 +84,7 @@ Promptless queries Jira data in real-time and does not store any of your Jira da
 
 ## Provisioning a Jira Account for Promptless
 
-We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system.
+We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system. A dedicated account also gives you complete audit trail visibility and lets you configure fine-grained project permissions.
 
 Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
 
@@ -132,6 +132,16 @@ Create the account using an email alias like `your_email+promptless@company.com`
 ## Troubleshooting
 
 <AccordionGroup>
+  <Accordion title="How do I restrict Promptless from accessing confidential Jira projects?">
+    Promptless inherits the permissions of the Jira account used during OAuth connection. There are several ways to manage access depending on your security requirements:
+
+    **Standard approach:** After connecting Jira, configure which projects Promptless should search in your [project settings](https://app.gopromptless.ai/projects). Promptless won't access projects you don't explicitly configure, even if the connected account has permission to see them.
+
+    **For highly confidential projects:** Create a Jira user account that only has access to non-confidential projects, then connect Jira to Promptless using this limited-access account. This restricts access at the Jira permissions level, adding an extra security layer.
+
+    **For granular control:** [Provision a dedicated Jira account for Promptless](#provisioning-a-jira-account-for-promptless) and configure fine-grained project permissions for this account in Jira's user management before connecting it to Promptless.
+  </Accordion>
+
   <Accordion title="Promptless actions are attributed to my personal account">
     - Disconnect Jira from the [integrations page](https://app.gopromptless.ai/integrations)
     - Sign out of your personal Jira account in your browser
