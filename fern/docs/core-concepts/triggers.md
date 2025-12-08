@@ -1,6 +1,6 @@
 # Triggers
 
-Triggers are events that initiate automated documentation updates in Promptless. They're designed to integrate seamlessly into your existing workflow, minimizing friction when creating and maintaining documentation.
+Triggers are events that initiate automated documentation updates in Promptless.
 
 ## Supported Triggers
 
