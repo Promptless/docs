@@ -73,6 +73,20 @@ For example, in the below example, Promptless is only able to read the `promptle
   <img src="../assets/github-project.png" alt="Project Setup" />
 </Frame>
 
+## Triggering Promptless on Repository Topics
+
+If you have a lot of repositories, you can use GitHub topics to control which ones trigger Promptless. This is especially helpful for organizations with dozens or hundreds of repos where only some need documentation automation. Once you set it up, teams can add their repositories to Promptless just by tagging them in GitHub—no need to update your Promptless project configuration.
+
+1. **Tag your repositories in GitHub**: Add topics to the repositories you want Promptless to monitor. You can use topics like "docs-watch", "promptless", or any other topic that makes sense for your organization. To add topics to a repository, go to the repository's main page and click "Add topics" in the About section.
+
+2. **Configure your Promptless project**: When creating or editing a GitHub project, check the "Trigger on repos with certain topics" option and enter the topic(s) you want to monitor. You can specify multiple topics, and Promptless will trigger on any repository that has at least one of those topics.
+
+3. **Manage repositories through GitHub**: To add a new repository to Promptless, tag it with the configured topic in GitHub. To remove a repository, remove the topic from the repository settings.
+
+<Info>
+Learn more about GitHub repository topics in the [GitHub documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
+</Info>
+
 ## Trigger Events in Pull Request Descriptions
 
 When Promptless creates a pull request for documentation updates, it automatically includes a list of the trigger events that led to those changes in the PR description. This provides valuable context for reviewers and creates clear traceability between documentation updates and their originating events.
