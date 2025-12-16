@@ -29,19 +29,49 @@ navigation:
           path: ./docs/index.mdx
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
+        - page: Core Concepts
+          path: ./docs/core-concepts.mdx
         - page: Pilot Overview
           hidden: true
           path: ./docs/pilot-guide.mdx
-    - section: Core Concepts
-      icon: fa-regular fa-lightbulb
-      path: ./docs/core-concepts/index.mdx
+    - section: Configuring Promptless
+      icon: fa-regular fa-gear
       contents:
         - page: Triggers
-          path: ./docs/core-concepts/triggers.md
+          path: ./docs/configuration/triggers.md
+          contents:
+            - page: GitHub PRs
+              path: ./docs/configuration/triggers/github-prs.md
+            - page: GitHub Commits
+              path: ./docs/configuration/triggers/github-commits.md
+            - page: Slack
+              path: ./docs/configuration/triggers/slack.md
+            - page: Microsoft Teams
+              path: ./docs/configuration/triggers/microsoft-teams.md
+            - page: Zendesk (Beta)
+              path: ./docs/configuration/triggers/zendesk.md
         - page: Context Sources
-          path: ./docs/core-concepts/context-sources.md
-        - page: Doc CMSs
-          path: ./docs/core-concepts/doc-locations.md
+          path: ./docs/configuration/context-sources.md
+          contents:
+            - page: Linear
+              path: ./docs/configuration/context-sources/linear.md
+            - page: Jira
+              path: ./docs/configuration/context-sources/jira.md
+            - page: Slack
+              path: ./docs/configuration/context-sources/slack.md
+            - page: GitHub
+              path: ./docs/configuration/context-sources/github.md
+        - page: Doc Collections
+          path: ./docs/configuration/doc-collections.md
+          contents:
+            - page: GitHub Repos (Docs as Code)
+              path: ./docs/configuration/doc-collections/github-repos.md
+            - page: Zendesk
+              path: ./docs/configuration/doc-collections/zendesk.md
+            - page: Intercom (Beta)
+              path: ./docs/configuration/doc-collections/intercom.md
+            - page: Webflow (Beta)
+              path: ./docs/configuration/doc-collections/webflow.md
     - section: How to use Promptless
       icon: fa-regular fa-star
       path: ./docs/features/index.mdx
@@ -176,4 +206,3 @@ typography:
     style: normal
 
 favicon: ./docs/assets/favicon.ico
-    
