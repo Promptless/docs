@@ -37,7 +37,7 @@ navigation:
     - section: Configuring Promptless
       icon: fa-regular fa-gear
       contents:
-        - page: Triggers
+        - section: Triggers
           path: ./docs/configuration/triggers.md
           contents:
             - page: GitHub PRs
@@ -50,7 +50,7 @@ navigation:
               path: ./docs/configuration/triggers/microsoft-teams.md
             - page: Zendesk (Beta)
               path: ./docs/configuration/triggers/zendesk.md
-        - page: Context Sources
+        - section: Context Sources
           path: ./docs/configuration/context-sources.md
           contents:
             - page: Linear
@@ -61,7 +61,7 @@ navigation:
               path: ./docs/configuration/context-sources/slack.md
             - page: GitHub
               path: ./docs/configuration/context-sources/github.md
-        - page: Doc Collections
+        - section: Doc Collections
           path: ./docs/configuration/doc-collections.md
           contents:
             - page: GitHub Repos (Docs as Code)
