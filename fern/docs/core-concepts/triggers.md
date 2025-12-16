@@ -27,6 +27,7 @@ You can configure specific directories to monitor, focusing documentation effort
     When auto-publish is enabled for your project:
     - Promptless automatically creates a new PR in your documentation repository with suggested changes
     - For GitHub PR triggers, the documentation PR is linked in a comment on the original code PR
+    - Optionally enable auto-merge to automatically merge documentation PRs as soon as they're created (nested checkbox under auto-publish in project settings)
   </Accordion>
 </AccordionGroup>
 
