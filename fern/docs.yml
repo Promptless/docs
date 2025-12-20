@@ -44,11 +44,11 @@ navigation:
               path: ./docs/configuration/triggers/github-prs.md
             - page: GitHub Commits
               path: ./docs/configuration/triggers/github-commits.md
-            - page: Slack
+            - page: Slack Messages
               path: ./docs/configuration/triggers/slack.md
-            - page: Microsoft Teams
+            - page: Microsoft Teams Messages
               path: ./docs/configuration/triggers/microsoft-teams.md
-            - page: Zendesk (Beta)
+            - page: Zendesk Tickets (Beta)
               path: ./docs/configuration/triggers/zendesk.md
         - section: Context Sources
           path: ./docs/configuration/context-sources.md

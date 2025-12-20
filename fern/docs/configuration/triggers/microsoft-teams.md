@@ -1,5 +1,5 @@
 ---
-title: Microsoft Teams
+title: Microsoft Teams Messages
 ---
 
 Microsoft Teams integration enables automated documentation updates based on team communication and collaboration within your Teams environment. Similar to Slack, you can trigger documentation updates directly from your conversations.

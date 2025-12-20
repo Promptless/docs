@@ -1,5 +1,5 @@
 ---
-title: Slack
+title: Slack Messages
 ---
 
 Slack integration enables documentation updates directly from your team conversations. This is particularly useful for support conversations or internal discussions where questions arise that could be better addressed in your documentation.

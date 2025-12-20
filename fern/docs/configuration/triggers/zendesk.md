@@ -1,5 +1,5 @@
 ---
-title: Zendesk (Beta)
+title: Zendesk Tickets (Beta)
 ---
 
 Zendesk integration enables automated documentation updates based on support ticket patterns and customer interactions. This helps identify gaps in documentation based on recurring user questions.
