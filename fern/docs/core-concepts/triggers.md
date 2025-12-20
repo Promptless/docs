@@ -22,6 +22,12 @@ During analysis, Promptless processes information such as the code diff, PR titl
 
 You can configure specific directories to monitor, focusing documentation efforts on relevant parts of your codebase.
 
+#### What Gets Analyzed
+
+When a PR triggers Promptless, we only analyze the files that changed in that PR. We don't search your entire repository—just the specific files shown in the diff.
+
+This focused approach means Promptless understands exactly what's changing and generates accurate documentation updates based on those specific changes.
+
 <AccordionGroup>
   <Accordion title="Auto-publish Mode">
     When auto-publish is enabled for your project:
