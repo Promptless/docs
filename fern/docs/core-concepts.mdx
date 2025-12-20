@@ -7,20 +7,20 @@ Promptless automates documentation creation and maintenance through three interc
 The diagram below illustrates how triggers, context sources, and documentation platforms interact within the Promptless ecosystem:
 
 ```mermaid
-graph TB
+graph LR
     %% Triggers Section
     subgraph "Triggers"
         T1[GitHub PR<br/>Slack message<br/>Support ticket]
     end
 
-    %% Context Sources Section
-    subgraph "Context Sources"
-        C1[Linear Issues<br/>Jira Tickets<br/>GitHub Code]
-    end
-
     %% Promptless Core
     subgraph "Promptless AI Engine"
         AI[Promptless AI Agent]
+    end
+
+    %% Context Sources Section
+    subgraph "Context Sources"
+        C1[Linear Issues<br/>Jira Tickets]
     end
 
     %% Documentation Platforms
@@ -31,7 +31,7 @@ graph TB
     %% Connections
     T1 --> AI
     
-    C1 -.-> AI
+    AI -.-> C1
 
     AI --> D1
 

@@ -22,14 +22,6 @@ Context sources are **optional** but highly recommended. They can significantly 
   <Card title="Jira" icon="fa-brands fa-jira" href="/docs/configuration/context-sources/jira">
     Query Jira tickets and project data using JQL search capabilities
   </Card>
-  
-  <Card title="Slack" icon="brands slack" href="/docs/configuration/context-sources/slack">
-    Search Slack conversations and threads for team discussions and decisions
-  </Card>
-  
-  <Card title="GitHub" icon="brands github" href="/docs/configuration/context-sources/github">
-    Analyze code repositories, issues, and pull request discussions for technical context
-  </Card>
 </CardGroup>
 
 ## Examples
@@ -41,18 +33,6 @@ When a GitHub PR mentions a new feature, Promptless searches Linear for related 
 ### Jira as a Context Source
 
 If a GitHub PR references a Jira ticket (like "PROJ-123"), Promptless automatically reads that Jira ticket for additional context. It also proactively searches Jira using JQL for related issues and epics.
-
-### Slack as a Context Source
-
-When documenting a new API endpoint, Promptless can search Slack for previous discussions among team members to incorporate decisions, edge cases, or common questions.
-
-<Note>
-Slack can serve as both a trigger source and context source.
-</Note>
-
-### GitHub as a Context Source
-
-In addition to code diffs from trigger PRs, Promptless finds related GitHub issues and PR comments when you set GitHub as a context source.
 
 ## Configuring Context Sources
 

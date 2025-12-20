@@ -57,10 +57,6 @@ navigation:
               path: ./docs/configuration/context-sources/linear.md
             - page: Jira
               path: ./docs/configuration/context-sources/jira.md
-            - page: Slack
-              path: ./docs/configuration/context-sources/slack.md
-            - page: GitHub
-              path: ./docs/configuration/context-sources/github.md
         - section: Doc Collections
           path: ./docs/configuration/doc-collections.md
           contents:
