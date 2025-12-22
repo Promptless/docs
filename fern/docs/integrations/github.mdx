@@ -63,84 +63,36 @@ After the initial installation, you may need to add new repositories or modify w
 
 After updating repository access, the new repositories will be available when creating or editing projects in Promptless. Note that it may take a few minutes for the changes to be reflected in the Promptless dashboard. If you don't see newly added repositories immediately, you may need to click the "refresh repos" icon in the integrations page to update the repository list.
 
-## Project Setup and Permissions
-
-After setting up the integration, you'll be able to create a project in the [projects page](https://app.gopromptless.ai/projects). When creating a project, you'll be able to select trigger repositories and documentation repositories. Promptless will have read-only access to the repositories that you select as trigger repositories, and will have write access to the repositories that you select as documentation repositories. 
-
-For example, in the below example, Promptless is only able to read the `promptless` and `promptless-dashboard` repos, but is able to read and write to the `promptless-docs` repo. 
-
-<Frame>
-  <img src="../assets/github-project.png" alt="Project Setup" />
-</Frame>
-
-## Triggering Promptless on Repository Topics
-
-If you have a lot of repositories, you can use GitHub topics to control which ones trigger Promptless. This is especially helpful for organizations with dozens or hundreds of repos where only some need documentation automation. Once you set it up, teams can add their repositories to Promptless just by tagging them in GitHub—no need to update your Promptless project configuration.
-
-1. **Tag your repositories in GitHub**: Add topics to the repositories you want Promptless to monitor. You can use topics like "docs-watch", "promptless", or any other topic that makes sense for your organization. To add topics to a repository, go to the repository's main page and click "Add topics" in the About section.
-
-2. **Configure your Promptless project**: When creating or editing a GitHub project, check the "Trigger on repos with certain topics" option and enter the topic(s) you want to monitor. You can specify multiple topics, and Promptless will trigger on any repository that has at least one of those topics.
-
-3. **Manage repositories through GitHub**: To add a new repository to Promptless, tag it with the configured topic in GitHub. To remove a repository, remove the topic from the repository settings.
-
-<Info>
-Learn more about GitHub repository topics in the [GitHub documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
-</Info>
-
-## Trigger Events in Pull Request Descriptions
-
-When Promptless creates a pull request for documentation updates, it automatically includes a list of the trigger events that led to those changes in the PR description. This provides valuable context for reviewers and creates clear traceability between documentation updates and their originating events.
-
-The trigger events section in the PR description includes:
-- Links back to the original source (e.g., Slack threads, GitHub PRs, support tickets)
-- Brief descriptions of what triggered the documentation update
-- Easy navigation to review the context that prompted the changes
-
-This feature helps you understand why documentation changes were made and provides a clear audit trail for all updates.
-
-## Directory-Specific Triggers
-
-You can configure Promptless to only trigger when changes are made to specific directories within your repositories. This is particularly useful when you want to focus documentation updates on changes to certain parts of your codebase, such as changelog directories.
-
-To set up directory-specific triggers:
-
-1. When creating or editing a project, select the GitHub trigger option
-2. Check the "Choose specific directories to trigger this project" option
-3. Enter the directory paths you want to monitor, separating multiple paths with commas
-4. Save your project configuration
-
-<Frame>
-  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/47a14116-12d1-4a1d-beae-875c1d182124-github-directory-trigger.png" alt="Directory-specific GitHub trigger configuration" />
-</Frame>
-
-Once configured, your specified trigger directories will be visible in the project list view, making it easy to see which directories are being monitored for each project.
-
-When trigger directories are specified, only PRs that contain changes to those directories will be considered, and updates to other files will be ignored. 
-
-## Automated CI Check and Build Issue Resolution
-
-When Promptless opens a documentation PR, it automatically monitors the pull request for quality issues. If CI checks fail, linting tools report errors, Vale rules trigger warnings, or your documentation hosting provider detects broken links or build problems, Promptless will automatically analyze the issues and push fixes directly to the PR branch.
-
-This automated issue resolution works seamlessly with your existing GitHub workflow - there's no additional configuration needed. Quality problems get resolved in the background while you focus on content rather than troubleshooting technical issues.
-
 ## Authentication Model
 
 Promptless uses the official [GitHub App specification](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps) to authenticate with GitHub. Promptless authenticates securely with JWTs generated by the GitHub App installation. 
 
 This ensures that Promptless has read and write access to the repositories that you select, and that either you or Promptless can revoke access at any time.
+
+## What You Can Do with GitHub
+
+Once connected, you can use GitHub for:
+
+- **[Triggers](/docs/configuration/triggers)**: Monitor pull requests and commits for documentation updates
+- **[Context Sources](/docs/configuration/context-sources/github)**: Search code repositories and issues for technical context
+- **[Doc Collections](/docs/configuration/doc-collections/github-repos)**: Publish documentation updates to GitHub-based platforms
+
 ## Frequently Asked Questions
 
-### How do I add more repositories after installing the GitHub integration?
+<AccordionGroup>
+  <Accordion title="How do I add more repositories after installing the GitHub integration?">
+    Add additional repositories anytime by visiting your GitHub organization settings. In GitHub, head to `Settings -> Third-party Access -> GitHub Apps` then find the Promptless GitHub App and click "Configure." Add or remove repositories in the "Repository access" section, then click "Save." You'll be able to choose from the newly added repositories when creating or editing your Promptless projects.
+  </Accordion>
 
-Add additional repositories anytime by visiting your GitHub organization settings. In GitHub, head to `Settings -> Third-party Access -> GitHub Apps` then find the Promptless GitHub App and click "Configure." Add or remove repositories in the "Repository access" section, then click "Save." You'll be able to choose from the newly added repositories when creating or editing your Promptless projects.
+  <Accordion title="Can I remove GitHub repository access from Promptless?">
+    You can remove access to specific repositories or even uninstall the integration entirely from the same "Configure" page in your GitHub organization settings. Click the `×` next to a repository name to remove it from the Promptless GitHub App, or click the `Uninstall` button at the bottom of the page to remove the app entirely.
+  </Accordion>
 
-### Can I remove GitHub repository access from Promptless?
+  <Accordion title="How long does it take for repository changes to appear in Promptless?">
+    It may take a few minutes for repository updates in the GitHub App to be reflected in your Promptless dashboard. If you don't see newly added repositories right away when creating or editing projects, click the "refresh repos" icon in the integrations page.
+  </Accordion>
 
-You can remove access to specific repositories or even uninstall the integration entirely from the same "Configure" page in your GitHub organization settings. Click the `×` next to a repository name to remove it from the Promptless GitHub App, or click the `Uninstall` button at the bottom of the page to remove the app entirely.
-
-### How long does it take for repository changes to appear in Promptless?
-
-It may take a few minutes for repository updates in the GitHub App to be reflected in your Promptless dashboard. If you don't see newly added repositories right away when creating or editing projects, click the "refresh repos" icon in the integrations page.
-### Can I connect multiple GitHub organizations to one Promptless account?
-
-Yes. After connecting your first GitHub organization, you can add more by clicking "Connect another GitHub Org" on the integrations page. Each organization appears as its own card, and repositories from all connected organizations are available when setting up projects.
+  <Accordion title="Can I connect multiple GitHub organizations to one Promptless account?">
+    Yes. After connecting your first GitHub organization, you can add more by clicking "Connect another GitHub Org" on the integrations page. Each organization appears as its own card, and repositories from all connected organizations are available when setting up projects.
+  </Accordion>
+</AccordionGroup>
