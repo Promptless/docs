@@ -138,6 +138,11 @@ navigation:
           hidden: true
   - tab: blog
     layout:
+    - section: Product Updates
+      icon: fa-regular fa-bullhorn
+      contents:
+        - page: Launch Week - December 2025
+          path: ./docs/product-updates/launch-week-dec-2025.mdx
     - section: Customer Stories
       icon: fa-regular fa-users
       contents:
