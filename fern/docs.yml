@@ -27,6 +27,8 @@ navigation:
       contents:
         - page: Welcome
           path: ./docs/index.mdx
+        - page: Introducing Promptless 1.0
+          path: ./docs/introducing-promptless.mdx
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
         - page: Core Concepts
@@ -141,8 +143,6 @@ navigation:
     - section: Product Updates
       icon: fa-regular fa-bullhorn
       contents:
-        - page: Introducing Promptless 1.0
-          path: ./docs/product-updates/promptless-1-0-launch.mdx
         - page: Launch Week - December 2025
           path: ./docs/product-updates/launch-week-dec-2025.mdx
     - section: Customer Stories
