@@ -141,6 +141,8 @@ navigation:
     - section: Product Updates
       icon: fa-regular fa-bullhorn
       contents:
+        - page: Announcing Promptless 1.0
+          path: ./docs/product-updates/promptless-1-0.mdx
         - page: Launch Week - December 2025
           path: ./docs/product-updates/launch-week-dec-2025.mdx
     - section: Customer Stories
