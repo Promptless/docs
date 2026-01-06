@@ -148,6 +148,7 @@ navigation:
       contents:
         - page: How Vellum Drafts 50%+ of Docs with Promptless
           path: ./docs/customer-stories/vellum.mdx
+          slug: vellum
     - section: Life at Promptless
       icon: fa-regular fa-lightbulb
       contents:
