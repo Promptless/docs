@@ -4,6 +4,10 @@ title: GitHub Repos (Docs as Code)
 
 The most common documentation setup uses GitHub repositories to store documentation content that syncs to hosting providers. This "docs as code" approach allows you to version control your documentation alongside your code.
 
+<Info>
+**Prerequisite**: Before creating a GitHub-based doc collection, you must first [connect GitHub](/docs/integrations/github-integration) on the integrations page. Without an active GitHub connection, you won't see any repositories in the dropdown when setting up your doc collection.
+</Info>
+
 ## Supported Platforms
 
 When your documentation lives in GitHub, Promptless can publish to any of these platforms:
@@ -66,3 +70,13 @@ The trigger events section in the PR description includes:
 ## Setup Instructions
 
 To connect GitHub to Promptless, see the [GitHub Integration](/docs/integrations/github-integration) setup guide.
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="I don't see any repositories in the dropdown when creating a doc collection">
+    If the repository dropdown shows "No options" when creating a doc collection, you need to connect GitHub first. Go to the [integrations page](https://app.gopromptless.ai/integrations) and click "Connect GitHub" to install the Promptless GitHub App. Once GitHub is connected, return to creating your doc collection and your repositories will appear in the dropdown.
+    
+    If you've already connected GitHub but still don't see your repositories, you may need to grant Promptless access to those specific repositories. Visit your GitHub organization settings, find the Promptless GitHub App under "Third-party Access" → "GitHub Apps", and add the repositories you need.
+  </Accordion>
+</AccordionGroup>
