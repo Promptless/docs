@@ -27,6 +27,8 @@ navigation:
       contents:
         - page: Welcome
           path: ./docs/index.mdx
+        - page: Introducing Promptless 1.0
+          path: ./docs/introducing-promptless.mdx
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
         - page: Core Concepts
