@@ -1,10 +1,14 @@
-# Jira Integration
+# Atlassian Integration (Jira + Confluence)
 
 **Used for: Context**
 
 <Info>
-If you have Jira integration set up, when engineers reference Jira issue keys in GitHub PRs or commit messages (like "PROJ-123"), Promptless can automatically retrieve important context from the tickets to make its suggestions more accurate.
+Promptless integrates with both Jira and Confluence through a single OAuth connection. When engineers reference Jira issue keys in GitHub PRs or commit messages (like "PROJ-123"), Promptless automatically retrieves the ticket for context. Promptless also searches your Confluence spaces for existing patterns, terminology, and architectural decisions to keep new documentation consistent.
 </Info>
+
+<Note>
+If you previously connected Jira to Promptless, reconnect to access Confluence spaces. Your existing Jira project configuration will be preserved.
+</Note>
 
 Promptless integrates with both Jira Cloud and Jira Data Center instances.
 
@@ -58,13 +62,20 @@ After connecting, manage Promptless access by going to your avatar > Account set
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-connected-apps.png" alt="Atlassian Connected Apps Management" />
 </Frame>
 
-## What You Can Do with Jira
+## What You Can Do with Atlassian
 
-Once connected, you can use Jira as a [context source](/docs/configuration/context-sources/jira) to automatically retrieve ticket information and search for related issues using JQL queries.
+Once connected, you can use Jira and Confluence as context sources to enhance documentation suggestions:
 
-## Provisioning a Jira Account for Promptless
+- **Jira**: Automatically retrieve ticket information and search for related issues using JQL queries. See the [Jira Context Source](/docs/configuration/context-sources/jira) page for details.
+- **Confluence**: Search your Confluence spaces for existing documentation patterns, terminology, and architectural decisions. See the [Confluence Context Source](/docs/configuration/context-sources/confluence) page for details.
 
-We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system. A dedicated account also gives you complete audit trail visibility and lets you configure fine-grained project permissions.
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/atlassian-integration-confluence-jira-unified-517b0f75.png" alt="Atlassian integration showing both Jira projects and Confluence spaces in a unified interface" />
+</Frame>
+
+## Provisioning an Atlassian Account for Promptless
+
+We recommend creating a dedicated Atlassian account for Promptless to access both Jira and Confluence. A dedicated account gives you complete audit trail visibility and lets you configure fine-grained permissions for both services.
 
 Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
 
@@ -113,20 +124,20 @@ For information about how Promptless processes Jira data, including redaction ca
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="How do I restrict Promptless from accessing confidential Jira projects?">
-    Promptless inherits the permissions of the Jira account used during OAuth connection. There are several ways to manage access depending on your security requirements:
+  <Accordion title="How do I restrict Promptless from accessing confidential Jira projects or Confluence spaces?">
+    Promptless inherits the permissions of the Atlassian account used during OAuth connection. There are several ways to manage access depending on your security requirements:
 
-    **Standard approach:** After connecting Jira, configure which projects Promptless should search in your [project settings](https://app.gopromptless.ai/projects). Promptless won't access projects you don't explicitly configure, even if the connected account has permission to see them.
+    **Standard approach:** After connecting Atlassian, configure which Jira projects and Confluence spaces Promptless should search in your [project settings](https://app.gopromptless.ai/projects). Promptless won't access projects or spaces you don't explicitly configure, even if the connected account has permission to see them.
 
-    **For highly confidential projects:** Create a Jira user account that only has access to non-confidential projects, then connect Jira to Promptless using this limited-access account. This restricts access at the Jira permissions level, adding an extra security layer.
+    **For highly confidential content:** Create an Atlassian user account that only has access to non-confidential projects and spaces, then connect Atlassian to Promptless using this limited-access account. This restricts access at the Atlassian permissions level, adding an extra security layer.
 
-    **For granular control:** [Provision a dedicated Jira account for Promptless](#provisioning-a-jira-account-for-promptless) and configure fine-grained project permissions for this account in Jira's user management before connecting it to Promptless.
+    **For granular control:** [Provision a dedicated Atlassian account for Promptless](#provisioning-an-atlassian-account-for-promptless) and configure fine-grained permissions for both Jira projects and Confluence spaces in Atlassian's user management before connecting it to Promptless.
   </Accordion>
 
   <Accordion title="Promptless actions are attributed to my personal account">
-    - Disconnect Jira from the [integrations page](https://app.gopromptless.ai/integrations)
-    - Sign out of your personal Jira account in your browser
+    - Disconnect Atlassian from the [integrations page](https://app.gopromptless.ai/integrations)
+    - Sign out of your personal Atlassian account in your browser
     - Sign in to the Promptless bot account you created
-    - Reconnect Jira to Promptless while signed in to the bot account
+    - Reconnect Atlassian to Promptless while signed in to the bot account
   </Accordion>
 </AccordionGroup>

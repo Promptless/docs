@@ -40,8 +40,8 @@ Promptless inherits the permissions of the Jira account used during OAuth connec
 
 Promptless queries Jira data in real-time and does not store any of your Jira data. All searches are performed on-demand when documentation updates are needed.
 
-For information about data processing and redaction capabilities, see the Jira integration page.
+For information about data processing and redaction capabilities, see the Atlassian integration page.
 
 ## Setup Instructions
 
-To connect Jira to Promptless, see the [Jira Integration](/docs/integrations/jira-integration) setup guide.
+To connect Jira to Promptless, see the [Atlassian Integration](/docs/integrations/jira-integration) setup guide.

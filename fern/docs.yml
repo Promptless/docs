@@ -57,6 +57,8 @@ navigation:
               path: ./docs/configuration/context-sources/linear.md
             - page: Jira
               path: ./docs/configuration/context-sources/jira.md
+            - page: Confluence
+              path: ./docs/configuration/context-sources/confluence.md
         - section: Doc Collections
           path: ./docs/configuration/doc-collections.md
           contents:
@@ -80,8 +82,6 @@ navigation:
           path: ./docs/features/github-pr-comments.mdx
         - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
-        - page: Providing Feedback
-          path: ./docs/features/providing-feedback.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
@@ -94,7 +94,7 @@ navigation:
         - page: GitHub Enterprise Integration
           path: ./docs/integrations/github-enterprise.mdx
           slug: github-enterprise-integration
-        - page: Jira Integration
+        - page: Atlassian Integration
           path: ./docs/integrations/jira.mdx
           slug: jira-integration
         - page: Linear Integration
