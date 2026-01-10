@@ -80,8 +80,6 @@ navigation:
           path: ./docs/features/github-pr-comments.mdx
         - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
-        - page: Providing Feedback
-          path: ./docs/features/providing-feedback.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
@@ -160,6 +158,8 @@ navigation:
     layout:
     - section: Changelogs
       contents:
+        - page: January 2026
+          path: ./docs/changelogs/2026-01.md
         - page: December 2025
           path: ./docs/changelogs/2025-12.md
         - page: November 2025
