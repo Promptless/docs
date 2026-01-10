@@ -22,6 +22,10 @@ Context sources are **optional** but highly recommended. They can significantly 
   <Card title="Jira" icon="fa-brands fa-jira" href="/docs/configuration/context-sources/jira">
     Query Jira tickets and project data using JQL search capabilities
   </Card>
+  
+  <Card title="Confluence" icon="fa-brands fa-confluence" href="/docs/configuration/context-sources/confluence">
+    Search Confluence spaces for existing documentation patterns, terminology, and architectural decisions
+  </Card>
 </CardGroup>
 
 ## Examples
@@ -33,6 +37,10 @@ When a GitHub PR mentions a new feature, Promptless searches Linear for related 
 ### Jira as a Context Source
 
 If a GitHub PR references a Jira ticket (like "PROJ-123"), Promptless automatically reads that Jira ticket for additional context. It also proactively searches Jira using JQL for related issues and epics.
+
+### Confluence as a Context Source
+
+When writing documentation, Promptless searches your Confluence spaces for existing documentation patterns, terminology, and architectural decisions. This ensures new documentation matches your team's existing style and conventions.
 
 ## Configuring Context Sources
 
