@@ -44,4 +44,4 @@ For information about data processing and redaction capabilities, see the Atlass
 
 ## Setup Instructions
 
-To connect Jira to Promptless, see the [Atlassian Integration](/docs/integrations/jira-integration) setup guide.
+To connect Jira to Promptless, see the [Atlassian Integration](/docs/integrations/atlassian-integration) setup guide.

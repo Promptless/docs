@@ -95,8 +95,8 @@ navigation:
           path: ./docs/integrations/github-enterprise.mdx
           slug: github-enterprise-integration
         - page: Atlassian Integration
-          path: ./docs/integrations/jira.mdx
-          slug: jira-integration
+          path: ./docs/integrations/atlassian.mdx
+          slug: atlassian-integration
         - page: Linear Integration
           path: ./docs/integrations/linear.mdx
           slug: linear-integration

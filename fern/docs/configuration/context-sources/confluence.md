@@ -35,4 +35,4 @@ Promptless queries Confluence data in real-time and does not store any of your C
 
 ## Setup Instructions
 
-To connect Confluence to Promptless, see the [Atlassian Integration](/docs/integrations/jira-integration) setup guide.
+To connect Confluence to Promptless, see the [Atlassian Integration](/docs/integrations/atlassian-integration) setup guide.
