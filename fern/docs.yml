@@ -29,6 +29,7 @@ navigation:
           path: ./docs/index.mdx
         - page: Introducing Promptless 1.0
           path: ./docs/introducing-promptless.mdx
+          slug: promptless-1-0
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
         - page: Core Concepts
@@ -214,3 +215,7 @@ typography:
     style: normal
 
 favicon: ./docs/assets/favicon.ico
+
+redirects:
+  - source: "/promptless-1-0"
+    destination: "/docs/getting-started/promptless-1-0"
