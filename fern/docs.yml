@@ -163,6 +163,8 @@ navigation:
     layout:
     - section: Changelogs
       contents:
+        - page: January 2026
+          path: ./docs/changelogs/2026-01.md
         - page: December 2025
           path: ./docs/changelogs/2025-12.md
         - page: November 2025
