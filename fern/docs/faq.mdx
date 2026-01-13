@@ -26,6 +26,10 @@ However, you can optionally enable **passive listening** for specific channels. 
 
 For more details, see our [Slack Integration documentation](/docs/integrations/slack-integration) and [Working with Slack](/docs/features/slack-interactions#4-passive-channel-listening).
 
+### Does Promptless analyze my entire codebase?
+
+No. When triggered by a pull request, Promptless only analyzes the changed files in the PR diff—it doesn't search across your entire repository. This focused approach helps Promptless understand exactly what changed and generate relevant documentation updates.
+
 ### How does Promptless handle my data?
 
 Promptless follows strict data handling practices:
@@ -35,12 +39,6 @@ Promptless follows strict data handling practices:
 - All data is encrypted in transit (TLS 1.2+) and at rest (AES-256)
 
 For detailed information, see our [Data Handling documentation](/docs/security-and-privacy/data-handling-and-classification).
-
-### Can I use Promptless with GitHub Enterprise?
-
-Yes! Promptless supports both GitHub Enterprise Server and GitHub Enterprise Cloud. You can either use our standard GitHub App or set up a custom GitHub App for organizations with third-party app restrictions.
-
-See our [GitHub Enterprise Integration guide](/docs/integrations/github-enterprise-integration) for setup instructions.
 
 ## Have more questions?
 

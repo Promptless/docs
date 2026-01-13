@@ -2,7 +2,7 @@
 
 **Used for: Triggers and Publishing**
 
-Promptless integrates with Zendesk through OAuth 2.0, enabling automated documentation updates based on support ticket patterns and customer interactions, as well as enabling publishing of updates to Zendesk's CMS (Help Center).
+Promptless integrates with Zendesk through OAuth 2.0, enabling automated documentation updates based on support ticket patterns and customer interactions, as well as publishing updates to Zendesk's Help Center.
 
 ## Installation
 
@@ -15,13 +15,6 @@ Promptless integrates with Zendesk through OAuth 2.0, enabling automated documen
 
 3. Verify that Zendesk is connected in the integrations page.
 
-## Project Setup and Permissions
-
-After connecting Zendesk, you can configure ticket monitoring settings in the [projects page](https://app.gopromptless.ai/projects). When setting up a project, you can: 
-
-- Set up a Zendesk trigger so that Promptless will be notified when a ticket is resolved
-- Set up a publishing project so that Promptless will publish updates to the Zendesk Help Center 
-
 ## Authentication Model
 
 Promptless uses Zendesk's [official OAuth 2.0 authentication](https://developer.zendesk.com/api-reference/introduction/security-and-auth/), which provides:
@@ -30,3 +23,10 @@ Promptless uses Zendesk's [official OAuth 2.0 authentication](https://developer.
 - Granular API access scopes
 - Ability to revoke access at any time
 - Regular token rotation for enhanced security
+
+## What You Can Do with Zendesk
+
+Once connected, you can use Zendesk for:
+
+- **[Triggers](/docs/configuration/triggers/zendesk)**: Monitor resolved support tickets for documentation gaps (Beta)
+- **[Doc Collections](/docs/configuration/doc-collections/zendesk)**: Publish documentation updates directly to your Zendesk Help Center

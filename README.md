@@ -8,7 +8,7 @@
 
 ### Docs Configuration
 
-https://promptless.docs.buildwithfern.com/
+https://docs.gopromptless.ai
 
 
 </div>
