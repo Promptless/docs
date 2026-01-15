@@ -24,7 +24,7 @@ Learn more: [GitHub Repos (Docs as Code)](/docs/configuration/doc-collections/gi
 
 ## Direct Platform Integrations
 
-For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms. Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable these integrations.
+For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
 
 <CardGroup cols={2}>
   <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuration/doc-collections/zendesk">
@@ -39,6 +39,10 @@ For teams using content management systems that don't sync with GitHub, Promptle
     Blog posts, collection items, and marketing site content
   </Card>
 </CardGroup>
+
+<Note>
+Beta integrations (Intercom, Webflow) require contacting [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable for your account.
+</Note>
 
 ## Multi-Platform Publishing
 
