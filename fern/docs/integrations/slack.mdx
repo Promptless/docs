@@ -37,6 +37,19 @@ Once connected, you can use Slack for:
 - **[Triggers](/docs/configuration/triggers/slack)**: Tag @Promptless or use message actions to trigger documentation updates
 - **[Context Sources](/docs/configuration/context-sources/slack)**: Search Slack conversations for team discussions and decisions
 
+## Admin Permissions
+
+Installing the Promptless Slack app requires admin permissions. If you don't have admin access, Slack will send an installation request to your workspace admins.
+
+From the "Installation Pending" screen, you can:
+- Contact your Slack admin to approve the app
+- Continue setup without Slack and connect later from Settings
+- Try again if an admin has approved the request
+
+<Info title="Finding Your Workspace Admins">
+Go to Slack Settings → About this workspace to see who your admins are.
+</Info>
+
 ## Privacy and Channel Access
 
 By default, Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. If you enable passive listening in your project settings, Promptless will monitor only the specific channels you select. Promptless cannot access private channels unless it has been specifically invited to those channels.
