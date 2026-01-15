@@ -96,6 +96,9 @@ navigation:
         - page: GitHub Integration
           path: ./docs/integrations/github.mdx
           slug: github-integration
+        - page: Adding Repositories
+          path: ./docs/integrations/github-adding-repos.mdx
+          slug: github/adding-repos
         - page: GitHub Enterprise Integration
           path: ./docs/integrations/github-enterprise.mdx
           slug: github-enterprise-integration
