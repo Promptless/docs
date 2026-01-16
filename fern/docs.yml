@@ -67,8 +67,6 @@ navigation:
           contents:
             - page: GitHub Repos (Docs as Code)
               path: ./docs/configuration/doc-collections/github-repos.md
-            - page: Document360
-              path: ./docs/configuration/doc-collections/document360.md
             - page: Zendesk
               path: ./docs/configuration/doc-collections/zendesk.md
             - page: Intercom (Beta)
