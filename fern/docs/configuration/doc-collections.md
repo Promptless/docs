@@ -2,7 +2,7 @@
 title: Doc Collections
 ---
 
-Doc Collections are the platforms where your documentation lives. Whether you're using Git-synced platforms such as Fern, Mintlify, or Docusaurus, or standalone platforms such as Zendesk, Intercom, and Webflow, you'll need to configure Promptless to read from and publish to your existing docs.
+Doc Collections are the platforms where your documentation lives. Whether you're using Git-synced platforms such as Fern, Mintlify, or Docusaurus, or standalone platforms such as Zendesk and Intercom, you'll need to configure Promptless to read from and publish to your existing docs.
 
 ## Git-hosted Documentation Platforms
 
@@ -33,10 +33,6 @@ For teams using content management systems that don't sync with GitHub, Promptle
   
   <Card title="Intercom (Beta)" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
     Customer support documentation and help center content
-  </Card>
-  
-  <Card title="Webflow (Beta)" icon="fa-solid fa-w" href="/docs/configuration/doc-collections/webflow">
-    Blog posts, collection items, and marketing site content
   </Card>
 </CardGroup>
 
