@@ -85,6 +85,10 @@ navigation:
           path: ./docs/features/github-pr-comments.mdx
         - page: Using the Web Interface
           path: ./docs/features/web-ui-feedback.mdx
+        - page: Providing Feedback
+          path: ./docs/features/providing-feedback.mdx
+        - page: Deep Analysis
+          path: ./docs/features/deep-analysis.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
