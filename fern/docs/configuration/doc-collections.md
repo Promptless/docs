@@ -31,14 +31,10 @@ For teams using content management systems that don't sync with GitHub, Promptle
     Help center articles and knowledge base content management
   </Card>
   
-  <Card title="Intercom (Beta)" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
+  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
     Customer support documentation and help center content
   </Card>
 </CardGroup>
-
-<Note>
-Intercom is a beta integration that requires contacting [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable for your account.
-</Note>
 
 ## Multi-Platform Publishing
 
