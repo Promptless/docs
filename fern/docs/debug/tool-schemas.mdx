@@ -1,0 +1,294 @@
+---
+title: Debug - Confluence & Jira Tool Schemas
+description: Internal reference showing the full tool schemas for Confluence and Jira integrations
+---
+
+# Confluence & Jira Tool Schemas
+
+This page documents the full tool schemas available for Confluence and Jira integrations. Use this as a reference for understanding what data Promptless can retrieve from these systems.
+
+## Summary
+
+| Integration | Tool Count |
+|-------------|------------|
+| Jira | 2 |
+| Confluence | 4 |
+| **Total** | **6** |
+
+---
+
+## Jira Tools (2)
+
+### get_jira_issue
+
+Gets detailed information about a specific Jira issue when you have an issue key.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "issue_key": {
+      "type": "string",
+      "description": "The Jira issue key"
+    }
+  },
+  "required": ["issue_key"]
+}
+```
+
+**Example Usage:**
+
+```
+get_jira_issue(issue_key="PROJ-123")
+```
+
+---
+
+### search_jira_issues
+
+Search for Jira issues using a JQL (Jira Query Language) query. Optionally scoped by pipeline context.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "jql_query": {
+      "type": "string",
+      "description": "JQL query string"
+    }
+  },
+  "required": ["jql_query"]
+}
+```
+
+**Example Usage:**
+
+```
+search_jira_issues(jql_query="project = DOCS AND status = 'In Progress'")
+```
+
+---
+
+## Confluence Tools (4)
+
+### get_confluence_page
+
+Gets detailed information about a specific Confluence page, including its content and comments.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "page_id": {
+      "type": "string",
+      "description": "The Confluence page ID"
+    }
+  },
+  "required": ["page_id"]
+}
+```
+
+**Example Usage:**
+
+```
+get_confluence_page(page_id="123456789")
+```
+
+---
+
+### search_confluence_pages
+
+Search for Confluence pages using CQL (Confluence Query Language). Only searches configured spaces.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "cql_query": {
+      "type": "string",
+      "description": "CQL query string (e.g., 'title ~ \"documentation\" and type = page')"
+    }
+  },
+  "required": ["cql_query"]
+}
+```
+
+**Example Usage:**
+
+```
+search_confluence_pages(cql_query="title ~ 'API' and type = page")
+```
+
+---
+
+### get_confluence_page_hierarchy
+
+Gets the parent page and child pages of a Confluence page to understand its position in the content hierarchy.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "page_id": {
+      "type": "string",
+      "description": "The Confluence page ID"
+    }
+  },
+  "required": ["page_id"]
+}
+```
+
+**Example Usage:**
+
+```
+get_confluence_page_hierarchy(page_id="123456789")
+```
+
+---
+
+### list_confluence_space_pages
+
+Lists pages in a specific Confluence space. Only works for configured spaces.
+
+**Parameters:**
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "space_key": {
+      "type": "string",
+      "description": "The Confluence space key (e.g., 'DOCS')"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 25,
+      "description": "Maximum number of pages to return (default: 25)"
+    }
+  },
+  "required": ["space_key"]
+}
+```
+
+**Example Usage:**
+
+```
+list_confluence_space_pages(space_key="DOCS", limit=50)
+```
+
+---
+
+## Full JSON Schemas
+
+For reference, here are the complete JSON schemas for all tools:
+
+<Accordion title="Jira Tools - Full Schema">
+
+```json
+{
+  "get_jira_issue": {
+    "description": "Gets detailed information about a specific Jira issue when you have an issue key (e.g., 'PROJ-123').",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "issue_key": {
+          "type": "string",
+          "description": "The Jira issue key"
+        }
+      },
+      "required": ["issue_key"]
+    }
+  },
+  "search_jira_issues": {
+    "description": "Search for Jira issues using a JQL query. Optionally scoped by pipeline context.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "jql_query": {
+          "type": "string",
+          "description": "JQL query string"
+        }
+      },
+      "required": ["jql_query"]
+    }
+  }
+}
+```
+
+</Accordion>
+
+<Accordion title="Confluence Tools - Full Schema">
+
+```json
+{
+  "get_confluence_page": {
+    "description": "Gets detailed information about a specific Confluence page, including its content and comments.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page_id": {
+          "type": "string",
+          "description": "The Confluence page ID"
+        }
+      },
+      "required": ["page_id"]
+    }
+  },
+  "search_confluence_pages": {
+    "description": "Search for Confluence pages using CQL (Confluence Query Language). Only searches configured spaces.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "cql_query": {
+          "type": "string",
+          "description": "CQL query string (e.g., 'title ~ \"documentation\" and type = page')"
+        }
+      },
+      "required": ["cql_query"]
+    }
+  },
+  "get_confluence_page_hierarchy": {
+    "description": "Gets the parent page and child pages of a Confluence page to understand its position in the content hierarchy.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "page_id": {
+          "type": "string",
+          "description": "The Confluence page ID"
+        }
+      },
+      "required": ["page_id"]
+    }
+  },
+  "list_confluence_space_pages": {
+    "description": "Lists pages in a specific Confluence space. Only works for configured spaces.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "space_key": {
+          "type": "string",
+          "description": "The Confluence space key (e.g., 'DOCS')"
+        },
+        "limit": {
+          "type": "integer",
+          "default": 25,
+          "description": "Maximum number of pages to return (default: 25)"
+        }
+      },
+      "required": ["space_key"]
+    }
+  }
+}
+```
+
+</Accordion>

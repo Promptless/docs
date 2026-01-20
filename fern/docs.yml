@@ -67,10 +67,14 @@ navigation:
           contents:
             - page: GitHub Repos (Docs as Code)
               path: ./docs/configuration/doc-collections/github-repos.md
+            - page: Document360
+              path: ./docs/configuration/doc-collections/document360.md
             - page: Zendesk
               path: ./docs/configuration/doc-collections/zendesk.md
             - page: Intercom (Beta)
               path: ./docs/configuration/doc-collections/intercom.md
+            - page: Webflow (Beta)
+              path: ./docs/configuration/doc-collections/webflow.md
     - section: How to use Promptless
       icon: fa-regular fa-star
       path: ./docs/features/index.mdx
@@ -110,6 +114,8 @@ navigation:
           path: ./docs/integrations/zendesk.mdx
         - page: Intercom Integration (Beta)
           path: ./docs/integrations/intercom.md
+        - page: Webflow Integration (Beta)
+          path: ./docs/integrations/webflow.mdx
     - section: Account Management
       icon: fa-regular fa-users
       contents:
@@ -136,6 +142,13 @@ navigation:
           path: ./docs/faq.mdx
         - page: Recommended Docs Providers
           path: ./docs/recommended-docs-providers.mdx
+          hidden: true
+    - section: Debug
+      icon: fa-regular fa-bug
+      hidden: true
+      contents:
+        - page: Confluence & Jira Tool Schemas
+          path: ./docs/debug/tool-schemas.mdx
           hidden: true
   - tab: blog
     layout:
