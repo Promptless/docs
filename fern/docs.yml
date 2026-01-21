@@ -83,6 +83,8 @@ navigation:
           path: ./docs/features/web-ui-feedback.mdx
         - page: Providing Feedback
           path: ./docs/features/providing-feedback.mdx
+        - page: Tips and Tricks
+          path: ./docs/tips-and-tricks.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
