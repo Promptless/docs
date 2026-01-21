@@ -1,8 +1,8 @@
 ---
-title: Intercom (Beta)
+title: Intercom
 ---
 
-Intercom integration enables publishing documentation updates directly to your Intercom Help Center. This beta feature allows you to manage customer support documentation through the Promptless platform.
+Intercom integration enables publishing documentation updates directly to your Intercom Help Center. This allows you to manage customer support documentation through the Promptless platform.
 
 ## How It Works
 
@@ -26,9 +26,7 @@ When publishing to Intercom, you can:
 - **Manage Article Metadata**: Update titles, descriptions, and categories
 - **Add Images**: Include visual content in your help center articles
 
-## Beta Limitations
-
-As this is a beta feature:
+## Known Limitations
 
 - Some advanced Intercom formatting options might not be fully supported
 - Changes are always created as drafts for review
@@ -46,7 +44,3 @@ Intercom as a documentation platform is especially useful for:
 ## Setup Instructions
 
 To connect Intercom to Promptless, see the [Intercom Integration](/docs/integrations/intercom) setup guide.
-
-<Info>
-Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable the Intercom integration for your account.
-</Info>
