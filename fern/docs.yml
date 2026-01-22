@@ -150,6 +150,12 @@ navigation:
         - page: How Vellum Drafts 50%+ of Docs with Promptless
           path: ./docs/customer-stories/vellum.mdx
           slug: vellum
+    - section: Technical
+      icon: fa-regular fa-code
+      contents:
+        - page: "I Have No Mouth, and I Must Scream"
+          path: ./docs/technical/i-must-scream.mdx
+          slug: i-must-scream
     - section: Life at Promptless
       icon: fa-regular fa-lightbulb
       contents:
