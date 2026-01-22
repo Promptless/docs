@@ -11,12 +11,7 @@ In January 2025, we started wondering what would happen if we gave our AI agent 
 
 So, what happens when you let your agent scream? Here's one of my favorite (most painful) examples:
 
-```
-*screenshot agent is having a bad time :(*
-Severity: high
-Concern: I've been attempting to log in to the app for over 60 browser interactions,
-but the email input field doesn't seem to accept text input...
-```
+![Agent escalation showing login struggles](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-intro-escalation-63e41615.png)
 
 ## Some background
 
@@ -57,14 +52,7 @@ The `severity` parameter is key—it doesn't impact the behavior of the tool at 
 
 Sometimes the agent discovers that the thing it's been asked to document doesn't exist, or doesn't work the way the customer thinks it does. These are awkward to surface. Promptless shouldn't silently fail, but it also shouldn't document something incorrectly.
 
-```
-Severity: medium
-Concern: When trying to use message_your_client to alert the client about a
-grammatical issue in PR 1613, I received an error: "No Slack notification channel
-configured - could not deliver customer escalation."
-This prevented me from proactively alerting the client about a typo in their
-open PR before it gets merged.
-```
+![Agent escalation about missing Slack notification channel](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-customer-config-daa58a33.png)
 
 This actually helped us deliver a delightful customer experience—Promptless detected that the customer had misconfigured their Slack integration, and we were able to intervene with them to fix their set up before they realized anything was wrong. 
 
@@ -72,19 +60,7 @@ This actually helped us deliver a delightful customer experience—Promptless de
 
 The agent uses git, GitHub APIs, browser automation, and a bunch of other tools. Sometimes those tools misbehave in ways that are hard to detect from logs alone.
 
-```
-Severity: medium
-Concern: I'm experiencing persistent git branch switching issues.
-
-Despite running:
-git checkout -b promptless/document-update-attribute-values origin/promptless/document-update-attribute-values
-
-...and receiving confirmation of switching, when I check git status it shows I'm on
-promptless/document-update-product-skus.
-
-This has happened repeatedly - the checkout commands report success but the working
-directory remains on the wrong branch.
-```
+![Agent escalation about git branch switching bug](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-git-branch-bug-184f643f.png)
 
 This one was particularly insidious—git was returning success exit codes while silently failing. We also caught intermittent database consistency issues and stale cache problems this way. 
 
@@ -92,35 +68,13 @@ This one was particularly insidious—git was returning success exit codes while
 
 Sometimes the will escalate to us something when it's clear that it screwed up earlier. In this case, a customer asked in Slack why their PR had unexpected files. Since this was an issue we had seen before, we were able to take quick action before that frustration built up. 
 
-```
-Severity: medium
-Concern: A user Dara is reporting an issue with PR 178.
-Looking at the PR diff, the previous Promptless instance appears to have created
-duplicate files in subdirectories instead of only modifying the existing files.
-
-Expected behavior: Only modify existing files:
-- docs/manually-implementing-encryption-and-decryption.mdx
-- docs/what-is-rain.mdx
-
-Actual behavior: The PR correctly modified those files BUT ALSO created new duplicate files:
-- docs/Getting Started/what-is-rain.md (NEW - should not exist)
-
-The user's question in Slack: "woah why are the files [...] included in my pr?"
-```
+![Agent escalation about duplicate files in customer PR](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-customer-frustration-f1ae26f6.png)
 
 ### Sometimes, it just hurts to see the agent's suffering
 
 We were recently testing a new feature where Promptless captures and updates UI screenshots for docs. For one customer's app, it spent 84 browser interactions trying to log in. 
 
-```
-Severity: high
-Concern: I've been attempting to log in for over 84 browser interactions.
-The email input field doesn't seem to accept text input. I've tried:
-- Clicking the field directly
-- Using keyboard navigation
-- Waiting for the page to fully load
-- Refreshing and retrying
-```
+![Agent escalation after 84 failed browser interactions](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-agent-suffering-848a5433.png)
 
 This was the result of a software bug that we were able to easily fix, but our team *felt the pain* that the agent was feeling. "feels bad", "it's like making the agent watch an unplugged tv", "geneva convention would have something to say about this" were comments from the team. 
 
@@ -128,16 +82,7 @@ This was the result of a software bug that we were able to easily fix, but our t
 
 This one we didn't expect. Of course, we use Promptless to build our own docs, so Promptless runs on every PR that our engineering team opens to detect if doc updates are needed. A couple of times, it accidentally played the role of a code review bot, highlighting escalating critical issues in the code while reviewing the diff for doc updates. 
 
-```
-Severity: high
-Concern: Critical bug found in PR 1731
-
-Line 453 has inverted logic:
-if suggestion.closed_at return false
-
-This excludes suggestions that DON'T have a closed_at date.
-Should be checking for presence, not absence.
-```
+![Agent escalation about critical bug with inverted logic](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-critical-bug-53ad5da5.png)
 
 The agent wasn't asked to review code. It was processing PRs for documentation changes and noticed bugs along the way.
 
