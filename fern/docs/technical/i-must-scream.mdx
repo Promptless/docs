@@ -50,7 +50,7 @@ The `severity` parameter is key—it doesn't impact the behavior of the tool at 
 
 ### It escalated customer configuration issues
 
-Sometimes the agent discovers that the thing it's been asked to document doesn't exist, or doesn't work the way the customer thinks it does. These are awkward to surface. Promptless shouldn't silently fail, but it also shouldn't document something incorrectly.
+Our customers often configure Promptless themselves, and sometimes they'll make a mistake—when Promptless encounters something that can potentially be a configuration issue (e.g. the case below where they forgot to specify a Slack channel for notifications), Promptless will usually let us know so we can gently remind them to fix their set-up. 
 
 ![Agent escalation about missing Slack notification channel](https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/i-must-scream-customer-config-daa58a33.png)
 
