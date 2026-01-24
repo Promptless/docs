@@ -223,3 +223,5 @@ favicon: ./docs/assets/favicon.ico
 redirects:
   - source: "/promptless-1-0"
     destination: "/docs/getting-started/promptless-1-0"
+  - source: "/github/adding-repos"
+    destination: "/docs/integrations/github-integration#adding-more-repos-after-installation"
