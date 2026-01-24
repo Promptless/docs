@@ -13,6 +13,26 @@ When a commit is pushed directly to a monitored branch:
 3. **Relevance Assessment**: Promptless determines if the changes require documentation updates
 4. **Suggestion Creation**: If relevant, Promptless creates documentation suggestions
 
+## Commit Triggers vs. Pull Request Triggers
+
+You can use GitHub commit triggers alongside PR triggers, or as a standalone approach.
+
+### Use commits alongside PR triggers
+
+If you configure both a GitHub PR project and a GitHub Commits project for the same repositories:
+
+- Promptless comments on PRs while they're open, providing early feedback on documentation needs
+- After the PR merges, the commit trigger updates suggestions with the final merged content
+- Useful when you want PR comments during review and updated suggestions after merge
+
+### Use commits only
+
+If you configure only a GitHub Commits project, without a corresponding PR project:
+
+- Promptless only runs after changes merge to your default branch
+- Reduces notification noise if PR triggers are too frequent
+- Since you won't get PR comments, configure a Slack notification channel to stay informed about new suggestions
+
 ## Configuration
 
 Configure GitHub commit triggers in your [project settings](https://app.gopromptless.ai/projects):
@@ -26,6 +46,21 @@ Configure GitHub commit triggers in your [project settings](https://app.goprompt
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/47a14116-12d1-4a1d-beae-875c1d182124-github-directory-trigger.png" alt="GitHub commit trigger configuration showing directory options" />
 </Frame>
+
+## Notification Channels
+
+Since commit triggers don't create PR comments, we recommend configuring a Slack notification channel. Promptless posts to this channel whenever it creates or updates suggestions based on commits.
+
+To configure a notification channel:
+
+1. Go to your [project settings](https://app.gopromptless.ai/projects)
+2. Click the pencil icon to edit your GitHub Commits project
+3. Add your preferred Slack channel at the bottom of the project settings
+4. Save your changes
+
+<Note>
+If you're using a private Slack channel, you'll need to add Promptless to that channel first. Tag `@Promptless` in the channel to prompt Slack to invite the app.
+</Note>
 
 ## Directory-Specific Commits
 
