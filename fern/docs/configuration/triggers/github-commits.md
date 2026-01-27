@@ -49,17 +49,21 @@ Configure GitHub commit triggers in your [project settings](https://app.goprompt
 
 ## Notification Channels
 
-Since commit triggers don't create PR comments, we recommend configuring a Slack notification channel. Promptless posts to this channel whenever it creates or updates suggestions based on commits.
+Since commit triggers don't create PR comments, configure a Slack notification channel to receive updates when Promptless creates or updates suggestions.
 
 To configure a notification channel:
 
 1. Go to your [project settings](https://app.gopromptless.ai/projects)
 2. Click the pencil icon to edit your GitHub Commits project
-3. Add your preferred Slack channel at the bottom of the project settings
+3. Select your preferred Slack channel from the dropdown
 4. Save your changes
 
 <Note>
-If you're using a private Slack channel, you'll need to add Promptless to that channel first. Tag `@Promptless` in the channel to prompt Slack to invite the app.
+If your channel doesn't appear in the dropdown, create it in Slack first, then refresh your Slack channels on the Integrations page.
+</Note>
+
+<Note>
+For private Slack channels, invite Promptless first by tagging `@Promptless` in the channel.
 </Note>
 
 ## Directory-Specific Commits
