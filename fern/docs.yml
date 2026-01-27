@@ -34,6 +34,8 @@ navigation:
           path: ./docs/getting-started.mdx
         - page: Core Concepts
           path: ./docs/core-concepts.mdx
+        - page: Getting Help
+          path: ./docs/getting-help.mdx
         - page: Pilot Overview
           hidden: true
           path: ./docs/pilot-guide.mdx
@@ -225,3 +227,5 @@ redirects:
     destination: "/docs/getting-started/promptless-1-0"
   - source: "/github/adding-repos"
     destination: "/docs/integrations/github-integration#adding-more-repos-after-installation"
+  - source: "/support"
+    destination: "/docs/getting-started/getting-help"
