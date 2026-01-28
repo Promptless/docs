@@ -1,0 +1,41 @@
+---
+title: Promptless for Open Source
+---
+
+Promptless automatically drafts documentation updates for open source projects when code changes—no write access to your repository required.
+
+## How It Works
+
+When contributors open pull requests, Promptless analyzes the changes and suggests documentation updates. Since open source projects typically can't install GitHub apps with write access, Promptless uses a fork-based approach:
+
+1. Promptless maintains a fork of your documentation repository
+2. When documentation updates are needed, the `promptless-for-oss` service account creates a PR from that fork to your upstream repository
+3. You review and merge the PR just like any other community contribution
+
+Documentation PRs appear in your repository alongside other contributor PRs, maintaining full visibility for your maintainer team.
+
+## Getting Started
+
+<Steps>
+  <Step title="Create an account">
+    Sign up at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
+  </Step>
+  
+  <Step title="Connect GitHub (OSS)">
+    On the [integrations page](https://app.gopromptless.ai/integrations), find the **GitHub (OSS)** card and click **Connect GitHub (OSS)**. This installs a read-only GitHub app that monitors your repositories without requiring write access.
+  </Step>
+  
+  <Step title="Select your repositories">
+    Choose which open source repositories you want Promptless to monitor for documentation updates.
+  </Step>
+  
+  <Step title="Set up a doc collection">
+    Tell Promptless where your documentation lives by creating a doc collection. This could be a `/docs` folder in the same repo, a separate docs repository, or a documentation platform like Fern or Docusaurus. See [Doc Collections](/docs/configuration/doc-collections) for details.
+  </Step>
+</Steps>
+
+Once configured, Promptless monitors your selected repositories. When a PR is opened, it analyzes the changes and opens a documentation PR from a fork if updates are needed.
+
+## Questions?
+
+Contact us at help@gopromptless.ai—we're happy to help get your project set up.
