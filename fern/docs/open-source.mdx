@@ -5,11 +5,11 @@ subtitle: Recommendations and tools for open-source projects using Promptless
 
 Promptless helps open source projects keep documentation in sync with fast-moving codebases. Use it to automatically update developer docs, generate changelogs for new releases, or handle translations.
 
-<Success title="Free for CNCF and Linux Foundation Projects" icon="fa-solid fa-heart">
-Promptless is free for CNCF and Linux Foundation projects. Contact us at help@gopromptless.ai to get started.
+<Success title="Open-Source Program" icon="fa-solid fa-heart">
+Promptless is free for CNCF, Linux Foundation, and other eligible non-commercial open-source projects. Contact us at help@gopromptless.ai to get started.
 </Success>
 
-Open source workflows differ from commercial software. We've built features and setup guides tailored specifically for open source maintainers.
+Open source workflows sometimes differ from commercial software. We've built features and setup guides tailored specifically for open source maintainers.
 
 ## Quick Start
 
@@ -41,7 +41,7 @@ The basic setup for your open source project involves three steps:
     Enable **Replay recent PRs** to run Promptless on your last 30 days of PRs. This gives you an initial batch of suggestions to calibrate with before going live.
     </Tip>
 
-    Many open source projects prefer to centralize operations in GitHub so anyone can benefit from Promptless without needing an account. If this applies to you, enable **Auto-create PR** so suggestions automatically become pull requests. We recommend turning this on after your initial calibration is complete.
+    Many open source projects prefer to centralize operations in GitHub so anyone can benefit from Promptless without needing an account. If this applies to you, enable **Auto-create PR** so suggestions automatically become pull requests. We recommend turning this on after your initial calibration is complete, so that you're able to refine Promptless's configuration before rolling it out to all contributors.  
   </Step>
 </Steps>
 
@@ -53,31 +53,18 @@ Most projects trigger Promptless on opened PRs. For popular open source projects
 
 <AccordionGroup>
   <Accordion title="Translation workflows">
-    For translation workflows, you might want the trigger repo to be the English directory of your docs. Promptless will then draft updates that translate content to the rest of your documentation.
+    For translation workflows, you might want the trigger to be the English directory of your docs. Promptless will then draft updates that translate content to the rest of your documentation.
   </Accordion>
 
   <Accordion title="GitHub Issues integration">
     If GitHub Issues are part of your workflow, create a GitHub Issues trigger so contributors can tag Promptless in issues to generate doc updates.
   </Accordion>
 
-  <Accordion title="Monorepo support (coming soon)">
-    For some monorepo use cases, you might want Promptless to add a docs commit to your existing PRs rather than create separate docs PRs. If you're interested in this feature, contact us at help@gopromptless.ai.
+  <Accordion title="Updating Contributor PRs (coming soon)">
+    For some monorepo use cases, you might want Promptless to add a docs commit to your contributors' existing PRs rather than create separate docs PRs. If you're interested in this feature, contact us at help@gopromptless.ai.
+
+    Note: this is not compatible with the read-only version of the Promptless Github app. 
   </Accordion>
 </AccordionGroup>
 
-## Learn More
 
-<CardGroup cols={2}>
-  <Card title="GitHub Integration" icon="brands github" href="/docs/integrations/github-integration">
-    Set up the GitHub app and manage repository access
-  </Card>
-  <Card title="Doc Collections" icon="fa-regular fa-folder-open" href="/docs/doc-collections">
-    Configure where Promptless publishes documentation
-  </Card>
-  <Card title="Triggers" icon="fa-regular fa-bolt" href="/docs/triggers">
-    Configure which events trigger documentation updates
-  </Card>
-  <Card title="Setup & Quickstart" icon="fa-regular fa-rocket" href="/docs/getting-started/setup-quickstart">
-    Full setup guide for new users
-  </Card>
-</CardGroup>
