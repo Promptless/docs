@@ -1,41 +1,42 @@
 ---
-title: Promptless for Open Source
+title: Promptless ❤️ Open-Source
+subtitle: Recommendations and tools for open-source projects using Promptless
 ---
 
-Promptless automatically drafts documentation updates for open source projects when code changes—no write access to your repository required.
+Promptless can support a variety of use-cases for open source projects, such as automatically updating developer docs, writing changelogs or release notes for new versions, automatically handling localization and translations, and more. 
 
-## How It Works
+info box for open-source being free for CNCF and Linux Foundation projects. 
 
-When contributors open pull requests, Promptless analyzes the changes and suggests documentation updates. Since open source projects typically can't install GitHub apps with write access, Promptless uses a fork-based approach:
+The needs of open-source projects are often different from the needs for typical commercial software companies, so we have tailor-made features and recommended set-ups specifically for open-source projects. 
 
-1. Promptless maintains a fork of your documentation repository
-2. When documentation updates are needed, the `promptless-for-oss` service account creates a PR from that fork to your upstream repository
-3. You review and merge the PR just like any other community contribution
+## Quick Start
 
-Documentation PRs appear in your repository alongside other contributor PRs, maintaining full visibility for your maintainer team.
+The basic set-up for your open-source project involves:
+1. Installing the Promptless Github app. (integrations page)
 
-## Getting Started
+Some guidance on which Github app to install: 
+* If you can install apps that require write permissions on your repo, and want Promptless to make branches and PRs directly on your repo, install the standard Github app. 
+* If you need to install an app that only needs read-permissions on your repo, install the Github OSS app. Note: when you do this, Promptless will create branches on a fork of your docs repo, and will make PRs using that fork. 
 
-<Steps>
-  <Step title="Create an account">
-    Sign up at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
-  </Step>
-  
-  <Step title="Connect GitHub (OSS)">
-    On the [integrations page](https://app.gopromptless.ai/integrations), find the **GitHub (OSS)** card and click **Connect GitHub (OSS)**. This installs a read-only GitHub app that monitors your repositories without requiring write access.
-  </Step>
-  
-  <Step title="Select your repositories">
-    Choose which open source repositories you want Promptless to monitor for documentation updates.
-  </Step>
-  
-  <Step title="Set up a doc collection">
-    Tell Promptless where your documentation lives by creating a doc collection. This could be a `/docs` folder in the same repo, a separate docs repository, or a documentation platform like Fern or Docusaurus. See [Doc Collections](/docs/configuration/doc-collections) for details.
-  </Step>
-</Steps>
+2. Setting up Doc Collections
 
-Once configured, Promptless monitors your selected repositories. When a PR is opened, it analyzes the changes and opens a documentation PR from a fork if updates are needed.
+You can create multiple Doc Collections if necessary. For example, if you've got a changelog in a different location from your main docs, then you should create two Docs Locations so Promptless can update both. 
 
-## Questions?
+You can specify a particular directory that Promptless should update docs in—e.g. if you have docs in a monorepo with code for your project. 
 
-Contact us at help@gopromptless.ai—we're happy to help get your project set up.
+3. Set up projects 
+
+When creating projects, tell Promptless which repos you want Promptless to listen to PRs from, and which docs to update. 
+
+
+We highly recommend checking the box for Promptless to run on the last 30 days of PRs, so that you can get an initial batch of doc updates that you can calibrate Promptless with. 
+
+Many open-source projects want to centralize their operations in Github, so that anyone can benefit from Promptless without having a Promptless acconut. In that case, ensure that you have the "Auto-create PR" option checked. We highly recommend turning on this setting after doing the initial calibration, though. 
+
+Most users set Promptless to run whenever there's a PR opened. However, with popular open-source projects where there are a lot of unverified contributor PRs that end up closed, it might make more sense for Promptless to be triggered on Github Commits on your default branch, so it only runs when PRs are merged. Again, we recommend changing this setting after the initial calibration. 
+
+For translation workflows, you might want the trigger repo to be the english directory of your docs, and then Promptless will draft updates that update the rest of your docs. 
+
+If Github Issues are part of your workflow, make sure to create a Github Issues trigger, so that contributors can tag Promptless in their repos to generate doc updates. 
+
+Coming soon: for some use-cases with monorepos, you might want Promptless to add a docs commit into your existing PRs, rather than create fresh docs PR. If you're interested in this feature, contact us at help@gopromptless.ai

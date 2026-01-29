@@ -32,7 +32,8 @@ navigation:
           slug: promptless-1-0
         - page: Setup & Quickstart
           path: ./docs/getting-started.mdx
-        - page: Promptless for Open Source
+        - page: Promptless for Open-Source
+          slug: promptless-oss
           path: ./docs/open-source.mdx
         - page: Core Concepts
           path: ./docs/core-concepts.mdx
