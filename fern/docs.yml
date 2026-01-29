@@ -34,6 +34,9 @@ navigation:
           path: ./docs/getting-started.mdx
         - page: Core Concepts
           path: ./docs/core-concepts.mdx
+        - page: Promptless for Open-Source
+          slug: promptless-oss
+          path: ./docs/open-source.mdx
         - page: Getting Help
           path: ./docs/getting-help.mdx
         - page: Pilot Overview
