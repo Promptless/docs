@@ -1,0 +1,116 @@
+{
+  "specId": "login-test",
+  "description": "Simple test to verify login flow",
+  "tests": [
+    {
+      "testId": "login-flow",
+      "description": "Test login to Promptless",
+      "steps": [
+        {
+          "stepId": "load-env",
+          "description": "Load environment variables",
+          "loadVariables": "../../.env"
+        },
+        {
+          "stepId": "navigate-to-login",
+          "description": "Go to sign-in page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/sign-in",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page",
+          "description": "Wait for page to load",
+          "wait": 5000
+        },
+        {
+          "stepId": "screenshot-login-page",
+          "description": "Capture login page",
+          "screenshot": "screenshots/debug-login-page.png"
+        },
+        {
+          "stepId": "enter-email",
+          "description": "Find email input, click to focus, and type email",
+          "find": {
+            "selector": "#identifier-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_EMAIL"
+          }
+        },
+        {
+          "stepId": "screenshot-after-email",
+          "description": "Capture after email entry",
+          "screenshot": "screenshots/debug-after-email.png"
+        },
+        {
+          "stepId": "press-enter",
+          "description": "Press Enter to submit email",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-password",
+          "description": "Wait for password screen to appear",
+          "wait": 8000
+        },
+        {
+          "stepId": "screenshot-password-screen",
+          "description": "Capture password screen",
+          "screenshot": "screenshots/debug-password-screen.png"
+        },
+        {
+          "stepId": "enter-password",
+          "description": "Find password input, click to focus, and type password",
+          "find": {
+            "selector": "#password-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_PASSWORD"
+          }
+        },
+        {
+          "stepId": "press-enter-password",
+          "description": "Press Enter to submit password",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-redirect",
+          "description": "Wait for login redirect to complete",
+          "wait": 10000
+        },
+        {
+          "stepId": "screenshot-after-login",
+          "description": "Capture where we landed after login",
+          "screenshot": "screenshots/debug-after-login.png"
+        },
+        {
+          "stepId": "navigate-to-suggestions",
+          "description": "Go to suggestions page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/change-history",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page-load",
+          "description": "Wait for page to fully load",
+          "wait": 5000
+        },
+        {
+          "stepId": "screenshot-suggestions",
+          "description": "Capture suggestions page",
+          "screenshot": "screenshots/debug-suggestions.png"
+        }
+      ]
+    }
+  ]
+}

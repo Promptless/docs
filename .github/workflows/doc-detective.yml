@@ -1,0 +1,49 @@
+name: Doc Detective Tests
+
+on:
+  pull_request:
+    paths:
+      - 'fern/docs/**'
+  schedule:
+    # Run weekly on Monday at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  test-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Doc Detective
+        env:
+          TEST_EMAIL: ${{ secrets.DOC_DETECTIVE_EMAIL }}
+          TEST_PASSWORD: ${{ secrets.DOC_DETECTIVE_PASSWORD }}
+        run: npx doc-detective --config .doc-detective.json
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-detective-results
+          path: test-results/
+          retention-days: 30
+
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          retention-days: 30

@@ -1,0 +1,17 @@
+{
+  "input": ["tests/specs"],
+  "output": "test-results",
+  "recursive": true,
+  "fileTypes": ["markdown"],
+  "runOn": [
+    {
+      "platforms": ["linux", "mac"],
+      "browsers": [
+        {
+          "name": "firefox",
+          "headless": true
+        }
+      ]
+    }
+  ]
+}

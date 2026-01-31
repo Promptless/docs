@@ -1,0 +1,96 @@
+{
+  "specId": "slack-interactions",
+  "description": "Validates the slack-interactions.mdx documentation against the actual Promptless UI",
+  "tests": [
+    {
+      "testId": "projects-page",
+      "description": "Verify the projects page where Slack triggers are configured",
+      "steps": [
+        {
+          "stepId": "load-env",
+          "description": "Load environment variables",
+          "loadVariables": "../../.env"
+        },
+        {
+          "stepId": "navigate-to-login",
+          "description": "Go to sign-in page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/sign-in",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page",
+          "description": "Wait for page to load",
+          "wait": 5000
+        },
+        {
+          "stepId": "enter-email",
+          "description": "Find email input, click to focus, and type email",
+          "find": {
+            "selector": "#identifier-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_EMAIL"
+          }
+        },
+        {
+          "stepId": "press-enter-email",
+          "description": "Press Enter to submit email",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-password-screen",
+          "description": "Wait for password screen to appear",
+          "wait": 8000
+        },
+        {
+          "stepId": "enter-password",
+          "description": "Find password input, click to focus, and type password",
+          "find": {
+            "selector": "#password-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_PASSWORD"
+          }
+        },
+        {
+          "stepId": "press-enter-password",
+          "description": "Press Enter to submit password",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-redirect",
+          "description": "Wait for login to complete",
+          "wait": 10000
+        },
+        {
+          "stepId": "navigate-to-projects",
+          "description": "Go to projects page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/projects",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-projects",
+          "description": "Wait for projects page to load",
+          "wait": 3000
+        },
+        {
+          "stepId": "screenshot-projects",
+          "description": "Capture projects page",
+          "screenshot": "screenshots/slack-projects-page.png"
+        }
+      ]
+    }
+  ]
+}

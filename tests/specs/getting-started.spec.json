@@ -1,0 +1,276 @@
+{
+  "specId": "getting-started",
+  "description": "Validates the getting-started.mdx documentation against the actual Promptless UI",
+  "tests": [
+    {
+      "testId": "login-and-dashboard",
+      "description": "Verify login flow and initial dashboard",
+      "steps": [
+        {
+          "stepId": "load-env",
+          "description": "Load environment variables",
+          "loadVariables": "../../.env"
+        },
+        {
+          "stepId": "navigate-to-login",
+          "description": "Go to sign-in page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/sign-in",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page",
+          "description": "Wait for page to load",
+          "wait": 5000
+        },
+        {
+          "stepId": "enter-email",
+          "description": "Find email input, click to focus, and type email",
+          "find": {
+            "selector": "#identifier-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_EMAIL"
+          }
+        },
+        {
+          "stepId": "press-enter-email",
+          "description": "Press Enter to submit email",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-password-screen",
+          "description": "Wait for password screen to appear",
+          "wait": 8000
+        },
+        {
+          "stepId": "enter-password",
+          "description": "Find password input, click to focus, and type password",
+          "find": {
+            "selector": "#password-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_PASSWORD"
+          }
+        },
+        {
+          "stepId": "press-enter-password",
+          "description": "Press Enter to submit password",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-redirect",
+          "description": "Wait for login to complete",
+          "wait": 10000
+        },
+        {
+          "stepId": "navigate-to-suggestions",
+          "description": "Go to suggestions page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/change-history",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page-load",
+          "description": "Wait for page to load",
+          "wait": 3000
+        },
+        {
+          "stepId": "screenshot-dashboard",
+          "description": "Capture dashboard after login",
+          "screenshot": "screenshots/01-dashboard-after-login.png"
+        }
+      ]
+    },
+    {
+      "testId": "setup-wizard-slack",
+      "description": "Verify the Connect Slack step of the setup wizard",
+      "steps": [
+        {
+          "stepId": "load-env",
+          "description": "Load environment variables",
+          "loadVariables": "../../.env"
+        },
+        {
+          "stepId": "navigate-to-login",
+          "description": "Go to sign-in page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/sign-in",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page",
+          "description": "Wait for page to load",
+          "wait": 5000
+        },
+        {
+          "stepId": "enter-email",
+          "description": "Find email input, click to focus, and type email",
+          "find": {
+            "selector": "#identifier-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_EMAIL"
+          }
+        },
+        {
+          "stepId": "press-enter-email",
+          "description": "Press Enter to submit email",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-password-screen",
+          "description": "Wait for password screen to appear",
+          "wait": 8000
+        },
+        {
+          "stepId": "enter-password",
+          "description": "Find password input, click to focus, and type password",
+          "find": {
+            "selector": "#password-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_PASSWORD"
+          }
+        },
+        {
+          "stepId": "press-enter-password",
+          "description": "Press Enter to submit password",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-redirect",
+          "description": "Wait for login to complete",
+          "wait": 10000
+        },
+        {
+          "stepId": "navigate-to-setup",
+          "description": "Go to setup page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/triggers",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-setup",
+          "description": "Wait for setup page to load",
+          "wait": 3000
+        },
+        {
+          "stepId": "screenshot-setup",
+          "description": "Capture setup wizard",
+          "screenshot": "screenshots/02-setup-wizard-slack.png"
+        }
+      ]
+    },
+    {
+      "testId": "setup-wizard-triggers",
+      "description": "Verify the Configure triggers step of the setup wizard",
+      "steps": [
+        {
+          "stepId": "load-env",
+          "description": "Load environment variables",
+          "loadVariables": "../../.env"
+        },
+        {
+          "stepId": "navigate-to-login",
+          "description": "Go to sign-in page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/sign-in",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-page",
+          "description": "Wait for page to load",
+          "wait": 5000
+        },
+        {
+          "stepId": "enter-email",
+          "description": "Find email input, click to focus, and type email",
+          "find": {
+            "selector": "#identifier-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_EMAIL"
+          }
+        },
+        {
+          "stepId": "press-enter-email",
+          "description": "Press Enter to submit email",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-password-screen",
+          "description": "Wait for password screen to appear",
+          "wait": 8000
+        },
+        {
+          "stepId": "enter-password",
+          "description": "Find password input, click to focus, and type password",
+          "find": {
+            "selector": "#password-field",
+            "timeout": 15000,
+            "click": true,
+            "type": "$TEST_PASSWORD"
+          }
+        },
+        {
+          "stepId": "press-enter-password",
+          "description": "Press Enter to submit password",
+          "type": "$ENTER$"
+        },
+        {
+          "stepId": "wait-for-redirect",
+          "description": "Wait for login to complete",
+          "wait": 10000
+        },
+        {
+          "stepId": "navigate-to-triggers",
+          "description": "Go to triggers setup page",
+          "goTo": {
+            "url": "https://app.gopromptless.ai/triggers",
+            "timeout": 30000,
+            "waitUntil": {
+              "networkIdleTime": null,
+              "domIdleTime": null
+            }
+          }
+        },
+        {
+          "stepId": "wait-for-triggers",
+          "description": "Wait for triggers page to load",
+          "wait": 3000
+        },
+        {
+          "stepId": "screenshot-triggers",
+          "description": "Capture triggers setup",
+          "screenshot": "screenshots/04-setup-wizard-triggers.png"
+        }
+      ]
+    }
+  ]
+}
