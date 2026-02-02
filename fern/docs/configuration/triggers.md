@@ -52,7 +52,7 @@ Need a trigger type that isn't currently supported? Contact us at [help@goprompt
 
 ## Auto-publish Mode
 
-When auto-publish is enabled for your project, Promptless automatically creates pull requests in your documentation repository with suggested changes. You can optionally enable auto-merge to automatically merge documentation PRs as soon as they're created.
+When auto-publish is enabled for your project, Promptless automatically creates pull requests in your documentation repository with suggested changes. For [commit triggers](/docs/configuration/triggers/github-commits), you can optionally enable auto-merge to automatically merge documentation PRs as soon as they're created.
 
 Auto-publish is available for GitHub-based documentation platforms. For CMS platforms like Zendesk or Intercom, documentation updates are created as drafts for review.
 

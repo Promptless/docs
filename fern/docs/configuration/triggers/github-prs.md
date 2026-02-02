@@ -66,7 +66,6 @@ Learn more about GitHub repository topics in the [GitHub documentation](https://
 When auto-publish is enabled for your project:
 - Promptless automatically creates a new PR in your documentation repository with suggested changes
 - The documentation PR is linked in a comment on the original code PR
-- Optionally enable auto-merge to automatically merge documentation PRs as soon as they're created
 
 ## Draft Pull Requests
 
