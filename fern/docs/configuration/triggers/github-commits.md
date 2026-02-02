@@ -55,6 +55,10 @@ Auto-merge is useful for:
 
 Enable auto-merge in your [project settings](https://app.gopromptless.ai/projects) by checking "Automatically merge Promptless suggestions into the default branch." This option is only available for commit triggers.
 
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/project-settings-auto-merge-86d6c89f.png" alt="Project settings showing auto-publish and auto-merge checkboxes" />
+</Frame>
+
 ## Setup Instructions
 
 To connect GitHub to Promptless, see the [GitHub Integration](/docs/integrations/github-integration) setup guide.
