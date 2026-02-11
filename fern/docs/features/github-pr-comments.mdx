@@ -5,6 +5,18 @@ description: Learn how to provide follow-up instructions through GitHub PR comme
 
 After Promptless opens a docs PR, you can provide follow-on instructions directly through GitHub comments. Promptless automatically handles quality issues (like linter failures, Vale warnings, or broken links) that arise in documentation PRs, so manual feedback can focus on content improvements rather than technical fixes.
 
+## Comment trigger modes
+
+Configure how Promptless responds to comments on documentation PRs:
+
+**Listen to all comments** (default for new organizations): Promptless processes all human comments on documentation PRs automatically. To have Promptless ignore a specific comment, start it with `aside` or `/aside`.
+
+**Require @promptless mentions** (default for existing organizations): Promptless only responds when you tag @promptless in a comment.
+
+<Info>
+Change this setting anytime in [Settings → Org Settings](https://app.gopromptless.ai/settings).
+</Info>
+
 ## Reviewing in the dashboard
 
 Every PR that Promptless opens includes a dashboard link at the top of the description for additional context.
@@ -23,9 +35,9 @@ Use the dashboard to verify updates or understand the background behind changes.
 
 Leave individual comments on specific lines or sections of the documentation PR for targeted feedback.
 
-    Tag Promptless (@Promptless) in the comment (Note: It won't show up in auto-complete), write your instruction, and click "Add single comment" to submit your instruction to Promptless.
+If your organization uses **Listen to all comments** mode, just leave your comment—Promptless will process it automatically. In **Require @promptless mentions** mode, tag @promptless in the comment (it won't show up in auto-complete, but Promptless will still see it).
 
-When you tag Promptless, it automatically reads all previous comments in the PR to understand the full context. This means that your instructions can be as simple as "Same here" or "Apply this change to the other section too," and Promptless will understand what you mean.
+Promptless automatically reads all previous comments in the PR to understand the full context. This means your instructions can be as simple as "Same here" or "Apply this change to the other section too."
 
 ### 2. PR reviews
 
@@ -33,15 +45,15 @@ Start a review to provide multiple pieces of feedback that Promptless can handle
 
 <Steps>
   <Step title="Start a Review">
-    You can either click "Review changes" to begin a formal review process, or when adding an in-line comment, select the "Start a review" option instead of the "Add single comment" option.
+    Click "Review changes" to begin a formal review process, or select "Start a review" when adding an in-line comment.
   </Step>
 
   <Step title="Add Multiple Comments">
-    Continue adding comments as part of the review. You don't have to tag Promptless in any of them.
+    Continue adding comments as part of the review.
   </Step>
 
-  <Step title="Include General Feedback">
-    After you're done reviewing, click on "Finish your review", and in the text box, tag Promptless (@Promptless). And then Promptless will address all your review feedback at once.
+  <Step title="Submit Your Review">
+    Click "Finish your review" and submit. In **Listen to all comments** mode, Promptless processes the review automatically. In **Require @promptless mentions** mode, tag @promptless in the review summary.
   </Step>
 </Steps>
 
