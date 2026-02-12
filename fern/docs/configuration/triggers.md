@@ -7,23 +7,23 @@ Triggers are events that initiate automated documentation updates in Promptless.
 ## Available Trigger Types
 
 <CardGroup cols={2}>
-  <Card title="GitHub PRs" icon="fa-brands fa-github" href="/docs/configuration/triggers/github-prs">
+  <Card title="GitHub PRs" icon="fa-brands fa-github" href="/docs/configuring-promptless/triggers/github-prs">
     Automatically triggered when pull requests are opened in your GitHub repositories
   </Card>
   
-  <Card title="GitHub Commits" icon="fa-brands fa-github" href="/docs/configuration/triggers/github-commits">
+  <Card title="GitHub Commits" icon="fa-brands fa-github" href="/docs/configuring-promptless/triggers/github-commits">
     Monitor direct commits to default branches for documentation updates
   </Card>
   
-  <Card title="Slack" icon="brands slack" href="/docs/configuration/triggers/slack">
+  <Card title="Slack" icon="brands slack" href="/docs/configuring-promptless/triggers/slack-messages">
     Trigger updates from Slack conversations and support threads
   </Card>
   
-  <Card title="Microsoft Teams" icon="fa-brands fa-microsoft" href="/docs/configuration/triggers/microsoft-teams">
+  <Card title="Microsoft Teams" icon="fa-brands fa-microsoft" href="/docs/configuring-promptless/triggers/microsoft-teams-messages">
     Trigger updates from Microsoft Teams messages and mentions
   </Card>
   
-  <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/configuration/triggers/zendesk">
+  <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/configuring-promptless/triggers/zendesk-tickets-beta">
     Monitor support tickets for documentation gaps based on recurring user questions
   </Card>
 </CardGroup>
@@ -52,7 +52,7 @@ Need a trigger type that isn't currently supported? Contact us at [help@goprompt
 
 ## Auto-publish Mode
 
-When auto-publish is enabled for your project, Promptless automatically creates pull requests in your documentation repository with suggested changes. For [commit triggers](/docs/configuration/triggers/github-commits), you can optionally enable auto-merge to automatically merge documentation PRs as soon as they're created.
+When auto-publish is enabled for your project, Promptless automatically creates pull requests in your documentation repository with suggested changes. You can optionally enable auto-merge to automatically merge documentation PRs as soon as they're created.
 
 Auto-publish is available for GitHub-based documentation platforms. For CMS platforms like Zendesk or Intercom, documentation updates are created as drafts for review.
 

@@ -25,7 +25,7 @@ graph LR
 
     %% Documentation Platforms
     subgraph "Documentation Platforms"
-        D1[Git-hosted docs<br/>Zendesk Help Center<br/>Intercom]
+        D1[Git-hosted docs<br/>Zendesk Help Center<br/>Intercom, Webflow]
     end
 
     %% Connections
@@ -57,7 +57,7 @@ graph LR
 - **Team Communication**: Slack messages and Microsoft Teams mentions can trigger documentation updates
 - **Support Patterns (Beta)**: Zendesk tickets help identify gaps in documentation based on recurring user questions
 
-Learn more in [Configuring Promptless → Triggers](/docs/configuration/triggers).
+Learn more in [Configuring Promptless → Triggers](/docs/configuring-promptless/triggers).
 
 ### 2. Context Sources Enrich Promptless's Understanding
 
@@ -71,17 +71,17 @@ Learn more in [Configuring Promptless → Triggers](/docs/configuration/triggers
 Context sources are queried in real-time and no customer data is stored by Promptless, ensuring your sensitive information remains secure.
 </Note>
 
-Learn more in [Configuring Promptless → Context Sources](/docs/configuration/context-sources).
+Learn more in [Configuring Promptless → Context Sources](/docs/configuring-promptless/context-sources).
 
 ### 3. Documentation Platforms Receive Updates
 
 **Documentation Platforms** are where the final documentation updates are published:
 
 - **Git-hosted Platforms**: Most common setup where docs are stored in Git and synced to hosting providers
-- **Direct Platform Integration**: Beta support for publishing directly to Zendesk and Intercom
+- **Direct Platform Integration**: Beta support for publishing directly to Zendesk, Intercom, and Webflow
 - **Multi-platform Publishing**: Single trigger can update multiple documentation platforms simultaneously
 
-Learn more in [Configuring Promptless → Doc Collections](/docs/configuration/doc-collections).
+Learn more in [Configuring Promptless → Doc Collections](/docs/configuring-promptless/doc-collections).
 
 ## Key Benefits of This Architecture
 

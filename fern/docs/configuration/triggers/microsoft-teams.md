@@ -37,7 +37,7 @@ Promptless only reads Microsoft Teams content when you explicitly trigger it by 
 
 ## Setup Instructions
 
-To connect Microsoft Teams to Promptless, see the [Microsoft Teams Integration](/docs/integrations/microsoft-teams) setup guide.
+To connect Microsoft Teams to Promptless, see the [Microsoft Teams Integration](/docs/integrations/microsoft-teams-integration) setup guide.
 
 <Info>
 Microsoft Teams integration requires admin center access to install the Promptless Teams app. See the setup guide for detailed installation instructions.
