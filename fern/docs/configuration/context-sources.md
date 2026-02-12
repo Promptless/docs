@@ -17,8 +17,6 @@ Context sources are **optional** but highly recommended. They can significantly 
 <CardGroup cols={2}>
   <Card title="Linear" icon="fa-solid fa-circle" href="/docs/configuring-promptless/context-sources/linear">
     Access Linear issues, projects, and team workflows for project management context
-
-    THIS IS AN EDIT!!!!
   </Card>
   
   <Card title="Jira" icon="fa-brands fa-jira" href="/docs/configuring-promptless/context-sources/jira">
