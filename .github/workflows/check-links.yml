@@ -30,4 +30,6 @@ jobs:
         run: pip install pyyaml
 
       - name: Check internal links
-        run: ./scripts/check-internal-links.sh
+        run: |
+          chmod +x scripts/check-internal-links.sh
+          ./scripts/check-internal-links.sh
