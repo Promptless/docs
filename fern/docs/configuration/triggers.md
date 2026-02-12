@@ -7,23 +7,23 @@ Triggers are events that initiate automated documentation updates in Promptless.
 ## Available Trigger Types
 
 <CardGroup cols={2}>
-  <Card title="GitHub PRs" icon="fa-brands fa-github" href="/docs/configuring-promptless/triggers/github-prs">
+  <Card title="GitHub PRs" icon="fa-brands fa-github" href="/docs/triggers/git-hub-p-rs">
     Automatically triggered when pull requests are opened in your GitHub repositories
   </Card>
   
-  <Card title="GitHub Commits" icon="fa-brands fa-github" href="/docs/configuring-promptless/triggers/github-commits">
+  <Card title="GitHub Commits" icon="fa-brands fa-github" href="/docs/triggers/git-hub-commits">
     Monitor direct commits to default branches for documentation updates
   </Card>
   
-  <Card title="Slack" icon="brands slack" href="/docs/configuring-promptless/triggers/slack-messages">
+  <Card title="Slack" icon="brands slack" href="/docs/triggers/slack-messages">
     Trigger updates from Slack conversations and support threads
   </Card>
   
-  <Card title="Microsoft Teams" icon="fa-brands fa-microsoft" href="/docs/configuring-promptless/triggers/microsoft-teams-messages">
+  <Card title="Microsoft Teams" icon="fa-brands fa-microsoft" href="/docs/triggers/microsoft-teams-messages">
     Trigger updates from Microsoft Teams messages and mentions
   </Card>
   
-  <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/configuring-promptless/triggers/zendesk-tickets-beta">
+  <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/triggers/zendesk-tickets-beta">
     Monitor support tickets for documentation gaps based on recurring user questions
   </Card>
 </CardGroup>

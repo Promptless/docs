@@ -177,13 +177,13 @@ check_links() {
             while IFS= read -r link; do
                 [[ -z "$link" ]] && continue
                 link="${link%/}"
-                ((checked_count++))
+                ((++checked_count))
                 
-                if ! echo "$valid_urls" | grep -qxF "$link"; then
+                if ! grep -qxF "$link" <<< "$valid_urls"; then
                     echo -e "${RED}✗${NC} Broken link in ${YELLOW}${file}${NC}"
                     echo "  → ${link}"
                     echo ""
-                    ((error_count++))
+                    ((++error_count))
                 fi
             done <<< "$links"
         fi

@@ -45,15 +45,15 @@ graph LR
 ```
 
 <CardGroup cols={1}>
-  <Card title="Intelligent Triggers" icon="fa-regular fa-bolt" href="/docs/configuring-promptless/triggers">
+  <Card title="Intelligent Triggers" icon="fa-regular fa-bolt" href="/docs/triggers">
     Monitor your development ecosystem for events that indicate documentation needs—from pull requests and code changes to team discussions and support tickets.
   </Card>
   
-  <Card title="Contextual Understanding" icon="fa-regular fa-brain" href="/docs/configuring-promptless/context-sources">
+  <Card title="Contextual Understanding" icon="fa-regular fa-brain" href="/docs/context-sources">
     Enrich docs with real-time access to your organization's knowledge through integrations with project management tools, code repositories, and team communications.
   </Card>
   
-  <Card title="Multi-Platform Publishing" icon="fa-regular fa-share-nodes" href="/docs/configuring-promptless/doc-collections">
+  <Card title="Multi-Platform Publishing" icon="fa-regular fa-share-nodes" href="/docs/doc-collections">
     Distribute updates across your entire docs ecosystem—from GitHub-synced platforms to help centers and content management systems.
   </Card>
 </CardGroup>
@@ -78,10 +78,42 @@ graph LR
   </Card>
 </CardGroup>
 
+## Who Uses Promptless
+
+Promptless automatically detects when code changes require documentation updates and notifies your team through your existing workflows.
+
+### Development Teams
+
+When you open a PR, Promptless automatically checks if docs need updating and notifies your team in Slack.
+
+<Frame caption="Promptless notifies your team in Slack when documentation updates are needed">
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/promptless-slack-notification-dev-team-1760134492.png" alt="Slack notification from Promptless bot showing documentation updates detected" />
+</Frame>
+
+Promptless drafts the initial update based on your PR changes, so you can review and publish without switching between tools.
+
+### Technical Writers  
+
+Promptless automatically detects doc-impacting PRs and sends notifications to your Slack channels, so you stay informed without monitoring a hundred release channels or attending every standup.
+
+<Frame caption="Technical writers are automatically notified when PRs require documentation updates">
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/promptless-slack-pr-notification-1760134492.png" alt="Promptless notification showing GitHub PR detected with documentation updates" />
+</Frame>
+
+When reviewing suggestions, all the context you need—PR details, related conversations, issue tickets—is available directly in the web interface.
+
+<Frame caption="View all research and context sources directly in the web interface">
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/promptless-web-ui-citations-1760134492.png" alt="Web interface showing citation panel with GitHub PR context and research details" />
+</Frame>
+
+<Tip>
+Ready to get started? Promptless integrates with your existing tools and workflows to provide immediate value without disrupting your team's productivity.
+</Tip>
+
 ## Next Steps
 
 <CardGroup cols={3}>
-  <Card title="Quick Setup" icon="fa-regular fa-rocket" href="/docs/getting-started/setup-quickstart">
+  <Card title="Quick Setup" icon="fa-regular fa-rocket" href="/docs/getting-started">
     Get Promptless running with your repositories and communication tools in under 10 minutes.
   </Card>
   
