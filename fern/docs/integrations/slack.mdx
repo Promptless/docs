@@ -4,10 +4,6 @@
 
 Promptless integrates with Slack through our official Slack App, enabling automated documentation updates based on team communication and support conversations.
 
-Promptless does not archive or store your Slack messages.
-
-Disclaimer: Promptless uses LLMs from OpenAI and Anthropic that have the potential to generate inaccurate results.
-
 ## Installation
 
 1. Click "Connect Slack" from the [integrations page](https://app.gopromptless.ai/integrations).
@@ -26,7 +22,7 @@ Disclaimer: Promptless uses LLMs from OpenAI and Anthropic that have the potenti
 </Frame>
 
 <Info title="Understanding Slack Permissions">
-  By default, Promptless only accesses Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. If you enable passive listening, Promptless monitors only the specific channels you select.
+  Promptless requests broader permissions than it currently uses to support potential future features like searching across Slack threads for relevant context. Currently, Promptless only accesses threads when you explicitly tag @Promptless or use the "Update Docs" message action. Promptless does not actively monitor or read any channels.
 </Info>
 
 4. Verify that Slack is connected in the integrations page.
@@ -38,11 +34,10 @@ Disclaimer: Promptless uses LLMs from OpenAI and Anthropic that have the potenti
 
 Once connected, you can use Slack for:
 
-- **[Triggers](/docs/configuration/triggers/slack)**: Tag @Promptless or use message actions to trigger documentation updates
-- **[Context Sources](/docs/configuration/context-sources/slack)**: Search Slack conversations for team discussions and decisions
+- **[Triggers](/docs/triggers/slack-messages)**: Tag @Promptless or use message actions to trigger documentation updates
 
 ## Privacy and Channel Access
 
 By default, Promptless only reads Slack content when you explicitly trigger it by tagging @Promptless or using the "Update Docs" message action. If you enable passive listening in your project settings, Promptless will monitor only the specific channels you select. Promptless cannot access private channels unless it has been specifically invited to those channels.
 
-For more details about using Slack with Promptless, see [Working with Slack](/docs/features/slack-interactions).
+For more details about using Slack with Promptless, see [Working with Slack](/docs/how-to-use-promptless/working-with-slack).

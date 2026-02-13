@@ -1,0 +1,84 @@
+# Valid internal URL paths for docs.gopromptless.ai
+# Generated from fern/docs.yml
+# Regenerate with: ./scripts/check-internal-links.sh --update
+# Then verify against the live site or docs_site_urls.md
+#
+# Base paths
+/docs
+/blog
+/changelog
+/self-hosting
+#
+# Getting Started
+/docs/getting-started
+/docs/getting-started/welcome
+/docs/getting-started/setup-quickstart
+/docs/getting-started/core-concepts
+/docs/getting-started/promptless-1-0
+/docs/getting-started/pilot-overview
+#
+# Configuring Promptless - Triggers
+/docs/triggers
+/docs/triggers/git-hub-p-rs
+/docs/triggers/git-hub-commits
+/docs/triggers/slack-messages
+/docs/triggers/microsoft-teams-messages
+/docs/triggers/zendesk-tickets-beta
+#
+# Configuring Promptless - Context Sources
+/docs/context-sources
+/docs/context-sources/linear
+/docs/context-sources/jira
+/docs/context-sources/confluence
+#
+# Configuring Promptless - Doc Collections
+/docs/doc-collections
+/docs/doc-collections/git-hub-repos-docs-as-code
+/docs/doc-collections/document360
+/docs/doc-collections/zendesk
+/docs/doc-collections/intercom-beta
+/docs/doc-collections/webflow-beta
+#
+# How to use Promptless
+/docs/how-to-use-promptless
+/docs/how-to-use-promptless/working-with-slack
+/docs/how-to-use-promptless/interacting-with-promptless-p-rs
+/docs/how-to-use-promptless/using-the-web-interface
+/docs/how-to-use-promptless/providing-feedback
+#
+# Integrations
+/docs/integrations
+/docs/integrations/bitbucket-integration
+/docs/integrations/github-integration
+/docs/integrations/github-enterprise-integration
+/docs/integrations/atlassian-integration
+/docs/integrations/linear-integration
+/docs/integrations/slack-integration
+/docs/integrations/microsoft-teams-integration
+/docs/integrations/zendesk-integration
+/docs/integrations/intercom-integration-beta
+/docs/integrations/webflow-integration-beta
+#
+# Account Management
+/docs/account-management
+#
+# Security and Privacy
+/docs/security-and-privacy
+/docs/security-and-privacy/single-sign-on-s-s-o-setup
+/docs/security-and-privacy/data-handling-and-classification
+/docs/security-and-privacy/network-architecture
+/docs/security-and-privacy/promptless-subprocessors
+/docs/security-and-privacy/privacy-policy
+#
+# FAQ
+/docs/frequently-asked-questions
+/docs/frequently-asked-questions/recommended-docs-providers
+#
+# Blog
+/blog/customer-stories
+/blog/customer-stories/vellum
+/blog/product-updates
+/blog/life-at-promptless
+#
+# Self-hosting
+/self-hosting/kubernetes-helm

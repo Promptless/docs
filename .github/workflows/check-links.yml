@@ -1,0 +1,35 @@
+name: check-internal-links
+
+on:
+  pull_request:
+    paths:
+      - 'fern/docs/**'
+      - 'fern/docs.yml'
+      - 'scripts/valid-urls.txt'
+  push:
+    branches:
+      - main
+    paths:
+      - 'fern/docs/**'
+      - 'fern/docs.yml'
+      - 'scripts/valid-urls.txt'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Check internal links
+        run: |
+          chmod +x scripts/check-internal-links.sh
+          ./scripts/check-internal-links.sh
