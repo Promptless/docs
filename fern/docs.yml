@@ -138,13 +138,6 @@ navigation:
           path: ./docs/security-and-privacy/subprocessors.md
         - page: Privacy Policy
           path: ./docs/security-and-privacy/privacy-policy.md
-    - section: Cheese
-      icon: fa-regular fa-cheese
-      contents:
-        - page: Introduction to Cheese
-          path: ./docs/cheese/introduction.mdx
-        - page: Types of Cheese
-          path: ./docs/cheese/types.mdx
     - section: Frequently Asked Questions
       icon: fa-regular fa-question-circle
       contents:
