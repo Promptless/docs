@@ -87,16 +87,6 @@ navigation:
           path: ./docs/features/web-ui-feedback.mdx
         - page: Providing Feedback
           path: ./docs/features/providing-feedback.mdx
-    - section: Use Cases
-      icon: fa-regular fa-lightbulb
-      path: ./docs/use-cases/index.mdx
-      contents:
-        - page: For Engineering Teams
-          path: ./docs/use-cases/engineering-teams.mdx
-        - page: For Technical Writers
-          path: ./docs/use-cases/technical-writers.mdx
-        - page: Support Tickets to Docs
-          path: ./docs/use-cases/support-to-docs.mdx
     - section: Integrations
       icon: fa-regular fa-plug
       path: ./docs/integrations/index.mdx
