@@ -1,0 +1,50 @@
+---
+title: For Engineering Teams
+description: Keep documentation in sync with code changes by automatically generating updates from pull requests
+---
+
+Promptless monitors your pull requests. When code changes, it generates documentation updates using PR descriptions and context from Linear or Jira.
+
+## What Promptless Analyzes
+
+When a PR is opened, Promptless reviews:
+- The code diff and changed files
+- The PR title and description
+- Related issues in Linear or Jira
+- Historical patterns in your documentation
+
+## Publishing Modes
+
+**Auto-publish mode**: Promptless creates a docs PR linked to your source PR. When your PR merges, the docs PR is ready for review.
+
+**Draft mode**: Review suggestions in the web interface before any PR is created.
+
+## Providing Feedback
+
+Tag @Promptless in GitHub PR comments to request changes. Promptless updates the suggestion accordingly.
+
+## Typical Workflow
+
+1. Engineer opens a PR with code changes
+2. Promptless analyzes the PR and related context
+3. Promptless generates a documentation suggestion
+4. Team gets notified in Slack
+5. Reviewers provide feedback via PR comments or web interface
+6. Documentation publishes when approved
+
+## Getting Started
+
+<Steps>
+  <Step title="Connect GitHub">
+    [Connect GitHub](/docs/integrations/github-integration) to enable PR monitoring.
+  </Step>
+  <Step title="Create a project">
+    [Create a project](/docs/getting-started) with GitHub as your trigger.
+  </Step>
+  <Step title="Add context sources (optional)">
+    Connect [Linear](/docs/integrations/linear-integration) or [Jira](/docs/integrations/atlassian-integration) for richer context.
+  </Step>
+  <Step title="Configure notifications">
+    Set up a Slack channel for notifications.
+  </Step>
+</Steps>
