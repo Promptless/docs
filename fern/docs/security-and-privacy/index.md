@@ -6,6 +6,8 @@ Promptless is committed to protecting the security and privacy of our customers'
 
 Our security documentation is organized into the following sections:
 
+- [Single Sign-On (SSO) Setup](./setup-sso.md) - Enterprise authentication via SAML 2.0 and OpenID Connect (OIDC)
+- [Compliance and Certifications](./compliance.md) - SOC 2 certification, penetration testing, audit logging, and incident notification procedures
 - [Data Handling and Security](./data-handling.md) - Details about our data security practices, authentication controls, and enterprise security features
 - [Network Architecture](./network-architecture.md) - Information about our infrastructure and security architecture
 - [Promptless Subprocessors](./subprocessors.md) - List of third-party services we use and our model-agnostic approach
