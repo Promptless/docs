@@ -1,0 +1,196 @@
+# Jira Integration
+
+**Used for: Context**
+
+<Info>
+If you have Jira integration set up, when engineers reference Jira issue keys in GitHub PRs or commit messages (like "PROJ-123"), Promptless can automatically retrieve important context from the tickets to make its suggestions more accurate.
+</Info>
+
+Promptless integrates with both Jira Cloud and Jira Data Center instances.
+
+## Integration Types
+
+Promptless supports two types of Jira integrations depending on your Jira deployment:
+
+<CardGroup cols={2}>
+  <Card title="Jira Cloud" icon="fa-solid fa-cloud">
+    For Atlassian-hosted Jira instances. Uses OAuth 2.0 authentication through Atlassian's secure connection process.
+  </Card>
+  <Card title="Jira Data Center (Beta)" icon="fa-solid fa-server">
+    For self-hosted Jira Data Center installations. Uses username and password authentication with your organization's instance.
+  </Card>
+</CardGroup>
+
+<Info>
+Jira Data Center is in Beta. Please contact the Promptless team at [help@gopromptless.ai](mailto:help@gopromptless.ai) to connect your Jira Data Center instance to Promptless.
+</Info>
+
+## Jira Cloud Installation
+
+For Atlassian Cloud-hosted Jira instances:
+
+<Steps>
+  <Step title="Connect Jira Cloud">
+    Click "Connect Jira Cloud" from the [integrations page](https://app.gopromptless.ai/integrations).
+  </Step>
+
+  <Step title="Atlassian Login">
+    If you're not already logged in, you'll see the Atlassian login screen:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-atlassian-login.png" alt="Atlassian Login Screen" />
+</Frame>
+  </Step>
+
+  <Step title="OAuth Consent">
+    Review the permissions Promptless is requesting on the OAuth consent screen:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-oauth-consent.png" alt="Jira OAuth Consent Screen" />
+</Frame>
+  </Step>
+
+  <Step title="Complete Connection">
+    Click "Accept" and verify the connection in Promptless. If you don't see the option to accept, you may not have the required permissions. Contact your Jira administrator or invite them to Promptless. For more information about adding new members, see our [Account Management](/docs/account-management) page.
+  </Step>
+</Steps>
+
+After connecting, manage Promptless access by going to your avatar > Account settings > Connected apps in Atlassian:
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/aab15aef-2759-42e6-93ec-d4c090526273-jira-connected-apps.png" alt="Atlassian Connected Apps Management" />
+</Frame>
+
+## Project Setup and Permissions
+
+After connecting Jira, you can configure which projects you'd like Promptless to search in when setting up a Project in the [projects page](https://app.gopromptless.ai/projects). Promptless will not search projects not specified here.
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e3bdab51-fb59-4971-aaac-32ed7dddf07b-project-context-sources-configuration.png" alt="Project configuration screen showing context sources setup with Jira integration" />
+</Frame>
+
+<Frame>
+  <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/e3bdab51-fb59-4971-aaac-32ed7dddf07b-jira-context-configuration-interface.png" alt="Jira context configuration interface showing connected status and accessible projects" />
+</Frame>
+
+## JQL Search Capabilities
+
+Promptless leverages Jira's powerful JQL (Jira Query Language) search functionality to find relevant context:
+
+- **Automatic Issue Retrieval**: When a GitHub PR or other trigger mentions a Jira ticket (like "PROJ-123"), Promptless automatically retrieves that specific issue for additional context.
+
+- **Proactive JQL Searches**: Promptless can proactively search Jira using JQL queries to find related issues, epics, and project data that might be relevant to the documentation being generated.
+
+<Note>
+Promptless queries Jira data in real-time and does not store any of your Jira data. All searches are performed on-demand when documentation updates are needed.
+</Note>
+
+## Provisioning a Jira Account for Promptless
+
+We recommend creating a dedicated Jira account for Promptless so that Promptless can create Jira issues and you can track its work in your project management system.
+
+Create the account using an email alias like `your_email+promptless@company.com`, or ask your IT admin to provision a new email account like `promptless@company.com`.
+
+<Steps>
+  <Step title="Navigate to User management">
+    In Atlassian, go to your settings and select **User management** under Atlassian admin settings.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-user-management-settings-1761099982.png" alt="Atlassian admin settings showing User management option" />
+    </Frame>
+  </Step>
+
+  <Step title="Invite the Promptless account">
+    Click "Invite people" and enter the email address for your Promptless account. Under the Jira app, select the **User** role (not User access admin).
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-invite-people-screen-1761099982.png" alt="Invite people to Jira screen with email and User role selected" />
+    </Frame>
+    
+    <Warning>
+      When accepting the invite, make sure you're logged out of your person account, and logged into the Jira account you created for Promptless, otherwise this won't work.
+    </Warning>
+  </Step>
+
+  <Step title="Accept the invitation">
+    Check your own email inbox (if you're using the alias), or Promptless's email inbox.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-email-invitation-1761099983.png" alt="Email invitation from Jira to join the team" />
+    </Frame>
+    
+    When setting up the account, you can use the name "Promptless Bot".
+    
+    Once complete, you'll see the account listed as ACTIVE. It might take up to an hour for the status to update from INVITED to ACTIVE after you accept the invite.
+    
+    <Frame>
+      <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/jira-promptless-bot-active-1761099983.png" alt="Promptless Bot account showing as ACTIVE in user list" />
+    </Frame>
+  </Step>
+
+</Steps>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Promptless actions are attributed to my personal account">
+    - Disconnect Jira from the [integrations page](https://app.gopromptless.ai/integrations)
+    - Sign out of your personal Jira account in your browser
+    - Sign in to the Promptless bot account you created
+    - Reconnect Jira to Promptless while signed in to the bot account
+  </Accordion>
+
+  <Accordion title="Permission denied when connecting Jira">
+    - Ensure you have admin permissions in your Jira instance
+    - Check that your organization allows OAuth 2.0 applications
+    - Verify you're not using a restricted Jira account
+    - Contact your Jira administrator to grant the necessary permissions
+  </Accordion>
+
+  <Accordion title="Jira integration doesn't appear when configuring a project">
+    - Verify Jira is connected on the [integrations page](https://app.gopromptless.ai/integrations)
+    - Check that your browser isn't blocking the connection (look for errors in the console)
+    - Disconnect and reconnect Jira
+    - Refresh the project configuration page
+  </Accordion>
+
+  <Accordion title="Can't see specific Jira projects in project configuration">
+    - Verify you have access to those projects in Jira itself
+    - Check that the projects aren't archived or restricted
+    - Ensure the account used for OAuth has the correct project permissions
+    - Re-authenticate with an account that has broader project access
+  </Accordion>
+
+  <Accordion title="Promptless isn't retrieving tickets mentioned in PRs">
+    - Verify the Jira project key matches exactly (case-sensitive)
+    - Check that the project is configured in your Promptless project's context sources
+    - Ensure the ticket exists and is accessible with your Jira permissions
+    - Confirm the ticket isn't in a project that's excluded from your configuration
+  </Accordion>
+
+  <Accordion title="No Jira projects configured in Promptless project">
+    You need to configure which projects Promptless should search:
+    - Go to the [projects page](https://app.gopromptless.ai/projects) and select your project
+    - Click on Context Sources and select your Jira integration
+    - Choose which Jira projects Promptless should search
+  </Accordion>
+
+  <Accordion title="Promptless Bot account stuck at 'INVITED' status">
+    - Check the email inbox for the Promptless Bot account and ensure you accepted the invite
+    - Verify you were signed in to the Promptless Bot account (not your personal account) when accepting
+    - It can take up to an hour for status to update after accepting the invitation
+    - If status doesn't update after an hour, re-invite the account
+  </Accordion>
+
+  <Accordion title="Connection lost or needs re-authentication">
+    OAuth tokens can expire or be revoked. To reconnect:
+    - Visit the [integrations page](https://app.gopromptless.ai/integrations)
+    - Delete and reconnect your Jira integration
+    - Ensure you're signed in to the correct Jira account during reconnection
+  </Accordion>
+
+  <Accordion title="Jira Data Center connection issues">
+    Jira Data Center integration is currently in Beta. Contact the Promptless team at [help@gopromptless.ai](mailto:help@gopromptless.ai) and we'll work with you directly to set up your Data Center connection.
+  </Accordion>
+</AccordionGroup>
+
+For additional support, contact [help@gopromptless.ai](mailto:help@gopromptless.ai).
