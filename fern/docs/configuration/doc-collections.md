@@ -2,7 +2,7 @@
 title: Doc Collections
 ---
 
-Doc Collections are the platforms where your documentation lives. Whether you're using Git-synced platforms such as Fern, Mintlify, or Docusaurus, or standalone platforms such as Zendesk and Intercom, you'll need to configure Promptless to read from and publish to your existing docs.
+Doc Collections are the platforms where your documentation lives. Whether you're using Git-synced platforms such as Fern, Mintlify, or Docusaurus, or standalone platforms such as Zendesk, Intercom, and Webflow, you'll need to configure Promptless to read from and publish to your existing docs.
 
 ## Git-hosted Documentation Platforms
 
@@ -20,19 +20,23 @@ The most common setup uses GitHub repositories to store documentation content th
 - Vocs
 - Custom platforms as long as the content is in a repo
 
-Learn more: [GitHub Repos (Docs as Code)](/docs/configuration/doc-collections/github-repos)
+Learn more: [GitHub Repos (Docs as Code)](/docs/doc-collections/git-hub-repos-docs-as-code)
 
 ## Direct Platform Integrations
 
 For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
 
 <CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuration/doc-collections/zendesk">
+  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/doc-collections/zendesk">
     Help center articles and knowledge base content management
   </Card>
   
-  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
+  <Card title="Intercom (Beta)" icon="fa-solid fa-comments" href="/docs/doc-collections/intercom-beta">
     Customer support documentation and help center content
+  </Card>
+  
+  <Card title="Webflow (Beta)" icon="fa-solid fa-w" href="/docs/doc-collections/webflow-beta">
+    Blog posts, collection items, and marketing site content
   </Card>
 </CardGroup>
 

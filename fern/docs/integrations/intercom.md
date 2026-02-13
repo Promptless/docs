@@ -18,7 +18,7 @@ To set up the Intercom integration:
 
 ## What You Can Do with Intercom
 
-Once connected, you can use Intercom as a [documentation platform](/docs/configuration/doc-collections/intercom) to publish help center articles and customer support documentation.
+Once connected, you can use Intercom as a [documentation platform](/docs/doc-collections/intercom-beta) to publish help center articles and customer support documentation.
 
 <Note>
 The Intercom integration creates or updates drafts in Intercom. You'll need to review and publish these drafts from within your Intercom dashboard before they become visible to your users.
