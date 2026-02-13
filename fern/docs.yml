@@ -128,6 +128,8 @@ navigation:
       contents:
         - page: Single Sign-On (SSO) Setup
           path: ./docs/security-and-privacy/setup-sso.md
+        - page: Compliance and Certifications
+          path: ./docs/security-and-privacy/compliance.md
         - page: Data Handling and Classification
           path: ./docs/security-and-privacy/data-handling.md
         - page: Network Architecture
