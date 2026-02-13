@@ -1,6 +1,8 @@
 instances:
   - url: promptless.docs.buildwithfern.com
-    custom-domain: docs.gopromptless.ai
+    custom-domain:
+      - docs.gopromptless.ai
+      - docs.promptless.ai
 
 title: Promptless | Documentation
 
@@ -34,6 +36,11 @@ navigation:
           path: ./docs/getting-started.mdx
         - page: Core Concepts
           path: ./docs/core-concepts.mdx
+        - page: Promptless for Open-Source
+          slug: promptless-oss
+          path: ./docs/open-source.mdx
+        - page: Getting Help
+          path: ./docs/getting-help.mdx
         - page: Pilot Overview
           hidden: true
           path: ./docs/pilot-guide.mdx
@@ -67,14 +74,10 @@ navigation:
           contents:
             - page: GitHub Repos (Docs as Code)
               path: ./docs/configuration/doc-collections/github-repos.md
-            - page: Document360
-              path: ./docs/configuration/doc-collections/document360.md
             - page: Zendesk
               path: ./docs/configuration/doc-collections/zendesk.md
             - page: Intercom (Beta)
               path: ./docs/configuration/doc-collections/intercom.md
-            - page: Webflow (Beta)
-              path: ./docs/configuration/doc-collections/webflow.md
     - section: How to use Promptless
       icon: fa-regular fa-star
       path: ./docs/features/index.mdx
@@ -116,8 +119,6 @@ navigation:
           path: ./docs/integrations/zendesk.mdx
         - page: Intercom Integration (Beta)
           path: ./docs/integrations/intercom.md
-        - page: Webflow Integration (Beta)
-          path: ./docs/integrations/webflow.mdx
     - section: Account Management
       icon: fa-regular fa-users
       contents:
@@ -158,6 +159,12 @@ navigation:
         - page: How Vellum Drafts 50%+ of Docs with Promptless
           path: ./docs/customer-stories/vellum.mdx
           slug: vellum
+    - section: Technical
+      icon: fa-regular fa-code
+      contents:
+        - page: "I Have No Mouth, and I Must Scream"
+          path: ./docs/technical/i-must-scream.mdx
+          slug: i-must-scream
     - section: Life at Promptless
       icon: fa-regular fa-lightbulb
       contents:
@@ -225,3 +232,7 @@ favicon: ./docs/assets/favicon.ico
 redirects:
   - source: "/promptless-1-0"
     destination: "/docs/getting-started/promptless-1-0"
+  - source: "/github/adding-repos"
+    destination: "/docs/integrations/github-integration#adding-more-repos-after-installation"
+  - source: "/support"
+    destination: "/docs/getting-started/getting-help"
