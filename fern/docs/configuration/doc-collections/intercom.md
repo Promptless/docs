@@ -45,7 +45,7 @@ Intercom as a documentation platform is especially useful for:
 
 ## Setup Instructions
 
-To connect Intercom to Promptless, see the [Intercom Integration](/docs/integrations/intercom) setup guide.
+To connect Intercom to Promptless, see the [Intercom Integration](/docs/integrations/intercom-integration-beta) setup guide.
 
 <Info>
 Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable the Intercom integration for your account.

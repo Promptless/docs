@@ -41,4 +41,4 @@ Zendesk as a documentation platform is especially useful for:
 
 ## Setup Instructions
 
-To connect Zendesk to Promptless, see the [Zendesk Integration](/docs/integrations/zendesk) setup guide.
+To connect Zendesk to Promptless, see the [Zendesk Integration](/docs/integrations/zendesk-integration) setup guide.
