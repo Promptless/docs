@@ -1,0 +1,56 @@
+---
+export interface Props {
+  title: string;
+  icon?: string;
+  href?: string;
+}
+
+const { title, icon, href } = Astro.props;
+
+function iconFallback(value?: string): string {
+  if (!value) return '';
+  const normalized = value.toLowerCase();
+  if (normalized.includes('rocket')) return '🚀';
+  if (normalized.includes('slack')) return '💬';
+  if (normalized.includes('github')) return '🐙';
+  if (normalized.includes('shield')) return '🛡';
+  if (normalized.includes('users') || normalized.includes('team')) return '👥';
+  if (normalized.includes('clock')) return '🕒';
+  if (normalized.includes('plug')) return '🔌';
+  if (normalized.includes('lightbulb') || normalized.includes('brain')) return '💡';
+  if (normalized.includes('code')) return '💻';
+  return '•';
+}
+---
+
+{
+  href ? (
+    <a class="fern-card" href={href}>
+      <h3 class="fern-card-title">
+        {icon && (
+          <span aria-hidden="true" class="fern-card-icon">
+            {iconFallback(icon)}
+          </span>
+        )}
+        {title}
+      </h3>
+      <div class="fern-card-body">
+        <slot />
+      </div>
+    </a>
+  ) : (
+    <article class="fern-card">
+      <h3 class="fern-card-title">
+        {icon && (
+          <span aria-hidden="true" class="fern-card-icon">
+            {iconFallback(icon)}
+          </span>
+        )}
+        {title}
+      </h3>
+      <div class="fern-card-body">
+        <slot />
+      </div>
+    </article>
+  )
+}

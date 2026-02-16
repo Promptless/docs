@@ -1,0 +1,22 @@
+---
+export interface Props {
+  title?: string;
+  kind: 'info' | 'note' | 'tip' | 'warning' | 'success';
+}
+
+const { title, kind } = Astro.props;
+const defaultTitles: Record<Props['kind'], string> = {
+  info: 'Info',
+  note: 'Note',
+  tip: 'Tip',
+  warning: 'Warning',
+  success: 'Success',
+};
+---
+
+<section class:list={['fern-admonition', kind]}>
+  <p class="fern-admonition-title">{title || defaultTitles[kind]}</p>
+  <div class="fern-admonition-body">
+    <slot />
+  </div>
+</section>

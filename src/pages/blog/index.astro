@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.hidden)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const latest = posts.at(0);
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const grouped = posts.reduce((acc, post) => {
+  const section = post.data.section || 'Other';
+  acc[section] ??= [];
+  acc[section].push(post);
+  return acc;
+}, {} as Record<string, typeof posts>);
+---
+
+<StarlightPage
+  hasSidebar={false}
+  frontmatter={{
+    title: 'Blog',
+    description: 'Product updates, customer stories, and technical insights from Promptless.',
+    template: 'doc',
+    editUrl: false,
+  }}
+>
+  {
+    latest && (
+      <section class="collection-latest">
+        <p class="collection-kicker">Latest post</p>
+        <a class="collection-latest-card" href={`/blog/${latest.slug}`}>
+          <p class="collection-latest-meta">{dateFormatter.format(latest.data.date)}</p>
+          <h2>{latest.data.title}</h2>
+          {(latest.data.description || latest.data.subtitle) && (
+            <p>{latest.data.description || latest.data.subtitle}</p>
+          )}
+        </a>
+      </section>
+    )
+  }
+
+  <div class="collection-groups">
+    {
+      Object.entries(grouped).map(([section, entries]) => (
+        <section class="collection-group">
+          <header class="collection-group-header">
+            <h2>{section}</h2>
+            <p>{entries.length === 1 ? '1 post' : `${entries.length} posts`}</p>
+          </header>
+          <ul class="collection-list">
+            {entries.map((entry) => (
+              <li>
+                <article class="collection-card">
+                  <p class="collection-card-meta">{dateFormatter.format(entry.data.date)}</p>
+                  <h3>
+                    <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                  </h3>
+                  {(entry.data.description || entry.data.subtitle) && (
+                    <p class="collection-card-description">
+                      {entry.data.description || entry.data.subtitle}
+                    </p>
+                  )}
+                </article>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</StarlightPage>

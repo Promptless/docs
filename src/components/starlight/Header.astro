@@ -1,0 +1,124 @@
+---
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import { getActiveSection, TOP_NAV_ITEMS } from '@lib/site-navigation';
+
+const activeSection = getActiveSection(Astro.url.pathname);
+const navItems = TOP_NAV_ITEMS.map((item) => ({
+  ...item,
+  active: item.section === activeSection,
+}));
+
+---
+
+<div class="header">
+  <div class="title-wrapper sl-flex">
+    <SiteTitle />
+  </div>
+  <nav class="nav-links sl-hidden lg:sl-flex" aria-label="Primary">
+    {
+      navItems.map((item) => (
+        <a
+          aria-current={item.active ? 'page' : undefined}
+          class:list={{ active: item.active }}
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+  <div class="sl-flex print:hidden header-right">
+    <Search />
+    <a class="signin" href="https://accounts.gopromptless.ai">
+      Sign In
+    </a>
+    <ThemeSelect />
+    <LanguageSelect />
+  </div>
+</div>
+
+<style>
+  @layer starlight.core {
+    .header {
+      display: flex;
+      gap: clamp(0.5rem, 1vw, 0.9rem);
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .title-wrapper {
+      overflow: clip;
+      padding: 0.25rem;
+      margin: -0.25rem;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      gap: 0.125rem;
+      align-items: center;
+      margin-inline: auto;
+    }
+
+    .nav-links a {
+      color: var(--pl-tab-fg);
+      font-size: var(--sl-text-sm);
+      font-weight: 500;
+      line-height: 1.1;
+      text-decoration: none;
+      border-radius: 6px 6px 0 0;
+      padding: 0.6rem 0.72rem 0.5rem;
+      border: 1px solid transparent;
+      border-bottom-width: 2px;
+      transition: color 120ms ease, background-color 120ms ease, border-color 120ms ease,
+        box-shadow 120ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--pl-tab-fg-hover);
+      background: var(--pl-tab-bg-hover);
+      border-color: transparent;
+    }
+
+    .nav-links a.active {
+      color: var(--pl-tab-fg-active);
+      background: var(--pl-tab-bg-active);
+      border-color: transparent;
+      border-bottom-color: var(--pl-tab-fg-active);
+      box-shadow: inset 0 -1px 0 0 color-mix(in srgb, var(--pl-tab-fg-active) 35%, transparent);
+    }
+
+    .header-right {
+      gap: 0.7rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .signin {
+      display: none;
+      font-size: var(--sl-text-sm);
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--pl-tab-fg);
+      border: 1px solid color-mix(in srgb, var(--pl-header-border) 80%, transparent);
+      border-radius: 999px;
+      padding: 0.38rem 0.78rem;
+    }
+
+    .signin:hover {
+      color: var(--pl-tab-fg-hover);
+      border-color: color-mix(in srgb, var(--pl-tab-fg-active) 55%, var(--pl-header-border));
+      background: var(--pl-tab-bg-hover);
+    }
+
+    @media (min-width: 64rem) {
+      .signin {
+        display: inline-flex;
+      }
+    }
+  }
+</style>
