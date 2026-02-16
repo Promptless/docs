@@ -50,7 +50,7 @@ When auto-publish is enabled for your project:
 
 - Promptless automatically creates a new PR in your documentation repository with suggested changes
 - For GitHub PR triggers, the documentation PR is linked in a comment on the original code PR
-- For [commit triggers](/docs/configuration/triggers/github-commits), you can enable auto-merge to automatically merge documentation PRs as soon as they're created (nested checkbox under auto-publish in project settings)
+- For [commit triggers](/docs/configuring-promptless/triggers/git-hub-commits), you can enable auto-merge to automatically merge documentation PRs as soon as they're created (nested checkbox under auto-publish in project settings)
 
 ## Automated CI Check and Build Issue Resolution
 

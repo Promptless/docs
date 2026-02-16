@@ -20,18 +20,18 @@ The most common setup uses GitHub repositories to store documentation content th
 - Vocs
 - Custom platforms as long as the content is in a repo
 
-Learn more: [GitHub Repos (Docs as Code)](/docs/configuration/doc-collections/github-repos)
+Learn more: [GitHub Repos (Docs as Code)](/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code)
 
 ## Direct Platform Integrations
 
 For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
 
 <CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuration/doc-collections/zendesk">
+  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuring-promptless/doc-collections/zendesk">
     Help center articles and knowledge base content management
   </Card>
   
-  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
+  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuring-promptless/doc-collections/intercom-beta">
     Customer support documentation and help center content
   </Card>
 </CardGroup>
