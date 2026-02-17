@@ -4,7 +4,7 @@ instances:
       - docs.gopromptless.ai
       - docs.promptless.ai
 
-title: Promptless | Documentation
+title: Promptless | Docs
 
 layout:
   searchbar-placement: header 
