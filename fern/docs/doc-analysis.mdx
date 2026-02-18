@@ -6,8 +6,6 @@ Before creating the first suggestion, Promptless analyzes your existing docs to 
 
 ## Initial Ingestion
 
-During ingestion, Promptless:
-
 - Reads every page in your connected documentation
 - Builds a searchable index to find relevant content when analyzing triggers
 - Maps relationships between pages, sections, and topics
@@ -34,28 +32,6 @@ Promptless learns patterns like:
 - Your preferences for capitalization, punctuation, and code formatting
 
 When drafting content, Promptless references similar existing pages to match their style.
-
-## What Happens When a Trigger Fires
-
-When an event triggers Promptless (like a PR merge or Slack message), here's what happens:
-
-<Steps>
-  <Step title="Context gathering">
-    Promptless pulls relevant context from connected sources—PR details, linked issues in Linear or Jira, related Slack conversations, and your existing documentation.
-  </Step>
-
-  <Step title="Change analysis">
-    Promptless analyzes what changed and determines which parts of your documentation might be affected. This uses the product ontology to identify related features and pages.
-  </Step>
-
-  <Step title="Content drafting">
-    Using Voice Match, Promptless drafts documentation updates that match your existing style. Every change includes citations showing where the information came from.
-  </Step>
-
-  <Step title="Suggestion creation">
-    Promptless creates a suggestion for your review. You can edit, provide feedback, or publish directly.
-  </Step>
-</Steps>
 
 ## Continuous Learning
 
