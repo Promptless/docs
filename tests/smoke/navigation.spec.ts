@@ -16,7 +16,7 @@ function getPrimaryNav(html: string): string {
 
 function assertLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
-    `<a(?=[^>]*href="${escapeRegExp(href)}")[^>]*>\\s*${escapeRegExp(label)}\\s*</a>`,
+    `<a(?=[^>]*href="${escapeRegExp(href)}")[^>]*>[\\s\\S]*?${escapeRegExp(label)}[\\s\\S]*?</a>`,
     'i'
   );
   assert.match(navHtml, pattern, `Missing nav link ${label} -> ${href}`);
@@ -24,9 +24,9 @@ function assertLink(navHtml: string, href: string, label: string) {
 
 function assertActiveLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
-    `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>\\s*${escapeRegExp(
+    `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>[\\s\\S]*?${escapeRegExp(
       label
-    )}\\s*</a>`,
+    )}[\\s\\S]*?</a>`,
     'i'
   );
   assert.match(navHtml, pattern, `Expected ${href} to be active for ${label}.`);
@@ -34,12 +34,27 @@ function assertActiveLink(navHtml: string, href: string, label: string) {
 
 function assertInactiveLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
-    `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>\\s*${escapeRegExp(
+    `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>[\\s\\S]*?${escapeRegExp(
       label
-    )}\\s*</a>`,
+    )}[\\s\\S]*?</a>`,
     'i'
   );
   assert.doesNotMatch(navHtml, pattern, `Did not expect ${href} to be active for ${label}.`);
+}
+
+function assertNavOrder(navHtml: string, hrefs: string[]) {
+  const hrefMatches = [...navHtml.matchAll(/<a[^>]*href="([^"]+)"/gi)];
+  const navHrefs = hrefMatches.map((match) => match[1]);
+  const navOrder = hrefs.map((href) => navHrefs.indexOf(href));
+  for (let index = 0; index < navOrder.length; index += 1) {
+    assert.notEqual(navOrder[index], -1, `Expected to find ${hrefs[index]} in primary nav.`);
+    if (index > 0) {
+      assert.ok(
+        navOrder[index - 1] < navOrder[index],
+        `Expected ${hrefs[index - 1]} before ${hrefs[index]} in primary nav.`
+      );
+    }
+  }
 }
 
 before(async () => {
@@ -50,35 +65,56 @@ after(async () => {
   await preview.close();
 });
 
-test('primary nav uses canonical blog/changelog routes', async () => {
+test('primary nav keeps canonical routes with website first', async () => {
   const response = await fetch(`${preview.baseUrl}/docs/getting-started/welcome`);
   assert.equal(response.status, 200);
   const html = await response.text();
   const nav = getPrimaryNav(html);
+  assertLink(nav, '/', 'Website');
   assertLink(nav, '/docs', 'Docs');
   assertLink(nav, '/blog', 'Blog');
   assertLink(nav, '/changelog', 'Changelog');
+  assertLink(nav, 'https://app.gopromptless.ai', 'Sign in');
+  assertNavOrder(nav, ['/', '/docs', '/blog', '/changelog', 'https://app.gopromptless.ai']);
   assert.doesNotMatch(nav, /href="\/blog\/all"/);
   assert.doesNotMatch(nav, /href="\/changelog\/all"/);
 });
 
-test('docs/blog/changelog active state is correct', async () => {
+test('website/docs/blog/changelog active state is correct', async () => {
+  const websiteHtml = await (await fetch(`${preview.baseUrl}/`)).text();
+  const websiteDemoHtml = await (await fetch(`${preview.baseUrl}/demo`)).text();
+  const websitePricingHtml = await (await fetch(`${preview.baseUrl}/pricing`)).text();
   const docsHtml = await (await fetch(`${preview.baseUrl}/docs/getting-started/welcome`)).text();
   const blogHtml = await (await fetch(`${preview.baseUrl}/blog`)).text();
   const changelogHtml = await (await fetch(`${preview.baseUrl}/changelog`)).text();
 
+  const websiteNav = getPrimaryNav(websiteHtml);
+  assertActiveLink(websiteNav, '/', 'Website');
+  assertInactiveLink(websiteNav, '/docs', 'Docs');
+  assertInactiveLink(websiteNav, '/blog', 'Blog');
+  assertInactiveLink(websiteNav, '/changelog', 'Changelog');
+
+  const demoNav = getPrimaryNav(websiteDemoHtml);
+  assertActiveLink(demoNav, '/', 'Website');
+
+  const pricingNav = getPrimaryNav(websitePricingHtml);
+  assertActiveLink(pricingNav, '/', 'Website');
+
   const docsNav = getPrimaryNav(docsHtml);
   assertActiveLink(docsNav, '/docs', 'Docs');
+  assertInactiveLink(docsNav, '/', 'Website');
   assertInactiveLink(docsNav, '/blog', 'Blog');
   assertInactiveLink(docsNav, '/changelog', 'Changelog');
 
   const blogNav = getPrimaryNav(blogHtml);
   assertActiveLink(blogNav, '/blog', 'Blog');
+  assertInactiveLink(blogNav, '/', 'Website');
   assertInactiveLink(blogNav, '/docs', 'Docs');
   assertInactiveLink(blogNav, '/changelog', 'Changelog');
 
   const changelogNav = getPrimaryNav(changelogHtml);
   assertActiveLink(changelogNav, '/changelog', 'Changelog');
+  assertInactiveLink(changelogNav, '/', 'Website');
   assertInactiveLink(changelogNav, '/docs', 'Docs');
   assertInactiveLink(changelogNav, '/blog', 'Blog');
 });
@@ -100,5 +136,49 @@ test('/blog/all and /changelog/all remain compatibility redirects', async () => 
     assert.equal(changelogAll.status, 200);
     const body = await changelogAll.text();
     assert.match(body, /Redirecting to: \/changelog/);
+  }
+});
+
+test('website routes are canonicalized to /, /demo, and /pricing', async () => {
+  const homepage = await fetch(`${preview.baseUrl}/`);
+  assert.equal(homepage.status, 200);
+  const homepageHtml = await homepage.text();
+  assert.match(homepageHtml, /pl-site-page/);
+  assert.match(homepageHtml, /How Promptless works/);
+
+  const homeAlias = await fetch(`${preview.baseUrl}/home`, { redirect: 'manual' });
+  if (homeAlias.status >= 300 && homeAlias.status < 400) {
+    assert.equal(homeAlias.headers.get('location'), '/');
+  } else {
+    assert.equal(homeAlias.status, 200);
+    assert.match(await homeAlias.text(), /Redirecting to: \//);
+  }
+
+  const demo = await fetch(`${preview.baseUrl}/demo`);
+  assert.equal(demo.status, 200);
+  assert.match(await demo.text(), /Video Demo/);
+
+  const pricing = await fetch(`${preview.baseUrl}/pricing`);
+  assert.equal(pricing.status, 200);
+  assert.match(await pricing.text(), /Pricing/);
+
+  const aliases = ['/site', '/site/demo', '/video-demo', '/use-cases', '/faq', '/api-reference'];
+  for (const alias of aliases) {
+    const aliasResponse = await fetch(`${preview.baseUrl}${alias}`, { redirect: 'manual' });
+    if (aliasResponse.status >= 300 && aliasResponse.status < 400) {
+      if (alias === '/site' || alias === '/site/demo' || alias === '/video-demo') {
+        assert.equal(aliasResponse.headers.get('location'), '/demo');
+      } else {
+        assert.equal(aliasResponse.headers.get('location'), '/');
+      }
+      continue;
+    }
+    assert.equal(aliasResponse.status, 200);
+    const body = await aliasResponse.text();
+    if (alias === '/site' || alias === '/site/demo' || alias === '/video-demo') {
+      assert.match(body, /Redirecting to: \/demo/);
+    } else {
+      assert.match(body, /Redirecting to: \//);
+    }
   }
 });

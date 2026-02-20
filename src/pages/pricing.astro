@@ -1,0 +1,29 @@
+---
+import { getEntry } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getWebsiteSidebarLinks } from '@lib/website-navigation';
+
+const entry = await getEntry('website', 'pricing');
+
+if (!entry) {
+  throw new Error('Missing website content entry: pricing');
+}
+
+const { Content, headings } = await entry.render();
+---
+
+<StarlightPage
+  hasSidebar
+  sidebar={getWebsiteSidebarLinks()}
+  headings={headings}
+  frontmatter={{
+    title: entry.data.title,
+    description: entry.data.description,
+    template: 'doc',
+    editUrl: false,
+  }}
+>
+  <div class="pl-site-page">
+    <Content />
+  </div>
+</StarlightPage>

@@ -1,8 +1,8 @@
 {
   "redirects": [
     {
-      "source": "/",
-      "destination": "/docs/getting-started/welcome",
+      "source": "/home",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -18,6 +18,36 @@
     {
       "source": "/docs",
       "destination": "/docs/getting-started/welcome",
+      "permanent": true
+    },
+    {
+      "source": "/site",
+      "destination": "/demo",
+      "permanent": true
+    },
+    {
+      "source": "/site/demo",
+      "destination": "/demo",
+      "permanent": true
+    },
+    {
+      "source": "/video-demo",
+      "destination": "/demo",
+      "permanent": true
+    },
+    {
+      "source": "/use-cases",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/api-reference",
+      "destination": "/",
       "permanent": true
     },
     {

@@ -1,0 +1,39 @@
+---
+interface Props {
+  prefix?: string;
+  words?: string[];
+  subtitle?: string;
+}
+
+const {
+  prefix = 'AI agent for your',
+  words = ['API docs', 'tutorials', 'release notes', 'support articles', 'API docs'],
+  subtitle = 'Eliminate docs drift and automate the most painful parts of docs maintenance.',
+} = Astro.props;
+---
+
+<section id="overview" class="pl-site-hero">
+  <h1 class="pl-site-hero-title">
+    <span>{prefix}</span>
+    <span class="pl-site-hero-words" aria-hidden="true">
+      {words.map((word) => <span>{word}</span>)}
+    </span>
+    <span class="sr-only">{words.slice(0, words.length - 1).join(', ')}</span>
+  </h1>
+
+  <p class="pl-site-subtitle">{subtitle}</p>
+
+  <form id="book-a-demo" class="pl-site-form-row" action="https://cal.com/promptless/demo" method="get">
+    <label class="sr-only" for="work-email">Work email</label>
+    <input id="work-email" type="email" name="email" placeholder="Work email" />
+    <button type="submit">Book demo</button>
+  </form>
+
+  <div class="pl-site-trust-row">
+    <div class="pl-site-trust-badge">
+      <img src="/site/yc_logo.svg.png" alt="Y Combinator" width="20" height="20" />
+      <span>Backed by Y Combinator</span>
+    </div>
+    <span>Trusted by fast-growing startups and Fortune 500 enterprises alike</span>
+  </div>
+</section>

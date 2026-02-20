@@ -48,9 +48,13 @@ test('blog and changelog detail pages include top and bottom canonical back link
 test('llms endpoints remain available', async () => {
   const llms = await fetch(`${preview.baseUrl}/llms.txt`);
   assert.equal(llms.status, 200);
-  assert.match(await llms.text(), /# Docs/i);
+  const llmsBody = await llms.text();
+  assert.match(llmsBody, /## Website/i);
+  assert.match(llmsBody, /## Docs/i);
 
   const llmsFull = await fetch(`${preview.baseUrl}/llms-full.txt`);
   assert.equal(llmsFull.status, 200);
-  assert.match(await llmsFull.text(), /## docs/i);
+  const llmsFullBody = await llmsFull.text();
+  assert.match(llmsFullBody, /## Website/i);
+  assert.match(llmsFullBody, /## Docs/i);
 });

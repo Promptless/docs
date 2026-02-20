@@ -7,15 +7,21 @@ import redirectsManifest from './migration/redirects.generated.json' with { type
 const redirectEntries = (redirectsManifest.redirects || []).map((rule) => [rule.source, rule.destination]);
 
 const redirects = {
-  '/': '/docs/getting-started/welcome',
+  '/home': '/',
   '/docs': '/docs/getting-started/welcome',
+  '/site': '/demo',
+  '/site/demo': '/demo',
+  '/video-demo': '/demo',
+  '/use-cases': '/',
+  '/faq': '/',
+  '/api-reference': '/',
   '/blog/all': '/blog',
   '/changelog/all': '/changelog',
   ...Object.fromEntries(redirectEntries),
 };
 
 export default defineConfig({
-  site: 'https://docs.gopromptless.ai',
+  site: process.env.SITE_URL || 'https://docs.gopromptless.ai',
   redirects,
   image: {
     service: {
@@ -33,14 +39,19 @@ export default defineConfig({
         replacesTitle: true,
       },
       favicon: '/favicon.ico',
-      customCss: ['./src/styles/custom.css'],
+      customCss: ['./src/styles/custom.css', './src/styles/site.css'],
       sidebar: generatedSidebar,
       components: {
         Header: './src/components/starlight/Header.astro',
+        SiteTitle: './src/components/starlight/SiteTitle.astro',
+        PageTitle: './src/components/starlight/PageTitle.astro',
+        Footer: './src/components/starlight/Footer.astro',
+        ThemeProvider: './src/components/starlight/ThemeProviderLightOnly.astro',
+        MobileMenuFooter: './src/components/starlight/MobileMenuFooter.astro',
       },
       titleDelimiter: '|',
       markdown: {
-        processedDirs: ['./src/content/blog', './src/content/changelog'],
+        processedDirs: ['./src/content/blog', './src/content/changelog', './src/content/website'],
       },
       editLink: {
         baseUrl: 'https://github.com/Promptless/docs/tree/main',

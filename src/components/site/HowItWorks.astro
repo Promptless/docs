@@ -1,0 +1,68 @@
+---
+interface Step {
+  id: string;
+  label: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+interface Props {
+  steps?: Step[];
+}
+
+const defaultSteps: Step[] = [
+  {
+    id: 'listen',
+    label: 'Listen',
+    description: 'Connect to Github, Slack, and Linear.',
+    image: '/site/step_1.png',
+    imageAlt: 'Step 1: Listen - Connect to Github, Slack, and Linear',
+  },
+  {
+    id: 'draft',
+    label: 'Draft',
+    description: 'Promptless proactively notifies you with documentation suggestions.',
+    image: '/site/step_2.png',
+    imageAlt: 'Step 2: Draft - Promptless notifies you proactively with suggestions',
+  },
+  {
+    id: 'review',
+    label: 'Review',
+    description: 'Review citations, provide feedback, or edit suggestions inline.',
+    image: '/site/step_3.png',
+    imageAlt: 'Step 3: Review - review citations, feedback, and inline edits',
+  },
+  {
+    id: 'publish',
+    label: 'Publish',
+    description: 'Open PRs or deploy directly to your docs provider.',
+  },
+];
+
+const { steps = defaultSteps } = Astro.props;
+---
+
+<section class="pl-site-steps" id="how-promptless-works">
+  <p class="pl-site-kicker">Get started</p>
+  <h2>How Promptless works</h2>
+
+  <div class="pl-site-step-list">
+    {
+      steps.map((step, index) => (
+        <article class="pl-site-step" id={step.id}>
+          <span class="pl-site-step-num">{index + 1}</span>
+          <h3>{step.label}</h3>
+          <p>{step.description}</p>
+          {step.image ? (
+            <div class="pl-site-step-surface">
+              <img src={step.image} alt={step.imageAlt ?? step.label} loading="lazy" />
+            </div>
+          ) : (
+            <div class="pl-site-step-surface placeholder">Image placeholder</div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>

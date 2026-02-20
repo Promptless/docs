@@ -1,18 +1,39 @@
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import matter from 'gray-matter';
+import { toAbsoluteUrl } from '@lib/canonical-site';
 import { sortByManifestOrder } from '@lib/content-order';
 import type { RouteManifestEntry } from '@lib/route-manifest';
 
-function absoluteUrl(site: URL | undefined, path: string) {
-  const base = site?.toString() || process.env.SITE_URL || 'https://docs.gopromptless.ai';
-  return new URL(path, base).toString();
+interface WebsiteEntryBlock {
+  title: string;
+  description?: string;
+  routePath: string;
+  order: number;
+  body: string;
 }
 
 export const GET: APIRoute = async ({ site }) => {
   const blocks: string[] = [];
   blocks.push('# Promptless | Documentation');
+
+  const websiteEntries = await getWebsiteEntries();
+  blocks.push('', '## Website');
+  for (const entry of websiteEntries) {
+    blocks.push(
+      '',
+      '***',
+      '',
+      `title: ${entry.title}`,
+      `url: ${toAbsoluteUrl(entry.routePath, site)}`,
+      entry.description ? `description: ${entry.description}` : '',
+      '---',
+      '',
+      entry.body
+    );
+  }
 
   const byType = {
     docs: sortByManifestOrder('docs'),
@@ -33,7 +54,7 @@ export const GET: APIRoute = async ({ site }) => {
         '***',
         '',
         `title: ${route.title}`,
-        `url: ${absoluteUrl(site, routePath)}`,
+        `url: ${toAbsoluteUrl(routePath, site)}`,
         route.description ? `description: ${route.description}` : '',
         '---',
         '',
@@ -46,6 +67,29 @@ export const GET: APIRoute = async ({ site }) => {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   });
 };
+
+async function getWebsiteEntries(): Promise<WebsiteEntryBlock[]> {
+  const entries = await getCollection('website', ({ data }) => !data.hidden);
+  return entries
+    .map((entry) => ({
+      title: entry.data.title,
+      description: entry.data.description,
+      routePath: entry.data.routePath,
+      order: entry.data.order,
+      body: stripMdxImports(entry.body).trim(),
+    }))
+    .sort((a, b) => {
+      if (a.order !== b.order) return a.order - b.order;
+      return a.routePath.localeCompare(b.routePath);
+    });
+}
+
+function stripMdxImports(body: string): string {
+  return body
+    .split('\n')
+    .filter((line) => !line.startsWith('import ') && !line.startsWith('export '))
+    .join('\n');
+}
 
 function normalizeRoutePath(pathname: string): string {
   return pathname.startsWith('/') ? pathname : `/${pathname}`;

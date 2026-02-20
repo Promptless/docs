@@ -1,0 +1,63 @@
+---
+interface PricingTier {
+  name: string;
+  summary: string;
+  price: string;
+  bullets: string[];
+  ctaLabel: string;
+  ctaHref: string;
+  featured?: boolean;
+}
+
+interface Props {
+  tiers?: PricingTier[];
+}
+
+const defaultTiers: PricingTier[] = [
+  {
+    name: 'Startup',
+    summary: 'For teams shipping quickly with one docs surface.',
+    price: '$1,500/mo',
+    bullets: ['GitHub + Slack triggers', 'Automated suggestions and citations', 'Email support'],
+    ctaLabel: 'Book demo',
+    ctaHref: 'https://cal.com/promptless/demo',
+  },
+  {
+    name: 'Growth',
+    summary: 'For multi-team docs programs with richer review workflows.',
+    price: '$4,000/mo',
+    bullets: ['Multiple projects and collections', 'Custom writing style calibration', 'Priority support'],
+    ctaLabel: 'Talk to sales',
+    ctaHref: 'https://cal.com/promptless/demo',
+    featured: true,
+  },
+  {
+    name: 'Enterprise',
+    summary: 'For security-conscious orgs with complex systems.',
+    price: 'Custom',
+    bullets: ['SSO + audit controls', 'Private deployment options', 'Dedicated success engineer'],
+    ctaLabel: 'Contact us',
+    ctaHref: 'mailto:hello@gopromptless.ai',
+  },
+];
+
+const { tiers = defaultTiers } = Astro.props;
+---
+
+<section class="pl-site-pricing" id="plans">
+  <div class="pl-site-pricing-grid">
+    {
+      tiers.map((tier) => (
+        <article class:list={['pl-site-pricing-card', { featured: tier.featured }]}>
+          <h2>{tier.name}</h2>
+          <p class="pl-site-pricing-summary">{tier.summary}</p>
+          <p class="pl-site-pricing-price">{tier.price}</p>
+          <ul>
+            {tier.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+          <a href={tier.ctaHref}>{tier.ctaLabel}</a>
+        </article>
+      ))
+    }
+  </div>
+</section>

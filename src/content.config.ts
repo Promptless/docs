@@ -29,8 +29,20 @@ const changelog = defineCollection({
   }),
 });
 
+const website = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    routePath: z.string(),
+    order: z.number().int().nonnegative(),
+    hidden: z.boolean().optional().default(false),
+  }),
+});
+
 export const collections = {
   docs,
   blog,
   changelog,
+  website,
 };

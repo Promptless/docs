@@ -1,0 +1,137 @@
+{
+  "sourceRoot": "/Users/prithvi/promptless/promptless/www/site_vdoc",
+  "targetRoot": "/Users/prithvi/promptless/docs",
+  "capturedAt": "2026-02-20",
+  "routes": [
+    {
+      "sourceRoute": "/",
+      "sourceFile": "app/page.tsx",
+      "targetRoute": "/",
+      "targetFile": "src/pages/index.astro",
+      "status": "ported",
+      "notes": "Homepage ported into Astro website shell."
+    },
+    {
+      "sourceRoute": "/video-demo",
+      "sourceFile": "app/video-demo/page.tsx",
+      "targetRoute": "/demo",
+      "targetFile": "src/pages/demo.astro",
+      "status": "ported",
+      "notes": "Canonicalized under /demo; /video-demo redirects permanently."
+    },
+    {
+      "sourceRoute": "/use-cases",
+      "sourceFile": "app/use-cases/page.tsx",
+      "targetRoute": "/",
+      "status": "excluded-phase-2",
+      "notes": "Placeholder page excluded for initial website+docs unify phase."
+    },
+    {
+      "sourceRoute": "/faq",
+      "sourceFile": "app/faq/page.tsx",
+      "targetRoute": "/",
+      "status": "excluded-phase-2",
+      "notes": "Placeholder page excluded for initial website+docs unify phase."
+    },
+    {
+      "sourceRoute": "/api-reference",
+      "sourceFile": "app/api-reference/page.tsx",
+      "targetRoute": "/",
+      "status": "excluded-phase-2",
+      "notes": "Placeholder page excluded for initial website+docs unify phase."
+    }
+  ],
+  "sharedShell": {
+    "sourceFile": "app/components/DocsLayout.tsx",
+    "targetFile": "src/components/starlight/Header.astro",
+    "status": "ported",
+    "notes": "Header, tab treatment, and sidebar structure migrated into Starlight component overrides and page-level sidebar contracts."
+  },
+  "assets": [
+    {
+      "sourcePath": "public/logo_light.svg",
+      "targetPath": "public/site/logo_light.svg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/link.svg",
+      "targetPath": "public/site/link.svg",
+      "requiredBy": [
+        "/",
+        "/demo"
+      ]
+    },
+    {
+      "sourcePath": "public/yc_logo.svg.png",
+      "targetPath": "public/site/yc_logo.svg.png",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/step_1.png",
+      "targetPath": "public/site/step_1.png",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/step_2.png",
+      "targetPath": "public/site/step_2.png",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/step_3.png",
+      "targetPath": "public/site/step_3.png",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/manny.jpeg",
+      "targetPath": "public/site/manny.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/alan.jpeg",
+      "targetPath": "public/site/alan.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/mo.jpeg",
+      "targetPath": "public/site/mo.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/aaron.jpeg",
+      "targetPath": "public/site/aaron.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/eduardo.jpeg",
+      "targetPath": "public/site/eduardo.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    },
+    {
+      "sourcePath": "public/nicholas.jpeg",
+      "targetPath": "public/site/nicholas.jpeg",
+      "requiredBy": [
+        "/"
+      ]
+    }
+  ]
+}

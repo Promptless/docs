@@ -11,6 +11,16 @@ const BLOG_INDEX_PATH = path.join(ROOT, 'dist', 'blog', 'index.html');
 const BLOG_ALL_PATH = path.join(ROOT, 'dist', 'blog', 'all', 'index.html');
 const CHANGELOG_INDEX_PATH = path.join(ROOT, 'dist', 'changelog', 'index.html');
 const CHANGELOG_ALL_PATH = path.join(ROOT, 'dist', 'changelog', 'all', 'index.html');
+const ROOT_INDEX_PATH = path.join(ROOT, 'dist', 'index.html');
+const HOME_INDEX_PATH = path.join(ROOT, 'dist', 'home', 'index.html');
+const DEMO_INDEX_PATH = path.join(ROOT, 'dist', 'demo', 'index.html');
+const PRICING_INDEX_PATH = path.join(ROOT, 'dist', 'pricing', 'index.html');
+const SITE_DEMO_PATH = path.join(ROOT, 'dist', 'site', 'demo', 'index.html');
+const SITE_INDEX_PATH = path.join(ROOT, 'dist', 'site', 'index.html');
+const VIDEO_DEMO_PATH = path.join(ROOT, 'dist', 'video-demo', 'index.html');
+const USE_CASES_PATH = path.join(ROOT, 'dist', 'use-cases', 'index.html');
+const FAQ_PATH = path.join(ROOT, 'dist', 'faq', 'index.html');
+const API_REFERENCE_PATH = path.join(ROOT, 'dist', 'api-reference', 'index.html');
 
 interface VercelConfig {
   redirects?: Array<{
@@ -51,7 +61,16 @@ async function main() {
     ...redirects.redirects.map((entry) => normalizePath(entry.source)),
     ...redirects.redirects.map((entry) => normalizePath(entry.destination)),
     '/',
+    '/home',
     '/docs',
+    '/demo',
+    '/pricing',
+    '/site',
+    '/site/demo',
+    '/video-demo',
+    '/use-cases',
+    '/faq',
+    '/api-reference',
     '/blog',
     '/changelog',
     '/llms.txt',
@@ -75,12 +94,71 @@ async function main() {
     process.exit(1);
   }
 
-  const [blogIndexHtml, blogAllHtml, changelogIndexHtml, changelogAllHtml] = await Promise.all([
+  const [
+    rootIndexHtml,
+    homeIndexHtml,
+    demoIndexHtml,
+    pricingIndexHtml,
+    siteDemoHtml,
+    siteIndexHtml,
+    videoDemoHtml,
+    useCasesHtml,
+    faqHtml,
+    apiReferenceHtml,
+    blogIndexHtml,
+    blogAllHtml,
+    changelogIndexHtml,
+    changelogAllHtml,
+  ] = await Promise.all([
+    readFile(ROOT_INDEX_PATH, 'utf8'),
+    readFile(HOME_INDEX_PATH, 'utf8'),
+    readFile(DEMO_INDEX_PATH, 'utf8'),
+    readFile(PRICING_INDEX_PATH, 'utf8'),
+    readFile(SITE_DEMO_PATH, 'utf8'),
+    readFile(SITE_INDEX_PATH, 'utf8'),
+    readFile(VIDEO_DEMO_PATH, 'utf8'),
+    readFile(USE_CASES_PATH, 'utf8'),
+    readFile(FAQ_PATH, 'utf8'),
+    readFile(API_REFERENCE_PATH, 'utf8'),
     readFile(BLOG_INDEX_PATH, 'utf8'),
     readFile(BLOG_ALL_PATH, 'utf8'),
     readFile(CHANGELOG_INDEX_PATH, 'utf8'),
     readFile(CHANGELOG_ALL_PATH, 'utf8'),
   ]);
+
+  if (/^<!doctype html><title>Redirecting/i.test(rootIndexHtml.trim())) {
+    fail('Astro build still treats / as a redirect. Root must render the website homepage.');
+  }
+  if (!rootIndexHtml.includes('pl-site-page')) {
+    fail('Astro build for / must include website shell markup (pl-site-page).');
+  }
+  if (!/Redirecting to: \//i.test(homeIndexHtml)) {
+    fail('Astro build must keep /home as a compatibility redirect to /.');
+  }
+  if (!demoIndexHtml.includes('Video Demo')) {
+    fail('Astro build for /demo must render the website demo page.');
+  }
+  if (!pricingIndexHtml.includes('Pricing')) {
+    fail('Astro build for /pricing must render the website pricing page.');
+  }
+  if (!/Redirecting to: \/demo/i.test(siteIndexHtml)) {
+    fail('Astro build must keep /site as a compatibility redirect to /demo.');
+  }
+  if (!/Redirecting to: \/demo/i.test(siteDemoHtml)) {
+    fail('Astro build must keep /site/demo as a compatibility redirect to /demo.');
+  }
+  if (!/Redirecting to: \/demo/i.test(videoDemoHtml)) {
+    fail('Astro build must keep /video-demo as a compatibility redirect to /demo.');
+  }
+  if (!/Redirecting to: \//i.test(useCasesHtml)) {
+    fail('Astro build must keep /use-cases as a compatibility redirect to /.');
+  }
+  if (!/Redirecting to: \//i.test(faqHtml)) {
+    fail('Astro build must keep /faq as a compatibility redirect to /.');
+  }
+  if (!/Redirecting to: \//i.test(apiReferenceHtml)) {
+    fail('Astro build must keep /api-reference as a compatibility redirect to /.');
+  }
 
   if (/^<!doctype html><title>Redirecting/i.test(blogIndexHtml.trim())) {
     fail('Astro build still treats /blog as a redirect. It must be a canonical index page.');
@@ -105,6 +183,9 @@ async function main() {
   if (vercelRedirectMap.has('/changelog')) {
     fail(`vercel.json must not redirect /changelog, but found ${vercelRedirectMap.get('/changelog')}.`);
   }
+  if (vercelRedirectMap.has('/')) {
+    fail(`vercel.json must not redirect /, but found ${vercelRedirectMap.get('/')}.`);
+  }
   if (vercelRedirectMap.get('/blog/all') !== '/blog') {
     fail(
       `vercel.json must redirect /blog/all to /blog, found ${
@@ -116,6 +197,43 @@ async function main() {
     fail(
       `vercel.json must redirect /changelog/all to /changelog, found ${
         vercelRedirectMap.get('/changelog/all') ?? 'none'
+      }.`
+    );
+  }
+  if (vercelRedirectMap.get('/home') !== '/') {
+    fail(`vercel.json must redirect /home to /, found ${vercelRedirectMap.get('/home') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/site') !== '/demo') {
+    fail(`vercel.json must redirect /site to /demo, found ${vercelRedirectMap.get('/site') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/site/demo') !== '/demo') {
+    fail(
+      `vercel.json must redirect /site/demo to /demo, found ${
+        vercelRedirectMap.get('/site/demo') ?? 'none'
+      }.`
+    );
+  }
+  if (vercelRedirectMap.get('/video-demo') !== '/demo') {
+    fail(
+      `vercel.json must redirect /video-demo to /demo, found ${
+        vercelRedirectMap.get('/video-demo') ?? 'none'
+      }.`
+    );
+  }
+  if (vercelRedirectMap.get('/use-cases') !== '/') {
+    fail(
+      `vercel.json must redirect /use-cases to /, found ${
+        vercelRedirectMap.get('/use-cases') ?? 'none'
+      }.`
+    );
+  }
+  if (vercelRedirectMap.get('/faq') !== '/') {
+    fail(`vercel.json must redirect /faq to /, found ${vercelRedirectMap.get('/faq') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/api-reference') !== '/') {
+    fail(
+      `vercel.json must redirect /api-reference to /, found ${
+        vercelRedirectMap.get('/api-reference') ?? 'none'
       }.`
     );
   }
