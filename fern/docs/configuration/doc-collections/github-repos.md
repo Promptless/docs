@@ -54,9 +54,11 @@ When auto-publish is enabled for your project:
 
 ## Automated CI Check and Build Issue Resolution
 
-When Promptless opens a documentation PR, it automatically monitors the pull request for quality issues. If CI checks fail, linting tools report errors, Vale rules trigger warnings, or your documentation hosting provider detects broken links or build problems, Promptless will automatically analyze the issues and push fixes directly to the PR branch.
+When Promptless opens a documentation PR, it monitors for quality issues. If CI checks fail, linting errors appear, Vale rules trigger warnings, or your documentation platform detects broken links or build problems, Promptless analyzes the issues and pushes fixes directly to the PR branch.
 
-This automated issue resolution works seamlessly with your existing GitHub workflow - there's no additional configuration needed. Quality problems get resolved in the background while you focus on content rather than troubleshooting technical issues.
+Promptless only fixes issues caused by the current suggestion. If a CI failure is pre-existing or unrelated, the suggestion stays unchanged. When Promptless finds documentation issues outside the suggestion's scope, it creates a separate suggestion to address them.
+
+This automated issue resolution works seamlessly with your existing GitHub workflow—no additional configuration needed.
 
 ## Trigger Events in Pull Request Descriptions
 
