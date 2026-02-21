@@ -1,2 +1,25 @@
 ---
+import { getActiveSection } from '@lib/site-navigation';
+
+const activeSection = getActiveSection(Astro.url.pathname);
+const showWebsiteFooter = activeSection === 'website';
+const currentYear = new Date().getFullYear();
 ---
+
+{
+  showWebsiteFooter && (
+    <footer class="pl-site-footer" role="contentinfo">
+      <div class="pl-site-footer-inner">
+        <p>
+          Support: <a href="mailto:hello@gopromptless.ai">help@promptless.ai</a>
+        </p>
+        <p>
+          <a href="https://promptless.ai/privacy" target="_blank" rel="noopener noreferrer">
+            Privacy Policy
+          </a>
+        </p>
+        <p>Copyright © {currentYear} Promptless</p>
+      </div>
+    </footer>
+  )
+}

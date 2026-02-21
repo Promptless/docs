@@ -1,5 +1,6 @@
 ---
 import { TOP_NAV_ITEMS, getActiveSection, type SiteSection } from '@lib/site-navigation';
+import NavIcon from './NavIcon.astro';
 
 interface Props {
   activeSection?: SiteSection;
@@ -24,8 +25,11 @@ const navItems = TOP_NAV_ITEMS.map((item) => ({
         target={item.external ? '_blank' : undefined}
         rel={item.external ? 'noopener noreferrer' : undefined}
       >
+        {item.icon && <NavIcon name={item.icon} />}
         <span>{item.label}</span>
-        {item.external && <img src="/site/link.svg" alt="" aria-hidden="true" width="14" height="14" />}
+        {item.external && (
+          <img class="pl-site-tab-external" src="/site/link.svg" alt="" aria-hidden="true" width="14" height="14" />
+        )}
       </a>
     ))
   }

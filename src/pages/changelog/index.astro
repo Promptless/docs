@@ -5,21 +5,6 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 const posts = (await getCollection('changelog', ({ data }) => !data.hidden)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-
-const latest = posts.at(0);
-const monthFormatter = new Intl.DateTimeFormat('en-US', {
-  month: 'long',
-  year: 'numeric',
-});
-
-const groupedByYear = posts.reduce((acc, post) => {
-  const year = String(post.data.date.getUTCFullYear());
-  acc[year] ??= [];
-  acc[year].push(post);
-  return acc;
-}, {} as Record<string, typeof posts>);
-
-const yearlyGroups = Object.entries(groupedByYear).sort((a, b) => Number(b[0]) - Number(a[0]));
 ---
 
 <StarlightPage
@@ -28,44 +13,28 @@ const yearlyGroups = Object.entries(groupedByYear).sort((a, b) => Number(b[0]) -
     title: 'Changelog',
     description: 'Promptless product updates in descending chronological order.',
     template: 'doc',
+    tableOfContents: false,
     editUrl: false,
   }}
 >
   {
-    latest && (
-      <section class="collection-latest">
-        <p class="collection-kicker">Latest release notes</p>
-        <a class="collection-latest-card" href={`/changelog/${latest.slug}`}>
-          <p class="collection-latest-meta">{monthFormatter.format(latest.data.date)}</p>
-          <h2>{latest.data.title}</h2>
-          <p>See everything shipped in this release window.</p>
-        </a>
-      </section>
+    posts.length ? (
+      <ul class="collection-feed" role="list">
+        {posts.map((entry) => (
+          <li>
+            <article class="collection-feed-item">
+              <h2 class="collection-feed-title">
+                <a href={`/changelog/${entry.slug}`}>{entry.data.title}</a>
+              </h2>
+              {(entry.data.subtitle || entry.data.description) && (
+                <p class="collection-feed-description">{entry.data.subtitle || entry.data.description}</p>
+              )}
+            </article>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="collection-feed-empty">No changelog entries yet.</p>
     )
   }
-
-  <div class="collection-groups">
-    {
-      yearlyGroups.map(([year, entries]) => (
-        <section class="collection-group">
-          <header class="collection-group-header">
-            <h2>{year}</h2>
-            <p>{entries.length === 1 ? '1 entry' : `${entries.length} entries`}</p>
-          </header>
-          <ul class="collection-list">
-            {entries.map((entry) => (
-              <li>
-                <article class="collection-card">
-                  <p class="collection-card-meta">{monthFormatter.format(entry.data.date)}</p>
-                  <h3>
-                    <a href={`/changelog/${entry.slug}`}>{entry.data.title}</a>
-                  </h3>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
-  </div>
 </StarlightPage>

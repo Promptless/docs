@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import react from '@astrojs/react';
 
 import generatedSidebar from './src/lib/generated/sidebar.json' with { type: 'json' };
 import redirectsManifest from './migration/redirects.generated.json' with { type: 'json' };
@@ -29,6 +30,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    react(),
     starlight({
       title: 'Promptless | Documentation',
       description: 'Automated docs that eliminate manual overhead and keep your docs current with your codebase',

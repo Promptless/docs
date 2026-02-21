@@ -1,0 +1,60 @@
+---
+interface Reason {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  reasons?: Reason[];
+}
+
+const defaultReasons: Reason[] = [
+  {
+    title: 'True prompt-less',
+    description:
+      "You should not have to remember to ask AI for docs help. Promptless listens to PRs and slack convos and proactively draft updates.",
+  },
+  {
+    title: 'Spend less time, ship better docs',
+    description:
+      'No more chasing people for context right before release. Spend less time patching stale pages and more time on higher-value tasks.',
+  },
+  {
+    title: 'Free of AI slop',
+    description:
+      "We have a dedicated agent that learns your tone, doc structure, and style preferences.",
+  },
+  {
+    title: 'Fits right into your workflow',
+    description:
+      'Many of our users push doc updates without ever going to the Promptless UI.',
+  },
+  {
+    title: 'No AI fatigue',
+    description:
+      "Our customers don't think Promptless is noisy. It catches the right amount of doc drift.",
+  },
+  {
+    title: 'Gets better over time',
+    description:
+      'When you edit or reject a suggestion, Promptless learns from it to make future suggestions better',
+  },
+];
+
+const { reasons = defaultReasons } = Astro.props;
+---
+
+<section id="why-promptless" class="pl-site-why" aria-label="Why Promptless?">
+  <h2>Why Promptless?</h2>
+  <p class="pl-site-why-intro">We built Promptless based on real pain points that our customers had to struggle with every day.</p>
+  <div class="pl-site-why-grid">
+    {
+      reasons.map((reason) => (
+        <article class="pl-site-why-card">
+          <h3>{reason.title}</h3>
+          <p>{reason.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

@@ -83,6 +83,7 @@ test('primary nav keeps canonical routes with website first', async () => {
 test('website/docs/blog/changelog active state is correct', async () => {
   const websiteHtml = await (await fetch(`${preview.baseUrl}/`)).text();
   const websiteDemoHtml = await (await fetch(`${preview.baseUrl}/demo`)).text();
+  const websiteMeetHtml = await (await fetch(`${preview.baseUrl}/meet`)).text();
   const websitePricingHtml = await (await fetch(`${preview.baseUrl}/pricing`)).text();
   const docsHtml = await (await fetch(`${preview.baseUrl}/docs/getting-started/welcome`)).text();
   const blogHtml = await (await fetch(`${preview.baseUrl}/blog`)).text();
@@ -96,6 +97,9 @@ test('website/docs/blog/changelog active state is correct', async () => {
 
   const demoNav = getPrimaryNav(websiteDemoHtml);
   assertActiveLink(demoNav, '/', 'Website');
+
+  const meetNav = getPrimaryNav(websiteMeetHtml);
+  assertActiveLink(meetNav, '/', 'Website');
 
   const pricingNav = getPrimaryNav(websitePricingHtml);
   assertActiveLink(pricingNav, '/', 'Website');
@@ -139,7 +143,7 @@ test('/blog/all and /changelog/all remain compatibility redirects', async () => 
   }
 });
 
-test('website routes are canonicalized to /, /demo, and /pricing', async () => {
+test('website routes are canonicalized to /, /demo, /meet, and /pricing', async () => {
   const homepage = await fetch(`${preview.baseUrl}/`);
   assert.equal(homepage.status, 200);
   const homepageHtml = await homepage.text();
@@ -156,7 +160,11 @@ test('website routes are canonicalized to /, /demo, and /pricing', async () => {
 
   const demo = await fetch(`${preview.baseUrl}/demo`);
   assert.equal(demo.status, 200);
-  assert.match(await demo.text(), /Video Demo/);
+  assert.match(await demo.text(), /Demo/);
+
+  const meet = await fetch(`${preview.baseUrl}/meet`);
+  assert.equal(meet.status, 200);
+  assert.match(await meet.text(), /Meet/);
 
   const pricing = await fetch(`${preview.baseUrl}/pricing`);
   assert.equal(pricing.status, 200);

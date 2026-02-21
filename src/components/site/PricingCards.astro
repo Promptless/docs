@@ -6,7 +6,6 @@ interface PricingTier {
   bullets: string[];
   ctaLabel: string;
   ctaHref: string;
-  featured?: boolean;
 }
 
 interface Props {
@@ -16,28 +15,34 @@ interface Props {
 const defaultTiers: PricingTier[] = [
   {
     name: 'Startup',
-    summary: 'For teams shipping quickly with one docs surface.',
-    price: '$1,500/mo',
-    bullets: ['GitHub + Slack triggers', 'Automated suggestions and citations', 'Email support'],
-    ctaLabel: 'Book demo',
-    ctaHref: 'https://cal.com/promptless/demo',
-  },
-  {
-    name: 'Growth',
-    summary: 'For multi-team docs programs with richer review workflows.',
-    price: '$4,000/mo',
-    bullets: ['Multiple projects and collections', 'Custom writing style calibration', 'Priority support'],
-    ctaLabel: 'Talk to sales',
-    ctaHref: 'https://cal.com/promptless/demo',
-    featured: true,
+    summary: 'For teams that want docs automation live quickly with unlimited contributors.',
+    price: '$500 / month',
+    bullets: [
+      'Supports up to 200 articles',
+      'Unlimited seats',
+      'Unlimited trigger events',
+      'Integrates with 10+ tools (Github, Slack, etc)',
+      '14-day free trial',
+    ],
+    ctaLabel: 'Sign Up',
+    ctaHref: 'https://accounts.gopromptless.ai/sign-up',
   },
   {
     name: 'Enterprise',
-    summary: 'For security-conscious orgs with complex systems.',
+    summary: 'For teams that need security controls, onboarding support, and custom workflows.',
     price: 'Custom',
-    bullets: ['SSO + audit controls', 'Private deployment options', 'Dedicated success engineer'],
-    ctaLabel: 'Contact us',
-    ctaHref: 'mailto:hello@gopromptless.ai',
+    bullets: [
+      'Everything in Startup plan',
+      'Supports unlimited number of doc pages',
+      'White-glove onboarding',
+      'Retroactively process prior trigger events',
+      'Custom integration requests',
+      'SSO / SAML login',
+      'Enterprise security and permissions',
+      'Custom data retention policies',
+    ],
+    ctaLabel: 'Talk to a human',
+    ctaHref: 'https://promptless.ai/meet',
   },
 ];
 
@@ -45,11 +50,23 @@ const { tiers = defaultTiers } = Astro.props;
 ---
 
 <section class="pl-site-pricing" id="plans">
+  <p class="pl-site-kicker">Plans</p>
+  <h2>Pricing built for docs teams</h2>
+  <p class="pl-site-pricing-intro">
+    Choose a plan based on your docs footprint, review workflows, and security requirements.
+  </p>
+  <aside class="pl-site-pricing-open-source">
+    <div>
+      <p class="pl-site-pricing-open-source-title">We have a special program for open source projects.</p>
+      <p class="pl-site-pricing-open-source-copy">See if you're eligible for free Promptless access.</p>
+    </div>
+    <a href="https://promptless.ai/meet">Talk to a human</a>
+  </aside>
   <div class="pl-site-pricing-grid">
     {
       tiers.map((tier) => (
-        <article class:list={['pl-site-pricing-card', { featured: tier.featured }]}>
-          <h2>{tier.name}</h2>
+        <article class="pl-site-pricing-card">
+          <p class="pl-site-pricing-name">{tier.name}</p>
           <p class="pl-site-pricing-summary">{tier.summary}</p>
           <p class="pl-site-pricing-price">{tier.price}</p>
           <ul>
