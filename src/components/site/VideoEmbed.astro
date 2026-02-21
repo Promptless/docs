@@ -1,0 +1,22 @@
+---
+interface Props {
+  title?: string;
+  src?: string;
+}
+
+const {
+  title = 'Introducing Promptless 1.0',
+  src = 'https://www.tella.tv/video/vid_cmkc3e0h900h804ii26qp01mo/embed?feature=oembed',
+} = Astro.props;
+---
+
+<section id="overview">
+  <div class="pl-site-video-embed">
+    <iframe
+      src={src}
+      title={title}
+      allowfullscreen
+      allow="accelerometer *; encrypted-media *; gyroscope *; picture-in-picture *; fullscreen *"
+    />
+  </div>
+</section>

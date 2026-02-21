@@ -1,0 +1,24 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from './SiteTitle.astro';
+import TopHeader from '@components/shared/TopHeader.astro';
+---
+
+<TopHeader showNavTools>
+  <div slot="brand" class="title-wrapper sl-flex">
+    <SiteTitle />
+  </div>
+  <Search slot="nav-tools" />
+</TopHeader>
+
+<style>
+  @layer starlight.core {
+    .title-wrapper {
+      overflow: clip;
+      padding: 0.25rem;
+      margin: -0.25rem;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+  }
+</style>

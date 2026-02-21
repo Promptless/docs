@@ -1,0 +1,151 @@
+{
+  "capturedAt": "2026-02-20",
+  "referenceSite": "http://127.0.0.1:3002",
+  "routes": {
+    "/": {
+      "desktop": {
+        "viewport": {
+          "width": 1440,
+          "height": 1024
+        },
+        "header": {
+          "totalHeightPx": 95,
+          "topRowHeightPx": 48,
+          "navRowHeightPx": 36,
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderBottomColor": "lab(91.6229 -0.159115 -2.26791)",
+          "borderBottomWidth": "1px"
+        },
+        "layout": {
+          "sidebarWidthPx": 256,
+          "mainWidthPx": 1184,
+          "mainPaddingInlineStartPx": 40,
+          "mainPaddingInlineEndPx": 40,
+          "tocWidthPx": 224
+        },
+        "sectionSpacingRhythmPx": [
+          8,
+          24,
+          24,
+          40,
+          64
+        ],
+        "cardStyle": {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderColor": "oklab(0.927998 -0.000581443 -0.00595063 / 0.8)",
+          "borderWidth": "1px",
+          "borderRadius": "8px",
+          "padding": "16px 20px",
+          "shadow": "sm"
+        }
+      },
+      "mobile": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "header": {
+          "totalHeightPx": 95,
+          "topRowHeightPx": 48,
+          "navRowHeightPx": 36
+        },
+        "layout": {
+          "sidebarWidthPx": 256,
+          "mainWidthPx": 134,
+          "mainPaddingInlineStartPx": 40,
+          "mainPaddingInlineEndPx": 40,
+          "tocWidthPx": 0
+        },
+        "sectionSpacingRhythmPx": [
+          8,
+          24,
+          24,
+          40,
+          64
+        ]
+      }
+    },
+    "/video-demo": {
+      "desktop": {
+        "viewport": {
+          "width": 1440,
+          "height": 1024
+        },
+        "header": {
+          "totalHeightPx": 95,
+          "topRowHeightPx": 48,
+          "navRowHeightPx": 36
+        },
+        "layout": {
+          "sidebarWidthPx": 256,
+          "mainWidthPx": 1184,
+          "mainPaddingInlineStartPx": 40,
+          "mainPaddingInlineEndPx": 40
+        },
+        "sectionSpacingRhythmPx": [
+          8,
+          24
+        ]
+      },
+      "mobile": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "header": {
+          "totalHeightPx": 95,
+          "topRowHeightPx": 48,
+          "navRowHeightPx": 36
+        },
+        "layout": {
+          "sidebarWidthPx": 256,
+          "mainWidthPx": 134,
+          "mainPaddingInlineStartPx": 40,
+          "mainPaddingInlineEndPx": 40
+        },
+        "sectionSpacingRhythmPx": [
+          8,
+          24
+        ]
+      }
+    }
+  },
+  "navTreatment": {
+    "structure": "Two-row header: logo + CTA row, then primary tabs row",
+    "tabs": {
+      "fontSizePx": 14,
+      "fontWeight": 500,
+      "inactiveTextColor": "gray-600",
+      "activeTextColor": "#506AEA",
+      "activeIndicator": "2px bottom underline",
+      "hoverState": "text color shift only"
+    },
+    "ctaPair": {
+      "labels": [
+        "Sign up",
+        "Book demo"
+      ],
+      "background": "gray-900",
+      "text": "white",
+      "borderRadiusPx": 8,
+      "paddingXpx": 12,
+      "paddingYpx": 8,
+      "fontSizePx": 14,
+      "fontWeight": 500
+    }
+  },
+  "colorTokens": {
+    "--background": "#ffffff",
+    "--foreground": "#171717",
+    "--docs-sidebar-bg": "#ffffff",
+    "--docs-sidebar-active-bg": "#f3f4f6",
+    "--docs-sidebar-active-border": "#506AEA",
+    "--docs-card-bg": "#f9fafb",
+    "--docs-code-bg": "#1e293b",
+    "--docs-border": "#e5e7eb"
+  },
+  "notes": [
+    "Reference source code: /Users/prithvi/promptless/promptless/www/site_vdoc/app/components/DocsLayout.tsx and /Users/prithvi/promptless/promptless/www/site_vdoc/app/globals.css",
+    "All future website-in-Starlight milestones should compare against these primitives and the captured screenshots."
+  ]
+}
