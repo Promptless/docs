@@ -1,5 +1,10 @@
 ---
-import { TOP_NAV_ITEMS, getActiveSection, type SiteSection } from '@lib/site-navigation';
+import {
+  TOP_NAV_ITEMS,
+  getActiveSection,
+  type SiteSection,
+  type TopNavLinkItem,
+} from '@lib/site-navigation';
 import NavIcon from './NavIcon.astro';
 
 interface Props {
@@ -9,7 +14,9 @@ interface Props {
 
 const { activeSection = getActiveSection(Astro.url.pathname), class: className } = Astro.props;
 
-const navItems = TOP_NAV_ITEMS.map((item) => ({
+type NavItemWithActive = TopNavLinkItem & { active: boolean };
+
+const navItems: NavItemWithActive[] = TOP_NAV_ITEMS.map((item) => ({
   ...item,
   active: item.section === activeSection,
 }));
@@ -28,7 +35,14 @@ const navItems = TOP_NAV_ITEMS.map((item) => ({
         {item.icon && <NavIcon name={item.icon} />}
         <span>{item.label}</span>
         {item.external && (
-          <img class="pl-site-tab-external" src="/site/link.svg" alt="" aria-hidden="true" width="14" height="14" />
+          <img
+            class="pl-site-tab-external"
+            src="/site/link.svg"
+            alt=""
+            aria-hidden="true"
+            width="14"
+            height="14"
+          />
         )}
       </a>
     ))

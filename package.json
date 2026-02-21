@@ -22,9 +22,11 @@
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/starlight": "^0.37.6",
     "@calcom/embed-react": "^1.5.3",
+    "@lucide/astro": "^0.575.0",
     "astro": "^5.13.2",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
+    "lucide-static": "^0.575.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },

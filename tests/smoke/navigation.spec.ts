@@ -16,7 +16,7 @@ function getPrimaryNav(html: string): string {
 
 function assertLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
-    `<a(?=[^>]*href="${escapeRegExp(href)}")[^>]*>[\\s\\S]*?${escapeRegExp(label)}[\\s\\S]*?</a>`,
+    `<a(?=[^>]*href="${escapeRegExp(href)}")[^>]*>[\\s\\S]*?${escapeRegExp(label)}[\\s\\S]*?<\\/a>`,
     'i'
   );
   assert.match(navHtml, pattern, `Missing nav link ${label} -> ${href}`);
@@ -26,7 +26,7 @@ function assertActiveLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
     `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>[\\s\\S]*?${escapeRegExp(
       label
-    )}[\\s\\S]*?</a>`,
+    )}[\\s\\S]*?<\\/a>`,
     'i'
   );
   assert.match(navHtml, pattern, `Expected ${href} to be active for ${label}.`);
@@ -36,24 +36,21 @@ function assertInactiveLink(navHtml: string, href: string, label: string) {
   const pattern = new RegExp(
     `<a(?=[^>]*href="${escapeRegExp(href)}")(?=[^>]*class="[^"]*\\bactive\\b[^"]*")[^>]*>[\\s\\S]*?${escapeRegExp(
       label
-    )}[\\s\\S]*?</a>`,
+    )}[\\s\\S]*?<\\/a>`,
     'i'
   );
   assert.doesNotMatch(navHtml, pattern, `Did not expect ${href} to be active for ${label}.`);
 }
 
-function assertNavOrder(navHtml: string, hrefs: string[]) {
-  const hrefMatches = [...navHtml.matchAll(/<a[^>]*href="([^"]+)"/gi)];
-  const navHrefs = hrefMatches.map((match) => match[1]);
-  const navOrder = hrefs.map((href) => navHrefs.indexOf(href));
-  for (let index = 0; index < navOrder.length; index += 1) {
-    assert.notEqual(navOrder[index], -1, `Expected to find ${hrefs[index]} in primary nav.`);
-    if (index > 0) {
-      assert.ok(
-        navOrder[index - 1] < navOrder[index],
-        `Expected ${hrefs[index - 1]} before ${hrefs[index]} in primary nav.`
-      );
+function assertLabelOrder(navHtml: string, labels: string[]) {
+  let previousIndex = -1;
+  for (const label of labels) {
+    const index = navHtml.indexOf(label);
+    assert.notEqual(index, -1, `Expected to find ${label} in primary nav.`);
+    if (previousIndex !== -1) {
+      assert.ok(previousIndex < index, `Expected ${label} after previous primary nav item.`);
     }
+    previousIndex = index;
   }
 }
 
@@ -65,22 +62,25 @@ after(async () => {
   await preview.close();
 });
 
-test('primary nav keeps canonical routes with website first', async () => {
+test('primary nav keeps canonical routes with free tools tab', async () => {
   const response = await fetch(`${preview.baseUrl}/docs/getting-started/welcome`);
   assert.equal(response.status, 200);
   const html = await response.text();
   const nav = getPrimaryNav(html);
+
   assertLink(nav, '/', 'Website');
   assertLink(nav, '/docs', 'Docs');
   assertLink(nav, '/blog', 'Blog');
   assertLink(nav, '/changelog', 'Changelog');
+  assertLink(nav, '/free-tools', 'Free tools');
   assertLink(nav, 'https://app.gopromptless.ai', 'Sign in');
-  assertNavOrder(nav, ['/', '/docs', '/blog', '/changelog', 'https://app.gopromptless.ai']);
+
+  assertLabelOrder(nav, ['Website', 'Docs', 'Blog', 'Changelog', 'Free tools', 'Sign in']);
   assert.doesNotMatch(nav, /href="\/blog\/all"/);
   assert.doesNotMatch(nav, /href="\/changelog\/all"/);
 });
 
-test('website/docs/blog/changelog active state is correct', async () => {
+test('website/docs/blog/changelog/free tools active state is correct', async () => {
   const websiteHtml = await (await fetch(`${preview.baseUrl}/`)).text();
   const websiteDemoHtml = await (await fetch(`${preview.baseUrl}/demo`)).text();
   const websiteMeetHtml = await (await fetch(`${preview.baseUrl}/meet`)).text();
@@ -88,12 +88,15 @@ test('website/docs/blog/changelog active state is correct', async () => {
   const docsHtml = await (await fetch(`${preview.baseUrl}/docs/getting-started/welcome`)).text();
   const blogHtml = await (await fetch(`${preview.baseUrl}/blog`)).text();
   const changelogHtml = await (await fetch(`${preview.baseUrl}/changelog`)).text();
+  const freeToolsIndexHtml = await (await fetch(`${preview.baseUrl}/free-tools`)).text();
+  const freeToolsToolHtml = await (await fetch(`${preview.baseUrl}/free-tools/broken-link-report`)).text();
 
   const websiteNav = getPrimaryNav(websiteHtml);
   assertActiveLink(websiteNav, '/', 'Website');
   assertInactiveLink(websiteNav, '/docs', 'Docs');
   assertInactiveLink(websiteNav, '/blog', 'Blog');
   assertInactiveLink(websiteNav, '/changelog', 'Changelog');
+  assertInactiveLink(websiteNav, '/free-tools', 'Free tools');
 
   const demoNav = getPrimaryNav(websiteDemoHtml);
   assertActiveLink(demoNav, '/', 'Website');
@@ -109,18 +112,35 @@ test('website/docs/blog/changelog active state is correct', async () => {
   assertInactiveLink(docsNav, '/', 'Website');
   assertInactiveLink(docsNav, '/blog', 'Blog');
   assertInactiveLink(docsNav, '/changelog', 'Changelog');
+  assertInactiveLink(docsNav, '/free-tools', 'Free tools');
 
   const blogNav = getPrimaryNav(blogHtml);
   assertActiveLink(blogNav, '/blog', 'Blog');
   assertInactiveLink(blogNav, '/', 'Website');
   assertInactiveLink(blogNav, '/docs', 'Docs');
   assertInactiveLink(blogNav, '/changelog', 'Changelog');
+  assertInactiveLink(blogNav, '/free-tools', 'Free tools');
 
   const changelogNav = getPrimaryNav(changelogHtml);
   assertActiveLink(changelogNav, '/changelog', 'Changelog');
   assertInactiveLink(changelogNav, '/', 'Website');
   assertInactiveLink(changelogNav, '/docs', 'Docs');
   assertInactiveLink(changelogNav, '/blog', 'Blog');
+  assertInactiveLink(changelogNav, '/free-tools', 'Free tools');
+
+  const freeToolsIndexNav = getPrimaryNav(freeToolsIndexHtml);
+  assertActiveLink(freeToolsIndexNav, '/free-tools', 'Free tools');
+  assertInactiveLink(freeToolsIndexNav, '/', 'Website');
+  assertInactiveLink(freeToolsIndexNav, '/docs', 'Docs');
+  assertInactiveLink(freeToolsIndexNav, '/blog', 'Blog');
+  assertInactiveLink(freeToolsIndexNav, '/changelog', 'Changelog');
+
+  const freeToolsToolNav = getPrimaryNav(freeToolsToolHtml);
+  assertActiveLink(freeToolsToolNav, '/free-tools', 'Free tools');
+  assertInactiveLink(freeToolsToolNav, '/', 'Website');
+  assertInactiveLink(freeToolsToolNav, '/docs', 'Docs');
+  assertInactiveLink(freeToolsToolNav, '/blog', 'Blog');
+  assertInactiveLink(freeToolsToolNav, '/changelog', 'Changelog');
 });
 
 test('/blog/all and /changelog/all remain compatibility redirects', async () => {

@@ -22,10 +22,10 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.match(homeHtml, /Demo/);
   assert.match(homeHtml, /Pricing/);
   assert.doesNotMatch(homeHtml, /Getting Started/i);
-  assert.match(homeHtml, /data-site-icon=\"home\"/);
-  assert.match(homeHtml, /data-site-icon=\"video\"/);
-  assert.match(homeHtml, /data-site-icon=\"pricing\"/);
-  assert.match(homeHtml, /data-site-icon=\"meet\"/);
+  assert.match(homeHtml, /data-site-icon="home"/);
+  assert.match(homeHtml, /data-site-icon="video"/);
+  assert.match(homeHtml, /data-site-icon="pricing"/);
+  assert.match(homeHtml, /data-site-icon="meet"/);
 
   const demoResponse = await fetch(`${preview.baseUrl}/demo`);
   assert.equal(demoResponse.status, 200);
@@ -45,10 +45,22 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   const pricingHtml = await pricingResponse.text();
   assert.match(pricingHtml, /Pricing/);
   assert.match(pricingHtml, /Startup/);
+  assert.match(pricingHtml, /Growth/);
   assert.match(pricingHtml, /Enterprise/);
-  assert.match(pricingHtml, /\$500\s*\/\s*month/);
-  assert.match(pricingHtml, /Supports up to 200 articles/);
-  assert.match(pricingHtml, /Talk to a human/);
+  assert.match(pricingHtml, /\$500\s*\/\s*mo/);
+  assert.match(pricingHtml, /All plans include a 30-day free trial\./);
+  assert.match(pricingHtml, /200 Pages\*/);
+  assert.match(pricingHtml, /Pages are normalized/);
+  assert.match(pricingHtml, /name=\"growth_bundle\"/);
+  assert.match(pricingHtml, /200-500 articles/);
+  assert.match(pricingHtml, /500-1,000 articles/);
+  assert.match(pricingHtml, /1,000-2,000 articles/);
+  assert.match(pricingHtml, /2,000-5,000 articles/);
+  assert.match(pricingHtml, /Slack \+ GitHub integrations/);
+  assert.match(pricingHtml, /Open-source, non-commercial project\?/);
+  assert.match(pricingHtml, /href=\"https:\/\/promptless\.ai\/oss\"/);
+  assert.match(pricingHtml, /Book demo/);
+  assert.doesNotMatch(pricingHtml, /<h3>Compare plans<\/h3>/);
 });
 
 test('website header renders expected CTAs and search control', async () => {
@@ -58,6 +70,33 @@ test('website header renders expected CTAs and search control', async () => {
   assert.match(html, /href="https:\/\/accounts\.gopromptless\.ai\/signup"[^>]*>\s*Sign up/i);
   assert.match(html, /href="https:\/\/cal\.com\/promptless\/demo"[^>]*>\s*Book demo/i);
   assert.match(html, /aria-label="Search"/i);
+});
+
+test('free tool page renders form fields and explanatory copy', async () => {
+  const indexResponse = await fetch(`${preview.baseUrl}/free-tools`);
+  assert.equal(indexResponse.status, 200);
+  const indexHtml = await indexResponse.text();
+  assert.match(indexHtml, /Free tools/i);
+  assert.match(indexHtml, /Broken Link Report/i);
+
+  const response = await fetch(`${preview.baseUrl}/free-tools/broken-link-report`);
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Broken Link Report/);
+  assert.match(html, /Paste your site URL and email/i);
+  assert.match(html, /name="url"/);
+  assert.match(html, /name="email"/);
+  assert.match(html, /Show advanced options/i);
+  assert.match(html, /name="check_external"/);
+  assert.match(html, /name="check_anchors"/);
+  assert.match(html, /name="max_pages"/);
+  assert.doesNotMatch(html, /name="concurrency"/);
+  assert.doesNotMatch(html, /name="timeout_seconds"/);
+  assert.match(html, /name="website"/);
+  assert.match(html, /Send me the report/);
+
+  assert.doesNotMatch(html, /data-website-sidebar="true"/);
 });
 
 test('website compatibility routes redirect to canonical destinations', async () => {

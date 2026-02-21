@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <path d="M10.4 2.5V17.5" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M13.8 5.4C13.1 4.5 11.9 3.9 10.5 3.9C8.5 3.9 6.9 5.1 6.9 6.8C6.9 8.5 8.4 9.3 10.7 9.8C13 10.3 14.5 11.1 14.5 12.8C14.5 14.6 12.7 15.9 10.4 15.9C8.6 15.9 7.1 15.2 6.2 14.1" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- @license lucide-static v0.575.0 - ISC -->
+<svg
+  class="lucide lucide-badge-dollar-sign"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 18V6" />
 </svg>

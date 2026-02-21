@@ -1,80 +1,70 @@
 ---
-interface PricingTier {
-  name: string;
-  summary: string;
-  price: string;
-  bullets: string[];
-  ctaLabel: string;
-  ctaHref: string;
-}
+import GrowthBundleSelector from './pricing/GrowthBundleSelector.astro';
+import PricingCard from './pricing/PricingCard.astro';
+import {
+  ENTERPRISE_FEATURES,
+  ENTERPRISE_PLAN,
+  GROWTH_BUNDLE_OPTIONS,
+  GROWTH_FEATURES,
+  GROWTH_PLAN,
+  STARTUP_DOC_UNITS,
+  STARTUP_FEATURES,
+  STARTUP_MONTHLY_USD,
+  STARTUP_PLAN,
+  formatPages,
+  formatMonthlyUsd,
+} from './pricing/pricing.config';
 
-interface Props {
-  tiers?: PricingTier[];
-}
-
-const defaultTiers: PricingTier[] = [
-  {
-    name: 'Startup',
-    summary: 'For teams that want docs automation live quickly with unlimited contributors.',
-    price: '$500 / month',
-    bullets: [
-      'Supports up to 200 articles',
-      'Unlimited seats',
-      'Unlimited trigger events',
-      'Integrates with 10+ tools (Github, Slack, etc)',
-      '14-day free trial',
-    ],
-    ctaLabel: 'Sign Up',
-    ctaHref: 'https://accounts.gopromptless.ai/sign-up',
-  },
-  {
-    name: 'Enterprise',
-    summary: 'For teams that need security controls, onboarding support, and custom workflows.',
-    price: 'Custom',
-    bullets: [
-      'Everything in Startup plan',
-      'Supports unlimited number of doc pages',
-      'White-glove onboarding',
-      'Retroactively process prior trigger events',
-      'Custom integration requests',
-      'SSO / SAML login',
-      'Enterprise security and permissions',
-      'Custom data retention policies',
-    ],
-    ctaLabel: 'Talk to a human',
-    ctaHref: 'https://promptless.ai/meet',
-  },
-];
-
-const { tiers = defaultTiers } = Astro.props;
+const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
 ---
 
 <section class="pl-site-pricing" id="plans">
-  <p class="pl-site-kicker">Plans</p>
-  <h2>Pricing built for docs teams</h2>
-  <p class="pl-site-pricing-intro">
-    Choose a plan based on your docs footprint, review workflows, and security requirements.
+  <p class="pl-site-pricing-trial-badge">All plans include a 30-day free trial.</p>
+  <p class="pl-site-pricing-intro">Pricing scales with the size and complexity of your docs site.</p>
+  <p class="pl-site-pricing-oss-line">
+    Open-source, non-commercial project? <a href="https://promptless.ai/oss">Learn about our OSS program</a>.
   </p>
-  <aside class="pl-site-pricing-open-source">
-    <div>
-      <p class="pl-site-pricing-open-source-title">We have a special program for open source projects.</p>
-      <p class="pl-site-pricing-open-source-copy">See if you're eligible for free Promptless access.</p>
-    </div>
-    <a href="https://promptless.ai/meet">Talk to a human</a>
-  </aside>
+
   <div class="pl-site-pricing-grid">
-    {
-      tiers.map((tier) => (
-        <article class="pl-site-pricing-card">
-          <p class="pl-site-pricing-name">{tier.name}</p>
-          <p class="pl-site-pricing-summary">{tier.summary}</p>
-          <p class="pl-site-pricing-price">{tier.price}</p>
-          <ul>
-            {tier.bullets.map((bullet) => <li>{bullet}</li>)}
-          </ul>
-          <a href={tier.ctaHref}>{tier.ctaLabel}</a>
-        </article>
-      ))
-    }
+    <PricingCard
+      planId={STARTUP_PLAN.id}
+      title={STARTUP_PLAN.title}
+      summary={STARTUP_PLAN.summary}
+      priceLabel={`${formatMonthlyUsd(STARTUP_MONTHLY_USD)} /mo`}
+      usageLabel={`Up to ${formatPages(STARTUP_DOC_UNITS)}`}
+      features={STARTUP_FEATURES}
+      ctaLabel={STARTUP_PLAN.ctaLabel}
+      ctaHref={STARTUP_PLAN.ctaHref}
+    />
+
+    <PricingCard
+      planId={GROWTH_PLAN.id}
+      title={GROWTH_PLAN.title}
+      summary={GROWTH_PLAN.summary}
+      priceLabel={defaultGrowthBundle.priceLabel}
+      leadIn="Everything in Startup, plus"
+      features={GROWTH_FEATURES}
+      ctaLabel={GROWTH_PLAN.ctaLabel}
+      ctaHref={GROWTH_PLAN.ctaHref}
+      priceDataAttr="data-growth-price"
+    >
+      <GrowthBundleSelector slot="selector" bundles={GROWTH_BUNDLE_OPTIONS} selectedBundleId={defaultGrowthBundle.id} />
+    </PricingCard>
+
+    <PricingCard
+      planId={ENTERPRISE_PLAN.id}
+      title={ENTERPRISE_PLAN.title}
+      summary={ENTERPRISE_PLAN.summary}
+      priceLabel="Custom"
+      usageLabel="Unlimited Pages"
+      leadIn="Everything in Growth, plus"
+      features={ENTERPRISE_FEATURES}
+      ctaLabel={ENTERPRISE_PLAN.ctaLabel}
+      ctaHref={ENTERPRISE_PLAN.ctaHref}
+    />
   </div>
+
+  <p class="pl-site-pricing-footnote">
+    * Pages are normalized—a long API reference counts as multiple pages, while short changelog entries may share one.
+  </p>
 </section>

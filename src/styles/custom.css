@@ -175,6 +175,7 @@ starlight-theme-select {
   display: flex;
   align-items: end;
   gap: 0.25rem;
+  position: relative;
 }
 
 .pl-site-tab {

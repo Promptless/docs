@@ -15,6 +15,8 @@ const ROOT_INDEX_PATH = path.join(ROOT, 'dist', 'index.html');
 const HOME_INDEX_PATH = path.join(ROOT, 'dist', 'home', 'index.html');
 const DEMO_INDEX_PATH = path.join(ROOT, 'dist', 'demo', 'index.html');
 const PRICING_INDEX_PATH = path.join(ROOT, 'dist', 'pricing', 'index.html');
+const FREE_TOOLS_INDEX_PATH = path.join(ROOT, 'dist', 'free-tools', 'index.html');
+const FREE_TOOL_REPORT_PATH = path.join(ROOT, 'dist', 'free-tools', 'broken-link-report', 'index.html');
 const SITE_DEMO_PATH = path.join(ROOT, 'dist', 'site', 'demo', 'index.html');
 const SITE_INDEX_PATH = path.join(ROOT, 'dist', 'site', 'index.html');
 const VIDEO_DEMO_PATH = path.join(ROOT, 'dist', 'video-demo', 'index.html');
@@ -65,6 +67,8 @@ async function main() {
     '/docs',
     '/demo',
     '/pricing',
+    '/free-tools',
+    '/free-tools/broken-link-report',
     '/site',
     '/site/demo',
     '/video-demo',
@@ -99,6 +103,8 @@ async function main() {
     homeIndexHtml,
     demoIndexHtml,
     pricingIndexHtml,
+    freeToolsIndexHtml,
+    freeToolIndexHtml,
     siteDemoHtml,
     siteIndexHtml,
     videoDemoHtml,
@@ -114,6 +120,8 @@ async function main() {
     readFile(HOME_INDEX_PATH, 'utf8'),
     readFile(DEMO_INDEX_PATH, 'utf8'),
     readFile(PRICING_INDEX_PATH, 'utf8'),
+    readFile(FREE_TOOLS_INDEX_PATH, 'utf8'),
+    readFile(FREE_TOOL_REPORT_PATH, 'utf8'),
     readFile(SITE_DEMO_PATH, 'utf8'),
     readFile(SITE_INDEX_PATH, 'utf8'),
     readFile(VIDEO_DEMO_PATH, 'utf8'),
@@ -135,11 +143,17 @@ async function main() {
   if (!/Redirecting to: \//i.test(homeIndexHtml)) {
     fail('Astro build must keep /home as a compatibility redirect to /.');
   }
-  if (!demoIndexHtml.includes('Video Demo')) {
+  if (!demoIndexHtml.includes('Demo')) {
     fail('Astro build for /demo must render the website demo page.');
   }
   if (!pricingIndexHtml.includes('Pricing')) {
     fail('Astro build for /pricing must render the website pricing page.');
+  }
+  if (!freeToolsIndexHtml.includes('Free tools')) {
+    fail('Astro build for /free-tools must render the free tools index page.');
+  }
+  if (!freeToolIndexHtml.includes('Broken Link Report')) {
+    fail('Astro build for /free-tools/broken-link-report must render the free tools page.');
   }
   if (!/Redirecting to: \/demo/i.test(siteIndexHtml)) {
     fail('Astro build must keep /site as a compatibility redirect to /demo.');

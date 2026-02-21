@@ -37,6 +37,17 @@ npm run check:route-parity
 npm run check            # typecheck + build + link validation + parity check
 ```
 
+### Free Tools Local Env
+
+The Broken Link Report form reads these optional public env vars at build/dev time:
+
+```bash
+PUBLIC_FREE_TOOLS_API_BASE_URL=http://127.0.0.1:5000
+PUBLIC_TURNSTILE_SITE_KEY=your_turnstile_site_key
+```
+
+If `PUBLIC_FREE_TOOLS_API_BASE_URL` is unset, local dev defaults to `http://127.0.0.1:5000` and production defaults to `https://api.gopromptless.ai`.
+
 ### Deployment
 
 - Production and preview deployments are handled by Vercel Git integration.

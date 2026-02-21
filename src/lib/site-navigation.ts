@@ -1,19 +1,25 @@
-export type SiteSection = 'website' | 'docs' | 'blog' | 'changelog' | 'signin';
-export type TopNavIcon = 'website' | 'docs' | 'blog' | 'changelog';
+export type SiteSection = 'website' | 'docs' | 'blog' | 'changelog' | 'free_tools' | 'signin';
+export type TopNavIcon = 'website' | 'docs' | 'blog' | 'changelog' | 'free_tools';
 
-export interface TopNavItem {
+interface TopNavBaseItem {
   section: SiteSection;
-  href: string;
   label: string;
   icon?: TopNavIcon;
+}
+
+export interface TopNavLinkItem extends TopNavBaseItem {
+  href: string;
   external?: boolean;
 }
+
+export type TopNavItem = TopNavLinkItem;
 
 export const TOP_NAV_ITEMS: TopNavItem[] = [
   { section: 'website', href: '/', label: 'Website', icon: 'website' },
   { section: 'docs', href: '/docs', label: 'Docs', icon: 'docs' },
   { section: 'blog', href: '/blog', label: 'Blog', icon: 'blog' },
   { section: 'changelog', href: '/changelog', label: 'Changelog', icon: 'changelog' },
+  { section: 'free_tools', href: '/free-tools', label: 'Free tools', icon: 'free_tools' },
   {
     section: 'signin',
     href: 'https://app.gopromptless.ai',
@@ -42,5 +48,6 @@ export function getActiveSection(pathname: string): SiteSection {
   if (normalized.startsWith('/docs')) return 'docs';
   if (normalized.startsWith('/blog')) return 'blog';
   if (normalized.startsWith('/changelog')) return 'changelog';
+  if (normalized.startsWith('/free-tools')) return 'free_tools';
   return 'website';
 }
