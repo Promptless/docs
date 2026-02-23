@@ -627,7 +627,9 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
 
 .fern-card-grid {
   display: grid;
+  align-items: stretch;
   gap: 0.95rem;
+  margin: 1rem 0;
 }
 
 .fern-card-grid.cols-1 {
@@ -656,19 +658,51 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
 }
 
 .fern-card {
+  height: 100%;
   border: 1px solid var(--sl-color-hairline);
   border-radius: 12px;
   padding: 1rem;
   background: color-mix(in srgb, var(--sl-color-bg) 97%, var(--sl-color-accent-low));
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
   transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
 }
 
-.fern-card:hover {
+.fern-card-grid > .fern-card {
+  margin: 0;
+  height: 100%;
+}
+
+.sl-markdown-content > .fern-card + .fern-card-grid {
+  margin-top: 1rem;
+}
+
+a.fern-card,
+a.fern-card:hover,
+a.fern-card:focus-visible,
+a.fern-card:active,
+a.fern-card:visited {
+  color: inherit;
+}
+
+a.fern-card .fern-card-body {
+  color: var(--sl-color-white);
+}
+
+a.fern-card .fern-card-body p {
+  color: inherit;
+}
+
+a.fern-card:hover {
   border-color: color-mix(in srgb, var(--sl-color-accent) 35%, var(--sl-color-hairline));
   box-shadow: 0 8px 18px color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
   transform: translateY(-1px);
+}
+
+.welcome-intro-card {
+  margin-top: 1rem;
 }
 
 .fern-card h3 {

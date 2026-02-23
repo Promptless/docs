@@ -5,51 +5,60 @@ sidebar:
   hidden: false
   order: 3
 ---
-import Steps from '@components/fern/Steps.astro';
-import Step from '@components/fern/Step.astro';
+import HowItWorks from '@components/site/HowItWorks.astro';
 import Success from '@components/fern/Success.astro';
-
-# Set Up & Quickstart
 
 Promptless automatically updates your docs, saving your team time and improving your customer experience. 
 
-## Before You Start
+### Before You Start
 
-- Sign up for a free account at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
+Sign up for a free account at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
 
-## Guided Setup Wizard
+### Guided Setup Wizard
 
 When you first sign in, a 6-step wizard guides you through setup:
 
-<Steps>
-  <Step title="Connect Slack">
-    Set up Slack for notifications and to trigger documentation updates via @mentions
-  </Step>
-
-  <Step title="Connect docs">
-    Connect your documentation platform (GitHub repos, Zendesk, or other supported platforms)
-  </Step>
-
-  <Step title="Configure triggers">
-    Choose which events trigger documentation updates (GitHub PRs, Slack messages, etc.)
-  </Step>
-
-  <Step title="Additional context">
-    Optionally connect Linear, Jira, or Confluence for better suggestions
-  </Step>
-
-  <Step title="Agent preferences">
-    Configure how Promptless behaves when creating suggestions
-  </Step>
-
-  <Step title="Start trial">
-    Begin your 30-day trial
-  </Step>
-</Steps>
+<HowItWorks
+  id="guided-setup-wizard-steps"
+  showHeading={false}
+  compact={true}
+  steps={[
+    {
+      id: 'connect-slack',
+      label: 'Connect Slack',
+      description: 'Set up Slack for notifications and to trigger documentation updates via @mentions.',
+    },
+    {
+      id: 'connect-docs',
+      label: 'Connect docs',
+      description: 'Connect your documentation platform (GitHub repos, Zendesk, or other supported platforms).',
+    },
+    {
+      id: 'configure-triggers',
+      label: 'Configure triggers',
+      description: 'Choose which events trigger documentation updates (GitHub PRs, Slack messages, etc.).',
+    },
+    {
+      id: 'additional-context',
+      label: 'Additional context',
+      description: 'Optionally connect Linear, Jira, or Confluence for better suggestions.',
+    },
+    {
+      id: 'agent-preferences',
+      label: 'Agent preferences',
+      description: 'Configure how Promptless behaves when creating suggestions.',
+    },
+    {
+      id: 'start-trial',
+      label: 'Start trial',
+      description: 'Begin your 30-day trial.',
+    },
+  ]}
+/>
 
 Your progress saves automatically—if you leave and come back later, you'll pick up where you left off. Team members from the same organization can continue setup without losing previous progress.
 
-## What Gets Configured
+### What Gets Configured
 
 During setup, you'll connect:
 
@@ -63,7 +72,7 @@ During setup, you'll connect:
 
 **Enhanced Context (optional)** - Connect **Linear**, **Jira**, **Confluence**, or **Slack** to provide Promptless with additional context for better suggestions.
 
-## What's Next?
+### What's Next?
 
 After creating a project, Promptless will start ingesting and indexing your documentation. This process helps Promptless learn your documentation structure and content, and remember it for future suggestions. This can take 5-30 minutes, depending on the size of your docs.
 

@@ -14,6 +14,10 @@ function iconFallback(value?: string): string {
   if (normalized.includes('slack')) return '💬';
   if (normalized.includes('github')) return '🐙';
   if (normalized.includes('shield')) return '🛡';
+  if (normalized.includes('pen') || normalized.includes('write') || normalized.includes('edit')) return '✍️';
+  if (normalized.includes('bolt') || normalized.includes('flash')) return '⚡';
+  if (normalized.includes('share') || normalized.includes('publish')) return '📤';
+  if (normalized.includes('rotate') || normalized.includes('refresh') || normalized.includes('arrows')) return '🔄';
   if (normalized.includes('users') || normalized.includes('team')) return '👥';
   if (normalized.includes('clock')) return '🕒';
   if (normalized.includes('plug')) return '🔌';

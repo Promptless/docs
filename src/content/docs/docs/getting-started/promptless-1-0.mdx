@@ -8,9 +8,7 @@ sidebar:
   hidden: false
   order: 2
 ---
-import Card from '@components/fern/Card.astro';
-import Accordion from '@components/fern/Accordion.astro';
-import AccordionGroup from '@components/fern/AccordionGroup.astro';
+import Info from '@components/fern/Info.astro';
 
 We made Promptless to solve a problem every team faces: keeping documentation current is exhausting. Context gets lost in handoffs, updates lag behind releases, and support teams answer the same questions repeatedly because docs are always a step behind.
 
@@ -23,51 +21,7 @@ Here's a quick summary of what Promptless 1.0 brings:
 * **No more AI slop**: Promptless now drafts content based on the voice of similar docs, improving voice consistency by 92%
 * **Auto-updating screenshots**: When features that impact UI are deployed, Promptless browses your web app and regenerates screenshots from scratch.  
 * **Brand-new suggestion reviewing experience**: Promptless provides you citations, tells you its reasoning, and makes it easy to quickly validate that its suggestions are correct. 
-* **Promptless for internal docs**: With AI agents in the workplace increasingly relying on your internal docs being up to date, internal docs are becoming increasingly important, and Promptless helps with those too. 
-
-## How Promptless Works
-
-<AccordionGroup>
-  <Accordion title="1. Promptless Listens" defaultOpen={true}>
-    <Card 
-      title="Connect Your Tools" 
-      src="./assets/promptless_1_listen.png"
-      imagePosition="left"
-    >
-      Promptless integrates with GitHub, Slack, Linear, Jira, Zendesk, and your documentation platform. It listens for events such as PR merges, ticket closes, and support conversations in Slack.
-    </Card>
-  </Accordion>
-
-  <Accordion title="2. Research & Draft">
-    <Card 
-      title="Gather Context Automatically" 
-      src="./assets/promptless_1_research.png"
-      imagePosition="left"
-    >
-      Promptless reviews relevant PRs, Jira tickets, Slack threads, and your existing docs to understand what changed and what needs updating. It drafts documentation suggestions and notifies you proactively.
-    </Card>
-  </Accordion>
-
-  <Accordion title="3. Review">
-    <Card 
-      title="Review with Citations" 
-      src="./assets/promptless_1_review.png"
-      imagePosition="left"
-    >
-      Every documentation change includes citations showing exactly where information came from. Review the reasoning, provide feedback, or edit in-line before publishing.
-    </Card>
-  </Accordion>
-
-  <Accordion title="4. Publish">
-    <Card 
-      title="Deploy Anywhere" 
-      src="./assets/promptless_1_publish.png"
-      imagePosition="left"
-    >
-      Open PRs to your docs repo or deploy directly to your docs provider—Mintlify, Fern, Readme, GitBook, Zendesk, and more. Complete end-to-end automation from code changes to published documentation.
-    </Card>
-  </Accordion>
-</AccordionGroup>
+* **Promptless for internal docs**: With AI agents in the workplace increasingly relying on your internal docs being up to date, internal docs are becoming increasingly important, and Promptless helps with those too.
 
 ## How Teams Use Promptless
 
@@ -83,14 +37,9 @@ Promptless removes the manual overhead of keeping docs current while preserving 
 
 **Vitess**, a CNCF graduated project, proves Promptless works in the open-source world. Since installing Promptless, 94% of their documentation updates have been drafted with Promptless—the tool has become essential to keeping their docs current as the project evolves.
 
-<Card 
-  title="See Promptless in Action" 
-  src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/vitess-commits-promptless-stats-f724acb7.png"
-  imagePosition="left"
-  href="https://github.com/vitessio/website/commits/prod/content"
->
-  Vitess is a CNCF graduated project powering YouTube, Slack, and Square. Browse their [docs commit history](https://github.com/vitessio/website/commits/prod/content) to see Promptless drafting documentation updates in real-time.
-</Card>
+<Info title="See Promptless in Action">
+Vitess is a CNCF graduated project powering YouTube, Slack, and Square. Browse their [docs commit history](https://github.com/vitessio/website/commits/prod/content) to see Promptless drafting documentation updates in real-time.
+</Info>
 
 ## What's Included in Promptless 1.0
 
