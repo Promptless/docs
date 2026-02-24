@@ -57,6 +57,10 @@
           {
             "label": "Zendesk Tickets (Beta)",
             "slug": "docs/configuring-promptless/triggers/zendesk-tickets-beta"
+          },
+          {
+            "label": "Intercom Tickets (Beta)",
+            "slug": "docs/configuring-promptless/triggers/intercom-tickets-beta"
           }
         ]
       },
@@ -85,20 +89,12 @@
         "label": "Doc Collections",
         "items": [
           {
-            "label": "Doc Collections",
-            "slug": "docs/configuring-promptless/doc-collections"
+            "label": "How Promptless Learns Your Docs",
+            "slug": "docs/configuring-promptless/doc-collections/how-promptless-learns-your-docs"
           },
           {
             "label": "GitHub Repos (Docs as Code)",
             "slug": "docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code"
-          },
-          {
-            "label": "Zendesk",
-            "slug": "docs/configuring-promptless/doc-collections/zendesk"
-          },
-          {
-            "label": "Intercom (Beta)",
-            "slug": "docs/configuring-promptless/doc-collections/intercom-beta"
           }
         ]
       }

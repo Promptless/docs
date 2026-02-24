@@ -767,6 +767,9 @@ a.fern-card:hover {
 .fern-step-title {
   margin: 0 0 0.4rem;
   font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
 }
 
 .fern-accordion details {

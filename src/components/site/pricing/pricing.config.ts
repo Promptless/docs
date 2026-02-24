@@ -29,7 +29,7 @@ export const STARTUP_PLAN: PricingPlanConfig = {
   title: 'Startup',
   summary: 'For teams with small docs sites and standard integration needs.',
   ctaLabel: 'Sign up',
-  ctaHref: 'https://accounts.gopromptless.ai/signup',
+  ctaHref: 'https://accounts.gopromptless.ai/sign-up',
 };
 
 export const GROWTH_PLAN: PricingPlanConfig = {

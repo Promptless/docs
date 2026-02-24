@@ -142,6 +142,16 @@
     "tab": "docs"
   },
   {
+    "sourcePath": "fern/docs/configuration/triggers/intercom.md",
+    "contentType": "docs",
+    "routePath": "/docs/configuring-promptless/triggers/intercom-tickets-beta",
+    "title": "Intercom Tickets (Beta)",
+    "hidden": false,
+    "order": 14,
+    "section": "Configuring Promptless",
+    "tab": "docs"
+  },
+  {
     "sourcePath": "fern/docs/configuration/context-sources/linear.md",
     "contentType": "docs",
     "routePath": "/docs/configuring-promptless/context-sources/linear",
@@ -172,12 +182,12 @@
     "tab": "docs"
   },
   {
-    "sourcePath": "fern/docs/configuration/doc-collections.md",
+    "sourcePath": "fern/docs/doc-analysis.mdx",
     "contentType": "docs",
-    "routePath": "/docs/configuring-promptless/doc-collections",
-    "title": "Doc Collections",
+    "routePath": "/docs/configuring-promptless/doc-collections/how-promptless-learns-your-docs",
+    "title": "How Promptless Learns Your Docs",
     "hidden": false,
-    "order": 18,
+    "order": 19,
     "section": "Configuring Promptless",
     "tab": "docs"
   },
@@ -187,27 +197,7 @@
     "routePath": "/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code",
     "title": "GitHub Repos (Docs as Code)",
     "hidden": false,
-    "order": 19,
-    "section": "Configuring Promptless",
-    "tab": "docs"
-  },
-  {
-    "sourcePath": "fern/docs/configuration/doc-collections/zendesk.md",
-    "contentType": "docs",
-    "routePath": "/docs/configuring-promptless/doc-collections/zendesk",
-    "title": "Zendesk",
-    "hidden": false,
     "order": 20,
-    "section": "Configuring Promptless",
-    "tab": "docs"
-  },
-  {
-    "sourcePath": "fern/docs/configuration/doc-collections/intercom.md",
-    "contentType": "docs",
-    "routePath": "/docs/configuring-promptless/doc-collections/intercom-beta",
-    "title": "Intercom (Beta)",
-    "hidden": false,
-    "order": 21,
     "section": "Configuring Promptless",
     "tab": "docs"
   },

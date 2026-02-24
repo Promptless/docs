@@ -7,11 +7,9 @@ sidebar:
 ---
 import Frame from '@components/fern/Frame.astro';
 
-# Zendesk Integration
+**Used for: Triggers**
 
-**Used for: Triggers and Publishing**
-
-Promptless integrates with Zendesk through OAuth 2.0, enabling automated documentation updates based on support ticket patterns and customer interactions, as well as publishing updates to Zendesk's Help Center.
+Promptless integrates with Zendesk through OAuth 2.0, enabling automated documentation updates based on support ticket patterns and customer interactions.
 
 ## Installation
 
@@ -19,7 +17,7 @@ Promptless integrates with Zendesk through OAuth 2.0, enabling automated documen
 
 2. Review the requested permissions and approve the Promptless app.
 <Frame>
-  <img src="../assets/zendesk-permissions.png" alt="Zendesk Subdomain Entry" />
+  <img src="/assets/zendesk-permissions.png" alt="Zendesk Subdomain Entry" />
 </Frame>
 
 3. Verify that Zendesk is connected in the integrations page.
@@ -38,4 +36,3 @@ Promptless uses Zendesk's [official OAuth 2.0 authentication](https://developer.
 Once connected, you can use Zendesk for:
 
 - **[Triggers](/docs/configuring-promptless/triggers/zendesk-tickets-beta)**: Monitor resolved support tickets for documentation gaps (Beta)
-- **[Doc Collections](/docs/configuring-promptless/doc-collections/zendesk)**: Publish documentation updates directly to your Zendesk Help Center

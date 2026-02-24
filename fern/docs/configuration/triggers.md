@@ -26,6 +26,10 @@ Triggers are events that initiate automated documentation updates in Promptless.
   <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/configuration/triggers/zendesk">
     Monitor support tickets for documentation gaps based on recurring user questions
   </Card>
+
+  <Card title="Intercom (Beta)" icon="fa-solid fa-comments" href="/docs/configuration/triggers/intercom">
+    Monitor support conversations for documentation gaps based on recurring user questions
+  </Card>
 </CardGroup>
 
 ## How Triggers Work
@@ -54,7 +58,7 @@ Need a trigger type that isn't currently supported? Contact us at [help@goprompt
 
 When auto-publish is enabled for your project, Promptless automatically creates pull requests in your documentation repository with suggested changes. For [commit triggers](/docs/configuration/triggers/github-commits), you can optionally enable auto-merge to automatically merge documentation PRs as soon as they're created.
 
-Auto-publish is available for GitHub-based documentation platforms. For CMS platforms like Zendesk or Intercom, documentation updates are created as drafts for review.
+Auto-publish is available for all Git-hosted documentation platforms.
 
 ## Trigger Events in Documentation PRs
 
