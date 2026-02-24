@@ -20,6 +20,7 @@ const redirects = {
   '/use-cases': '/',
   '/faq': '/',
   '/api-reference': '/',
+  '/oss': '/docs/getting-started/promptless-oss',
   '/blog/all': '/blog',
   '/changelog/all': '/changelog',
   ...Object.fromEntries(redirectEntries),
