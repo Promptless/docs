@@ -66,6 +66,14 @@ export default defineConfig({
       },
       head: [
         {
+          tag: 'meta',
+          attrs: { property: 'og:image', content: 'https://promptless.ai/assets/social-card.png' },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: 'https://promptless.ai/assets/social-card.png' },
+        },
+        {
           tag: 'script',
           attrs: { src: 'https://www.googletagmanager.com/gtag/js?id=G-NHEW11ZR9F', async: true },
         },
