@@ -20,15 +20,25 @@ const FREE_TOOL_REPORT_PATH = path.join(ROOT, 'dist', 'free-tools', 'broken-link
 const SITE_DEMO_PATH = path.join(ROOT, 'dist', 'site', 'demo', 'index.html');
 const SITE_INDEX_PATH = path.join(ROOT, 'dist', 'site', 'index.html');
 const VIDEO_DEMO_PATH = path.join(ROOT, 'dist', 'video-demo', 'index.html');
+const PAGE_INDEX_PATH = path.join(ROOT, 'dist', 'page', 'index.html');
+const WTD_INDEX_PATH = path.join(ROOT, 'dist', 'wtd', 'index.html');
+const HN_INDEX_PATH = path.join(ROOT, 'dist', 'hn', 'index.html');
 const USE_CASES_PATH = path.join(ROOT, 'dist', 'use-cases', 'index.html');
 const FAQ_PATH = path.join(ROOT, 'dist', 'faq', 'index.html');
 const API_REFERENCE_PATH = path.join(ROOT, 'dist', 'api-reference', 'index.html');
+const PRIVACY_INDEX_PATH = path.join(ROOT, 'dist', 'privacy', 'index.html');
+const TERMS_INDEX_PATH = path.join(ROOT, 'dist', 'terms', 'index.html');
+const LEGACY_BLOG_INDEX_PATH = path.join(ROOT, 'dist', 'blog', 'customer-stories-vellum', 'index.html');
 
 interface VercelConfig {
   redirects?: Array<{
     source: string;
     destination: string;
     permanent?: boolean;
+    has?: Array<{
+      type: string;
+      value: string;
+    }>;
   }>;
 }
 
@@ -64,6 +74,9 @@ async function main() {
     ...redirects.redirects.map((entry) => normalizePath(entry.destination)),
     '/',
     '/home',
+    '/page',
+    '/wtd',
+    '/hn',
     '/docs',
     '/demo',
     '/pricing',
@@ -76,7 +89,10 @@ async function main() {
     '/faq',
     '/api-reference',
     '/blog',
+    '/blog/customer-stories-vellum',
     '/changelog',
+    '/privacy',
+    '/terms',
     '/llms.txt',
     '/llms-full.txt',
   ]);
@@ -108,9 +124,15 @@ async function main() {
     siteDemoHtml,
     siteIndexHtml,
     videoDemoHtml,
+    pageIndexHtml,
+    wtdIndexHtml,
+    hnIndexHtml,
     useCasesHtml,
     faqHtml,
     apiReferenceHtml,
+    privacyIndexHtml,
+    termsIndexHtml,
+    legacyBlogHtml,
     blogIndexHtml,
     blogAllHtml,
     changelogIndexHtml,
@@ -125,9 +147,15 @@ async function main() {
     readFile(SITE_DEMO_PATH, 'utf8'),
     readFile(SITE_INDEX_PATH, 'utf8'),
     readFile(VIDEO_DEMO_PATH, 'utf8'),
+    readFile(PAGE_INDEX_PATH, 'utf8'),
+    readFile(WTD_INDEX_PATH, 'utf8'),
+    readFile(HN_INDEX_PATH, 'utf8'),
     readFile(USE_CASES_PATH, 'utf8'),
     readFile(FAQ_PATH, 'utf8'),
     readFile(API_REFERENCE_PATH, 'utf8'),
+    readFile(PRIVACY_INDEX_PATH, 'utf8'),
+    readFile(TERMS_INDEX_PATH, 'utf8'),
+    readFile(LEGACY_BLOG_INDEX_PATH, 'utf8'),
     readFile(BLOG_INDEX_PATH, 'utf8'),
     readFile(BLOG_ALL_PATH, 'utf8'),
     readFile(CHANGELOG_INDEX_PATH, 'utf8'),
@@ -164,6 +192,15 @@ async function main() {
   if (!/Redirecting to: \/demo/i.test(videoDemoHtml)) {
     fail('Astro build must keep /video-demo as a compatibility redirect to /demo.');
   }
+  if (!/Redirecting to: \//i.test(pageIndexHtml)) {
+    fail('Astro build must keep /page as a compatibility redirect to /.');
+  }
+  if (!/Redirecting to: \//i.test(wtdIndexHtml)) {
+    fail('Astro build must keep /wtd as a compatibility redirect to /.');
+  }
+  if (!/Redirecting to: \//i.test(hnIndexHtml)) {
+    fail('Astro build must keep /hn as a compatibility redirect to /.');
+  }
   if (!/Redirecting to: \//i.test(useCasesHtml)) {
     fail('Astro build must keep /use-cases as a compatibility redirect to /.');
   }
@@ -172,6 +209,17 @@ async function main() {
   }
   if (!/Redirecting to: \//i.test(apiReferenceHtml)) {
     fail('Astro build must keep /api-reference as a compatibility redirect to /.');
+  }
+  if (!privacyIndexHtml.includes('Privacy Policy')) {
+    fail('Astro build for /privacy must render the privacy page.');
+  }
+  if (!termsIndexHtml.includes('Terms of Use')) {
+    fail('Astro build for /terms must render the terms page.');
+  }
+  if (!/Redirecting to: \/blog\/customer-stories\/vellum/i.test(legacyBlogHtml)) {
+    fail(
+      'Astro build must keep /blog/customer-stories-vellum as a compatibility redirect to /blog/customer-stories/vellum.'
+    );
   }
 
   if (/^<!doctype html><title>Redirecting/i.test(blogIndexHtml.trim())) {
@@ -190,6 +238,7 @@ async function main() {
   const vercelRedirectMap = new Map(
     (vercelConfig.redirects ?? []).map((rule) => [normalizePath(rule.source), normalizePath(rule.destination)])
   );
+  const vercelHostRedirects = vercelConfig.redirects ?? [];
 
   if (vercelRedirectMap.has('/blog')) {
     fail(`vercel.json must not redirect /blog, but found ${vercelRedirectMap.get('/blog')}.`);
@@ -216,6 +265,21 @@ async function main() {
   }
   if (vercelRedirectMap.get('/home') !== '/') {
     fail(`vercel.json must redirect /home to /, found ${vercelRedirectMap.get('/home') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/page') !== '/') {
+    fail(`vercel.json must redirect /page to /, found ${vercelRedirectMap.get('/page') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/wtd') !== '/') {
+    fail(`vercel.json must redirect /wtd to /, found ${vercelRedirectMap.get('/wtd') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/hn') !== '/') {
+    fail(`vercel.json must redirect /hn to /, found ${vercelRedirectMap.get('/hn') ?? 'none'}.`);
+  }
+  if (vercelRedirectMap.get('/blog/customer-stories-vellum') !== '/blog/customer-stories/vellum') {
+    fail(
+      'vercel.json must redirect /blog/customer-stories-vellum to /blog/customer-stories/vellum, found '
+        + `${vercelRedirectMap.get('/blog/customer-stories-vellum') ?? 'none'}.`
+    );
   }
   if (vercelRedirectMap.get('/site') !== '/demo') {
     fail(`vercel.json must redirect /site to /demo, found ${vercelRedirectMap.get('/site') ?? 'none'}.`);
@@ -250,6 +314,18 @@ async function main() {
         vercelRedirectMap.get('/api-reference') ?? 'none'
       }.`
     );
+  }
+  const hasPromptlessHostRedirect = (host: string): boolean =>
+    vercelHostRedirects.some((rule) => {
+      if (normalizePath(rule.source) !== '/:path*') return false;
+      if (rule.destination !== 'https://promptless.ai/:path*') return false;
+      return (rule.has ?? []).some((condition) => condition.type === 'host' && condition.value === host);
+    });
+  if (!hasPromptlessHostRedirect('docs.promptless.ai')) {
+    fail('vercel.json must redirect docs.promptless.ai host traffic to https://promptless.ai/:path*.');
+  }
+  if (!hasPromptlessHostRedirect('docs.gopromptless.ai')) {
+    fail('vercel.json must redirect docs.gopromptless.ai host traffic to https://promptless.ai/:path*.');
   }
 
   console.log(`Route parity check passed for ${liveRoutes.length} live routes.`);

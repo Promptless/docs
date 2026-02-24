@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = 'https://docs.gopromptless.ai';
+const DEFAULT_SITE_URL = 'https://promptless.ai';
 
 export function resolveCanonicalSiteUrl(site?: URL): string {
   return site?.toString() || process.env.SITE_URL || DEFAULT_SITE_URL;

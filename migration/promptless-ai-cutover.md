@@ -25,16 +25,23 @@ This runbook is for the preview-to-production switch after Phase 2 website+docs 
 
 ## 2. Environment + Canonical URL
 
-- Set `SITE_URL` in production to the final canonical domain (for example `https://promptless.ai`).
+- Set `SITE_URL` in production to `https://promptless.ai`.
+- Set:
+  - `PUBLIC_FREE_TOOLS_API_BASE_URL=https://api.gopromptless.ai`
+  - `PUBLIC_TURNSTILE_SITE_KEY=<production site key>`
 - Confirm preview environments still use non-production `SITE_URL` values or default behavior.
 
 ## 3. Routing/DNS switch
 
 - Point production deployment target to this unified Astro/Starlight app.
+- Keep docs compatibility hosts attached with host-level redirects:
+  - `docs.promptless.ai/*` -> `https://promptless.ai/*` (`301`)
+  - `docs.gopromptless.ai/*` -> `https://promptless.ai/*` (`301`, if attached to the same Vercel project)
 - Ensure domain routes resolve as expected:
-  - website: `/`, `/demo`, `/pricing`
+  - website: `/`, `/demo`, `/pricing`, `/meet`
   - docs: `/docs/*`
   - blog/changelog: `/blog/*`, `/changelog/*`
+  - free tools: `/free-tools/*`
 
 ## 4. Post-cutover smoke checks
 
@@ -42,10 +49,19 @@ This runbook is for the preview-to-production switch after Phase 2 website+docs 
   - `/` -> `200`
   - `/demo` -> `200`
   - `/pricing` -> `200`
+  - `/meet` -> `200`
+  - `/free-tools` -> `200`
+  - `/free-tools/broken-link-report` -> `200`
+  - `/privacy` -> `200`
+  - `/terms` -> `200`
   - `/home` -> redirect to `/`
+  - `/page` -> redirect to `/`
+  - `/wtd` -> redirect to `/`
+  - `/hn` -> redirect to `/`
   - `/site` -> redirect to `/demo`
   - `/site/demo` -> redirect to `/demo`
   - `/video-demo` -> redirect to `/demo`
+  - `/blog/customer-stories-vellum` -> redirect to `/blog/customer-stories/vellum`
   - `/use-cases` -> redirect to `/`
   - `/faq` -> redirect to `/`
   - `/api-reference` -> redirect to `/`

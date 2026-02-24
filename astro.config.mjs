@@ -10,9 +10,13 @@ const redirectEntries = (redirectsManifest.redirects || []).map((rule) => [rule.
 const redirects = {
   '/home': '/',
   '/docs': '/docs/getting-started/welcome',
+  '/page': '/',
+  '/wtd': '/',
+  '/hn': '/',
   '/site': '/demo',
   '/site/demo': '/demo',
   '/video-demo': '/demo',
+  '/blog/customer-stories-vellum': '/blog/customer-stories/vellum',
   '/use-cases': '/',
   '/faq': '/',
   '/api-reference': '/',
@@ -22,7 +26,7 @@ const redirects = {
 };
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://docs.gopromptless.ai',
+  site: process.env.SITE_URL || 'https://promptless.ai',
   redirects,
   image: {
     service: {

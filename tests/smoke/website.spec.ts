@@ -49,13 +49,13 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.match(pricingHtml, /Enterprise/);
   assert.match(pricingHtml, /\$500\s*\/\s*mo/);
   assert.match(pricingHtml, /All plans include a 30-day free trial\./);
-  assert.match(pricingHtml, /200 Pages\*/);
+  assert.match(pricingHtml, /Up to 200 Pages\*/);
   assert.match(pricingHtml, /Pages are normalized/);
   assert.match(pricingHtml, /name=\"growth_bundle\"/);
-  assert.match(pricingHtml, /200-500 articles/);
-  assert.match(pricingHtml, /500-1,000 articles/);
-  assert.match(pricingHtml, /1,000-2,000 articles/);
-  assert.match(pricingHtml, /2,000-5,000 articles/);
+  assert.match(pricingHtml, /200-500 Pages/);
+  assert.match(pricingHtml, /500-1,000 Pages/);
+  assert.match(pricingHtml, /1,000-2,000 Pages/);
+  assert.match(pricingHtml, /2,000-5,000 Pages/);
   assert.match(pricingHtml, /Slack \+ GitHub integrations/);
   assert.match(pricingHtml, /Open-source, non-commercial project\?/);
   assert.match(pricingHtml, /href=\"https:\/\/promptless\.ai\/oss\"/);
@@ -67,9 +67,23 @@ test('website header renders expected CTAs and search control', async () => {
   const response = await fetch(`${preview.baseUrl}/`);
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /href="https:\/\/accounts\.gopromptless\.ai\/signup"[^>]*>\s*Sign up/i);
-  assert.match(html, /href="https:\/\/cal\.com\/promptless\/demo"[^>]*>\s*Book demo/i);
+  assert.match(html, /href="https:\/\/app\.gopromptless\.ai"[^>]*>\s*Sign in/i);
+  assert.match(html, /href="\/meet"[^>]*>\s*Book demo/i);
   assert.match(html, /aria-label="Search"/i);
+});
+
+test('legal pages render', async () => {
+  const privacyResponse = await fetch(`${preview.baseUrl}/privacy`);
+  assert.equal(privacyResponse.status, 200);
+  const privacyHtml = await privacyResponse.text();
+  assert.match(privacyHtml, /Privacy Policy/i);
+  assert.match(privacyHtml, /help@gopromptless\.ai/i);
+
+  const termsResponse = await fetch(`${preview.baseUrl}/terms`);
+  assert.equal(termsResponse.status, 200);
+  const termsHtml = await termsResponse.text();
+  assert.match(termsHtml, /Terms of Service/i);
+  assert.match(termsHtml, /hello@gopromptless\.ai/i);
 });
 
 test('free tool page renders form fields and explanatory copy', async () => {
@@ -100,7 +114,7 @@ test('free tool page renders form fields and explanatory copy', async () => {
 });
 
 test('website compatibility routes redirect to canonical destinations', async () => {
-  const rootAliases = ['/home', '/use-cases', '/faq', '/api-reference'];
+  const rootAliases = ['/home', '/use-cases', '/faq', '/api-reference', '/page', '/wtd', '/hn'];
   for (const alias of rootAliases) {
     const response = await fetch(`${preview.baseUrl}${alias}`, { redirect: 'manual' });
     if (response.status >= 300 && response.status < 400) {

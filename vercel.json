@@ -1,8 +1,50 @@
 {
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.promptless.ai"
+        }
+      ],
+      "destination": "https://promptless.ai/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.gopromptless.ai"
+        }
+      ],
+      "destination": "https://promptless.ai/:path*",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wtd",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/hn",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/customer-stories-vellum",
+      "destination": "/blog/customer-stories/vellum",
       "permanent": true
     },
     {

@@ -1,6 +1,6 @@
 # Promptless Docs
 
-**https://docs.gopromptless.ai**
+**https://promptless.ai**
 
 This documentation is written and maintained by [Promptless](https://promptless.ai), with edits and refinements by the Promptless team. Check out the [commit history](../../commits/main) to see Promptless drafting, updating, and refining documentation automatically based on product changes.
 
