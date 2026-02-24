@@ -15,15 +15,15 @@ Context sources are **optional** but highly recommended. They can significantly 
 ## Available Context Sources
 
 <CardGroup cols={2}>
-  <Card title="Linear" icon="fa-solid fa-circle" href="/docs/configuration/context-sources/linear">
+  <Card title="Linear" icon="fa-solid fa-circle" href="/docs/configuring-promptless/context-sources/linear">
     Access Linear issues, projects, and team workflows for project management context
   </Card>
   
-  <Card title="Jira" icon="fa-brands fa-jira" href="/docs/configuration/context-sources/jira">
+  <Card title="Jira" icon="fa-brands fa-jira" href="/docs/configuring-promptless/context-sources/jira">
     Query Jira tickets and project data using JQL search capabilities
   </Card>
   
-  <Card title="Confluence" icon="fa-brands fa-confluence" href="/docs/configuration/context-sources/confluence">
+  <Card title="Confluence" icon="fa-brands fa-confluence" href="/docs/configuring-promptless/context-sources/confluence">
     Search Confluence spaces for existing documentation patterns, terminology, and architectural decisions
   </Card>
 </CardGroup>

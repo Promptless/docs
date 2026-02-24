@@ -4,7 +4,7 @@ instances:
       - docs.gopromptless.ai
       - docs.promptless.ai
 
-title: Promptless | Documentation
+title: Promptless | Docs
 
 layout:
   searchbar-placement: header 
@@ -36,6 +36,8 @@ navigation:
           path: ./docs/getting-started.mdx
         - page: Core Concepts
           path: ./docs/core-concepts.mdx
+        - page: How Promptless Learns Your Docs
+          path: ./docs/doc-analysis.mdx
         - page: Promptless for Open-Source
           slug: promptless-oss
           path: ./docs/open-source.mdx
