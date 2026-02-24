@@ -262,7 +262,7 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.equal(homeResponse.status, 200);
   const homeHtml = await homeResponse.text();
   assert.match(homeHtml, /pl-site-page/);
-  assert.match(homeHtml, /AI agent for your/);
+  assert.match(homeHtml, /Automatically update your/);
   assert.match(homeHtml, /How Promptless works/);
   assert.match(homeHtml, /Demo/);
   assert.match(homeHtml, /Pricing/);
