@@ -1,27 +1,28 @@
 # Intercom Integration (Beta)
 
-**Used for: Publishing**
+**Used for: Triggers**
 
-Promptless offers beta support for updating documentation directly in Intercom. This integration allows you to manage your Intercom help center content through the Promptless platform.
+Promptless integrates with Intercom to enable automated documentation updates based on support conversations and repeated customer questions.
 
-<Info>
-Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable the Intercom integration for your account.
-</Info>
+## Installation
 
-## Setup
+1. Click "Connect Intercom" from the [integrations page](https://app.gopromptless.ai/integrations).
+2. Review and approve the requested permissions.
+3. Verify that Intercom is connected in the integrations page.
 
-To set up the Intercom integration:
+## Authentication Model
 
-1. Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) to enable the Intercom integration for your account
-2. Configure your Intercom credentials in the Promptless dashboard
-3. Select Intercom as your documentation platform when creating a new project
+Promptless uses OAuth-based authentication for Intercom integrations, which provides:
+
+- Secure token-based authentication
+- Granular API access scopes
+- Ability to revoke access at any time
+- Regular token rotation for enhanced security
 
 ## What You Can Do with Intercom
 
-Once connected, you can use Intercom as a [documentation platform](/docs/configuring-promptless/doc-collections/intercom-beta) to publish help center articles and customer support documentation.
+Once connected, you can use Intercom as a [trigger source](/docs/configuration/triggers/intercom) to monitor support conversations for documentation gaps (Beta).
 
-<Note>
-The Intercom integration creates or updates drafts in Intercom. You'll need to review and publish these drafts from within your Intercom dashboard before they become visible to your users.
-</Note>
-
-For any questions or issues with the Intercom integration, please contact our support team at [help@gopromptless.ai](mailto:help@gopromptless.ai).
+<Info>
+Contact [help@gopromptless.ai](mailto:help@gopromptless.ai) if you need help enabling Intercom triggers for your organization.
+</Info>

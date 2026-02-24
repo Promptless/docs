@@ -27,38 +27,50 @@ Before requesting SSO setup, ensure your organization has:
 
 SSO setup requires coordination between your IT team and Promptless. The process involves providing specific configuration details to our team.
 
-<Steps>
-  <Step title="Collect Identity Provider Information">
-    Gather the required configuration details from your identity provider:
+<section id="requesting-sso-configuration-steps" class="pl-site-steps is-compact" data-sticky-heading="false">
+  <div class="pl-site-step-list">
+    <article class="pl-site-step" id="collect-identity-provider-information">
+      <span class="pl-site-step-num">1</span>
+      <h3>Collect Identity Provider Information</h3>
+      <p>Gather the required configuration details from your identity provider:</p>
+      <p><strong>For SAML 2.0 Integration:</strong></p>
+      <ul>
+        <li>Identity Provider (IdP) Entity ID or Issuer URL</li>
+        <li>Single Sign-On Service URL</li>
+        <li>X.509 Certificate (public key for signature verification)</li>
+        <li>Attribute mappings for email, first name, and last name fields</li>
+      </ul>
+      <p><strong>For OpenID Connect (OIDC):</strong></p>
+      <ul>
+        <li>Issuer URL (discovery endpoint)</li>
+        <li>Client ID and Client Secret</li>
+        <li>Authorization endpoint and Token endpoint URLs</li>
+        <li>Supported scopes and user attribute claims</li>
+      </ul>
+    </article>
 
-    **For SAML 2.0 Integration:**
-    - Identity Provider (IdP) Entity ID or Issuer URL
-    - Single Sign-On Service URL
-    - X.509 Certificate (public key for signature verification)
-    - Attribute mappings for email, first name, and last name fields
+    <article class="pl-site-step" id="submit-configuration-request">
+      <span class="pl-site-step-num">2</span>
+      <h3>Submit Configuration Request</h3>
+      <p>Contact our support team (either via your dedicated account manager or by <a href="mailto:help@gopromptless.ai">emailing support</a>) and send the following info:</p>
+      <ul>
+        <li>Your organization name and verified domain</li>
+        <li>Preferred authentication method (SAML 2.0 or OIDC)</li>
+        <li>The configuration information collected in Step 1</li>
+      </ul>
+    </article>
 
-    **For OpenID Connect (OIDC):**
-    - Issuer URL (discovery endpoint)
-    - Client ID and Client Secret
-    - Authorization endpoint and Token endpoint URLs
-    - Supported scopes and user attribute claims
-  </Step>
-
-  <Step title="Submit Configuration Request">
-    Contact our support team (either via your dedicated account manager or by emailing [help@gopromptless.ai](mailto:help@gopromptless.ai), and send the following info:
-
-    - Your organization name and verified domain
-    - Preferred authentication method (SAML 2.0 or OIDC)
-    - The configuration information collected in Step 1
-  </Step>
-
-  <Step title="Configuration and Validation">
-    Our team will configure the SSO integration and provide:
-
-    - Service Provider (SP) metadata for your identity provider configuration
-    - User attribute mapping and role assignment configuration
-  </Step>
-</Steps>
+    <article class="pl-site-step" id="configuration-and-validation">
+      <span class="pl-site-step-num">3</span>
+      <h3>Configuration and Validation</h3>
+      <p>Our team will configure the SSO integration and provide:</p>
+      <ul>
+        <li>Service Provider (SP) metadata for your identity provider configuration</li>
+        <li>User attribute mapping and role assignment configuration</li>
+      </ul>
+    </article>
+  </div>
+</section>
 
 ## Post-Configuration User Experience
 

@@ -41,6 +41,6 @@ Enterprise customers have additional flexibility:
 
 ### Third-party Integrations 
 
-Promptless supports a number of third-party integrations that customers can choose to use in their projects, such as GitHub, Slack, Intercom, Linear, Notion, Jira, and more. 
+Promptless supports a number of third-party integrations that customers can choose to use in their projects, such as GitHub, Slack, Linear, Jira, and more. 
 
 For the most current information about our subprocessors or to discuss specific security requirements, please contact our security team at help@gopromptless.ai.
