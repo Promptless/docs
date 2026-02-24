@@ -283,7 +283,7 @@
 .pl-site-why-grid {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 0.95rem;
 }
 
