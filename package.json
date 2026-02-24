@@ -13,7 +13,7 @@
     "validate:links": "tsx scripts/migrate-fern-to-starlight.ts --validate-links",
     "check:route-parity": "tsx scripts/check-route-parity.ts",
     "check:visual-comparison": "tsx scripts/check-visual-comparison-baseline.ts",
-    "test:smoke": "tsx --test tests/smoke/navigation.spec.ts tests/smoke/collections.spec.ts tests/smoke/website.spec.ts",
+    "test:smoke": "tsx --test tests/smoke/smoke.spec.ts",
     "check": "npm run typecheck && npm run build && npm run validate:links && npm run check:route-parity && npm run check:visual-comparison"
   },
   "dependencies": {
