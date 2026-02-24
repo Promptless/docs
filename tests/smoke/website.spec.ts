@@ -82,7 +82,7 @@ test('legal pages render', async () => {
   const termsResponse = await fetch(`${preview.baseUrl}/terms`);
   assert.equal(termsResponse.status, 200);
   const termsHtml = await termsResponse.text();
-  assert.match(termsHtml, /Terms of Service/i);
+  assert.match(termsHtml, /Terms of Use/i);
   assert.match(termsHtml, /hello@gopromptless\.ai/i);
 });
 

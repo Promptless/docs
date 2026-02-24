@@ -7,6 +7,8 @@ import { setTimeout as sleep } from 'node:timers/promises';
 
 const PREVIEW_HOST = '127.0.0.1';
 const STARTUP_TIMEOUT_MS = 25_000;
+const REQUEST_TIMEOUT_MS = 3_000;
+const SHUTDOWN_TIMEOUT_MS = 5_000;
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(dirname, '..', '..');
 
@@ -57,7 +59,9 @@ async function waitForServerReady(baseUrl: string, child: ChildProcessWithoutNul
     }
 
     try {
-      const response = await fetch(`${baseUrl}/docs/getting-started/welcome`);
+      const response = await fetch(`${baseUrl}/docs/getting-started/welcome`, {
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      });
       if (response.ok) return;
     } catch (error) {
       lastError = String(error);
@@ -69,21 +73,37 @@ async function waitForServerReady(baseUrl: string, child: ChildProcessWithoutNul
   throw new Error(`Timed out waiting for preview server at ${baseUrl}. ${lastError}`.trim());
 }
 
-async function stopServer(child: ChildProcessWithoutNullStreams) {
-  if (child.exitCode !== null) return;
-  child.kill('SIGTERM');
+async function waitForExit(
+  child: ChildProcessWithoutNullStreams,
+  timeoutMs: number
+): Promise<boolean> {
+  if (child.exitCode !== null) return true;
 
-  await Promise.race([
-    new Promise<void>((resolve) => {
-      child.once('exit', () => resolve());
+  let onExit: (() => void) | undefined;
+  const exited = await Promise.race([
+    new Promise<boolean>((resolve) => {
+      onExit = () => resolve(true);
+      child.once('exit', onExit);
     }),
-    sleep(5_000),
+    sleep(timeoutMs).then(() => false),
   ]);
 
-  if (child.exitCode === null) {
-    child.kill('SIGKILL');
-    await new Promise<void>((resolve) => child.once('exit', () => resolve()));
+  if (onExit) {
+    child.off('exit', onExit);
   }
+
+  return exited;
+}
+
+async function stopServer(child: ChildProcessWithoutNullStreams) {
+  if (child.exitCode !== null) return;
+
+  child.kill('SIGTERM');
+  if (await waitForExit(child, SHUTDOWN_TIMEOUT_MS)) return;
+  if (child.exitCode !== null) return;
+
+  child.kill('SIGKILL');
+  await waitForExit(child, SHUTDOWN_TIMEOUT_MS);
 }
 
 export async function startPreviewServer(): Promise<PreviewServer> {

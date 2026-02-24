@@ -9,6 +9,7 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,4 +27,5 @@ jobs:
         run: npm run check
 
       - name: Run smoke tests
+        timeout-minutes: 2
         run: npm run test:smoke
