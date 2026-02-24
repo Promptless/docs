@@ -310,6 +310,22 @@ starlight-theme-select {
   text-transform: uppercase;
 }
 
+/* Nested group headers (e.g. Triggers, Context Sources) — tone down to match links */
+.sidebar-content details details > summary {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--sl-color-text) 84%, #374151);
+  padding: 0.42rem 0.58rem;
+}
+
+.sidebar-content details details > summary .large {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 .sidebar-content a[href] {
   border-radius: 0.5rem;
   color: color-mix(in srgb, var(--sl-color-text) 84%, #374151);
@@ -394,6 +410,13 @@ starlight-theme-select {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Hide right sidebar until viewport is wide enough for full layout */
+@media (max-width: 87.99rem) {
+  .right-sidebar-container {
+    display: none;
+  }
 }
 
 .right-sidebar-panel a {
