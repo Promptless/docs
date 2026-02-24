@@ -36,7 +36,7 @@ export default defineConfig({
   integrations: [
     react(),
     starlight({
-      title: 'Promptless | Documentation',
+      title: 'Promptless | Automatic updates for your customer-facing docs',
       description: 'Automated docs that eliminate manual overhead and keep your docs current with your codebase',
       logo: {
         src: './fern/docs/assets/logo.svg',
