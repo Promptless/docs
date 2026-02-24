@@ -449,6 +449,18 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
   scroll-margin-top: 5rem;
 }
 
+/* Rebalance docs heading scale:
+   h2 uses prior h3 size, and h3 sits between h2 and h4. */
+.sl-markdown-content h2 {
+  font-size: 1.8125rem;
+  line-height: 1.2;
+}
+
+.sl-markdown-content h3 {
+  font-size: 1.5625rem;
+  line-height: 1.2;
+}
+
 .sl-markdown-content a {
   color: color-mix(in srgb, var(--sl-color-accent) 88%, white);
 }
@@ -719,6 +731,16 @@ a.fern-card:hover {
 
 .fern-card-icon {
   flex-shrink: 0;
+  transform: translateY(1px);
+}
+
+.sl-markdown-content .fern-card-icon-image,
+.fern-card-icon-image {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 0;
   transform: translateY(1px);
 }
 

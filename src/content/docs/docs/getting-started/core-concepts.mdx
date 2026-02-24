@@ -10,8 +10,6 @@ import CardGroup from '@components/fern/CardGroup.astro';
 import Note from '@components/fern/Note.astro';
 import Tip from '@components/fern/Tip.astro';
 
-# Core Concepts
-
 Promptless automates documentation creation and maintenance through three interconnected components that work together to understand your codebase, gather context, and publish updates to your documentation platforms.
 
 ## Overview
@@ -22,39 +20,88 @@ The diagram below illustrates how triggers, context sources, and documentation p
 
 ## How the Components Work Together
 
-### 1. Triggers Initiate the Process
+<section id="core-concepts-workflow" class="pl-site-steps is-compact" data-sticky-heading="false">
+  <div class="pl-site-step-list">
+    <article class="pl-site-step" id="triggers-initiate-the-process">
+      <span class="pl-site-step-num">1</span>
+      <h3>Triggers Initiate the Process</h3>
+      <p>
+        <strong>Triggers</strong> are the starting point for all documentation updates. They monitor various
+        sources for events that might require documentation changes:
+      </p>
+      <ul>
+        <li>
+          <strong>Code Changes</strong>: Pull requests in GitHub, Bitbucket, or GitLab automatically trigger
+          analysis when new features or fixes are introduced
+        </li>
+        <li>
+          <strong>Team Communication</strong>: Slack messages and Microsoft Teams mentions can trigger
+          documentation updates
+        </li>
+        <li>
+          <strong>Support Patterns (Beta)</strong>: Zendesk tickets help identify gaps in documentation based on
+          recurring user questions
+        </li>
+      </ul>
+      <p>
+        Learn more in <a href="/docs/configuring-promptless/triggers">Configuring Promptless → Triggers</a>.
+      </p>
+    </article>
 
-**Triggers** are the starting point for all documentation updates. They monitor various sources for events that might require documentation changes:
+    <article class="pl-site-step" id="context-sources-enrich-understanding">
+      <span class="pl-site-step-num">2</span>
+      <h3>Context Sources Enrich Promptless&apos;s Understanding</h3>
+      <p>
+        <strong>Context Sources</strong> enhance the AI&apos;s understanding by providing real-time access to your
+        organization&apos;s data:
+      </p>
+      <ul>
+        <li>
+          <strong>Project Management</strong>: Linear issues and Jira tickets provide business context and feature
+          requirements
+        </li>
+        <li>
+          <strong>Code Repository</strong>: GitHub integration gives deep understanding of your codebase structure
+          and recent changes
+        </li>
+        <li>
+          <strong>Historical Data</strong>: Past documentation patterns and team workflows inform better suggestions
+        </li>
+      </ul>
+      <p>
+        Learn more in <a href="/docs/configuring-promptless/context-sources">Configuring Promptless → Context Sources</a>.
+      </p>
+    </article>
 
-- **Code Changes**: Pull requests in GitHub, Bitbucket, or GitLab automatically trigger analysis when new features or fixes are introduced
-- **Team Communication**: Slack messages and Microsoft Teams mentions can trigger documentation updates
-- **Support Patterns (Beta)**: Zendesk tickets help identify gaps in documentation based on recurring user questions
-
-Learn more in [Configuring Promptless → Triggers](/docs/configuring-promptless/triggers).
-
-### 2. Context Sources Enrich Promptless's Understanding
-
-**Context Sources** enhance the AI's understanding by providing real-time access to your organization's data:
-
-- **Project Management**: Linear issues and Jira tickets provide business context and feature requirements
-- **Code Repository**: GitHub integration gives deep understanding of your codebase structure and recent changes
-- **Historical Data**: Past documentation patterns and team workflows inform better suggestions
+    <article class="pl-site-step" id="documentation-platforms-receive-updates">
+      <span class="pl-site-step-num">3</span>
+      <h3>Documentation Platforms Receive Updates</h3>
+      <p>
+        <strong>Documentation Platforms</strong> are where the final documentation updates are published:
+      </p>
+      <ul>
+        <li>
+          <strong>Git-hosted Platforms</strong>: Most common setup where docs are stored in Git and synced to hosting
+          providers
+        </li>
+        <li>
+          <strong>Direct Platform Integration</strong>: Beta support for publishing directly to Zendesk and Intercom
+        </li>
+        <li>
+          <strong>Multi-platform Publishing</strong>: Single trigger can update multiple documentation platforms
+          simultaneously
+        </li>
+      </ul>
+      <p>
+        Learn more in <a href="/docs/configuring-promptless/doc-collections">Configuring Promptless → Doc Collections</a>.
+      </p>
+    </article>
+  </div>
+</section>
 
 <Note>
 Context sources are queried in real-time and no customer data is stored by Promptless, ensuring your sensitive information remains secure.
 </Note>
-
-Learn more in [Configuring Promptless → Context Sources](/docs/configuring-promptless/context-sources).
-
-### 3. Documentation Platforms Receive Updates
-
-**Documentation Platforms** are where the final documentation updates are published:
-
-- **Git-hosted Platforms**: Most common setup where docs are stored in Git and synced to hosting providers
-- **Direct Platform Integration**: Beta support for publishing directly to Zendesk and Intercom
-- **Multi-platform Publishing**: Single trigger can update multiple documentation platforms simultaneously
-
-Learn more in [Configuring Promptless → Doc Collections](/docs/configuring-promptless/doc-collections).
 
 ## Key Benefits of This Architecture
 

@@ -2,9 +2,10 @@
 export interface Props {
   title?: string;
   kind: 'info' | 'note' | 'tip' | 'warning' | 'success';
+  showTitle?: boolean;
 }
 
-const { title, kind } = Astro.props;
+const { title, kind, showTitle = true } = Astro.props;
 const defaultTitles: Record<Props['kind'], string> = {
   info: 'Info',
   note: 'Note',
@@ -15,7 +16,7 @@ const defaultTitles: Record<Props['kind'], string> = {
 ---
 
 <section class:list={['fern-admonition', kind]}>
-  <p class="fern-admonition-title">{title || defaultTitles[kind]}</p>
+  {showTitle && <p class="fern-admonition-title">{title || defaultTitles[kind]}</p>}
   <div class="fern-admonition-body">
     <slot />
   </div>

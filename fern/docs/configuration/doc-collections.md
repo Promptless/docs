@@ -22,20 +22,6 @@ The most common setup uses GitHub repositories to store documentation content th
 
 Learn more: [GitHub Repos (Docs as Code)](/docs/configuration/doc-collections/github-repos)
 
-## Direct Platform Integrations
-
-For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
-
-<CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuration/doc-collections/zendesk">
-    Help center articles and knowledge base content management
-  </Card>
-  
-  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuration/doc-collections/intercom">
-    Customer support documentation and help center content
-  </Card>
-</CardGroup>
-
 ## Multi-Platform Publishing
 
 Promptless can publish to multiple documentation locations simultaneously, allowing you to use the same trigger events and context sources across different platforms.

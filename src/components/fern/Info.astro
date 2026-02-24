@@ -6,8 +6,9 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const showTitle = typeof title === 'string' && title.trim().length > 0;
 ---
 
-<Admonition kind="info" title={title}>
+<Admonition kind="info" title={title} showTitle={showTitle}>
   <slot />
 </Admonition>
