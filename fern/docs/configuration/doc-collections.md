@@ -2,15 +2,15 @@
 title: Doc Collections
 ---
 
-Doc Collections are the platforms where your documentation lives. Whether you're using Git-synced platforms such as Fern, Mintlify, or Docusaurus, or standalone platforms such as Zendesk and Intercom, you'll need to configure Promptless to read from and publish to your existing docs.
+Doc Collections are the Git repositories where your documentation lives. Promptless supports docs-as-code workflows where your documentation content is stored in Git and synced to hosting providers.
 
-## Git-hosted Documentation Platforms
+## Supported Platforms
 
-The most common setup uses GitHub repositories to store documentation content that syncs to hosting providers. A list of platforms supported through GitHub integration:
+Promptless works with any Git-hosted documentation platform:
 
 - Fern
 - Mintlify
-- ReadMe (Refactored)
+- ReadMe
 - GitBook
 - Docusaurus
 - MkDocs
@@ -20,30 +20,16 @@ The most common setup uses GitHub repositories to store documentation content th
 - Vocs
 - Custom platforms as long as the content is in a repo
 
-Learn more: [GitHub Repos (Docs as Code)](/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code)
-
-## Direct Platform Integrations
-
-For teams using content management systems that don't sync with GitHub, Promptless offers direct integrations with popular platforms.
-
-<CardGroup cols={2}>
-  <Card title="Zendesk" icon="fa-solid fa-ticket" href="/docs/configuring-promptless/doc-collections/zendesk">
-    Help center articles and knowledge base content management
-  </Card>
-  
-  <Card title="Intercom" icon="fa-solid fa-comments" href="/docs/configuring-promptless/doc-collections/intercom-beta">
-    Customer support documentation and help center content
-  </Card>
-</CardGroup>
+Learn more: [GitHub Repos (Docs as Code)](/docs/doc-collections/git-hub-repos-docs-as-code)
 
 ## Multi-Platform Publishing
 
-Promptless can publish to multiple documentation locations simultaneously, allowing you to use the same trigger events and context sources across different platforms.
+Promptless can publish to multiple documentation repositories simultaneously, allowing you to use the same trigger events and context sources across different doc sites.
 
 <Tip>
-For teams using multiple platforms, create separate projects for each documentation location to maintain clear separation of content and workflows.
+For teams using multiple doc sites, create separate projects for each documentation location to maintain clear separation of content and workflows.
 </Tip>
 
 ## Requesting Additional Platforms
 
-Need integration with a platform not currently supported? We're continuously expanding our platform integrations based on user feedback. Contact [help@gopromptless.ai](mailto:help@gopromptless.ai). Also contact us if you're hoping to migrate to a new docs platform and we'll be happy to help you choose and set up!
+Need integration with a Git-hosted platform not currently supported? We're continuously expanding our platform integrations based on user feedback. Contact help@gopromptless.ai. Also contact us if you're hoping to migrate to a new docs platform and we'll be happy to help you choose and set up!
