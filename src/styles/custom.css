@@ -369,6 +369,14 @@ starlight-theme-select {
   mask-image: url('/site/icons/meet.svg');
 }
 
+.sidebar-content .pl-mobile-menu-primary {
+  color: #fff;
+}
+
+.sidebar-content .pl-mobile-menu-primary:hover {
+  color: #fff;
+}
+
 .sidebar-content details > summary .caret {
   color: color-mix(in srgb, var(--sl-color-text) 40%, #9ca3af);
 }
