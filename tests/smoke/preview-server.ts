@@ -96,14 +96,26 @@ async function waitForExit(
 }
 
 async function stopServer(child: ChildProcessWithoutNullStreams) {
-  if (child.exitCode !== null) return;
+  const killProcessTree = (signal: NodeJS.Signals) => {
+    const pid = child.pid;
+    if (!pid) return;
 
-  child.kill('SIGTERM');
-  if (await waitForExit(child, SHUTDOWN_TIMEOUT_MS)) return;
-  if (child.exitCode !== null) return;
+    try {
+      // Detached mode creates a new process group so we can terminate npm + astro children.
+      process.kill(-pid, signal);
+    } catch {
+      child.kill(signal);
+    }
+  };
 
-  child.kill('SIGKILL');
-  await waitForExit(child, SHUTDOWN_TIMEOUT_MS);
+  killProcessTree('SIGTERM');
+  if (!(await waitForExit(child, SHUTDOWN_TIMEOUT_MS))) {
+    killProcessTree('SIGKILL');
+    await waitForExit(child, SHUTDOWN_TIMEOUT_MS);
+  }
+
+  child.stdout.destroy();
+  child.stderr.destroy();
 }
 
 export async function startPreviewServer(): Promise<PreviewServer> {
@@ -113,6 +125,7 @@ export async function startPreviewServer(): Promise<PreviewServer> {
   const baseUrl = `http://${PREVIEW_HOST}:${port}`;
   const child = spawn('npm', ['run', 'preview', '--', '--host', PREVIEW_HOST, '--port', String(port)], {
     cwd: ROOT,
+    detached: true,
     stdio: ['ignore', 'pipe', 'pipe'],
     env: { ...process.env, FORCE_COLOR: '0' },
   });
