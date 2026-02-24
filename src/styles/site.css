@@ -281,10 +281,28 @@
 }
 
 .pl-site-why-grid {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 0.95rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 48rem) {
+  .pl-site-why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pl-site-why-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: #eef1fd;
+  color: #506aea;
+  flex-shrink: 0;
 }
 
 .pl-site-why-card {
@@ -293,16 +311,23 @@
   border-radius: 0.75rem;
   background: #ffffff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  padding: 1rem 1.05rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.55rem;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.pl-site-why-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
 .pl-site-why-card h3 {
   margin: 0;
   color: #111827;
-  font-size: clamp(1.18rem, 2.3vw, 1.4rem);
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.01em;
 }
@@ -310,8 +335,8 @@
 .pl-site-why-card p {
   margin: 0;
   color: #4b5563;
-  font-size: 0.88rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.55;
 }
 
 .pl-site-kicker {
