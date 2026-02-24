@@ -48,6 +48,7 @@ export default defineConfig({
       customCss: ['./src/styles/custom.css', './src/styles/site.css'],
       sidebar: generatedSidebar,
       components: {
+        Sidebar: './src/components/starlight/Sidebar.astro',
         Header: './src/components/starlight/Header.astro',
         SiteTitle: './src/components/starlight/SiteTitle.astro',
         PageTitle: './src/components/starlight/PageTitle.astro',
