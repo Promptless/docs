@@ -2,14 +2,12 @@
 const rawApiBaseUrl = import.meta.env.PUBLIC_FREE_TOOLS_API_BASE_URL?.trim();
 const fallbackApiBaseUrl = import.meta.env.PROD ? 'https://api.gopromptless.ai' : 'http://127.0.0.1:5000';
 const apiBaseUrl = (rawApiBaseUrl || fallbackApiBaseUrl).replace(/\/+$/, '');
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || '';
 ---
 
 <form
   class="pl-free-tools-form"
   id="broken-link-report-form"
   data-api-base={apiBaseUrl}
-  data-turnstile-enabled={turnstileSiteKey ? 'true' : 'false'}
   novalidate
 >
   <div class="pl-free-tools-form-grid">
@@ -74,27 +72,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || ''
     <input id="broken-link-website" name="website" type="text" tabindex="-1" autocomplete="off" />
   </div>
 
-  {
-    turnstileSiteKey ? (
-      <div class="pl-free-tools-turnstile">
-        <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light" data-action="broken_link_report"></div>
-      </div>
-    ) : (
-      <p class="pl-free-tools-turnstile-note">Captcha is disabled in this environment.</p>
-    )
-  }
-
   <div class="pl-free-tools-actions">
     <button type="submit">Send me the report</button>
     <p id="broken-link-form-status" class="pl-free-tools-status" aria-live="polite"></p>
   </div>
 </form>
-
-{
-  turnstileSiteKey ? (
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  ) : null
-}
 
 <script is:inline>
   (() => {
@@ -106,7 +88,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || ''
     if (!(submitButton instanceof HTMLButtonElement)) return;
 
     const apiBase = form.dataset.apiBase || 'http://127.0.0.1:5000';
-    const turnstileEnabled = form.dataset.turnstileEnabled === 'true';
     const fixedConcurrency = 10;
     const fixedTimeoutSeconds = 10;
 
@@ -170,15 +151,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || ''
         return;
       }
 
-      let turnstileToken = '';
-      if (turnstileEnabled) {
-        turnstileToken = String(formData.get('cf-turnstile-response') || '').trim();
-        if (!turnstileToken) {
-          setStatus('Please complete the captcha challenge.', 'error');
-          return;
-        }
-      }
-
       submitButton.disabled = true;
       submitButton.dataset.loading = 'true';
       setStatus('Submitting request...', 'neutral');
@@ -199,7 +171,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || ''
               concurrency: fixedConcurrency,
               timeout_seconds: fixedTimeoutSeconds,
             },
-            turnstile_token: turnstileToken || undefined,
             website,
           }),
         });
@@ -215,9 +186,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() || ''
         form.reset();
         const anchorsToggle = form.querySelector('#broken-link-check-anchors');
         if (anchorsToggle instanceof HTMLInputElement) anchorsToggle.checked = true;
-        if (turnstileEnabled && window.turnstile) {
-          window.turnstile.reset();
-        }
       } catch (error) {
         setStatus(error instanceof Error ? error.message : 'Request failed. Please try again.', 'error');
       } finally {

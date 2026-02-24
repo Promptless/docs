@@ -1095,12 +1095,6 @@
   overflow: hidden;
 }
 
-.pl-free-tools-turnstile-note {
-  margin: 0;
-  color: #596275;
-  font-size: 0.82rem;
-}
-
 .pl-free-tools-actions {
   display: flex;
   flex-wrap: wrap;
