@@ -42,6 +42,9 @@ const getSectionLabel = (section?: string) => section || 'Other';
               <h2 class="collection-feed-title">
                 <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
               </h2>
+              {entry.data.author && (
+                <p class="collection-feed-author">By {entry.data.author}</p>
+              )}
               {(entry.data.description || entry.data.subtitle) && (
                 <p class="collection-feed-description">{entry.data.description || entry.data.subtitle}</p>
               )}
