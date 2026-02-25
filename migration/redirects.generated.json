@@ -61,6 +61,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/configuring-promptless/doc-collections/webflow-beta",
+      "destination": "/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code",
+      "permanent": true
+    },
+    {
       "source": "/docs/configuring-promptless/doc-collections/zendesk",
       "destination": "/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code",
       "permanent": true
@@ -123,6 +128,16 @@
     {
       "source": "/docs/integrations/intercom",
       "destination": "/docs/integrations/intercom-integration-beta",
+      "permanent": true
+    },
+    {
+      "source": "/docs/integrations/git-hub-integration",
+      "destination": "/docs/integrations/github-integration",
+      "permanent": true
+    },
+    {
+      "source": "/docs/integrations/jira-integration",
+      "destination": "/docs/integrations/atlassian-integration",
       "permanent": true
     },
     {
