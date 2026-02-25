@@ -31,29 +31,56 @@
 }
 
 .pl-site-hero-words > span {
-  animation: pl-site-word-loop 8s linear infinite;
+  animation: pl-site-word-loop 22s linear infinite;
 }
 
 @keyframes pl-site-word-loop {
   0%,
-  18% {
+  7% {
     transform: translateY(0%);
   }
-  23%,
-  41% {
+  9%,
+  16% {
     transform: translateY(-100%);
   }
-  46%,
-  64% {
+  18%,
+  25% {
     transform: translateY(-200%);
   }
-  69%,
-  87% {
+  27%,
+  34% {
     transform: translateY(-300%);
   }
-  92%,
-  100% {
+  36%,
+  43% {
     transform: translateY(-400%);
+  }
+  45%,
+  52% {
+    transform: translateY(-500%);
+  }
+  55%,
+  62% {
+    transform: translateY(-600%);
+  }
+  64%,
+  71% {
+    transform: translateY(-700%);
+  }
+  73%,
+  80% {
+    transform: translateY(-800%);
+  }
+  82%,
+  89% {
+    transform: translateY(-900%);
+  }
+  91%,
+  98% {
+    transform: translateY(-1000%);
+  }
+  100% {
+    transform: translateY(-1100%);
   }
 }
 
