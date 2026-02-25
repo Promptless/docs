@@ -303,7 +303,7 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.match(pricingHtml, /2,000-5,000 Pages/);
   assert.match(pricingHtml, /Slack \+ GitHub integrations/);
   assert.match(pricingHtml, /Open-source, non-commercial project\?/);
-  assert.match(pricingHtml, /href=\"https:\/\/promptless\.ai\/oss\"/);
+  assert.match(pricingHtml, /href=\"https:\/\/promptless\.ai\/docs\/getting-started\/promptless-oss\"/);
   assert.match(pricingHtml, /Book demo/);
   assert.doesNotMatch(pricingHtml, /<h3>Compare plans<\/h3>/);
 });

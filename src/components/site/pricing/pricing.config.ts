@@ -37,7 +37,7 @@ export const GROWTH_PLAN: PricingPlanConfig = {
   title: 'Growth',
   summary: 'For teams with larger docs sites and broader integrations.',
   ctaLabel: 'Book demo',
-  ctaHref: 'https://cal.com/promptless/demo',
+  ctaHref: 'https://cal.com/team/promptless/15m-discovery-call',
 };
 
 export const ENTERPRISE_PLAN: PricingPlanConfig = {
@@ -45,7 +45,7 @@ export const ENTERPRISE_PLAN: PricingPlanConfig = {
   title: 'Enterprise',
   summary: 'For teams with massive docs sites or advanced governance needs.',
   ctaLabel: 'Book demo',
-  ctaHref: 'https://cal.com/promptless/demo',
+  ctaHref: 'https://cal.com/team/promptless/15m-discovery-call',
 };
 
 export const GROWTH_BUNDLE_OPTIONS: GrowthBundleOption[] = [

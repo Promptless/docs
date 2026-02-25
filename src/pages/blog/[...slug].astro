@@ -27,6 +27,9 @@ const { Content, headings } = await render(entry);
   <p class="collection-back-link">
     <a href="/blog">← Back to Blog</a>
   </p>
+  {entry.data.author && (
+    <p class="collection-post-author">By {entry.data.author}</p>
+  )}
   <Content />
   <p class="collection-back-link collection-back-link-bottom">
     <a href="/blog">← Back to Blog</a>

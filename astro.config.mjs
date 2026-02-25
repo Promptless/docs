@@ -20,6 +20,7 @@ const redirects = {
   '/use-cases': '/',
   '/faq': '/',
   '/api-reference': '/',
+  '/oss': '/docs/getting-started/promptless-oss',
   '/blog/all': '/blog',
   '/changelog/all': '/changelog',
   ...Object.fromEntries(redirectEntries),
@@ -43,6 +44,7 @@ export default defineConfig({
       customCss: ['./src/styles/custom.css', './src/styles/site.css'],
       sidebar: generatedSidebar,
       components: {
+        Sidebar: './src/components/starlight/Sidebar.astro',
         Header: './src/components/starlight/Header.astro',
         SiteTitle: './src/components/starlight/SiteTitle.astro',
         PageTitle: './src/components/starlight/PageTitle.astro',
@@ -67,6 +69,14 @@ export default defineConfig({
             type: 'font/woff2',
             crossorigin: '',
           },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:image', content: 'https://promptless.ai/assets/social-card.png' },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: 'https://promptless.ai/assets/social-card.png' },
         },
         {
           tag: 'script',
