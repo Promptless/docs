@@ -642,6 +642,20 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
   text-decoration: underline;
 }
 
+.collection-feed-author {
+  margin: 0;
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-xs);
+  font-weight: 500;
+}
+
+.collection-post-author {
+  margin: 0 0 1.5rem;
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+  font-weight: 500;
+}
+
 .collection-feed-description {
   margin: 0;
   max-width: 72ch;
