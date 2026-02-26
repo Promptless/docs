@@ -1,0 +1,124 @@
+---
+---
+
+<div class="pl-char-counter" id="character-counter">
+  <div class="pl-char-stats">
+    <div class="pl-char-stat">
+      <span class="pl-char-stat-value" id="stat-chars">0</span>
+      <span class="pl-char-stat-label">Characters</span>
+    </div>
+    <div class="pl-char-stat">
+      <span class="pl-char-stat-value" id="stat-words">0</span>
+      <span class="pl-char-stat-label">Words</span>
+    </div>
+    <div class="pl-char-stat">
+      <span class="pl-char-stat-value" id="stat-sentences">0</span>
+      <span class="pl-char-stat-label">Sentences</span>
+    </div>
+    <div class="pl-char-stat">
+      <span class="pl-char-stat-value" id="stat-paragraphs">0</span>
+      <span class="pl-char-stat-label">Paragraphs</span>
+    </div>
+    <div class="pl-char-stat">
+      <span class="pl-char-stat-value" id="stat-lines">0</span>
+      <span class="pl-char-stat-label">Lines</span>
+    </div>
+  </div>
+
+  <div class="pl-char-controls">
+    <label class="pl-char-spaces-toggle">
+      <input type="checkbox" id="count-spaces" checked />
+      <span>Count Spaces</span>
+    </label>
+    <div class="pl-char-target-row">
+      <label for="target-length" class="pl-char-target-label">Target Length</label>
+      <input
+        type="number"
+        id="target-length"
+        class="pl-char-target-input"
+        min="1"
+        placeholder="e.g. 280"
+      />
+    </div>
+  </div>
+
+  <div class="pl-char-editor">
+    <div class="pl-char-mirror" id="char-mirror" aria-hidden="true"></div>
+    <textarea
+      id="char-input"
+      class="pl-char-textarea"
+      placeholder="Type or paste your text here..."
+      rows="10"
+      autofocus
+    ></textarea>
+  </div>
+</div>
+
+<script is:inline>
+(() => {
+  var textarea = document.getElementById('char-input');
+  var mirror = document.getElementById('char-mirror');
+  var countSpaces = document.getElementById('count-spaces');
+  var targetInput = document.getElementById('target-length');
+  var statChars = document.getElementById('stat-chars');
+  var statWords = document.getElementById('stat-words');
+  var statSentences = document.getElementById('stat-sentences');
+  var statParagraphs = document.getElementById('stat-paragraphs');
+  var statLines = document.getElementById('stat-lines');
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function update() {
+    var text = textarea.value;
+    var len = text.length;
+    var noSpaces = text.replace(/ /g, '').length;
+    var chars = countSpaces.checked ? len : noSpaces;
+
+    // Words
+    var trimmed = text.trim();
+    var words = trimmed === '' ? 0 : trimmed.split(/\s+/).length;
+
+    // Sentences
+    var sentences = 0;
+    if (trimmed.length > 0) {
+      var m = text.match(/[.!?]+(?:\s|$)/g);
+      sentences = m ? m.length : 1;
+    }
+
+    // Paragraphs
+    var paragraphs = 0;
+    if (trimmed.length > 0) {
+      paragraphs = text.split(/\n\s*\n/).filter(function (p) { return p.trim().length > 0; }).length;
+      if (paragraphs === 0) paragraphs = 1;
+    }
+
+    // Lines
+    var lines = text === '' ? 0 : text.split('\n').length;
+
+    statChars.textContent = chars;
+    statWords.textContent = words;
+    statSentences.textContent = sentences;
+    statParagraphs.textContent = paragraphs;
+    statLines.textContent = lines;
+
+    // Mirror highlight
+    var limit = parseInt(targetInput.value, 10);
+    if (!limit || limit <= 0 || len <= limit) {
+      mirror.innerHTML = esc(text) + '\n';
+    } else {
+      mirror.innerHTML = esc(text.substring(0, limit)) +
+        '<mark>' + esc(text.substring(limit)) + '</mark>\n';
+    }
+
+  }
+
+  textarea.addEventListener('input', update);
+  textarea.addEventListener('scroll', function () {
+    mirror.scrollTop = textarea.scrollTop;
+    mirror.scrollLeft = textarea.scrollLeft;
+  });
+  countSpaces.addEventListener('change', update);
+  targetInput.addEventListener('input', update);
+})();
+</script>
