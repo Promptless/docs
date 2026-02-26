@@ -60,6 +60,7 @@ const {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
+      const gtag = (window as any).gtag;
       if (typeof gtag === 'function') {
         gtag('event', 'cta_click', {
           funnel_stage: 'conversion',
