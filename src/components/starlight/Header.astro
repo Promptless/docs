@@ -2,14 +2,24 @@
 import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from './SiteTitle.astro';
 import TopHeader from '@components/shared/TopHeader.astro';
+import AnnouncementBanner from '@components/shared/AnnouncementBanner.astro';
+import AnalyticsClickTracker from '@components/shared/AnalyticsClickTracker.astro';
 ---
 
+<AnnouncementBanner
+  campaign="wtd_pre_conference"
+  href="https://accounts.gopromptless.ai/sign-up"
+  message="Visiting from Write the Docs? Sign up before May 2nd for a surprise gift."
+  linkText="Sign up now"
+  ctaAction="wtd_sign_up"
+/>
 <TopHeader showNavTools>
   <div slot="brand" class="title-wrapper sl-flex">
     <SiteTitle />
   </div>
   <Search slot="nav-tools" />
 </TopHeader>
+<AnalyticsClickTracker />
 
 <style>
   @layer starlight.core {
