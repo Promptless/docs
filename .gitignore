@@ -1,6 +1,11 @@
 # Dependencies
 /node_modules
 
+# Doc Detective secrets and results
+.doc-detective/.env
+.doc-detective/session-cookies.txt
+.doc-detective/results/
+
 # Production
 /build
 /dist
