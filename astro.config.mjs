@@ -29,11 +29,6 @@ const redirects = {
 export default defineConfig({
   site: process.env.SITE_URL || 'https://promptless.ai',
   redirects,
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/noop',
-    },
-  },
   integrations: [
     react(),
     starlight({
@@ -65,6 +60,16 @@ export default defineConfig({
         baseUrl: 'https://github.com/Promptless/docs/tree/main',
       },
       head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'preload',
+            href: '/fonts/InterVariable.woff2',
+            as: 'font',
+            type: 'font/woff2',
+            crossorigin: '',
+          },
+        },
         {
           tag: 'meta',
           attrs: { property: 'og:image', content: 'https://promptless.ai/assets/social-card.png' },
