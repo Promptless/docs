@@ -151,6 +151,16 @@ const apiBaseUrl = (rawApiBaseUrl || fallbackApiBaseUrl).replace(/\/+$/, '');
         return;
       }
 
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', {
+          funnel_stage: 'evaluation',
+          action: 'broken_link_report',
+          location: 'free_tools',
+          campaign: '',
+          link_url: apiBase + '/public/free-tools/broken-link-report',
+        });
+      }
+
       submitButton.disabled = true;
       submitButton.dataset.loading = 'true';
       setStatus('Submitting request...', 'neutral');
