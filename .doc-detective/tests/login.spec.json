@@ -5,6 +5,12 @@
       "description": "Sign in to Promptless with test credentials",
       "steps": [
         {
+          "description": "Reset onboarding state for test org",
+          "runShell": {
+            "command": "psql $DATABASE_URL -c \"UPDATE customer_info SET onboarding_completed = false, onboarding_info = '{}'::jsonb WHERE org_id = '$PROMPTLESS_TEST_ORG_ID';\""
+          }
+        },
+        {
           "description": "Navigate to the sign-in page",
           "goTo": "https://accounts.gopromptless.ai/sign-in"
         },
@@ -28,10 +34,15 @@
           }
         },
         {
+          "description": "Wait for password page to load",
+          "wait": 3000
+        },
+        {
           "description": "Click the password input",
           "find": {
             "selector": "#password-field",
-            "click": true
+            "click": true,
+            "timeout": 10000
           }
         },
         {
