@@ -160,6 +160,15 @@ navigation:
         - page: How Vellum Drafts 50%+ of Docs with Promptless
           path: ./docs/customer-stories/vellum.mdx
           slug: vellum
+        - page: How Acme API Keeps Developer Docs in Sync
+          path: ./docs/customer-stories/acme-api.mdx
+          slug: acme-api
+        - page: How CloudNova Turns Support into Documentation
+          path: ./docs/customer-stories/cloudnova.mdx
+          slug: cloudnova
+        - page: How FinStack Maintains Compliance Docs at Scale
+          path: ./docs/customer-stories/finstack.mdx
+          slug: finstack
     - section: Technical
       icon: fa-regular fa-code
       contents:
