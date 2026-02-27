@@ -1,0 +1,36 @@
+<script is:inline>
+(function initClickTracker() {
+  function attachListener() {
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!(target instanceof Element)) return;
+      var tracked = target.closest('[data-track-action]');
+      if (!tracked) return;
+
+      var action = tracked.getAttribute('data-track-action') || '';
+      var funnel = tracked.getAttribute('data-track-funnel') || '';
+      var location = tracked.getAttribute('data-track-location') || '';
+      var campaign = tracked.getAttribute('data-track-campaign') || '';
+      var linkUrl = tracked.getAttribute('href') || '';
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', {
+          funnel_stage: funnel,
+          action: action,
+          location: location,
+          campaign: campaign,
+          link_url: linkUrl,
+        });
+      }
+    }, true);
+  }
+
+  if (document.readyState !== 'loading') {
+    attachListener();
+  } else {
+    document.addEventListener('DOMContentLoaded', attachListener);
+  }
+
+  document.addEventListener('astro:page-load', attachListener);
+})();
+</script>

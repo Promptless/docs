@@ -12,6 +12,7 @@ interface Props {
   features: string[];
   ctaLabel: string;
   ctaHref: string;
+  ctaAction?: string;
   featured?: boolean;
   badge?: string;
   priceDataAttr?: string;
@@ -28,6 +29,7 @@ const {
   features,
   ctaLabel,
   ctaHref,
+  ctaAction,
   featured = false,
   badge,
   priceDataAttr,
@@ -79,5 +81,5 @@ const PlanIcon = PLAN_ICONS[planId];
     </ul>
   </div>
 
-  <a href={ctaHref}>{ctaLabel}</a>
+  <a href={ctaHref} data-track-action={ctaAction} data-track-funnel="conversion" data-track-location={`pricing_${planId}`}>{ctaLabel}</a>
 </article>

@@ -12,6 +12,7 @@ export interface PricingPlanConfig {
   summary: string;
   ctaLabel: string;
   ctaHref: string;
+  ctaAction: string;
 }
 
 export interface CompareRow {
@@ -30,6 +31,7 @@ export const STARTUP_PLAN: PricingPlanConfig = {
   summary: 'For teams with small docs sites and standard integration needs.',
   ctaLabel: 'Sign up',
   ctaHref: 'https://accounts.gopromptless.ai/sign-up',
+  ctaAction: 'sign_up',
 };
 
 export const GROWTH_PLAN: PricingPlanConfig = {
@@ -38,6 +40,7 @@ export const GROWTH_PLAN: PricingPlanConfig = {
   summary: 'For teams with larger docs sites and broader integrations.',
   ctaLabel: 'Book demo',
   ctaHref: 'https://cal.com/team/promptless/15m-discovery-call',
+  ctaAction: 'book_demo',
 };
 
 export const ENTERPRISE_PLAN: PricingPlanConfig = {
@@ -46,6 +49,7 @@ export const ENTERPRISE_PLAN: PricingPlanConfig = {
   summary: 'For teams with massive docs sites or advanced governance needs.',
   ctaLabel: 'Book demo',
   ctaHref: 'https://cal.com/team/promptless/15m-discovery-call',
+  ctaAction: 'book_demo',
 };
 
 export const GROWTH_BUNDLE_OPTIONS: GrowthBundleOption[] = [

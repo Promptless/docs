@@ -60,6 +60,17 @@ const {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
+      const gtag = (window as any).gtag;
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', {
+          funnel_stage: 'conversion',
+          action: 'book_demo',
+          location: 'hero',
+          campaign: '',
+          link_url: form.action,
+        });
+      }
+
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
@@ -99,3 +110,4 @@ const {
     });
   })();
 </script>
+

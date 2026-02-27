@@ -35,6 +35,7 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
       features={STARTUP_FEATURES}
       ctaLabel={STARTUP_PLAN.ctaLabel}
       ctaHref={STARTUP_PLAN.ctaHref}
+      ctaAction={STARTUP_PLAN.ctaAction}
     />
 
     <PricingCard
@@ -46,6 +47,7 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
       features={GROWTH_FEATURES}
       ctaLabel={GROWTH_PLAN.ctaLabel}
       ctaHref={GROWTH_PLAN.ctaHref}
+      ctaAction={GROWTH_PLAN.ctaAction}
       priceDataAttr="data-growth-price"
     >
       <GrowthBundleSelector slot="selector" bundles={GROWTH_BUNDLE_OPTIONS} selectedBundleId={defaultGrowthBundle.id} />
@@ -61,6 +63,7 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
       features={ENTERPRISE_FEATURES}
       ctaLabel={ENTERPRISE_PLAN.ctaLabel}
       ctaHref={ENTERPRISE_PLAN.ctaHref}
+      ctaAction={ENTERPRISE_PLAN.ctaAction}
     />
   </div>
 
