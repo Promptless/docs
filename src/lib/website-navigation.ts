@@ -4,7 +4,7 @@ export interface WebsiteNavItem {
   id: WebsitePageId;
   href: string;
   label: string;
-  icon: 'home' | 'video' | 'pricing' | 'meet';
+  icon: 'sparkles' | 'video' | 'pricing' | 'meet';
 }
 
 interface WebsiteSidebarLink {
@@ -14,7 +14,7 @@ interface WebsiteSidebarLink {
 }
 
 export const WEBSITE_NAV_ITEMS: WebsiteNavItem[] = [
-  { id: 'home', href: '/', label: 'Home', icon: 'home' },
+  { id: 'home', href: '/', label: 'Overview', icon: 'sparkles' },
   { id: 'demo', href: '/demo', label: 'Demo', icon: 'video' },
   { id: 'pricing', href: '/pricing', label: 'Pricing', icon: 'pricing' },
   { id: 'meet', href: '/meet', label: 'Meet', icon: 'meet' },

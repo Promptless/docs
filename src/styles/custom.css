@@ -369,8 +369,8 @@ starlight-theme-select {
   opacity: 1;
 }
 
-.sidebar-content a[data-site-icon='home']::before {
-  mask-image: url('/site/icons/home.svg');
+.sidebar-content a[data-site-icon='sparkles']::before {
+  mask-image: url('/site/icons/sparkles.svg');
 }
 
 .sidebar-content a[data-site-icon='video']::before {
