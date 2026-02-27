@@ -114,14 +114,14 @@ test('primary nav keeps canonical routes with free tools tab', async () => {
   const html = await response.text();
   const nav = getPrimaryNav(html);
 
-  assertLink(nav, '/', 'Website');
+  assertLink(nav, '/', 'Home');
   assertLink(nav, '/docs', 'Docs');
   assertLink(nav, '/blog', 'Blog');
   assertLink(nav, '/changelog', 'Changelog');
   assertLink(nav, '/free-tools', 'Free tools');
   assertLink(nav, 'https://app.gopromptless.ai', 'Sign in');
 
-  assertLabelOrder(nav, ['Website', 'Docs', 'Blog', 'Changelog', 'Free tools', 'Sign in']);
+  assertLabelOrder(nav, ['Home', 'Docs', 'Blog', 'Changelog', 'Free tools', 'Sign in']);
   assert.doesNotMatch(nav, /href="\/blog\/all"/);
   assert.doesNotMatch(nav, /href="\/changelog\/all"/);
 });
@@ -138,52 +138,52 @@ test('website/docs/blog/changelog/free tools active state is correct', async () 
   const freeToolsToolHtml = await (await fetch(`${preview.baseUrl}/free-tools/broken-link-report`)).text();
 
   const websiteNav = getPrimaryNav(websiteHtml);
-  assertActiveLink(websiteNav, '/', 'Website');
+  assertActiveLink(websiteNav, '/', 'Home');
   assertInactiveLink(websiteNav, '/docs', 'Docs');
   assertInactiveLink(websiteNav, '/blog', 'Blog');
   assertInactiveLink(websiteNav, '/changelog', 'Changelog');
   assertInactiveLink(websiteNav, '/free-tools', 'Free tools');
 
   const demoNav = getPrimaryNav(websiteDemoHtml);
-  assertActiveLink(demoNav, '/', 'Website');
+  assertActiveLink(demoNav, '/', 'Home');
 
   const meetNav = getPrimaryNav(websiteMeetHtml);
-  assertActiveLink(meetNav, '/', 'Website');
+  assertActiveLink(meetNav, '/', 'Home');
 
   const pricingNav = getPrimaryNav(websitePricingHtml);
-  assertActiveLink(pricingNav, '/', 'Website');
+  assertActiveLink(pricingNav, '/', 'Home');
 
   const docsNav = getPrimaryNav(docsHtml);
   assertActiveLink(docsNav, '/docs', 'Docs');
-  assertInactiveLink(docsNav, '/', 'Website');
+  assertInactiveLink(docsNav, '/', 'Home');
   assertInactiveLink(docsNav, '/blog', 'Blog');
   assertInactiveLink(docsNav, '/changelog', 'Changelog');
   assertInactiveLink(docsNav, '/free-tools', 'Free tools');
 
   const blogNav = getPrimaryNav(blogHtml);
   assertActiveLink(blogNav, '/blog', 'Blog');
-  assertInactiveLink(blogNav, '/', 'Website');
+  assertInactiveLink(blogNav, '/', 'Home');
   assertInactiveLink(blogNav, '/docs', 'Docs');
   assertInactiveLink(blogNav, '/changelog', 'Changelog');
   assertInactiveLink(blogNav, '/free-tools', 'Free tools');
 
   const changelogNav = getPrimaryNav(changelogHtml);
   assertActiveLink(changelogNav, '/changelog', 'Changelog');
-  assertInactiveLink(changelogNav, '/', 'Website');
+  assertInactiveLink(changelogNav, '/', 'Home');
   assertInactiveLink(changelogNav, '/docs', 'Docs');
   assertInactiveLink(changelogNav, '/blog', 'Blog');
   assertInactiveLink(changelogNav, '/free-tools', 'Free tools');
 
   const freeToolsIndexNav = getPrimaryNav(freeToolsIndexHtml);
   assertActiveLink(freeToolsIndexNav, '/free-tools', 'Free tools');
-  assertInactiveLink(freeToolsIndexNav, '/', 'Website');
+  assertInactiveLink(freeToolsIndexNav, '/', 'Home');
   assertInactiveLink(freeToolsIndexNav, '/docs', 'Docs');
   assertInactiveLink(freeToolsIndexNav, '/blog', 'Blog');
   assertInactiveLink(freeToolsIndexNav, '/changelog', 'Changelog');
 
   const freeToolsToolNav = getPrimaryNav(freeToolsToolHtml);
   assertActiveLink(freeToolsToolNav, '/free-tools', 'Free tools');
-  assertInactiveLink(freeToolsToolNav, '/', 'Website');
+  assertInactiveLink(freeToolsToolNav, '/', 'Home');
   assertInactiveLink(freeToolsToolNav, '/docs', 'Docs');
   assertInactiveLink(freeToolsToolNav, '/blog', 'Blog');
   assertInactiveLink(freeToolsToolNav, '/changelog', 'Changelog');
@@ -267,7 +267,7 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.match(homeHtml, /Demo/);
   assert.match(homeHtml, /Pricing/);
   assert.doesNotMatch(homeHtml, /Getting Started/i);
-  assert.match(homeHtml, /data-site-icon="home"/);
+  assert.match(homeHtml, /data-site-icon="sparkles"/);
   assert.match(homeHtml, /data-site-icon="video"/);
   assert.match(homeHtml, /data-site-icon="pricing"/);
   assert.match(homeHtml, /data-site-icon="meet"/);
