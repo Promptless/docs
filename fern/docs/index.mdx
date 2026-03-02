@@ -31,7 +31,7 @@ Promptless operates through three interconnected components that work together t
 graph LR
     TRIGGERS["GitHub PR, Slack message,<br/>Support ticket"]
     CONTEXT["Linear, Jira, GitHub,<br/>Slack, Google Drive"]
-    DOCS["Git-hosted docs, ReadMe,<br/>Help Center"]
+    DOCS["Git-hosted docs<br/>(Fern, Mintlify, ReadMe, etc.)"]
     
     TRIGGERS --> PROMPTLESS
     PROMPTLESS["Promptless"]
@@ -53,8 +53,8 @@ graph LR
     Enrich docs with real-time access to your organization's knowledge through integrations with project management tools, code repositories, and team communications.
   </Card>
   
-  <Card title="Multi-Platform Publishing" icon="fa-regular fa-share-nodes" href="/docs/configuring-promptless/doc-collections">
-    Distribute updates across your entire docs ecosystem—from GitHub-synced platforms to help centers and content management systems.
+  <Card title="Docs-as-Code Publishing" icon="fa-regular fa-share-nodes" href="/docs/configuring-promptless/doc-collections">
+    Publish updates to your Git-hosted documentation platforms—Fern, Mintlify, ReadMe, Docusaurus, GitBook, and more.
   </Card>
 </CardGroup>
 
