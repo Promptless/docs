@@ -1,0 +1,256 @@
+---
+title: 'How to optimize your docs for AI agents - the CRAFT framework'
+subtitle: Published February 2026
+description: >-
+  Concrete steps to optimize your human-facing documentation for AI agents, based on extensive recent LLM research.
+date: '2026-03-03T00:00:00.000Z'
+section: Technical
+hidden: false
+---
+import Info from '@components/fern/Info.astro';
+import RequestFileForm from '@components/site/RequestFileForm.astro';
+
+It bugs me when I see llms.txt files over and over again that are just reformatted human-facing docs. Don’t do this! You are handicapping the agents. Don’t just take the existing documentation, strip out the CSS/HTML, turn it into Markdown, and call it a day. That’s not what’s best for agents. In this article, I want to outline concrete steps to optimize your docs for agents based on extensive LLM research from frontier labs.
+
+## Why reformatting isn’t enough?
+
+Humans comprehend. LLMs retrieve. Think about the fundamental difference in how humans and LLMs process information. Do LLMs also give up and just ask ChatGPT? 
+
+To learn to use your product, humans have to build a mental model. We connect new concepts to things we already know, and fill the gaps with intuition. Unfortunately, cognitive load theory (Sweller, 1988) shows that human working memory caps out at 7 items (or 2 if it's me before coffee). This is why good human docs use progressive disclosure by design.
+
+LLMs don't build mental models. At inference time, The attention mechanism computes relevance scores between the input tokens, performing a kind of soft retrieval over whatever's in the context window. If no sufficient context is provided, it falls back onto its own “inherent knowledge", which is probabilistic in nature and where most hallucinations come from.
+
+This is why optimizing human-facing docs and agent-facing docs are actually quite different.
+
+## The CRAFT framework
+**C**hunk self-contained sections
+**R**aise critical info first
+**A**bundant examples (many-shot + negative)
+**F**ailure catalogs & known bugs
+**T**emplated with structured formats
+
+<Info>
+  Want to know the research behind any part of this article? Email [frances@promptless.ai](mailto:frances@promptless.ai).
+</Info>
+
+## C: Think in chunks, not pages
+
+Most docs are being consumed in chunks today, whether it's RAG systems or file systems. So you need to think in those terms too.
+
+**Make each chunk more self-contained**
+When LLMs retrieve sections, you want to try to make it more self-contained. You can selectively repeat key context in certain sections rather than saying "see above." You might already have this in your style guide for human-facing docs, but this hurts agent performance even more.
+
+Example — bad (depends on prior context):
+```
+## Refunds
+
+Using the payment object from above, you can issue a refund 
+by calling the refund endpoint described previously with the payment ID.
+```
+
+Example — good (self-contained):
+```
+## Refunds: POST /refunds
+
+Creates a refund for an existing payment.
+Requires: Bearer token authentication (Authorization header).
+
+Parameters:
+  payment_id (string, required) — ID of the payment to refund 
+    (format: "pay_" + 24 alphanumeric characters)
+  amount (integer, optional) — Partial refund amount in smallest 
+    currency unit. Defaults to full payment amount.
+    Must not exceed original payment amount.
+  reason (string, optional) — One of: "duplicate", "fraudulent", 
+    "requested_by_customer"
+
+Refund is processed against the original payment method.
+Processing time: 5-10 business days depending on payment method.
+```
+
+**Chunk length matters**
+
+Research shows that for all models, context degradation starts becoming measurable around 2,500 words across most models, with significant drops beyond 8,000 words.
+
+But shorter isn’t always better, another research paper pushes back and shows that if you try to summarize 13k words to less than 500, you also get performance degradation.
+
+So there is a sweet spot. **Aim for 500-2500 words per retrievable section.**
+
+## Step 2: Front-load the critical information
+
+Multiple research has confirmed the "Lost in the Middle" behavior, that information at the start and end of context gets processed more reliably than information buried in the middle.
+
+**What to do**: Put the most important information first in every section. State it immediately. The LLM won’t benefit from gradual build up to the key point. If your API has required parameters, list them before optional ones. If there's a critical constraint, put it in the first sentence, not the third paragraph (author’s aside: my perpetual struggle is I only think of the important assumption after sitting down to write for a while)
+
+Before:
+
+```
+Our payment processing endpoint provides a flexible way to handle transactions. It supports multiple currencies and payment methods. Transactions are processed asynchronously and results are delivered via webhook. Note: all amounts must be in the smallest currency unit (cents for USD).
+```
+
+After:
+```
+POST /payments
+Processes a payment asynchronously. Amounts MUST be in smallest currency unit (cents for USD). Results delivered via webhook to configured endpoint. Supports multiple currencies and payment methods.
+```
+
+## Step 3: Include edge cases, not just the happy path
+
+Listing every edge case in human-facing docs would clutter the reading experience, so we learned to exclude them and leave them to support. But when an agent encounters an undocumented edge case, it doesn't just shrug and move on. It hallucinates a solution.
+
+A recent paper studied automated prompt optimization for LLM agents. They found that many baseline prompts included vague guidance like “consider edge cases” or “be thorough.” An automated optimizer rewrote these into explicit, structured instructions — breaking tasks into substeps, specifying verification procedures, and making reasoning requirements concrete. And the performance went up on different tasks between 10.1% and 36.9%
+
+**What to do**: Create a dedicated edge cases section for your critical products. Use structured formats that agents can pattern-match against.
+
+Example:
+
+```
+## Edge Cases: POST /payments
+
+- Amount of 0: Returns 400. Zero-amount transactions not supported.
+- Currency mismatch: If currency doesn't match account default, 
+  conversion applied automatically. Rate available in response header 
+  X-Exchange-Rate.
+- Duplicate idempotency key within 24h: Returns original response, 
+  no new transaction created. After 24h, key is released.
+- Amount exceeding per-transaction limit ($50,000 USD equivalent): 
+  Returns 403 with error code AMOUNT_LIMIT_EXCEEDED. Cannot be 
+  overridden via API; requires dashboard configuration.
+- Webhook endpoint returning non-2xx: Retried 3 times with 
+  exponential backoff (1min, 5min, 30min). After 3 failures, 
+  event stored in dead letter queue for 7 days.
+```
+
+## Step 4: Provide more examples
+
+Human docs typically show one or two examples per concept. However, research demonstrates significant performance gains going from few-shot to many-shot examples, with large numbers of examples sometimes outperforming fine-tuning a model.
+
+Include negative examples aka "don't do this". Researchers have mostly converged on that LLMs learn as much from what a bad output looks like as from good ones.
+
+**What to do**: Add more examples to your agent-facing docs
+
+Example — what human docs provide:
+
+```
+curl -X POST /payments \
+  -d '{"amount": 5000, "currency": "usd"}'
+```
+
+Example — what agent docs should provide:
+
+```
+## Examples: POST /payments
+
+### Basic payment (USD)
+Request: {"amount": 5000, "currency": "usd", "source": "tok_visa"}
+Response (200): {"id": "pay_1a2b", "status": "processing", "amount": 5000}
+
+### Payment with idempotency
+Request: {"amount": 5000, "currency": "usd"}
+Header: Idempotency-Key: "order_12345"
+Response (200): {"id": "pay_1a2b", "status": "processing"}
+Second call with same key → returns identical response, no new charge
+
+### Multi-currency payment
+Request: {"amount": 5000, "currency": "eur", "source": "tok_visa"}
+Response (200): {"id": "pay_3c4d", "status": "processing", 
+  "exchange_rate": 1.08, "settled_amount": 5400, "settled_currency": "usd"}
+
+### Insufficient funds
+Request: {"amount": 5000000, "currency": "usd", "source": "tok_declined"}
+Response (402): {"error": {"code": "card_declined", 
+  "decline_code": "insufficient_funds", "message": "..."}}
+
+### Invalid currency code
+Request: {"amount": 5000, "currency": "xyz"}
+Response (400): {"error": {"code": "invalid_currency", 
+  "param": "currency", "message": "..."}}
+```
+
+## Step 5: Use structured formats when you can
+
+Research shows that for the same facts, different formats produce very different agent performance. One study found that GPT-3.5-turbo's accuracy varied by up to 40% on a coding task depending on the prompt format.
+
+**What to do**: Instead of narratives prose, opt for structured formats with explicit delimiters. XML is a good choice, Markdown is good too. Whichever format you pick, be consistent and use clear section boundaries.
+
+Example — before (narrative Markdown):
+
+```markdown
+## Authentication
+
+To authenticate, you'll need to include your API key in the 
+Authorization header. The key should be prefixed with "Bearer ". 
+If you don't include a valid key, you'll get a 401 error. Keys 
+can be generated from the dashboard under Settings > API Keys.
+```
+
+Example — after (structured):
+
+```xml
+<authentication>
+  <method>Bearer token in Authorization header</method>
+  <header>Authorization: Bearer {api_key}</header>
+  <key_generation>Dashboard > Settings > API Keys</key_generation>
+  <errors>
+    <error code="401" cause="Missing or invalid API key" />
+    <error code="403" cause="Key valid but insufficient permissions" />
+  </errors>
+</authentication>
+```
+
+## Step 5: Document known bugs and workarounds explicitly
+
+In human docs, issues and bugs live in release notes, changelogs, GitHub issues, or nowhere at all. Agents don't always know where to go for this information. If a bug isn't in their context, they'll generate code that hits it and have no idea why it fails.
+
+Research in coding agents shows that agents struggle the most with "unwritten team conventions" and "non-public, highly contextualized information”. If these details are not exposing any trade secrets, putting them into your docs can help agents a lot.
+
+**What to do**: Add a known issues section to your agent docs. Structure each issue with the trigger condition, the symptom, and the workaround.
+
+Example:
+
+```
+## Known Issues: POST /payments
+
+- ISSUE: Webhook delivery fails silently for URLs with trailing 
+  slashes on certain CDN configurations.
+  TRIGGER: webhook_url ends with "/"
+  WORKAROUND: Strip trailing slash from webhook URL before submitting.
+  STATUS: Fix planned for v2.4 (Q2 2026)
+
+- ISSUE: Idempotency keys containing "+" character are URL-decoded 
+  to spaces, causing key mismatch on retry.
+  TRIGGER: Idempotency-Key header contains "+"
+  WORKAROUND: URL-encode the key, or avoid "+" characters.
+  STATUS: Won't fix (documented behavior)
+```
+
+## Step 6: Include failure modes
+
+Research on agent self-recovery found that agents with access to structured failure information performed significantly better than agents that reason about errors from a fuzzy “common sense”.
+
+**What to do**: Provide a structured error catalog that maps error codes or messages to causes, and what the recovery action should be.
+
+Example:
+
+```
+## Error Catalog: POST /payments
+
+| Status | Code                  | Retryable | Recovery                          |
+|--------|-----------------------|-----------|-----------------------------------|
+| 400    | invalid_amount        | No        | Check amount > 0, in minor units  |
+| 400    | invalid_currency      | No        | Use GET /currencies for valid list |
+| 401    | auth_failed           | No        | Regenerate API key from dashboard  |
+| 402    | card_declined         | No        | Prompt user for different method   |
+| 409    | idempotency_conflict  | No        | Use new idempotency key            |
+| 429    | rate_limited          | Yes       | Retry after Retry-After header (s) |
+| 500    | internal_error        | Yes       | Retry with exponential backoff     |
+| 503    | service_unavailable   | Yes       | Retry after 30s, max 3 attempts    |
+```
+
+## Conclusion
+
+Honestly, this is a lot of work, and making sure that both your human-facing version and the agent-facing version of your docs are updated is no small task. If you want to automatically convert your llms.txt to use the best practices above, or keep your docs automatically updated, you can hop on a call with us here.
+
+I've put together a LLM instruction file (you can use it as a claude code skill) that should be able to refactor your doc according to the best practices. Feel free to leave your work email here and I'll send it over!
+
+<RequestFileForm />
