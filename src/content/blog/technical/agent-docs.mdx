@@ -72,7 +72,7 @@ Refund is processed against the original payment method.
 Processing time: 5-10 business days depending on payment method.
 ```
 
-#### Chunk length matters
+#### 2. Chunk length matters
 
 The 2025 "Context Rot" blog by [Chroma](https://research.trychroma.com/context-rot) shows that for all models, context degradation starts becoming measurable around 2,500 words across most models, with significant drops beyond 8,000 words. Du et al. 2025 confirmed the performance degradation for long context (albeit using open-source models).
 
@@ -100,7 +100,7 @@ Processes a payment asynchronously. Amounts MUST be in smallest currency unit (c
 
 ## A - Abundant examples (many-shot + negative)
 
-#### More rich examples
+#### 1. More rich examples
 
 Human docs typically show one or two examples per topic. However, research demonstrates significant performance gains going from few-shot to many-shot examples, with large numbers of examples sometimes outperforming fine-tuning a model (Agarwal et al. 2024).
 
@@ -146,7 +146,7 @@ Response (400): {"error": {"code": "invalid_currency",
   "param": "currency", "message": "..."}}
 ```
 
-#### Edge cases
+#### 2. Edge cases
 
 Listing every edge case in human-facing docs would clutter the reading experience, so we often decide to exclude them and leave them to support. But when an agent encounters an undocumented edge case, it doesn't just shrug and move on. It hallucinates a solution.
 
@@ -175,7 +175,7 @@ Example:
 
 ## F - Failure catalogs & known bugs
 
-#### Document known bugs and workarounds explicitly
+#### 1. Document known bugs and workarounds explicitly
 
 In human docs, issues and bugs live in release notes, changelogs, GitHub issues, or nowhere at all. Agents don't always know where to go for this information. If a bug isn't in their context, they'll generate code that hits it and have no idea why it fails.
 
@@ -201,7 +201,7 @@ Example:
   STATUS: Won't fix (documented behavior)
 ```
 
-#### Include failure modes
+#### 2. Include failure modes
 
 Research on agent self-recovery (Del Rosario et al. 2025) found that agents with access to structured failure information performed significantly better than agents that reason about errors from a fuzzy “common sense”. The latter agents can get stuck in a failure loop and not know how to troubleshoot.
 
