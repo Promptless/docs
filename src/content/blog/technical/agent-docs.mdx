@@ -222,7 +222,7 @@ Example:
 
 ## T - Template with structured formats
 
-Research also shows that for the same facts, different formats produce very different agent performance. One study found that GPT-3.5-turbo's accuracy varied by up to 40% on a coding task depending on the prompt format ([He et al. 2024](https://arxiv.org/abs/2411.10541)).
+Research also shows that for the same facts, different formats produce very different agent performance. One old study found that GPT-3.5-turbo's accuracy varied by up to 40% on a coding task depending on the prompt format ([He et al. 2024](https://arxiv.org/abs/2411.10541)). This effect could be dampened by now. The author has not tested extensively.
 
 **What to do**: Instead of narratives prose, opt for structured formats with explicit delimiters. XML is a good choice, Markdown is good too. Whichever format you pick, be consistent and use clear section boundaries.
 
@@ -239,16 +239,16 @@ can be generated from the dashboard under Settings > API Keys.
 
 Example — after (structured):
 
-```xml
-<authentication>
-  <method>Bearer token in Authorization header</method>
-  <header>Authorization: Bearer {api_key}</header>
-  <key_generation>Dashboard > Settings > API Keys</key_generation>
-  <errors>
-    <error code="401" cause="Missing or invalid API key" />
-    <error code="403" cause="Key valid but insufficient permissions" />
-  </errors>
-</authentication>
+```
+## Authentication
+
+- Method: Bearer token in Authorization header
+- Header: Authorization: Bearer {api_key}
+- Key generation: Dashboard > Settings > API Keys
+
+Errors:
+- 401: Missing or invalid API key
+- 403: Key valid but insufficient permissions
 ```
 
 ## Conclusion
