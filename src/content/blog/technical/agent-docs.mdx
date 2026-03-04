@@ -14,17 +14,13 @@ It bugs me when I see llms.txt files over and over again that are just reformatt
 
 Don’t just take the existing documentation, strip out the CSS/HTML, turn it into markdown, and call it a day. That’s not what’s best for agents. In this article, I want to outline concrete steps to optimize your docs for agents based on extensive LLM research from frontier labs.
 
-<Info>
-  If you want to know the research papers behind any part of this article, email [frances@promptless.ai](mailto:frances@promptless.ai).
-</Info>
-
 ## Why reformatting isn’t enough?
 
 Humans comprehend. LLMs retrieve. Think about the fundamental difference in how humans and LLMs process information. Do LLMs also give up and just ask ChatGPT? 
 
 To learn to use your product, humans have to build a mental model. We connect new concepts to things we already know, and fill the gaps with intuition. Unfortunately, cognitive load theory (Sweller, 1988) shows that human working memory caps out at 7 items (or 2 if it's me before coffee). This is why good human docs use progressive disclosure by design.
 
-LLMs don't build mental models. At inference time, The attention mechanism computes relevance scores between the input tokens, performing a kind of soft retrieval over whatever's in the context window. If no sufficient context is provided, it falls back onto its own “inherent knowledge", which is probabilistic in nature and where most hallucinations come from.
+LLMs don't build mental models. At inference time, The attention mechanism computes relevance scores between the input tokens, performing a kind of soft retrieval over whatever's in the context window (Vaswani et al. 2017). If no sufficient context is provided, its training tells it to guess something, and this is where most hallucinations come from (Kalai et al. 2025).
 
 This is why optimizing human-facing docs and agent-facing docs are actually quite different.
 
@@ -44,9 +40,9 @@ This is why optimizing human-facing docs and agent-facing docs are actually quit
 
 Most docs are being consumed in chunks today, whether it's RAG systems or markdown file systems. So you need to think in those terms too.
 
-#### Make each chunk more self-contained
+#### 1. Make each chunk more self-contained
 
-When LLMs retrieve sections, you want to keep each section more self-contained. You can even selectively repeat key context in certain sections rather than saying "see above."
+When LLMs retrieve sections, you want to keep each section more self-contained. You can even selectively repeat key context in certain sections ([Anthropic](https://www.anthropic.com/engineering/contextual-retrieval), 2024, Wang et al. 2025). Phrases like "see above", "same as other", etc can break the self-containment.
 
 Example — bad (depends on prior context):
 ```
@@ -78,17 +74,17 @@ Processing time: 5-10 business days depending on payment method.
 
 #### Chunk length matters
 
-Research shows that for all models, context degradation starts becoming measurable around 2,500 words across most models, with significant drops beyond 8,000 words.
+The 2025 "Context Rot" blog by [Chroma](https://research.trychroma.com/context-rot) shows that for all models, context degradation starts becoming measurable around 2,500 words across most models, with significant drops beyond 8,000 words. Du et al. 2025 confirmed the performance degradation for long context (albeit using open-source models).
 
-But shorter isn’t always better, another research paper pushes back and shows that if you try to summarize 13k words to less than 500, you also get performance degradation.
+But shorter isn’t always better, another research paper (Zhang et al. 2025) pushes back and shows that if you try to summarize 13k words to less than 500, you also get performance degradation.
 
 So there is a sweet spot. **Aim for 500-2500 words per retrievable section.**
 
 ## R - Raise critical info first
 
-Multiple research has confirmed the "Lost in the Middle" behavior, that information at the start and end of context gets processed more reliably than information buried in the middle.
+Multiple research (Liu et al. 2023, Chroma 2025) has confirmed the "Lost in the Middle" behavior, that information at the start and end of context gets processed more reliably than information buried in the middle.
 
-**What to do**: Put the most important information first in every section. State it immediately. The LLM won’t benefit from gradual build up to the key point. If your API has required parameters, list them before optional ones. If there's a critical constraint, put it in the first sentence, not the third paragraph (author’s aside: my perpetual struggle is I only think of the important assumption after sitting down to write for a while)
+**What to do**: Put the most important information first in every section. State it immediately. The LLM won’t benefit from gradual build up to the key point like humans do. If your API has required parameters, list them before optional ones. If there's a critical constraint, put it in the first sentence, not the third paragraph (author’s aside: my perpetual struggle is I only think of the important assumption after sitting down to write for a while)
 
 Before:
 
@@ -106,9 +102,9 @@ Processes a payment asynchronously. Amounts MUST be in smallest currency unit (c
 
 #### More rich examples
 
-Human docs typically show one or two examples per topic. However, research demonstrates significant performance gains going from few-shot to many-shot examples, with large numbers of examples sometimes outperforming fine-tuning a model.
+Human docs typically show one or two examples per topic. However, research demonstrates significant performance gains going from few-shot to many-shot examples, with large numbers of examples sometimes outperforming fine-tuning a model (Agarwal et al. 2024).
 
-Include negative examples aka "don't do this". Researchers have mostly converged on that LLMs learn as much from what a bad output looks like as from good ones.
+Include negative examples aka "don't do this". LLMs learn as much from what a bad output looks like as from good ones (Mo et al. 2024).
 
 **What to do**: Add more examples to your agent-facing docs, both positive and negative
 
@@ -152,11 +148,11 @@ Response (400): {"error": {"code": "invalid_currency",
 
 #### Edge cases
 
-Listing every edge case in human-facing docs would clutter the reading experience, so we learned to exclude them and leave them to support. But when an agent encounters an undocumented edge case, it doesn't just shrug and move on. It hallucinates a solution.
+Listing every edge case in human-facing docs would clutter the reading experience, so we often decide to exclude them and leave them to support. But when an agent encounters an undocumented edge case, it doesn't just shrug and move on. It hallucinates a solution.
 
-A recent paper studied automated prompt optimization for LLM agents. They found that many human prompts included vague guidance like “consider edge cases” or “be thorough.” After rewriting these into explicit, structured instructions, i.e. breaking tasks into substeps, specifying verification procedures, and making reasoning requirements concrete, the performance went up between 10.1% and 36.9%
+A recent paper studied automated prompt optimization for LLM agents (Brookes et al. 2025). They found that many human prompts included vague guidance like “consider edge cases” or “be thorough.” After rewriting these into explicit, structured instructions, i.e. breaking tasks into substeps, specifying verification procedures, and making reasoning requirements concrete, the performance went up between 10.1% and 36.9%
 
-**What to do**: Create a dedicated edge cases section for your critical products. Use structured formats that agents can pattern-match against.
+**What to do**: Don't shy away from documenting edge cases for your critical products. Use structured formats that agents can pattern-match against.
 
 Example:
 
@@ -183,7 +179,7 @@ Example:
 
 In human docs, issues and bugs live in release notes, changelogs, GitHub issues, or nowhere at all. Agents don't always know where to go for this information. If a bug isn't in their context, they'll generate code that hits it and have no idea why it fails.
 
-Research in coding agents shows that agents struggle the most with "unwritten team conventions" and "non-public, highly contextualized information”. If these details are not exposing any trade secrets, putting them into your docs can help agents a lot.
+Research in coding agents (Dong et al. 2025) shows that agents struggle the most with "unwritten team conventions" and "non-public, highly contextualized information”. If these details are not exposing any trade secrets, putting them into your docs can help agents a lot.
 
 **What to do**: Add a known issues section to your agent docs. Structure each issue with the trigger condition, the symptom, and the workaround.
 
@@ -207,7 +203,7 @@ Example:
 
 #### Include failure modes
 
-Research on agent self-recovery found that agents with access to structured failure information performed significantly better than agents that reason about errors from a fuzzy “common sense”.
+Research on agent self-recovery (Del Rosario et al. 2025) found that agents with access to structured failure information performed significantly better than agents that reason about errors from a fuzzy “common sense”. The latter agents can get stuck in a failure loop and not know how to troubleshoot.
 
 **What to do**: Provide a structured error catalog that maps error codes or messages to causes, and what the recovery action should be.
 
@@ -230,7 +226,7 @@ Example:
 
 ## T - Template with structured formats
 
-Research shows that for the same facts, different formats produce very different agent performance. One study found that GPT-3.5-turbo's accuracy varied by up to 40% on a coding task depending on the prompt format.
+Research also shows that for the same facts, different formats produce very different agent performance. One study found that GPT-3.5-turbo's accuracy varied by up to 40% on a coding task depending on the prompt format (He et al. 2024).
 
 **What to do**: Instead of narratives prose, opt for structured formats with explicit delimiters. XML is a good choice, Markdown is good too. Whichever format you pick, be consistent and use clear section boundaries.
 
@@ -263,6 +259,41 @@ Example — after (structured):
 
 Honestly, this is a lot of work, and making sure that both your human-facing version and the agent-facing version of your docs are updated is no small task. If you're looking for a solution that does this automatically, talk to one of our engineers [here](https://cal.com/team/promptless/15m-meeting) and he can get you set up.
 
-I've also put together a LLM instruction file (you can use it as a claude code skill) that should be able to refactor your doc according to the best practices. Feel free to leave your work email here and I'll send it over!
+I've also put together a LLM instruction file (you can use it as a claude code skill) that should be able to refactor your doc according to these best practices. Feel free to leave your email here and I'll send it over!
 
 <RequestFileForm />
+
+## References
+
+<div style="font-size: 0.82em;">
+
+Agarwal, R., et al. (2024). Many-Shot In-Context Learning. NeurIPS Spotlight.
+
+Anthropic Engineering. (2024). Contextual Retrieval. Anthropic Engineering Blog.
+
+He, et al. (2024). Does Prompt Formatting Have Any Impact on LLM Performance?
+
+Dong, Y., Jiang, X., Qian, J., Wang, T., Zhang, K., Jin, Z., & Li, G. (2025).
+A Survey on Code Generation with LLM-Based Agents.
+
+Hong, F., Troynikov, O., & Huber, J. (2025). Context Rot. Chroma Research.
+
+Kalai, A. T., Nachum, O., Vempala, S. S., & Zhang, E. (2025).
+Why Language Models Hallucinate.
+
+Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2023). Lost in the Middle: How Language Models Use Long Contexts.
+
+Mo, Y., Liu, J., Yang, J., Wang, Q., Zhang, S., Wang, J., & Li, Z. (2024).
+C-ICL: Contrastive In-Context Learning for Information Extraction.
+
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention Is All You Need. Advances in Neural Information Processing Systems (NeurIPS).
+
+Wang, Z., Gao, C., Xiao, C., Huang, Y., Si, S., Luo, K., Bai, Y., Li, W., Duan, T., Lv, C., Lu, G., Chen, G., Qi, F., & Sun, M. (2025). Document Segmentation Matters for Retrieval-Augmented Generation.
+
+Zhang, Q., Hu, C., Upasani, S., Ma, B., Hong, F., Kamanuru, V., Rainton, J., Wu, C., Ji, M., Li, H., Thakker, U., Zou, J., & Olukotun, K. (2025). Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models.
+
+Brookes et al. (2025) Evolving Excellence: Automated Optimization of LLM-Based Agents.” (2025).
+
+Du et al. (2025) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval.
+
+</div>
