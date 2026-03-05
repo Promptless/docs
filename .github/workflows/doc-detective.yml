@@ -1,6 +1,7 @@
 name: doc-detective
 
 on:
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -18,11 +19,7 @@ jobs:
           cache: npm
 
       - name: Install Nushell
-        run: |
-          curl -fsSL https://github.com/nushell/nushell/releases/latest/download/nu-linux-x86_64.tar.gz -o nu.tar.gz
-          tar -xzf nu.tar.gz
-          sudo mv nu-*/nu /usr/local/bin/
-          rm -rf nu.tar.gz nu-*
+        run: npm install -g nushell
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
