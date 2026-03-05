@@ -36,10 +36,10 @@ The chunking typically happens at heading boundaries. So the text under an `## H
 
 Many coding agents consume documentation directly from the repo filesystem. When an agent runs inside a workspace (e.g., in Cursor, Claude Code, or Codex), it can read files such as `README.md`, `docs/`, `CONTRIBUTING.md`, or specialized files like `AGENTS.md`.
 
-A 2026 study ( [Gloaguen et al. 2026](https://arxiv.org/html/2602.11988v1)) on repository-level context files such as `AGENTS.md` had some interesting findings:
-LLM-generated context files reduced performance by about 3% on average while increasing cost by 20%.
-Developer-written context files, by contrast, actually helped. The paper reports a +4% average improvement in task success rate.
-The reason developer-written files helped is that they contained information that wasn't already in the repository, eg. tooling preferences, workflow requirements, conventions that existed in developers' heads but not in any documentation.
+Some studies like this [one](https://arxiv.org/pdf/2601.20404) argues that having repository-level context files such as `AGENTS.md` is strictly better, but their sample size is too small IMO (124 pull requests from 10 repos). A more nuanced view from a 2026 study ([Gloaguen et al. 2026](https://arxiv.org/html/2602.11988v1)) had more actionable findings:
+- **LLM-generated** context files reduced performance by about 3% on average while increasing cost by 20%.
+- **Developer-written** context files, by contrast, actually helped. The paper reports a +4% average improvement in task success rate.
+- The reason developer-written files helped is that they contained information that wasn't already in the repository, eg. tooling preferences, workflow requirements, conventions that existed in developers' heads but not in any documentation.
 
 So the takeaway here is that, if you want to write AGENTS.md, don’t be lazy 😛. But since the performance improvements are in the low single digits, we’ll still focus on improvements to human-facing docs.
 
@@ -78,13 +78,15 @@ When an agent retrieves a chunk of your docs, it gets that chunk void of surroun
 
 There’s overwhelming evidence in LLM research of “reward hacking”, meaning the model taking shortcuts to pass the evaluation without completing the real objective. Coupled with the fact that most agents have a `max_turns` parameter set to a non infinite value, this can mean that if you have lots of references like “above”, “the previous page” etc, agents might end up wasting a lot of turns following the references and end up not exploring enough context that actually matter.
 
+Another piece of evidence comes from [Levy et al. 2025](https://arxiv.org/abs/2503.04388). The researchers kept the context length and position of relevant information constant while varying the number of documents, and find that increasing the document count in RAG settings can reduce performance by up to 20%
+
 > write as if you're doing a radio interview and you don't want to be quoted out of context.  
 
 -– November 2025 Write the Docs [Newsletter](https://www.writethedocs.org/blog/newsletter-november-2025/#optimizing-docs-for-llms)
 
 **What to do:** Avoid forward and backward references like "see above," "as described in the previous section," or "same as before." Instead, restate the key information. This doesn't mean duplicating entire sections, just the critical bits that make a section more understandable on its own.
 
-Many style guides already discourage "see above" and similar phrases, this is just a stronger version of that existing practice because it matters even more for agents.
+Many style guides already discourage "see above" and similar phrases, this is just a stronger version of that existing practice because it matters even more for agents. This applies to code snippets as well. If you can, try to make each snippet make sense on its own.
 
 ### 2. Document failure modes, known bugs, and edge cases
 
@@ -217,6 +219,12 @@ Finally, a caveat of chunk length is that research shows that the ideal agent co
 This means a doc explaining a straightforward REST endpoint (look up parameters, make a call) can afford to be longer and more verbose than a doc explaining a complex multi-step workflow with conditional branching and state management. It’s a bit counterintuitive, yes. The hypothesized explanation is that the agent needs more token headroom for reasoning about the harder task.
 
 **What to do**: Match your doc length to the task's reasoning complexity. Maybe think of it as a “reasoning density” that you want to keep relatively consistent across your doc pages, which means that for simple tasks (authentication, parameter references, error code tables), pack in as much relevant detail as you want into the page, but for pages with complex workflows, consider limiting to only one or two of these workflows per page. 
+
+### 7. Keep your style guide and AGENTS.md separate (advanced)
+
+This one only had single digit gains, so putting it as the last point, but this is probably the easiest one to implement. The research shows that when the context has task-level instructions (requires reasoning) and formatting requirements mixed up together, models often do worse on the actual task ([Deng et al. 2025](https://arxiv.org/abs/2510.03595)). 
+
+**What to do**: Keep execution-critical guidance in your `AGENTS.md` or other agent instruction files; keep style guide as a separate file if you can.￼
 
 ## Conclusion
 
