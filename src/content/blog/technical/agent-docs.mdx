@@ -205,11 +205,11 @@ Much better version: [link](https://kubernetes.io/docs/tasks/inject-data-applica
 
 The 2025 "Context Rot" paper by [Chroma](https://research.trychroma.com/context-rot) found that LLM performance degrades as context grows, with measurable drops starting around 2,500 words and more significant degradation beyond 8,000. Obviously, this varies based on the model, but most of the research on this topic agrees that context longer than 25k words is not optimal.
 
-Not surprisingly, going too short hurts too. [Zhang et al. 2025](https://arxiv.org/abs/2510.04618) showed that aggressively summarizing 13k words to under 500 causes a sudden drop in accuracy from 66.7% to 57.1%.
+Not surprisingly, going too short hurts too. [Zhang et al. 2025](https://arxiv.org/abs/2510.04618) showed that aggressively summarizing 13k tokens to under 200 causes a sudden drop in accuracy from 66.7% to 57.1%.
 
-**What to do**: So what’s a sweet spot for the length of each retrievable section? It depends on how your docs are consumed. 
+**What to do**: So what’s a sweet spot for the length of each retrievable section? It depends on how your docs are consumed.
 
-- For RAG systems, the research seems to suggest roughly **500–2,500 words for the chunk between headings** (This number might keep going up as the model gets better). 
+- For RAG systems, the research seems to suggest roughly **less than ~2,500 words for the chunk between headings** (This number might keep going up as the model gets better). 
 - For coding agents reading files from disk, it's the whole file, but here it doesn’t matter as much because agents will use `grep` and `sed` to get around it. 
 - For web search, the retrievable section is the page. So if you have very long pages containing multiple topics, consider splitting them. 
 
