@@ -267,7 +267,7 @@ test('homepage, demo, meet, and pricing render website content', async () => {
   assert.match(homeHtml, /Demo/);
   assert.match(homeHtml, /Pricing/);
   assert.doesNotMatch(homeHtml, /Getting Started/i);
-  assert.match(homeHtml, /data-site-icon="sparkles"/);
+  assert.match(homeHtml, /data-site-icon="overview"/);
   assert.match(homeHtml, /data-site-icon="video"/);
   assert.match(homeHtml, /data-site-icon="pricing"/);
   assert.match(homeHtml, /data-site-icon="meet"/);
