@@ -56,7 +56,21 @@ Once it gets a list of results from the search, it fetches the raw HTML (or rend
 
 ### 1. Make sections self-contained
 
-Importance: RAG- high, File system- low, MCP server - high, Web search- medium
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP server</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">Web search</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span>
+  </span>
+</div>
 
 This is the recommendation we feel most strongly about, and it's one that many technical writers already follow as a matter of good practice.
 
@@ -74,7 +88,13 @@ Many style guides already discourage "see above" and similar phrases, this is ju
 
 ### 2. Document failure modes, known bugs, and edge cases
 
-Importance: RAG: high, File system: medium, MCP: high, web browsing: high
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
 
 This is the recommendation where optimizing for agents and optimizing for humans diverge the most. But the form factor doesn’t have to conflict too much. You can add these content as additional expandable sections at the bottom of the page. Or if it makes the page too long, you can put them in a dedicated section of docs structure (think an additional section in the sidebar). 
 
@@ -132,7 +152,13 @@ If you want to go a step further, you can also add edge cases and known issues. 
 
 ### 3. Add more examples, including negative ones
 
-Importance: RAG: medium, File system: high, MCP: high, web browsing: medium
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+</div>
 
 Human docs typically show one or two examples per endpoint. Research on LLM performance shows significant gains when more examples (even as many as 10+) are provided ([Agarwal et al. 2024](https://arxiv.org/abs/2404.11018)). Interestingly, LLM also benefits from negative examples more often than humans do. Giving it "don't do this" examples are particularly effective ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)).
 
@@ -144,7 +170,13 @@ There are not many people doing this in production yet, but we see the top dev t
 
 ### 4. Put the most important information first
 
-Importance: RAG: low, File system: medium, MCP: medium, web browsing: high
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
 
 Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2025](https://research.trychroma.com/context-rot)) have confirmed the "Lost in the Middle" effect: LLMs process information at the start and end of a context window more reliably than information in the middle. Anthropic's [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) also notes that long-running agents go through periodic "compaction", which is effectively summarizing their context to free up space, and the summarization process is also susceptible to this position bias.
 
@@ -160,7 +192,13 @@ Processes a payment asynchronously. Amounts MUST be in smallest currency unit (c
 
 ### 5. Watch your section length
 
-Importance: RAG: medium, File system: low, MCP: medium, web browsing: high
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
 
 The 2025 "Context Rot" paper by [Chroma](https://research.trychroma.com/context-rot) found that LLM performance degrades as context grows, with measurable drops starting around 2,500 words and more significant degradation beyond 8,000. Obviously, this varies based on the model, but most of the research on this topic agrees that context longer than 25k words is not optimal.
 
@@ -172,7 +210,7 @@ Not surprisingly, going too short hurts too. [Zhang et al. 2025](https://arxiv.o
 - For coding agents reading files from disk, it's the whole file, but here it doesn’t matter as much because agents will use `grep` and `sed` to get around it. 
 - For web search, the retrievable section is the page. So if you have very long pages containing multiple topics, consider splitting them. 
 
-## 6. Tailor doc length to task complexity (advanced)
+### 6. Tailor doc length to task complexity (advanced)
 
 Finally, a caveat of chunk length is that research shows that the ideal agent context can depend on what the agent is trying to do with the information. [Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that more complex problems degrade at shorter context lengths than simpler ones. For example, simple needle-in-a-haystack lookups work fine even at 1M+ tokens, but multi-step reasoning tasks start failing much earlier (between 16k to 33k tokens).
 
