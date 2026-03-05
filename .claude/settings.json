@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
-    "doc-detective@doc-detective": true
+    "doc-detective@doc-detective": true,
+    "frontend-design@claude-code-plugins": true
   }
 }

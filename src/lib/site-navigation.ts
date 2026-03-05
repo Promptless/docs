@@ -15,7 +15,7 @@ export interface TopNavLinkItem extends TopNavBaseItem {
 export type TopNavItem = TopNavLinkItem;
 
 export const TOP_NAV_ITEMS: TopNavItem[] = [
-  { section: 'website', href: '/', label: 'Website', icon: 'website' },
+  { section: 'website', href: '/', label: 'Home', icon: 'website' },
   { section: 'docs', href: '/docs', label: 'Docs', icon: 'docs' },
   { section: 'blog', href: '/blog', label: 'Blog', icon: 'blog' },
   { section: 'changelog', href: '/changelog', label: 'Changelog', icon: 'changelog' },
