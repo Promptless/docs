@@ -22,17 +22,13 @@ Triggers are events that initiate automated documentation updates in Promptless.
   <Card title="Microsoft Teams" icon="fa-brands fa-microsoft" href="/docs/configuring-promptless/triggers/microsoft-teams-messages">
     Trigger updates from Microsoft Teams messages and mentions
   </Card>
-  
-  <Card title="Zendesk (Beta)" icon="fa-solid fa-ticket" href="/docs/configuring-promptless/triggers/zendesk-tickets-beta">
-    Monitor support tickets for documentation gaps based on recurring user questions
-  </Card>
 </CardGroup>
 
 ## How Triggers Work
 
 When a trigger event occurs:
 
-1. **Event Detection**: Promptless receives notification of the event (PR opened, message posted, ticket resolved)
+1. **Event Detection**: Promptless receives notification of the event (PR opened, message posted, etc.)
 2. **Context Analysis**: The system analyzes the event content, including code changes, conversations, or support interactions
 3. **Relevance Assessment**: Promptless determines if the event requires documentation updates
 4. **Suggestion Creation**: If relevant, Promptless creates documentation suggestions based on the trigger content and connected context sources
