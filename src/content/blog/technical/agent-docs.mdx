@@ -1,0 +1,281 @@
+---
+title: 'How to get Supabase/Stripe-level agent docs'
+subtitle: Published February 2026
+description: >-
+  A practical guide for technical writers on adapting documentation for AI agent consumption, grounded in how agents actually access and use docs today.
+date: '2026-03-03T00:00:00.000Z'
+section: Technical
+hidden: false
+---
+import Info from '@components/fern/Info.astro';
+import RequestFileForm from '@components/site/RequestFileForm.astro';
+import Frame from '@components/fern/Frame.astro';
+
+
+A recent [recent YC podcast](https://www.youtube.com/watch?v=Q8wVMdwhlh4&t=275s) mentioned that one reason Supabase has become a default choice for coding agents is that their docs are genuinely easy to follow. But if my boss were to tell me, “Make our docs like Supabase,” I wouldn’t know where to start. There are a million differences between Supabase and any given product, how do I know which traits made a difference and which traits are superficial?
+
+What about our good-intentioned friend, the llms.txt file? Articles from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), [SE Ranking](https://seranking.com/blog/llms-txt/), [Daydream](https://www.withdaydream.com/library/llms-txt-hype-vs-reality), and [Publii](https://getpublii.com/blog/llms-txt-complete-guide.html) all show that there doesn’t seem to be a measurable difference in AI citations between sites that have llms.txt and sites that don’t (one study was done with 300k websites).
+
+You _could_ argue that GEO/SEO isn’t the same as agent support. But even setting that aside, it seems that there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), and when I checked Google (Mar 4, 2026, for posterity) according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those llms.txt files appeared to be indexed. If they aren’t indexed, then agents doing web browsing are effectively just landing on the same human-facing docs pages anyway.
+
+<Frame caption="Google search for site:*/llms.txt — about 79,900 results indexed out of ~800,000 sites with llms.txt files">
+  <img src="/assets/llms-txt-google-indexed.png" alt="Google search showing only ~79,900 llms.txt files indexed out of 800,000 sites" />
+</Frame>
+
+
+Still, independent of llms.txt, it’s hard to deny what’s happening around us: agents are reading more documentation, humans are reading less, and this trend is likely to continue, maybe even accelerate. This article offers a perspective that tries to get closer to first principles on what adjustments to your docs are worth making, based on how LLMs are built and how they behave, grounded in research from top labs.
+
+To be clear, we’re not advocating for a separate set of “agent docs.” You’ll find that many of these changes improve the human experience too. And where there’s a real trade-off, we’ll call it out.
+
+## How agents actually consume your docs today
+
+Before we talk about optimization, it helps to ground ourselves in the concrete ways agents run into your documentation. In practice, there are four main pathways. Depending on your product, you can decide which ones matter most to optimize for.
+
+### 1. RAG systems (support bots, "Ask AI" features)
+
+Tools like Kapa, Intercom’s Fin, doc platform “Ask AI” features, and many in-house support chatbots fall into this category. They ingest your docs, split them into chunks, and retrieve relevant chunks when a user asks a question.
+
+Most often, the chunking strategies will follow the heading structure. The text under an ## H2 or ### H3 often becomes a retrievable unit. Now imagine ten of those units pulled from very different parts of the docs getting stuffed into the context window at once. That’s what the LLM is frequently working with under this system.
+
+### 2. File system - monorepo’s `/docs` directory and `AGENTS.md`
+
+Many coding agents consume documentation directly from the repository filesystem. When an agent runs inside a workspace (e.g., Cursor, Claude Code, or Codex), it can read files like `README.md`, `docs/`, `CONTRIBUTING.md`, and specialized files such as `AGENTS.md`.
+
+Some studies, like this [one](https://arxiv.org/pdf/2601.20404), argue that repository-level context files (e.g., `AGENTS.md`) are strictly better. But the sample size there is small (124 pull requests across 10 repos). A more nuanced 2026 study (Gloaguen et al. 2026￼) offers more actionable findings:
+	•	**LLM-generated** context files reduced performance by ~3% on average while increasing cost by ~20%.
+	•	**Developer-written** context files improved task success rate by +4% on average.
+	•	The benefit came from including information that wasn’t already in the repo—tooling preferences, workflow requirements, and conventions that lived in developers’ heads rather than documentation.
+
+The takeaway: if you want to write an `AGENTS.md`, don’t be lazy 😛. That said, since the gains are still in the low single digits, this article focuses primarily on improving your human-facing docs.
+
+### 3. MCP servers
+
+The [Model Context Protocol](https://modelcontextprotocol.io/) is an open standard that lets agents programmatically interact with external data sources, including documentation. Under the hood, some MCP servers use chunking and indexing similar to RAG, while others rely on keyword or fuzzy search.
+
+In MCP setups, tool descriptions and schemas matter a lot more. This is out of scope for this post, but one fun detail: [Trilcke et al. 2025](https://arxiv.org/abs/2508.13774) qualitatively argues that docstrings influence MCP tool choice and stability. (Sometimes docstrings live with tech writers, sometimes with engineering, but that’s a topic for another day.)
+
+
+### 4. Web search and crawling
+
+When agents like ChatGPT, Perplexity, and Claude browse the web, they find your docs the same way Google does: through indexable pages, site structure, and links.
+
+After getting search results, the agent fetches the raw HTML (or rendered text) from those pages. The main difference from RAG is that the “retrievable unit” is usually the page itself, not smaller chunks.
+
+## What actually helps
+
+### 1. Make sections self-contained
+
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP server</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span>
+  </span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;">
+    <span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">Web search</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span>
+  </span>
+</div>
+
+This is the recommendation we feel most strongly about, and it’s also one that many technical writers already follow as standard good practice.
+
+When an agent retrieves a chunk of your docs, it often gets that chunk without the surrounding context. So if the chunk says something like “use the payment object from above,” the agent may have no idea what “above” refers to. Some agents will try to chase the reference, but many RAG setups only expose vector search rather than letting the agent reliably fetch “the chunk above this one.”
+
+Now add two practical realities. First, there’s strong evidence in LLM research of “reward hacking,” where models take shortcuts to pass an evaluation without fully completing the underlying objective. Second, most agents have a `max_turns` parameter that is usually around 100-200. Due to these two factors, lots of “see above / previous page” phrases can lead to agents burning through turns hunting for these references, and then stopping the exploration before they’ve found enough of what actually matters.
+
+There’s also empirical evidence that spreading content across too many files can make retrieval harder for LLMs. In [Levy et al. 2025](https://arxiv.org/abs/2503.04388), the researchers kept the total context length and the position of the relevant information fixed, and varied only how many separate documents that context was split across. They found that increasing the document count in RAG settings could reduce performance by up to 20%.
+
+> Write as if you’re doing a radio interview and you don’t want to be quoted out of context.
+
+-– November 2025 Write the Docs [Newsletter](https://www.writethedocs.org/blog/newsletter-november-2025/#optimizing-docs-for-llms)
+
+What to do: Avoid forward and backward references like “see above,” “as described in the previous section,” or “same as before.” Instead, restate the key information. This doesn’t mean duplicating whole sections - just the critical bits that make a retrievabel unit (a section or a page) understandable on its own. Kubernetes does this well by including a “Before you begin” block at the top of related pages (e.g., [Adding Linux nodes](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes/)).
+
+Many style guides already discourage “see above” and similar phrasing. This is the same principle, just higher stakes for agents.
+
+### 2. Document failure modes, known bugs, and edge cases
+
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
+
+This is the recommendation where optimizing for agents and optimizing for humans diverge the most. That being said, the form factor doesn’t have to clash. You can put added content in expandable sections at the bottom of each main page. If it makes pages too long, house it under a dedicated part of your docs (think an additional section in the sidebar).
+
+Research on coding agents ([Dong et al. 2025](https://arxiv.org/pdf/2508.00083)) found that agents struggle most with “unwritten team conventions” and “non-public, highly contextualized information.” Separately, research on agent self-recovery ([Del Rosario et al. 2025](https://arxiv.org/abs/2509.08646)) found that agents with access to structured failure information performed significantly better than agents trying to reason about errors from their general knowledge. (Side note: I think agent self-recovery and self-evolution will matter even more over time.)
+
+A related result comes from work on automated prompt optimization for LLM agents ([Brookes et al. 2025](https://arxiv.org/abs/2512.09108)). The authors found that pre-optimized, human-written prompts often rely on vague guidance like “consider edge cases” or “be thorough.” During auto-optimization, the LLM rewrote these into more explicit, structured instructions with concrete examples and edge cases, and accuracy improved by 10.1%–36.9%.
+
+Stripe is also a good example of documenting failure modes. Its error codes page maps each code to a description (and often resolution steps), and the API returns a `doc_url` field that points directly to the relevant documentation entry.
+
+Error codes page [Stripe](https://docs.stripe.com/error-codes)
+
+<Frame caption="Stripe error codes page — structured error catalog with filterable table">
+  <img src="/assets/stripe-error-codes.png" alt="Stripe error codes documentation page showing a filterable table of error codes and descriptions" />
+</Frame>
+
+Error details page [Stripe](https://docs.stripe.com/error-handling?lang=python#invalid-request-errors)
+
+<Frame caption="Stripe error details page — structured breakdown of error type, problem, and solutions">
+  <img src="/assets/stripe-error-details.png" alt="Stripe invalid request error page showing type, problem, and solutions in a structured table" />
+</Frame>
+
+Twilio takes a similar approach. Its [Error and Warning Dictionary](https://www.twilio.com/docs/api/errors) lists every error code, and each one follows this format with description, possible causes, and possible solutions.
+
+```
+# 400: Bad Request
+
+Log Type: APPLICATION
+
+Log Level: ERROR
+
+## Description
+
+Failed to complete request due to a bad request
+
+### Possible Causes
+
+* The resource to be modified has moved into a state that is no longer valid.
+* Input on the request did not pass validation.
+
+### Possible Solutions
+
+* Retry the request after confirming the request is valid.
+* Verify if the resource to be modified exists and is in a valid state.
+```
+
+Supabase has a debugging section under each product area. [link](https://supabase.com/docs/guides/auth/debugging/error-codes)
+
+<Frame caption="Supabase docs — dedicated Debugging section under each product area in the sidebar">
+  <img src="/assets/supabase-debugging-section.png" alt="Supabase database docs showing a Debugging section in the sidebar with Timeouts, Debugging and monitoring, Debugging performance issues, Supavisor, and Troubleshooting" />
+</Frame>
+
+**What to do:** The lowest-hanging fruit is to add dedicated debugging and error sections—these help humans too. You can either embed them directly on relevant pages (expandable sections are perfect for this) or centralize them into dedicated areas of your docs for each major product surface.
+
+If you want to go further, add edge cases and known issues. In general, while centralized sections work well for canonical error information, in-page sections works better for edge cases. If you have trouble thinking of edge cases and known issues - note that known issues often live in those GitHub issues or Jira tickets marked with "WON'T FIX", and some can be in changelogs or release notes as well. Edge cases tend to surface in support threads and customer conversations. You can point an LLM at those sources and have it synthesize the recurring patterns into docs (or, you can try Promptless 😄).
+
+### 3. Add more examples, including negative ones
+
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+</div>
+
+Human docs often include only one or two examples per point. But research on LLM performance shows meaningful gains when you provide more examples—sometimes even 10+ ([Agarwal et al. 2024](https://arxiv.org/abs/2404.11018)). Interestingly, LLMs also seem to benefit from negative examples more than humans do: “don’t do this”-type examples can be especially effective ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)).
+
+That said, this is also just good documentation practice. More examples help humans too, especially when they cover common use cases. The difference, however, is that humans hit a point of diminishing returns quickly, and too many examples can make a page less helpful. LLMs seem to saturate differently: the model may still benefit from an 11th example even if there are already 10, even though a human reader is more likely to feel overwhelmed at this point. 
+
+The main downside of having many examples is maintenance overhead. (wink wink)
+
+**What to do**: For your most critical endpoints, expand the number of examples and add a few negative examples showing what agents shouldn’t do. Aim for breadth without repetition.
+
+Not many teams do this comprehensively in production yet, but top dev tools are clearly trending in this direction. Some maintain dedicated examples directories in their repos (e.g., [Vercel](https://github.com/vercel/vercel/tree/main/examples)). Others publish cookbooks (e.g., [OpenAI](https://github.com/openai/openai-cookbook)), which this author has personally found very helpful. Publishing examples in an open-source repo can also help expose real usage patterns to models during pre-training. As labs are increasingly selective about what they include, reputable github repos are a good source of high quality data. Note that repetitive examples won’t move the needle much; high-quality, representative workflows will. Here, support tickets are often a great source of inspiration.
+
+### 4. Put the most important information first
+
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
+
+Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2025](https://research.trychroma.com/context-rot)) have documented the “Lost in the Middle” effect: LLMs tend to use information near the beginning and end of a context window more reliably than information buried in the middle. Anthropic’s [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) also notes that long-running agents periodically “compact” their context, which is essentially running a summarization to free up space, and that process is not immune to position bias either. 
+
+**What to do**: Put the most important information first in every section ([Wu et al. 2025](https://arxiv.org/abs/2502.01951)). LLMs don’t benefit from a slow build-up to the key point the way humans do. If your API has required parameters, list them before optional ones. If there’s a critical constraint, put it in the first few sentences, not the fourth paragraph. (Author’s aside: my perpetual struggle is that I only realize the important assumptions after I’ve been writing for a while.)
+
+Here’s a somewhat extreme (and honestly pretty bad) “before” example from me + ChatGPT, inspired by Kubernetes docs:
+
+<pre style="white-space: pre-wrap;">If you don't already have an environment for working through this tutorial, there are a few different ways to get started. You can create a cluster by using minikube, or you can use one of the Kubernetes playgrounds, depending on what setup is most convenient for you.{"\n"}As you go through the tutorial, you will be interacting with resources from the command line, so you should make sure your tooling is ready for this workflow. Also, you need to have a Kubernetes cluster for this tutorial, and the aforementioned kubectl command-line tool must be configured to communicate with your cluster as well. It is also recommended to run this tutorial on a cluster with at least two nodes that are not acting as control plane hosts.</pre>
+
+Much better version: [link](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/)
+<Frame caption="Kubernetes docs - Before you begin section">
+  <img src="/assets/kubernetes-before-you-begin.png" alt="Kubernetes docs - before you begin section" />
+</Frame>
+
+### 5. Watch your section length
+
+<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;align-items:center;">
+  <span style="font-size:0.72rem;font-weight:600;color:#64748b;">Relevance:</span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">RAG</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">File system</span><span style="background:#f1f5f9;color:#94a3b8;padding:0.22rem 0.55rem;">low</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
+  <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
+</div>
+
+The 2025 "Context Rot" paper by [Chroma](https://research.trychroma.com/context-rot) found that LLM performance degrades as context grows, with measurable drops starting around 2,500 words and more significant degradation beyond 8,000. Obviously, the thresholds vary by model, but much of the broader research on long-context behavior points to the same direction: once you get into very long contexts (e.g., 25k+ words), the performance is usually suboptimal.
+
+Not surprisingly, going too short can hurt as well. [Zhang et al. 2025](https://arxiv.org/abs/2510.04618) showed that aggressively summarizing 13k tokens to under 200 causes a sudden drop in accuracy from 66.7% to 57.1%.
+
+**What to do**: There isn’t a single universal “sweet spot” for retrievable section length. It depends on how your docs are being consumed.
+
+- **RAG systems**: the research seems to suggest roughly **less than ~2,500 words per retrivable chunk** (often the content between headings). 
+- **Coding agents on filesystems**: The “retrievable unit” is often the whole file, but length matters less in practice because agents can use tools like grep and sed to jump around.
+- **Web search**: the retrievable unit is usually the page. If a long page contains multiple distinct topics, consider splitting it.
+
+### 6. Tailor doc length to task complexity (advanced)
+
+One important caveat: the ideal amount of context can depend on what the agent is trying to do. [Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that more complex problems degrade at shorter context lengths than simpler ones. For example, simple needle-in-a-haystack lookups work fine even at 1M+ tokens, but multi-step reasoning tasks start failing much earlier (between 16k to 33k tokens).
+
+In practice, that suggests something counterintuitive: a page explaining a straightforward REST endpoint (look up parameters, make a call) can often afford to be longer and more verbose than a page explaining a complex multi-step workflow with branching logic and states. A reasonable hypothesis is that harder tasks require more “token headroom” for reasoning. Therefore overly long docs can crowd out the model’s ability to think during the task execution.
+
+**What to do**: Match doc length to the task’s reasoning complexity. One way to think about it is “reasoning density”: try to keep it relatively consistent across pages. For simple tasks (authentication, parameter references, error code tables), include as much relevant detail as you want. For complex problems, consider splitting long pages into several relatively independent workflows.
+
+### 7. Keep your style guide and `AGENTS.md` separate (advanced)
+
+This one only had single digit gains, so it's last. But this is probably the easiest one to implement. The research shows that when the context has task-level instructions (requires reasoning) and formatting requirements mixed up together, models often do worse on the actual task ([Deng et al. 2025](https://arxiv.org/abs/2510.03595)). 
+
+**What to do**: Keep execution-critical guidance in your `AGENTS.md` or other agent instruction files; keep style guide as a separate file if you can.
+
+## Conclusion
+
+Honestly, it’s a lot of work to:
+- Refactor docs to move information around
+- Add error handling/debugging sections
+- Create and maintain examples as your software changes
+- Adapt page length to task complexity
+
+If you're looking for a solution that handles this automatically, InlinePizza 🍕 (an engineer on our team) would love to [chat](https://cal.com/team/promptless/15m-meeting) and he'll gladly help you get set-up.
+
+I've also put together an LLM instruction file (usable as a Claude Code skill) that can refactor your docs according to these best practices. Leave your work email below and I'll send it over!
+
+<RequestFileForm />
+
+## References
+
+<div style="font-size: 0.82em;">
+
+Agarwal, R., et al. (2024). Many-Shot In-Context Learning. NeurIPS Spotlight. [link](https://arxiv.org/abs/2404.11018)
+
+Anthropic Engineering. (2024). Contextual Retrieval. Anthropic Engineering Blog. [link](https://www.anthropic.com/news/contextual-retrieval)
+
+Anthropic Engineering. (2025). Effective Context Engineering for AI Agents. Anthropic Engineering Blog. [link](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+Dong, Y., Jiang, X., Qian, J., Wang, T., Zhang, K., Jin, Z., & Li, G. (2025).
+A Survey on Code Generation with LLM-Based Agents. [link](https://arxiv.org/pdf/2508.00083)
+
+Hong, F., Troynikov, O., & Huber, J. (2025). Context Rot. Chroma Research. [link](https://research.trychroma.com/context-rot)
+
+Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2023). Lost in the Middle: How Language Models Use Long Contexts. [link](https://arxiv.org/abs/2307.03172)
+
+Mo, Y., Liu, J., Yang, J., Wang, Q., Zhang, S., Wang, J., & Li, Z. (2024).
+C-ICL: Contrastive In-Context Learning for Information Extraction. [link](https://arxiv.org/abs/2402.11254)
+
+Wang, Z., Gao, C., Xiao, C., Huang, Y., Si, S., Luo, K., Bai, Y., Li, W., Duan, T., Lv, C., Lu, G., Chen, G., Qi, F., & Sun, M. (2025). Document Segmentation Matters for Retrieval-Augmented Generation. [link](https://aclanthology.org/2025.findings-acl.422/)
+
+Zhang, Q., Hu, C., Upasani, S., Ma, B., Hong, F., Kamanuru, V., Rainton, J., Wu, C., Ji, M., Li, H., Thakker, U., Zou, J., & Olukotun, K. (2025). Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models. [link](https://arxiv.org/abs/2510.04618)
+
+Du et al. (2025) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval. [link](https://arxiv.org/abs/2510.05381)
+
+</div>
