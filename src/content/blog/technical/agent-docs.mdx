@@ -184,13 +184,14 @@ Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2
 
 **What to do**: Put the most important information first in every section ([Wu et al. 2025](https://arxiv.org/abs/2502.01951)). The LLM won’t benefit from gradual build up to the key point like humans do. If your API has required parameters, list them before optional ones. If there's a critical constraint, put it in the first few sentences, not the fourth paragraph (author’s aside: my perpetual struggle is I only think of the important assumptions after sitting down to write for a while).
 
-Before:
+Consider the a somewhat extreme(ly bad) example from me + ChatGPT for Kubernetes docs:
 
-<pre style="white-space: pre-wrap;">Our payment processing endpoint provides a flexible way to handle transactions. It supports multiple currencies and payment methods. Transactions are processed asynchronously and results are delivered via webhook. Note: all amounts must be in the smallest currency unit (cents for USD).</pre>
+<pre style="white-space: pre-wrap;">If you don't already have an environment for working through this tutorial, there are a few different ways to get started. You can create a cluster by using minikube, or you can use one of the Kubernetes playgrounds, depending on what setup is most convenient for you.{"\n"}As you go through the tutorial, you will be interacting with resources from the command line, so you should make sure your tooling is ready for this workflow. Also, you need to have a Kubernetes cluster for this tutorial, and the aforementioned kubectl command-line tool must be configured to communicate with your cluster as well. It is also recommended to run this tutorial on a cluster with at least two nodes that are not acting as control plane hosts.</pre>
 
-After:
-<pre style="white-space: pre-wrap;">POST /payments
-Processes a payment asynchronously. Amounts MUST be in smallest currency unit (cents for USD). Results delivered via webhook to configured endpoint. Supports multiple currencies and payment methods.</pre>
+Much better version: [link](https://kubernetes.io/docs/tasks/inject-data-application/environment-variable-expose-pod-information/)
+<Frame caption="Kubernetes docs - Before you begin section">
+  <img src="/assets/kubernetes-before-you-begin.png" alt="Kubernetes docs - before you begin section" />
+</Frame>
 
 ### 5. Watch your section length
 
