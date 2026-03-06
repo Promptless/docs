@@ -14,15 +14,17 @@ Provide feedback on suggestions through request changes, inline comments, overal
 
 Use the **Request Changes** button at the top of any suggestion to request updates. Provide multiple pieces of feedback at once, and Promptless will address them all together.
 
-[comment]: # (test start {"id": "request-changes-button", "description": "Verify the Request Changes modal shows Submit Request button"})
-[comment]: # (step {"action": "goTo", "url": "https://app.gopromptless.ai/suggestions"})
-[comment]: # (step {"action": "wait", "duration": 3000})
-[comment]: # (step {"action": "find", "selector": "[data-testid='suggestion-row'], .suggestion-row, tr[class*='suggestion'], a[href*='/suggestions/']", "click": true, "timeout": 10000})
-[comment]: # (step {"action": "wait", "duration": 3000})
-[comment]: # (step {"action": "find", "selector": "[data-testid='request-changes-button'], button:has-text('Request Changes'), button:contains('Request Changes')", "click": true, "timeout": 10000})
-[comment]: # (step {"action": "wait", "duration": 2000})
-[comment]: # (step {"action": "find", "selector": "[data-testid='submit-request-button'], button:has-text('Submit Request'), button:contains('Submit Request')", "timeout": 10000})
-[comment]: # (test end)
+{/* test {"id": "request-changes-button", "description": "Verify the Request Changes modal shows Submit Request button"} */}
+{/* step {"record": {"path": "request-changes-button.mp4", "directory": ".doc-detective/recordings", "overwrite": "true"}} */}
+{/* step {"goTo": "https://app.gopromptless.ai/suggestions"} */}
+{/* step {"wait": 3000} */}
+{/* step {"find": "[data-testid='suggestion-row'], .suggestion-row, tr[class*='suggestion'], a[href*='/suggestions/']", "click": true, "timeout": 10000} */}
+{/* step {"wait": 3000} */}
+{/* step {"find": "[data-testid='request-changes-button'], button:has-text('Request Changes'), button:contains('Request Changes')", "click": true, "timeout": 10000} */}
+{/* step {"wait": 2000} */}
+{/* step {"find": "[data-testid='submit-request-button'], button:has-text('Submit Request'), button:contains('Submit Request')", "timeout": 10000} */}
+{/* step {"stopRecord": true} */}
+{/* test end */}
 
 <Frame>
   <img src="https://promptless-customer-doc-assets.s3.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/request-changes-button-0c851bb3.png" alt="Request Changes button with text field and example suggestions" />
