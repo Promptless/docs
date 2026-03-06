@@ -28,11 +28,11 @@ const { Content, headings } = await entry.render();
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Write the Docs Portland 2026",
-    "startDate": "2026-05-02",
-    "endDate": "2026-05-05",
+    "startDate": "2026-05-02T09:00:00-07:00",
+    "endDate": "2026-05-05T16:00:00-07:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
-    "description": "Conference schedule for Write the Docs Portland 2026, May 2-5 at Revolution Hall, Portland, Oregon.",
+    "description": "Write the Docs Portland 2026 brings together documentarians for four days of talks, writing sprints, unconference sessions, and social events at Revolution Hall in Portland, Oregon.",
     "url": "https://www.writethedocs.org/conf/portland/2026/",
     "location": {
       "@type": "Place",
@@ -46,6 +46,11 @@ const { Content, headings } = await entry.render();
         "addressCountry": "US"
       },
       "telephone": "(971) 808-5094",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.5193,
+        "longitude": -122.6536
+      },
       "containedInPlace": {
         "@type": "Place",
         "name": "Washington High School"
@@ -56,7 +61,110 @@ const { Content, headings } = await entry.render();
       "name": "Write the Docs",
       "url": "https://www.writethedocs.org/"
     },
-    "image": "https://docs.promptless.ai/assets/social-card.png"
+    "sponsor": {
+      "@type": "Organization",
+      "name": "Promptless",
+      "url": "https://promptless.ai",
+      "sponsorshipLevel": "Keystone Sponsor"
+    },
+    "image": "https://docs.promptless.ai/assets/social-card.png",
+    "keywords": ["technical writing", "documentation", "Write the Docs", "WTD Portland 2026", "documentarians", "API documentation"],
+    "inLanguage": "en",
+    "typicalAgeRange": "18-",
+    "subEvent": [
+      {
+        "@type": "Event",
+        "name": "Lunch at Nob Hill Food Carts",
+        "startDate": "2026-05-02T12:30:00-07:00",
+        "endDate": "2026-05-02T13:40:00-07:00",
+        "description": "Casual pre-conference lunch meetup at Nob Hill Food Carts."
+      },
+      {
+        "@type": "Event",
+        "name": "Conference Hike",
+        "startDate": "2026-05-02T14:00:00-07:00",
+        "endDate": "2026-05-02T17:00:00-07:00",
+        "url": "https://www.writethedocs.org/conf/portland/2026/hike/"
+      },
+      {
+        "@type": "Event",
+        "name": "Writing Day",
+        "startDate": "2026-05-03T09:00:00-07:00",
+        "endDate": "2026-05-03T17:00:00-07:00",
+        "description": "Collaborative writing sprint where attendees contribute to open-source documentation projects.",
+        "url": "https://www.writethedocs.org/conf/portland/2026/writing-day/"
+      },
+      {
+        "@type": "Event",
+        "name": "Sunday Reception",
+        "startDate": "2026-05-03T17:00:00-07:00",
+        "endDate": "2026-05-03T19:00:00-07:00",
+        "description": "Welcome reception on the evening before the main conference talks."
+      },
+      {
+        "@type": "SocialEvent",
+        "name": "Promptless Dinner — Sunday",
+        "startDate": "2026-05-03T19:00:00-07:00",
+        "endDate": "2026-05-03T20:45:00-07:00",
+        "description": "Dinner hosted by Promptless for Write the Docs Portland attendees on Sunday evening.",
+        "url": "https://luma.com/1m13xfc3",
+        "organizer": {
+          "@type": "Organization",
+          "name": "Promptless",
+          "url": "https://promptless.ai"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "Conference Talks — Day 1",
+        "startDate": "2026-05-04T09:00:00-07:00",
+        "endDate": "2026-05-04T17:00:00-07:00",
+        "url": "https://www.writethedocs.org/conf/portland/2026/schedule/"
+      },
+      {
+        "@type": "Event",
+        "name": "Unconference — Day 1",
+        "startDate": "2026-05-04T09:00:00-07:00",
+        "endDate": "2026-05-04T17:00:00-07:00",
+        "description": "Attendee-driven sessions on topics chosen the day of the event.",
+        "url": "https://www.writethedocs.org/conf/portland/2026/unconference/"
+      },
+      {
+        "@type": "SocialEvent",
+        "name": "Promptless Dinner — Monday",
+        "startDate": "2026-05-04T17:30:00-07:00",
+        "endDate": "2026-05-04T19:00:00-07:00",
+        "description": "Dinner hosted by Promptless for Write the Docs Portland attendees on Monday evening.",
+        "url": "https://luma.com/tpl91l3a",
+        "organizer": {
+          "@type": "Organization",
+          "name": "Promptless",
+          "url": "https://promptless.ai"
+        }
+      },
+      {
+        "@type": "SocialEvent",
+        "name": "Monday Night Social",
+        "startDate": "2026-05-04T19:00:00-07:00",
+        "endDate": "2026-05-04T21:00:00-07:00",
+        "description": "Evening social gathering for Write the Docs Portland attendees."
+      },
+      {
+        "@type": "Event",
+        "name": "Conference Talks — Day 2",
+        "startDate": "2026-05-05T09:00:00-07:00",
+        "endDate": "2026-05-05T15:45:00-07:00",
+        "url": "https://www.writethedocs.org/conf/portland/2026/schedule/"
+      },
+      {
+        "@type": "Event",
+        "name": "Unconference — Day 2",
+        "startDate": "2026-05-05T09:00:00-07:00",
+        "endDate": "2026-05-05T15:45:00-07:00",
+        "description": "Attendee-driven sessions on topics chosen the day of the event.",
+        "url": "https://www.writethedocs.org/conf/portland/2026/unconference/"
+      }
+    ]
   })} />
   <div class="pl-site-page">
     <Content />
