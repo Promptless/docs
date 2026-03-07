@@ -397,8 +397,18 @@ starlight-theme-select {
   color: #fff;
 }
 
+/* Align carets consistently to the right edge of the sidebar */
+.sidebar-content details > summary {
+  position: relative;
+  padding-right: 1.5rem;
+}
+
 .sidebar-content details > summary .caret {
   color: color-mix(in srgb, var(--sl-color-text) 40%, #9ca3af);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .main-frame {
