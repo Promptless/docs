@@ -397,8 +397,26 @@ starlight-theme-select {
   color: #fff;
 }
 
+/* Align carets consistently to the right edge of the sidebar */
+.sidebar-content details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .sidebar-content details > summary .caret {
   color: color-mix(in srgb, var(--sl-color-text) 40%, #9ca3af);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Align sidebar carets to the right edge consistently across all nesting levels */
+.sidebar-content details > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .main-frame {
