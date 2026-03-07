@@ -1,4 +1,4 @@
-import routeManifest from '../../migration/route-manifest.json';
+import routeManifest from './generated/route-manifest.json';
 import type { RouteManifestEntry } from './route-manifest';
 
 export const routeEntries = (routeManifest as RouteManifestEntry[]).slice();

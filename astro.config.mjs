@@ -3,7 +3,7 @@ import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
 
 import generatedSidebar from './src/lib/generated/sidebar.json' with { type: 'json' };
-import redirectsManifest from './migration/redirects.generated.json' with { type: 'json' };
+import redirectsManifest from './src/lib/generated/redirects.json' with { type: 'json' };
 
 const redirectEntries = (redirectsManifest.redirects || []).map((rule) => [rule.source, rule.destination]);
 
@@ -40,8 +40,8 @@ export default defineConfig({
       title: 'Promptless | Automatic updates for your customer-facing docs',
       description: 'Automated docs that eliminate manual overhead and keep your docs current with your codebase',
       logo: {
-        src: './fern/docs/assets/logo.svg',
-        dark: './fern/docs/assets/logo_darkbg.svg',
+        src: './public/assets/logo.svg',
+        dark: './public/assets/logo_darkbg.svg',
         alt: 'Promptless',
         replacesTitle: true,
       },
