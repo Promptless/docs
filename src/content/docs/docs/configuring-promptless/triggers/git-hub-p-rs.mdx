@@ -1,6 +1,14 @@
 ---
 title: GitHub PRs
+slug: docs/configuring-promptless/triggers/git-hub-p-rs
+sidebar:
+  hidden: false
+  order: 9
 ---
+import Frame from '@components/fern/Frame.astro';
+import Info from '@components/fern/Info.astro';
+import Note from '@components/fern/Note.astro';
+import Warning from '@components/fern/Warning.astro';
 
 Promptless automatically monitors your GitHub repositories for new pull requests. When a PR is opened, the system analyzes the changes to determine if documentation updates are needed.
 
@@ -27,7 +35,7 @@ Configure GitHub PR triggers in your [project settings](https://app.gopromptless
 4. Set auto-publish preferences
 
 <Frame>
-  <img src="../../assets/github-project.png" alt="GitHub project configuration showing trigger repository selection" />
+  <img src="/assets/github-project.png" alt="GitHub project configuration showing trigger repository selection" />
 </Frame>
 
 ## Directory-Specific Triggers
@@ -72,6 +80,12 @@ When auto-publish is enabled for your project:
 <Warning>
 Promptless automatically skips draft pull requests. Documentation updates are only triggered when the pull request is marked as ready for review.
 </Warning>
+
+## Configuration Files and dot-Directories
+
+Promptless automatically skips pull requests that only contain changes to dot-directories (like `.github/`, `.circleci/`, `.beads/`) or root-level dot-files (like `.gitignore`, `.editorconfig`). These are typically CI and tooling configuration rather than product changes that need documentation updates.
+
+If a PR contains both dot-files and regular source files, Promptless processes it normally—it only skips when the entire PR is dot-file changes.
 
 ## Setup Instructions
 
