@@ -73,6 +73,12 @@ When auto-publish is enabled for your project:
 Promptless automatically skips draft pull requests. Documentation updates are only triggered when the pull request is marked as ready for review.
 </Warning>
 
+## Configuration Files and dot-Directories
+
+Promptless automatically skips pull requests that only contain changes to dot-directories (like `.github/`, `.circleci/`, `.beads/`) or root-level dot-files (like `.gitignore`, `.editorconfig`). These are typically CI and tooling configuration rather than product changes that need documentation updates.
+
+If a PR contains both dot-files and regular source files, Promptless processes it normally—it only skips when the entire PR is dot-file changes.
+
 ## Setup Instructions
 
 To connect GitHub to Promptless, see the [GitHub Integration](/docs/integrations/github-integration) setup guide.
