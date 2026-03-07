@@ -21,60 +21,37 @@ Everything we do at Promptless is about ensuring that as many people as possible
 
 ## A unique technological revolution
 
-Here's the thing about AI in 2026: the gap between what it can do and what most people are doing with it is enormous. Frontier capabilities are extraordinary, and some power users are exploring those capabilities, but average adoption is still very basic. 
+Here's the thing about AI in 2026: the gap between what it can do and what most people are doing with it is enormous. Frontier capabilities are extraordinary, and some power users are exploring those capabilities, but average adoption is still very basic.
 
-Of course, there have always been people who were better at using technology. If you knew how to use Google effectively in 2005 or were fluent in Excel, you could get more done. But those gaps were both bridgeable and much smaller in magnitude. 
+Of course, there have always been people who were better at using technology. If you knew how to use Google effectively in 2005 or were fluent in Excel, you could get more done. But those gaps were both bridgeable and much smaller in magnitude.
 
-This is where AI is meaningfully different—the gap between those that are connecting MCPs and evolving agent skills every day and the rest of us is staggering, and not everyone has the same capacity or desire to bridge that gap. Every previous technological revolution gave people time to adapt. Electrification played out over decades and the internet reshaped work over a generation, but AI capabilities are advancing so quickly that even power users struggle to keep up with new state-of-the-art tooling every week. At some point, a difference of degree becomes a difference of kind, and this technological revolution is not like the others. 
+This is where AI is meaningfully different—the gap between those that are connecting MCPs and evolving agent skills every day and the rest of us is staggering, and not everyone has the same capacity or desire to bridge that gap. Every previous technological revolution gave people time to adapt. Electrification played out over decades and the internet reshaped work over a generation, but AI capabilities are advancing so quickly that even power users struggle to keep up with new state-of-the-art tooling every week. 
 
-You can see this gap play out in our own domain of documentation. The world's best technical writers are doing extraordinary things with AI right now. [Tom Johnson](https://idratherbewriting.com/) at Google has developed a whole "cyborg technical writer" thesis and co-hosts a [podcast with Fabrizio Ferri-Benedetti](https://idratherbewriting.com/blog/podcast-fabri-tom-sept-episode-1) at Elastic where they're working through what AI-augmented docs engineering actually looks like in practice. [Manny Silva](https://www.docsastests.com/) at Skyflow built [VerbaGPT](https://aws.amazon.com/blogs/machine-learning/how-skyflow-creates-technical-content-in-days-using-amazon-bedrock/), a RAG-powered drafting tool to help his two-person docs team keep up with 60+ engineers, and presented on [AI agents redefining the docs pipeline](https://apithedocs.org/ai-25/manny-silva) at API the Docs. [CT Smith](https://docsgoblin.com/) has built custom Claude Code workflows with her entire style guide embedded, automating first-pass editing and content generation while keeping deterministic tooling underneath.
+At some point, a difference of degree becomes a difference of kind, and this technological revolution is not like the others.
 
-These people are incredible, and are exactly the "people who use AI well" that Andrew Ng was talking about. Unfortunately, they're also the exception. 
+## AI that's "Promptless" is the answer
 
-## Why the name "Promptless"?
+For the last two years, the dominant approach to bringing AI into professional work has been chatbots. Whether it's ChatGPT, Copilot Chat, or Gemini, the pattern is the same: open a new tab, describe your problem, copy/paste context in, copy/paste output out. In the second half of 2024, the popular opinion was that every information worker would end up being a Prompt Engineer, carefully massaging instructions to get useful output. 
 
-Almost two years ago, when the ideas around Promptless started crystallizing, we were convinced of two things. First, chatbots were the wrong form factor for professional AI. They force context switching, don't fit into existing workflows, and are fundamentally reactive—they don't meet you where you are, they force you to stop what you're doing and go meet the AI. Second, the emerging idea that everyone would become a "prompt engineer" was a fantasy. 99% of people don't want to massage instructions for AI. They want their work to get done.
+The problem with chatbots is that they force context switching and don't fit into existing workflows. They're fundamentally reactive—they don't meet you where you are and they force you to stop what you're doing and go meet the AI. This only serves to widen the gap between those that are the most aggressively experimenting with AI and everyone else. And the reality is that 99% of real people have no interest in being a Prompt Engineer. 
 
-What actually works is AI that's embedded in the workflow—AI that understands context, triggers automatically, and produces useful output without anyone asking. No prompts. No chatbox. No switching tabs to talk to a bot.
+To be fair, the industry is slowly starting to catch on. More tools are embedding AI directly into workflows rather than duct-taping a chat sidebar. But most of these efforts are still shallow. The real opportunity is AI that understands the full context of your work, triggers automatically when something changes, and produces useful output without anyone asking.
 
-That's where the name came from. We named the company Promptless before we even knew documentation would be where we started, because we believed the AI tools that would actually close the gap from the section above—the ones that would make *everyone* more productive, not just the power users—would be the ones that didn't require a prompt at all.
+That's the conviction behind our name. We called the company **Promptless** even before we knew that documentation would be where we started, because we believed that the way to actually help the vast majority of people get the most out of AI at work would be to ditch the prompt interface and fit directly into professional workflows. 
 
-This is what we build. When a developer merges code that changes how a product works, Promptless automatically understands the change, figures out what docs need updating, drafts the update, and presents it for review. No one prompts it. No one logs into an app. It just happens, because it's wired into the systems teams already use.
+## Documentation is the perfect place to start
 
-Documentation is the beachhead, but the pattern is what matters: contextual, automatic, invisible until you need to review its output. That's how AI should work in professional settings.
+Before Promptless, I was VP of Product and Engineering at [Bond](https://techcrunch.com/2023/06/09/fis-acquires-fintech-infrastructure-startup-bond), an embedded finance API platform. Bond's docs spanned KYC, KYB, account opening, card issuing, ACH, PCI compliance, and transaction ledgers—and as the product evolved, the docs couldn't keep up. We hired a dedicated DevEx team; they failed because they lacked context. The Head of Product and I took over docs ourselves; quality improved, but now the people who understood the product best were also the people whose time was most stretched thin. This problem isn't unique to Bond, and even companies with dozens of full-time technical writers often struggle with it. 
 
+Documentation is the perfect entrypoint for what we're building, for a few reasons.
 
-## We felt this
+First, the need is exploding. AI is accelerating development velocity across the board, so documentation needs to keep pace with faster-moving products. Large software teams are moving from quarterly releases to biweekly releases, and the challenge of keeping docs up-to-date is harder than ever. 
 
-Before Promptless, I was VP of Product and Engineering at Bond, an embedded finance API platform that was [acquired by FIS in 2023](https://techcrunch.com/2023/06/09/fis-acquires-fintech-infrastructure-startup-bond). Bond's API documentation was broad—KYC, KYB, account opening, card issuing, ACH repayments, PCI compliance, transaction ledgers—and as the product evolved, the docs couldn't keep up. Changes would ripple across multiple guides and API references, and there was no good way to manage that in the development lifecycle.
+Second, great docs are more important than they've ever been—and not just for humans. AI coding agents like Claude Code and Codex rely on documentation to write code and support bots like Intercom Fin rely on documentation to answer customer questions. Unlike humans, these agents follow docs extremely literally: A human will test instructions step-by-step and experiment if something goes wrong, but an AI agent will just do what the docs say, even if what the docs say is wrong. The vast majority of cases where AI agents generate broken code or broken answers can be traced back to out-of-date or incorrect documentation. 
 
-We tried everything. In 2021, we hired a dedicated DevEx team with two technical writer consultants and a PM managing our API guides. They failed because they lacked context—context about how different parts of the product interact, the motivation behind changes, the specific things client developers were struggling with. The docs ended up full of mistakes, prioritizing lengthy prose and flashy graphics over the actual workflows developers needed. The overhaul required to fix it was so daunting it never got done.
+Third, building AI that actually does this well requires vast context. Documentation sits at the intersection of code, product knowledge, customer context, and communication. You need code understanding, an evolving model of how a product works, adaptation to each org's style, and writing that's actually good. Our engineers work on retrieval, code semantics, multi-agent orchestration, fine-tuning, visual grounding. Along with a strong mission, that's why we're attracting such strong engineers to work at Promptless. 
 
-We laid off the DevEx team. Then the Head of Product and I took over docs ourselves. Quality improved because we had the global context, but now the only people who understood how the product worked end-to-end were also the people whose time was most stretched thin. Our [changelog](https://docs.bond.tech/changelog) was almost entirely abandoned. Clients noticed.
-
-This problem wasn't unique to Bond. Almost every API company struggles with it. The ones that do it well invest massively—Stripe's docs, canonically referenced as the gold standard, are managed by 20+ dedicated documentation engineers and technical writers. Good docs shouldn't require millions of dollars of dedicated annual budget.
-
-## Why docs
-
-People ask why we chose documentation. Seems unglamorous. But this problem is uniquely interesting and uniquely important.
-
-The need for good technical docs is exploding, and AI itself is driving it from four directions at once. First, AI coding agents rely on public documentation to write code—bad docs now mean bad AI-generated code, at scale. Second, AI is making it easier for enterprises to build custom software rather than buy SaaS, which means more products exposing public APIs that need documentation. Third, AI is accelerating development velocity across the board, so docs need to keep pace with faster-moving codebases. Fourth, AI is bringing a wave of inexperienced engineers—or straight-up non-engineers—into API consumption, making documentation that caters to all skill levels more important than ever.
-
-The very technology making documentation harder to maintain is also making it more critical. And most of the current "AI for docs" effort is superficial—language translation, style guide enforcement, search enhancement, chatbots for readers. Useful at the margins, but none of it addresses the core problem of actually keeping documentation accurate and up to date as the product changes.
-
-Building an AI that does *that* well is genuinely hard. Documentation sits at the intersection of code, product knowledge, customer context, and communication. You need code understanding, an evolving model of how a product works, adaptation to each org's style, and writing that's actually good. Our engineers work on retrieval, code semantics, multi-agent orchestration, fine-tuning, visual grounding. It's some of the most technically challenging applied AI work happening right now.
-
-That's why we attract strong engineers to what might look from the outside like "a docs company." From the inside, it's anything but.
-
-## The broader point
-
-Right now, the people benefiting most from AI are the people who were already technical. They have the skills to coax useful output from general-purpose tools. Everyone else is being left behind—not because the technology can't help them, but because the interface demands expertise they don't have.
-
-Our thesis is that the fix isn't teaching everyone prompt engineering. It's building AI that doesn't require it. AI that shows up in your workflow and does the thing.
-
-Every engineer at a Promptless customer who no longer manually updates docs after shipping code spends that time on higher-leverage work. Every product manager who was a bottleneck for doc reviews can focus on talking to customers. Every technical writer whose job was reactive scrambling can do proactive developer experience work. Whether a company has dedicated writers or not, Promptless changes the human role from writer to editor—from the person who has to produce the work to the person who reviews and refines it.
-
-We're not replacing any of these people. We're giving them better tools so they can do better work.
+And finally, there's real fear among technical writers about AI replacing them. This is a perfect example of "AI won't replace people. But people who use AI well will replace people who don't." The world's best technical writers—people like [Tom Johnson](https://idratherbewriting.com/) at Google with his "cyborg technical writer" thesis, [Fabrizio Ferri-Benedetti](https://passo.uno) at Elastic who developed a [framework for AI-augmented technical writing](https://passo.uno/four-modes-ai-augmented-tech-writing/) and built his own [MCP server for docs tooling](https://passo.uno/mcp-server-docs-tooling/), [Manny Silva](https://www.docsastests.com/) at Skyflow who built [VerbaGPT](https://aws.amazon.com/blogs/machine-learning/how-skyflow-creates-technical-content-in-days-using-amazon-bedrock/) to help his two-person team keep up with 60+ engineers, [CT Smith](https://docsgoblin.com/) building custom Claude Code workflows with her entire style guide embedded—are doing extraordinary things with AI. If Promptless can help make every writer see the same productivity gains as these power users, that will be a real proof point toward our mission.
 
 ## What we're really building
 
@@ -82,18 +59,8 @@ From the original business plan, something I think about often:
 
 "What we're building is an evolving, constantly-updated, internal model of what a company's product does and how it should be used—including all the corner cases and customer use-cases, beyond the capacity of any single employee."
 
-Documentation is the first output of that model. It won't be the last.
+Documentation is the first output of that model. It won't be the last. A company with a living AI understanding of their entire product—one that updates itself as the product changes—can use that for support, onboarding, sales enablement, internal knowledge management. Every one of those domains has the same fundamental problem: people need accurate, up-to-date information about how their product works, and keeping that information current is a losing battle fought manually.
 
-A company with a living AI understanding of their entire product—one that updates itself as the product changes—has a massive advantage. Not just for docs. For support, onboarding, sales enablement, internal knowledge management.
+The future we're building toward is one where Promptless doesn't just keep your docs accurate—it keeps your entire organization's understanding of your product accurate. Engineers ship code, and the downstream knowledge artifacts update themselves. Not just API references, but support runbooks, onboarding guides, sales collateral, internal wikis. The human role across all of these shifts from producer to reviewer, from reactive to proactive.
 
-We started with docs because we felt the pain firsthand, and because it's concretely solvable today. But what we're building is much bigger.
-
-## Urgency
-
-The gap between AI-enabled workers and everyone else widens every month. Every new model release raises the ceiling. People already good at using AI get more productive. People who aren't fall further behind.
-
-This isn't theoretical. Companies using Promptless ship documentation updates in hours instead of weeks. Quality is higher because the AI has more context than any single person. Developers are happier because the docs are accurate. Customers are happier because they can trust them.
-
-Companies without something like this are falling behind, and they might not know it yet.
-
-We're building Promptless because the biggest impact AI can have isn't replacing people—it's making the people who use it dramatically more capable. And the way to do that isn't chat boxes and prompt engineering. It's AI that's deeply embedded in the work itself.
+We started with docs because it's concretely solvable today, and because we felt the pain firsthand. But the pattern—contextual, automatic, embedded in the workflow, no prompt required—is what matters. That pattern scales far beyond documentation, and it's how we believe AI should work for everyone.
