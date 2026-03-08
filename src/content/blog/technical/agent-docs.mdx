@@ -1,9 +1,10 @@
 ---
-title: 'How to get Supabase/Stripe-level agent docs'
+title: 'A Practical Guide on How to Optimize Your Docs for Agents'
 subtitle: Published February 2026
 description: >-
   A practical guide for technical writers on adapting documentation for AI agent consumption, grounded in how agents actually access and use docs today.
 date: '2026-03-03T00:00:00.000Z'
+author: Frances
 section: Technical
 hidden: false
 ---
@@ -18,7 +19,7 @@ What about our well-intentioned friend, the llms.txt file? Articles from [Wix](h
 
 You _could_ argue that GEO/SEO isn’t the same as agent support. But even setting that aside, it seems that there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), and as of March 2026, according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those llms.txt files appeared to be indexed. If they aren’t indexed, then agents doing web browsing are effectively just landing on the same human-facing docs pages anyway.
 
-<Frame caption="Google search for site:*/llms.txt — about 79,900 results indexed out of ~800,000 sites with llms.txt files">
+<Frame caption="Google search for site:*/llms.txt - about 79,900 results indexed out of ~800,000 sites with llms.txt files">
   <img src="/assets/llms-txt-google-indexed.png" alt="Google search showing only ~79,900 llms.txt files indexed out of 800,000 sites" />
 </Frame>
 
@@ -42,9 +43,10 @@ Most often, the chunking strategies will follow the heading structure. The text 
 Many coding agents consume documentation directly from the repository filesystem. When an agent runs inside a workspace (e.g., Cursor, Claude Code, or Codex), it can read files like `README.md`, `docs/`, `CONTRIBUTING.md`, and specialized files such as `AGENTS.md`.
 
 Some studies, like this [one](https://arxiv.org/pdf/2601.20404), argue that repository-level context files (e.g., `AGENTS.md`) are strictly better. But the sample size there is small (124 pull requests across 10 repos). A more nuanced 2026 study (Gloaguen et al. 2026￼) offers more actionable findings:
-	•	**LLM-generated** context files reduced performance by ~3% on average while increasing cost by ~20%.
-	•	**Developer-written** context files improved task success rate by +4% on average.
-	•	The benefit came from including information that wasn’t already in the repo—tooling preferences, workflow requirements, and conventions that lived in developers’ heads rather than documentation.
+
+- **LLM-generated** context files reduced performance by ~3% on average while increasing cost by ~20%.
+- **Developer-written** context files improved task success rate by +4% on average.
+- The benefit came from including information that wasn’t already in the repo: tooling preferences, workflow requirements, and conventions that lived in developers’ heads rather than documentation.
 
 The takeaway: if you want to have an `AGENTS.md` file, it's worth investing the time to write some of it yourself. That said, since the gains are still in the low single digits, this article focuses primarily on improving your human-facing docs.
 
@@ -119,13 +121,13 @@ Stripe is also a good example of documenting failure modes. Its error codes page
 
 Error codes page [Stripe](https://docs.stripe.com/error-codes)
 
-<Frame caption="Stripe error codes page — structured error catalog with filterable table">
+<Frame caption="Stripe error codes page - structured error catalog with filterable table">
   <img src="/assets/stripe-error-codes.png" alt="Stripe error codes documentation page showing a filterable table of error codes and descriptions" />
 </Frame>
 
 Error details page [Stripe](https://docs.stripe.com/error-handling?lang=python#invalid-request-errors)
 
-<Frame caption="Stripe error details page — structured breakdown of error type, problem, and solutions">
+<Frame caption="Stripe error details page - structured breakdown of error type, problem, and solutions">
   <img src="/assets/stripe-error-details.png" alt="Stripe invalid request error page showing type, problem, and solutions in a structured table" />
 </Frame>
 
@@ -155,11 +157,11 @@ Failed to complete request due to a bad request
 
 Supabase has a debugging section under each product area. [link](https://supabase.com/docs/guides/auth/debugging/error-codes)
 
-<Frame caption="Supabase docs — dedicated Debugging section under each product area in the sidebar">
+<Frame caption="Supabase docs - dedicated Debugging section under each product area in the sidebar">
   <img src="/assets/supabase-debugging-section.png" alt="Supabase database docs showing a Debugging section in the sidebar with Timeouts, Debugging and monitoring, Debugging performance issues, Supavisor, and Troubleshooting" />
 </Frame>
 
-**What to do:** The lowest-hanging fruit is to add dedicated debugging and error sections—these help humans too. You can either embed them directly on relevant pages (expandable sections are perfect for this) or centralize them into dedicated areas of your docs for each major product surface.
+**What to do:** The lowest-hanging fruit is to add dedicated debugging and error sections, which help humans too. You can either embed them directly on relevant pages (expandable sections are perfect for this) or centralize them into dedicated areas of your docs for each major product surface.
 
 If you want to go further, add edge cases and known issues. In general, while centralized sections work well for canonical error information, in-page sections works better for edge cases. If you have trouble thinking of edge cases and known issues - note that known issues often live in those GitHub issues or Jira tickets marked with "WON'T FIX", and some can be in changelogs or release notes as well. Edge cases tend to surface in support threads and customer conversations. You can point an LLM at those sources and have it synthesize the recurring patterns into docs (or, you can try Promptless).
 
@@ -173,7 +175,7 @@ If you want to go further, add edge cases and known issues. In general, while ce
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
 </div>
 
-Human docs often include only one or two examples per point. But research on LLM performance shows meaningful gains when you provide more examples—sometimes even 10+ ([Agarwal et al. 2024](https://arxiv.org/abs/2404.11018)). Interestingly, LLMs also seem to benefit from negative examples more than humans do: “don’t do this”-type examples can be especially effective ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)).
+Human docs often include only one or two examples per point. But research on LLM performance shows meaningful gains when you provide more examples - sometimes even 10+ ([Agarwal et al. 2024](https://arxiv.org/abs/2404.11018)). Interestingly, LLMs also seem to benefit from negative examples more than humans do: “don’t do this”-type examples can be especially effective ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)).
 
 That said, this is also just good documentation practice. More examples help humans too, especially when they cover common use cases. The difference, however, is that humans hit a point of diminishing returns quickly, and too many examples can make a page less helpful. LLMs seem to saturate differently: the model may still benefit from an 11th example even if there are already 10, even though a human reader is more likely to feel overwhelmed at this point. 
 
@@ -248,7 +250,7 @@ This is a substantial amount of ongoing work:
 - Creating and maintaining examples as your software changes
 - Adapting page length to task complexity
 
-And that's before accounting for keeping docs current as the product evolves — which only gets harder as your engineering team ships faster with AI.
+And that's before accounting for keeping docs current as the product evolves - which only gets harder as your engineering team ships faster with AI.
 
 If you’re looking for a solution that handles this automatically, one of our engineers would love to [chat](https://cal.com/team/promptless/15m-meeting) (we have a 30-day free trial).
 
@@ -266,20 +268,36 @@ Anthropic Engineering. (2024). Contextual Retrieval. Anthropic Engineering Blog.
 
 Anthropic Engineering. (2025). Effective Context Engineering for AI Agents. Anthropic Engineering Blog. [link](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
+Brookes et al. (2025) Evolving Excellence: Automated Optimization of LLM-based Agents. [link](https://arxiv.org/abs/2512.09108)
+
+Del Rosario et al. (2025) Architecting Resilient LLM Agents: A Guide to Secure Plan-then-Execute Implementations. [link](https://arxiv.org/abs/2509.08646)
+
+Deng et al. (2025) Decoupling Task-Solving and Output Formatting in LLM Generation. [link](https://arxiv.org/abs/2510.03595)
+
 Dong, Y., Jiang, X., Qian, J., Wang, T., Zhang, K., Jin, Z., & Li, G. (2025).
 A Survey on Code Generation with LLM-Based Agents. [link](https://arxiv.org/pdf/2508.00083)
 
+Du et al. (2025) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval. [link](https://arxiv.org/abs/2510.05381)
+
 Hong, F., Troynikov, O., & Huber, J. (2025). Context Rot. Chroma Research. [link](https://research.trychroma.com/context-rot)
 
+Levy et al. (2025) More Documents, Same Length: Isolating the Challenge of Multiple Documents in RAG. [link](https://arxiv.org/abs/2503.04388)
+
 Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2023). Lost in the Middle: How Language Models Use Long Contexts. [link](https://arxiv.org/abs/2307.03172)
+
+Lulla et al. (2026) On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents. [link](https://arxiv.org/pdf/2601.20404)
 
 Mo, Y., Liu, J., Yang, J., Wang, Q., Zhang, S., Wang, J., & Li, Z. (2024).
 C-ICL: Contrastive In-Context Learning for Information Extraction. [link](https://arxiv.org/abs/2402.11254)
 
+Trilcke et al. (2025) Agentic DraCor and the Art of Docstring Engineering: Evaluating MCP-empowered LLM Usage of the DraCor API. [link](https://arxiv.org/abs/2508.13774)
+
 Wang, Z., Gao, C., Xiao, C., Huang, Y., Si, S., Luo, K., Bai, Y., Li, W., Duan, T., Lv, C., Lu, G., Chen, G., Qi, F., & Sun, M. (2025). Document Segmentation Matters for Retrieval-Augmented Generation. [link](https://aclanthology.org/2025.findings-acl.422/)
+
+Wu et al. (2025) On the Emergence of Position Bias in Transformers. [link](https://arxiv.org/abs/2502.01951)
 
 Zhang, Q., Hu, C., Upasani, S., Ma, B., Hong, F., Kamanuru, V., Rainton, J., Wu, C., Ji, M., Li, H., Thakker, U., Zou, J., & Olukotun, K. (2025). Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models. [link](https://arxiv.org/abs/2510.04618)
 
-Du et al. (2025) Context Length Alone Hurts LLM Performance Despite Perfect Retrieval. [link](https://arxiv.org/abs/2510.05381)
+Zhang et al. (2025) Recursive Language Models. [link](https://arxiv.org/abs/2512.24601)
 
 </div>
