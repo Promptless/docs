@@ -12,11 +12,11 @@ import RequestFileForm from '@components/site/RequestFileForm.astro';
 import Frame from '@components/fern/Frame.astro';
 
 
-A recent [recent YC podcast](https://www.youtube.com/watch?v=Q8wVMdwhlh4&t=275s) mentioned that one reason Supabase has become a default choice for coding agents is that their docs are genuinely easy to follow. But if my boss were to tell me, “Make our docs like Supabase,” I wouldn’t know where to start. There are a million differences between Supabase and any given product, how do I know which traits made a difference and which traits are superficial?
+A [recent YC podcast](https://www.youtube.com/watch?v=Q8wVMdwhlh4&t=275s) mentioned that the biggest reason Supabase has become a default choice for coding agents is that their docs are easy to follow. But if my manager were to say “make our docs like Supabase,” I wouldn't know where to start. There are a million differences between Supabase and any given product. How do I know which traits made a difference and which traits are superficial?
 
-What about our good-intentioned friend, the llms.txt file? Articles from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), [SE Ranking](https://seranking.com/blog/llms-txt/), [Daydream](https://www.withdaydream.com/library/llms-txt-hype-vs-reality), and [Publii](https://getpublii.com/blog/llms-txt-complete-guide.html) all show that there doesn’t seem to be a measurable difference in AI citations between sites that have llms.txt and sites that don’t (one study was done with 300k websites).
+What about our well-intentioned friend, the llms.txt file? Articles from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), [SE Ranking](https://seranking.com/blog/llms-txt/), [Daydream](https://www.withdaydream.com/library/llms-txt-hype-vs-reality), and [Publii](https://getpublii.com/blog/llms-txt-complete-guide.html) all show that there doesn’t seem to be a measurable difference in AI citations between sites that have llms.txt and sites that don’t (one study was done with 300k websites).
 
-You _could_ argue that GEO/SEO isn’t the same as agent support. But even setting that aside, it seems that there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), and when I checked Google (Mar 4, 2026, for posterity) according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those llms.txt files appeared to be indexed. If they aren’t indexed, then agents doing web browsing are effectively just landing on the same human-facing docs pages anyway.
+You _could_ argue that GEO/SEO isn’t the same as agent support. But even setting that aside, it seems that there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), and as of March 2026, according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those llms.txt files appeared to be indexed. If they aren’t indexed, then agents doing web browsing are effectively just landing on the same human-facing docs pages anyway.
 
 <Frame caption="Google search for site:*/llms.txt — about 79,900 results indexed out of ~800,000 sites with llms.txt files">
   <img src="/assets/llms-txt-google-indexed.png" alt="Google search showing only ~79,900 llms.txt files indexed out of 800,000 sites" />
@@ -46,7 +46,7 @@ Some studies, like this [one](https://arxiv.org/pdf/2601.20404), argue that repo
 	•	**Developer-written** context files improved task success rate by +4% on average.
 	•	The benefit came from including information that wasn’t already in the repo—tooling preferences, workflow requirements, and conventions that lived in developers’ heads rather than documentation.
 
-The takeaway: if you want to write an `AGENTS.md`, don’t be lazy 😛. That said, since the gains are still in the low single digits, this article focuses primarily on improving your human-facing docs.
+The takeaway: if you want to have an `AGENTS.md` file, it's worth investing the time to write some of it yourself. That said, since the gains are still in the low single digits, this article focuses primarily on improving your human-facing docs.
 
 ### 3. MCP servers
 
@@ -93,7 +93,9 @@ There’s also empirical evidence that spreading content across too many files c
 
 -– November 2025 Write the Docs [Newsletter](https://www.writethedocs.org/blog/newsletter-november-2025/#optimizing-docs-for-llms)
 
-What to do: Avoid forward and backward references like “see above,” “as described in the previous section,” or “same as before.” Instead, restate the key information. This doesn’t mean duplicating whole sections - just the critical bits that make a retrievabel unit (a section or a page) understandable on its own. Kubernetes does this well by including a “Before you begin” block at the top of related pages (e.g., [Adding Linux nodes](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes/)).
+**What to do**: Avoid forward and backward references like “see above,” “as described in the previous section,” or “same as before.” Instead, restate the key information. This doesn’t mean duplicating entire sections - just the critical bits that make each section stand on its own. Kubernetes does this well by including a “Before you begin” block at the top of related pages (e.g., [Adding Linux nodes](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes/)).
+
+One practical way to do this without cluttering the page for human readers: put prerequisites, environment setup, or boilerplate code in expandable blocks. The information is present for agents parsing the full page, but it doesn’t interrupt the main flow for humans who have already completed the setup.
 
 Many style guides already discourage “see above” and similar phrasing. This is the same principle, just higher stakes for agents.
 
@@ -159,7 +161,7 @@ Supabase has a debugging section under each product area. [link](https://supabas
 
 **What to do:** The lowest-hanging fruit is to add dedicated debugging and error sections—these help humans too. You can either embed them directly on relevant pages (expandable sections are perfect for this) or centralize them into dedicated areas of your docs for each major product surface.
 
-If you want to go further, add edge cases and known issues. In general, while centralized sections work well for canonical error information, in-page sections works better for edge cases. If you have trouble thinking of edge cases and known issues - note that known issues often live in those GitHub issues or Jira tickets marked with "WON'T FIX", and some can be in changelogs or release notes as well. Edge cases tend to surface in support threads and customer conversations. You can point an LLM at those sources and have it synthesize the recurring patterns into docs (or, you can try Promptless 😄).
+If you want to go further, add edge cases and known issues. In general, while centralized sections work well for canonical error information, in-page sections works better for edge cases. If you have trouble thinking of edge cases and known issues - note that known issues often live in those GitHub issues or Jira tickets marked with "WON'T FIX", and some can be in changelogs or release notes as well. Edge cases tend to surface in support threads and customer conversations. You can point an LLM at those sources and have it synthesize the recurring patterns into docs (or, you can try Promptless).
 
 ### 3. Add more examples, including negative ones
 
@@ -175,7 +177,7 @@ Human docs often include only one or two examples per point. But research on LLM
 
 That said, this is also just good documentation practice. More examples help humans too, especially when they cover common use cases. The difference, however, is that humans hit a point of diminishing returns quickly, and too many examples can make a page less helpful. LLMs seem to saturate differently: the model may still benefit from an 11th example even if there are already 10, even though a human reader is more likely to feel overwhelmed at this point. 
 
-The main downside of having many examples is maintenance overhead. (wink wink)
+The main downside of having many examples is maintenance overhead.
 
 **What to do**: For your most critical endpoints, expand the number of examples and add a few negative examples showing what agents shouldn’t do. Aim for breadth without repetition.
 
@@ -193,7 +195,7 @@ Not many teams do this comprehensively in production yet, but top dev tools are 
 
 Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2025](https://research.trychroma.com/context-rot)) have documented the “Lost in the Middle” effect: LLMs tend to use information near the beginning and end of a context window more reliably than information buried in the middle. Anthropic’s [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) also notes that long-running agents periodically “compact” their context, which is essentially running a summarization to free up space, and that process is not immune to position bias either. 
 
-**What to do**: Put the most important information first in every section ([Wu et al. 2025](https://arxiv.org/abs/2502.01951)). LLMs don’t benefit from a slow build-up to the key point the way humans do. If your API has required parameters, list them before optional ones. If there’s a critical constraint, put it in the first few sentences, not the fourth paragraph. (Author’s aside: my perpetual struggle is that I only realize the important assumptions after I’ve been writing for a while.)
+**What to do**: Put the most important information first in every section ([Wu et al. 2025](https://arxiv.org/abs/2502.01951)). LLMs don’t benefit from a gradual buildup to the key point the way humans do. If your API has required parameters, list them before optional ones. If there’s a critical constraint, put it in the first few sentences, not the fourth paragraph. (Author’s aside: my perpetual struggle is that I only realize the important assumptions after I’ve been writing for a while.)
 
 Here’s a somewhat extreme (and honestly pretty bad) “before” example from me + ChatGPT, inspired by Kubernetes docs:
 
@@ -214,7 +216,7 @@ Much better version: [link](https://kubernetes.io/docs/tasks/inject-data-applica
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
 </div>
 
-The 2025 "Context Rot" paper by [Chroma](https://research.trychroma.com/context-rot) found that LLM performance degrades as context grows, with measurable drops starting around 2,500 words and more significant degradation beyond 8,000. Obviously, the thresholds vary by model, but much of the broader research on long-context behavior points to the same direction: once you get into very long contexts (e.g., 25k+ words), the performance is usually suboptimal.
+The 2025 "Context Rot" paper by [Chroma](https://research.trychroma.com/context-rot) found that LLM performance degrades as context grows, with measurable drops starting around 2,500 words and more significant degradation beyond 8,000. The thresholds vary by model, but the broader research on long-context behavior points in the same direction: once you get into very long contexts (e.g., 25k+ words), the performance is usually suboptimal.
 
 Not surprisingly, going too short can hurt as well. [Zhang et al. 2025](https://arxiv.org/abs/2510.04618) showed that aggressively summarizing 13k tokens to under 200 causes a sudden drop in accuracy from 66.7% to 57.1%.
 
@@ -240,13 +242,15 @@ This one only had single digit gains, so it's last. But this is probably the eas
 
 ## Conclusion
 
-Honestly, it’s a lot of work to:
-- Refactor docs to move information around
-- Add error handling/debugging sections
-- Create and maintain examples as your software changes
-- Adapt page length to task complexity
+This is a substantial amount of ongoing work:
+- Refactoring docs to move information around
+- Adding error handling and debugging sections
+- Creating and maintaining examples as your software changes
+- Adapting page length to task complexity
 
-If you're looking for a solution that handles this automatically, InlinePizza 🍕 (an engineer on our team) would love to [chat](https://cal.com/team/promptless/15m-meeting) and he'll gladly help you get set-up.
+And that's before accounting for keeping docs current as the product evolves — which only gets harder as your engineering team ships faster with AI.
+
+If you’re looking for a solution that handles this automatically, one of our engineers would love to [chat](https://cal.com/team/promptless/15m-meeting) (we have a 30-day free trial).
 
 I've also put together an LLM instruction file (usable as a Claude Code skill) that can refactor your docs according to these best practices. Leave your work email below and I'll send it over!
 
