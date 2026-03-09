@@ -266,7 +266,7 @@ One important caveat: the ideal amount of context can depend on what the agent i
 
 In practice, that suggests something counterintuitive: a page explaining a straightforward REST endpoint can often afford to be longer and more verbose than a page explaining a complex multi-step workflow with branching logic and states. One hypothesis is that harder tasks require more working memory headroom for reasoning. Therefore overly long docs can crowd out the model’s ability to think during the task execution.
 
-**What to do**: Match doc length to the task’s reasoning complexity. One way to think about it is “reasoning density”: try to keep it relatively consistent across pages. For simple tasks (authentication, parameter references, error code tables), include as much relevant detail as you want. For complex problems, consider splitting long pages into several relatively independent workflows.
+**What to do**: Match doc length to the task’s reasoning complexity. For simple tasks (authentication, parameter references, error code tables), include as much relevant detail as you want. For complex problems, consider splitting long pages into several relatively independent workflows.
 
 ### 7. Keep your style guide and `AGENTS.md` separate (advanced)
 
