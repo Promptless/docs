@@ -30,7 +30,7 @@ Most often, the chunking strategies will follow the heading structure. The text 
 
 ### 2. File system (`docs/`, `AGENTS.md`)
 
-Many coding agents consume documentation directly from the repository filesystem. When an agent runs inside a workspace (such as Cursor, Claude Code, or Codex), it can read files like `README.md`, `docs/`, `CONTRIBUTING.md`, and specialized files such as `AGENTS.md`.
+When you're developing on an open source project, or an internal repo, coding agents will consume docs directly from the repository filesystem. When an agent runs inside a workspace (such as Cursor, Claude Code, or Codex), it can read files like `README.md`, `docs/`, `CONTRIBUTING.md`, and specialized files such as `AGENTS.md`.
 
 Some studies, like this [one](https://arxiv.org/pdf/2601.20404), argue that repository-level context files (such as `AGENTS.md`) are strictly better. But the sample size there is too small (10 repos). A more nuanced 2026 study ([Gloaguen et al. 2026](https://arxiv.org/abs/2602.11988)) offers more actionable findings:
 
@@ -47,6 +47,14 @@ The [Model Context Protocol](https://modelcontextprotocol.io/) is an open standa
 In MCP setups, tool descriptions and schemas matter a lot more. One interesting paper [Trilcke et al. 2025](https://arxiv.org/abs/2508.13774) found that LLMs appear to rely heavily on docstrings, and to a lesser extent parameter descriptions and type annotations, to decide which tool to call and how to call it. They also found that terminology consistency matters more than you’d expect. If your system alternates between `rate limit`, `quota`, and `throttle`, or between `deploy`, `publish` and `release`, you are forcing the model to guess whether those are synonyms or distinct concepts. That guesswork shows up as worse tool use. And it's not just words: inconsistent function names, vague parameter descriptions, overlapping tool scopes all add up. A good rule of thumb for optimizing docs for MCP servers is to reduce ambiguity for the agent every step of the way.
 
 Research on tool selection shows that LLMs choose tools primarily based on metadata (names, descriptions, and parameter labels), _not_ the underlying code quality ([Blankenstein et al. 2025](https://arxiv.org/html/2510.00307v1)). Imagine an LLM choosing between your tool and a competitor's. Both do the same thing. Yours has elegant, well-tested code with a description that reads like a TODO comment, while theirs has spaghetti code but clear, precise descriptions. The LLM will more often pick theirs. In practice, good description + bad code beats bad description + good code (!).
+
+The [Model Context Protocol](https://modelcontextprotocol.io/) is an open standard that lets agents programmatically interact with external tools and services. Many companies now expose their product's API as an MCP server — Stripe, Asana, and Cloudflare are early examples. When you do this, you're defining tool names, descriptions, and parameter schemas that agents read to decide which tool to call and how to call it.
+
+This makes your tool metadata a first-class part of your documentation. One interesting paper ([Trilcke et al. 2025](https://arxiv.org/abs/2508.13774)) found that LLMs rely heavily on docstrings, and to a lesser extent parameter descriptions and type annotations, to decide which tool to call and how to call it. They also found that terminology consistency matters more than you'd expect. If your system alternates between `rate limit`, `quota`, and `throttle`, or between `deploy`, `publish` and `release`, you are forcing the model to guess whether those are synonyms or distinct concepts. That guesswork shows up as worse tool use. And it's not just words: inconsistent function names, vague parameter descriptions, overlapping tool scopes — it all adds up. A good rule of thumb is to reduce ambiguity for the agent every step of the way.
+
+Research on tool selection shows that LLMs choose tools primarily based on metadata (names, descriptions, and parameter labels), _not_ the underlying implementation quality (Blankenstein et al. 2025). Imagine an LLM choosing between your tool and a competitor's. Both do the same thing. Yours has elegant, well-tested code with a description that reads like a TODO comment, while theirs has spaghetti code but clear, precise descriptions. The LLM will more often pick theirs. In practice, good description + bad code beats bad description + good code (!).
+
+(Some MCP servers also serve documentation as searchable content rather than exposing API tools directly — in that case, the guidance is closer to the RAG section above.)
 
 ### 4. Web search and crawling
 
