@@ -9,7 +9,7 @@ section: Technical
 hidden: false
 ---
 import Info from '@components/fern/Info.astro';
-import RequestFileForm from '@components/site/RequestFileForm.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 import Frame from '@components/fern/Frame.astro';
 
 A [recent Y Combinator podcast](https://www.youtube.com/watch?v=Q8wVMdwhlh4&t=275s) mentioned that the biggest reason Supabase has become a default choice for coding agents is that their docs are easy to follow. But if my manager were to ask me to “make our docs like Supabase,” I wouldn't know where to start. There are a million differences between Supabase and any given product, so how do I know which traits made a difference and which traits are superficial?
@@ -277,18 +277,16 @@ This one only had single digit gains, so it's last. But this is probably the eas
 ## Conclusion
 
 This is a substantial amount of ongoing work:
-- Refactoring docs to move information around
+- Refactoring docs to split or combine
 - Adding error handling and debugging sections
 - Creating and maintaining examples as your software changes
-- Adapting page length to task complexity
+- Adapting page length based on page type and agent type
 
 And that's before accounting for keeping docs current as the product evolves - which only gets harder as your engineering team ships faster with AI.
 
-If you’re looking for a solution that handles this automatically, one of our engineers would love to [chat](https://cal.com/team/promptless/15m-meeting) (we have a 30-day free trial).
+If you’re looking for a solution that handles this automatically, you can book a time with one of our engineers directly by filling out the text field below. (we have a 30-day free trial).
 
-I've also put together an LLM instruction file (usable as a Claude Code skill) that can refactor your docs according to these best practices. Leave your work email below and I'll send it over!
-
-<RequestFileForm />
+<BlogRequestDemo />
 
 ## References
 
