@@ -260,7 +260,7 @@ Mapping this onto the four [Diátaxis](https://diataxis.fr/) doc types:
 | MCP servers | The tool's docstring and parameter descriptions | Length matters less |
 | Web search | The page | Split pages that cover multiple distinct topics |
 
-### 7. Tailor doc length to task complexity (advanced)
+### 6. Tailor doc length to task complexity (advanced)
 
 One important caveat: the ideal amount of context can depend on what the agent is trying to do. [Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that more complex problems degrade at shorter context lengths than simpler ones. For example, simple lookups (finding one specific fact buried in a large document) work fine even in very long contexts, but multi-step tasks that require planning and reasoning start failing much earlier — at roughly 12,000–25,000 words.
 
@@ -268,7 +268,7 @@ In practice, that suggests something counterintuitive: a page explaining a strai
 
 **What to do**: Match doc length to the task’s reasoning complexity. One way to think about it is “reasoning density”: try to keep it relatively consistent across pages. For simple tasks (authentication, parameter references, error code tables), include as much relevant detail as you want. For complex problems, consider splitting long pages into several relatively independent workflows.
 
-### 8. Keep your style guide and `AGENTS.md` separate (advanced)
+### 7. Keep your style guide and `AGENTS.md` separate (advanced)
 
 This one only had single digit gains, so it's last. But this is probably the easiest one to implement. The research shows that when the context has task-level instructions (requires reasoning) and formatting requirements mixed up together, models often do worse on the actual task ([Deng et al. 2025](https://arxiv.org/abs/2510.03595)). 
 
