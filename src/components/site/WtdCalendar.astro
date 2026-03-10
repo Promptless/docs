@@ -16,6 +16,8 @@ interface CalendarEvent {
   time: string;
   type: 'writing' | 'talks' | 'unconference' | 'social' | 'promptless';
   link?: string;
+  location?: string;
+  address?: string;
   promptlessFaces?: boolean;
   cta?: { label: string; href: string };
 }
@@ -52,7 +54,7 @@ const days: CalendarDay[] = [
     events: [
       { id: 'sun-writing', title: 'Writing Day', startHour: 9, endHour: 17, time: '9 AM – 5 PM', type: 'writing', link: 'https://www.writethedocs.org/conf/portland/2026/writing-day/' },
       { id: 'sun-reception', title: 'Sunday Reception', startHour: 17, endHour: 19, time: '5 – 7 PM', type: 'social' },
-      { id: 'sun-pl-dinner', title: 'Promptless Dinner', startHour: 19.75, endHour: 21.5, time: '7:45 – 9:30 PM', type: 'promptless', promptlessFaces: true, cta: { label: 'RSVP', href: 'https://luma.com/1m13xfc3' } },
+      { id: 'sun-pl-dinner', title: 'Promptless Dinner', startHour: 19, endHour: 21, time: '7 – 9 PM', type: 'promptless', link: 'https://maps.app.goo.gl/1ZhubfeFBjnzXYtx5', location: 'East Burn', address: '1800 E Burnside St, Portland, OR 97214', promptlessFaces: true, cta: { label: 'RSVP', href: 'https://luma.com/1m13xfc3' } },
     ],
   },
   {
@@ -175,7 +177,8 @@ for (let h = RANGE_START; h <= RANGE_END; h += 2) {
                         </a>
                       )}
                       <span class="wtd-cal-block-time">{ev.time}</span>
-                      <span class="wtd-cal-block-title">{ev.title}</span>
+                      <span class="wtd-cal-block-title">{ev.title}{ev.location && <span class="wtd-cal-block-loc"> at {ev.location}</span>}</span>
+                      {ev.address && <span class="wtd-cal-block-addr">{ev.address}</span>}
                       {(ev.promptlessFaces || ev.cta) && (
                         <div class="wtd-cal-bottom">
                           {ev.promptlessFaces && (
@@ -430,6 +433,21 @@ for (let h = RANGE_START; h <= RANGE_END; h += 2) {
     font-weight: 700;
     color: #111827;
     line-height: 1.25;
+  }
+
+  .wtd-cal-block-loc {
+    font-weight: 500;
+  }
+
+  .wtd-cal-block-addr {
+    font-size: 0.68rem;
+    color: #6b7280;
+    line-height: 1.25;
+  }
+
+  .wtd-cal-block:has(.wtd-cal-block-link):hover .wtd-cal-block-title {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   /* ── Bottom row (faces + CTA) ── */
