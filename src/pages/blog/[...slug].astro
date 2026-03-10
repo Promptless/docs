@@ -16,8 +16,8 @@ const { Content, headings } = await render(entry);
 const siteUrl = import.meta.env.SITE || 'https://promptless.ai';
 const socialImageHead = entry.data.socialImage
   ? [
-      { tag: 'meta', attrs: { property: 'og:image', content: `${siteUrl}${entry.data.socialImage}` } },
-      { tag: 'meta', attrs: { name: 'twitter:image', content: `${siteUrl}${entry.data.socialImage}` } },
+      { tag: 'meta' as const, attrs: { property: 'og:image', content: `${siteUrl}${entry.data.socialImage}` } },
+      { tag: 'meta' as const, attrs: { name: 'twitter:image', content: `${siteUrl}${entry.data.socialImage}` } },
     ]
   : [];
 ---
