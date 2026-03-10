@@ -5,6 +5,7 @@
 .doc-detective/.env
 .doc-detective/session-cookies.txt
 .doc-detective/results/
+.doc-detective/recordings/
 
 # Production
 /build

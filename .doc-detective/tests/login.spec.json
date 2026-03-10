@@ -59,7 +59,7 @@
           "description": "Wait for sign-in to complete",
           "wait": 5000
         },
-        {
+{
           "description": "Stop recording",
           "stopRecord": true
         }
