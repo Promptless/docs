@@ -155,6 +155,8 @@ Supabase has a [debugging section](https://supabase.com/docs/guides/auth/debuggi
 
 **What to do:** The lowest-hanging fruit is to add dedicated debugging and error sections, which help humans too. You can either embed them directly on relevant pages (expandable sections are perfect for this) or centralize them into dedicated areas of your docs for each major product surface.
 
+_Tip: quote error strings, codes, and types exactly as they appear in your code. Avoid paraphrasing._
+
 If you want to go further, add edge cases and known issues. In general, centralized pages work well for error information; in-page sections work better for edge cases. Some tips on how to find the content:
 - GitHub issues or Jira tickets marked with "WON'T FIX"
 - changelogs or release notes
@@ -179,15 +181,19 @@ In the Next.js [docs](https://nextjs.org/docs/app/getting-started/updating-data)
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">MCP</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">medium</span></span>
 </div>
 
-There seems to be a general consensus that LLMs benefit from well-curated examples, so for products areas where people most often get stuck on, it might be worth adding some examples. Interestingly, LLMs seem to benefit from negative examples more than humans do. Research ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)) found that examples near the decision boundary are particularly effective. The principle generalizes well: when adding negative examples, try to add "subtly wrong", or "seemingly right but wrong" examples instead of "blatantly wrong" ones.
+A interesting paper [Chen et al. 2025](https://arxiv.org/html/2503.15231v1) tested what happens when you strip different parts of API docs before feeding them to an LLM: removing code examples caused pass rates to collapse from 66–82% down to 22–39%. Removing parameter descriptions had a much smaller effect, and in some cases slightly improving performance, suggesting they can add noise if not written well.
+
+The practical implication: your examples matter far more than your prose descriptions. An API page with rich, diverse code examples and sparse prose will outperform one with thorough parameter documentation but few examples.
+
+Interestingly, LLMs also seem to benefit from negative examples more than humans do. Research on contrastive in-context learning ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)) — originally studied in information extraction tasks — found that examples near the decision boundary are particularly effective. When adding negative examples, go for "subtly wrong" or "seemingly correct but wrong" rather than "blatantly wrong."
 
 The main downside of having many examples is maintenance overhead. (or, you can try Promptless 😊)
 
 **What to do**: Generally, adding good examples helps both humans and agents. For your most critical pages, you can add a few subtly negative examples to help the agent learn what not to do.
 
-Examples can range from 5-line code snippets, to entire directories. Negative examples work on the smaller scales, but at the directory level, there's no need to add negative examples as that will likely confuse the agent more than helping.
+Examples can range from 5-line code snippets to entire directories. Negative examples work well at the snippet scale, but not at the directory level since they’ll likely confuse the agent more than help.
 
-Not many teams do directory-level examples yet, but top dev tools are trending in this direction. Some maintain dedicated examples directories in their repos (for instance [Vercel](https://github.com/vercel/vercel/tree/main/examples)). Others publish cookbooks (for instance [OpenAI](https://github.com/openai/openai-cookbook)). Having these examples can even help the models learn your product better during pre-training, which can result in fewer hallucinations during agent execution. Note that repetitive examples won’t move the needle much; high-quality, representative ones will. Support tickets are often a great source of inspiration.
+Not many teams do directory-level examples yet, but top dev tools are trending in this direction. Some maintain dedicated examples directories in their repos (for instance [Vercel](https://github.com/vercel/vercel/tree/main/examples)). Others publish cookbooks (for instance [OpenAI](https://github.com/openai/openai-cookbook)). Repetitive examples won’t move the needle much; diverse, representative ones covering varied parameter combinations will. Support tickets are often a great source of inspiration for what to cover.
 
 ### 4. Put the most important information first
 
@@ -224,9 +230,9 @@ Long context is not free. Chroma’s 2025 [Context rot report](https://research.
 
 There's another layer to it, which is that performance degrades faster for complex task than for simple ones. [Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that text lookups can handle very long contexts well (even at 1M+ tokens), but multi-step tasks requiring planning and reasoning start failing around 16k–33k tokens. So, counterintuitively, a REST endpoint reference can afford to be much longer than a step-by-step guide of a complex workflow with branching logic and states.
 
-Those thresholds are measured in clean, isolated conditions with a single LLM call. In an actual agent loop, by step 10, the context is already carrying execution logs, reasoning traces, tool outputs, and content fetched from earlier pages. The effective headroom available is considerably smaller, though there's no fixed number because it depends on how the agent handles context pressure.
+Those thresholds are measured in clean, isolated conditions with a single LLM call. In an actual agent loop, by say step 10, the context is already carrying execution logs, reasoning traces, tool outputs, and content fetched from external pages. The effective headroom available is considerably smaller, though there's no fixed number because it depends on how the agent handles context pressure.
 
-When agents run low on context headroom, they go through compaction. According to Anthropic's [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and a survey by [Li et al. 2024](https://arxiv.org/pdf/2410.12388v2), the two most common approaches are:
+When agents run low on context headroom, they go through compaction. According to Anthropic's [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), a [blogpost from Morph](https://www.morphllm.com/compaction-vs-summarization), and a survey by [Li et al. 2024](https://arxiv.org/pdf/2410.12388v2), the two most common approaches are:
 
 1. **LLM summarization** (most common; used by Anthropic, Cursor): An LLM rewrites conversation history into a natural language summary.
 2. **Opaque compression** (used by OpenAI): Server-side, non-human-readable compression.
@@ -237,19 +243,24 @@ We can't optimize for #2 since it's a black box. But for #1, research on what LL
 - meta prose, narrative prose
 - formatting and other stylistic tokens
 
+**What to do**: Signal importance explicitly. Use words like “key,” “critical,” “required,” “optional,” or “forbidden” to help agents distinguish high-value from low-value content
 
-An added benefit of **#1 Make sections self-contained** becomes clear here. If decision-critical information such as constraints, defaults, prerequisites, etc. accidentally gets lost during context compression, you won't have a single point of failure because the agent can rediscover these information from other pages.
+prefer structured formats (tables, YAML schemas, `must`/`should`/`must not` callouts) over prose for constraints and defaults. Structured content survives LLM summarization better than equivalent narrative descriptions.
 
-**What to do**:
-- Signal importance explicitly — use words like “key,” “critical,” “required,” “optional,” or “forbidden” to help agents distinguish high-value from low-value content
-- Match page length to the task’s reasoning complexity: for simple tasks (authentication, parameter references, error code tables), include as much detail as you want; for complex multi-step workflows, keep pages tighter
+Match page length to the task’s reasoning complexity: for simple tasks (authentication, parameter references, error code tables), include as much detail as you want (under ~22k words, which is probably very easy); for complex multi-step workflows, keep pages shorter.
 
+_An added benefit of **#1 Make sections self-contained** becomes clear here. If decision-critical information such as constraints, defaults, prerequisites, etc. accidentally gets lost during context compression, you won't have a single point of failure because the agent can rediscover this information from other pages._
 
-## Cheat sheet
-Based on how your docs is consumed most often:
+## Cheat sheet by doc type
 
+If your team follows [Diátaxis](https://diataxis.fr/), here’s how the guidance in this article maps onto each doc type. Think of it as a reference to consult when working on a specific type, **NOT** a checklist to implement all at once. If you discover that something works particularly well, or particularly poorly, or want to add to this table, please email me at frances@promptless.ai.
 
-Based on the taxonomy of diataxis
+| Category | Suggestions |
+|---|---|
+| **Tutorial** | • Keep it to a happy path, don't turn it into a sprawling decision tree.<br />• State prerequisites, required setup, and expected end state up front.<br />• After every major step, add a concrete verification checkpoint (“you should now see…”).<br />• Put detours or corner cases in separate section towards the end of the page, or into separate how-to pages.<br />• Add a compact troubleshooting guide at the end of each major stage, or have a centralized troubleshooting section |
+| **How-to guide** | • Lead with the goal in the title and first sentence.<br />• List prerequisites, constraints, permissions, and/or defaults before the steps.<br />• Add examples, edge cases, and/or known issues on the most failure-prone step.<br />• End with “common failures / recovery.” For long workflows, split by phase and make each phase independently executable.<br />• Avoid references that can only be resolved with screenshots or other media on the page. |
+| **Reference** | • Be exhaustive, but structured, Longer pages are tolerable here because lookup tasks degrade less sharply than planning tasks (but still, be reasonable).<br />• Use stable headings, unified terminology, and unified field order like required, optional, default, format, limits, etc.<br />• Avoiding writing too much prose into references. |
+| **Explanation** | • Due to lossy compression on prose, do not let explanation pages be the only place a piece of important information lives.<br />• Start with a TL;DR and explicit definitions.<br />• Add comparison tables (“X vs Y,” “when to use which”). They are fetch-friendly and survive HTML-to-text conversion well.  |
 
 ## Conclusion
 
@@ -282,6 +293,8 @@ Brookes et al. (2025) Evolving Excellence: Automated Optimization of LLM-based A
 Del Rosario et al. (2025) Architecting Resilient LLM Agents: A Guide to Secure Plan-then-Execute Implementations. [link](https://arxiv.org/abs/2509.08646)
 
 Deng et al. (2025) Decoupling Task-Solving and Output Formatting in LLM Generation. [link](https://arxiv.org/abs/2510.03595)
+
+Chen et al. (2025) When LLMs Meet API Documentation: Can Retrieval Augmentation Aid Code Generation Just as It Helps Developers? [link](https://arxiv.org/html/2503.15231v1)
 
 Dong, Y., Jiang, X., Qian, J., Wang, T., Zhang, K., Jin, Z., & Li, G. (2025).
 A Survey on Code Generation with LLM-Based Agents. [link](https://arxiv.org/pdf/2508.00083)
