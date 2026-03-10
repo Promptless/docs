@@ -18,50 +18,55 @@ It’s hard to deny what’s happening around us: agents are reading more docume
 
 To be clear, we’re not advocating for a separate set of “agent docs.” You’ll find that many of these changes improve the human experience too. And where there’s a real trade-off, we’ll call it out.
 
-## How agents actually consume your docs today
+## How agents consume your docs today
 
 Before we talk about optimization, it helps to ground ourselves in the concrete ways agents run into your documentation. In practice, there are four main pathways. Depending on your product, you can decide which ones matter most to optimize for.
 
-### 1. RAG systems (support bots, "Ask AI" features)
+### 1. Web search and fetch
+
+When agents like ChatGPT, Claude, and Gemini browse the web, they typically use two tools: **[search](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)** and **[fetch](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool)**.
+
+Search tool accepts a query and returns a list of page titles and URLs without body text. For example, this is the output that claude code sees when it searches "how to create a payment link in stripe":
+
+```json
+[
+  {"title":"Stripe Payment Links | Simple Links to Accept Payments","url":"https://stripe.com/payments/payment-links"},
+  {"title":"Create a payment link | Stripe Documentation","url":"https://docs.stripe.com/payment-links/create"},
+  {"title":"Create Payment Links | Stripe Documentation","url":"https://docs.stripe.com/no-code/payment-links"},
+    ...
+]
+```
+
+The agent reads the titles and decides which URLs are worth fetching. If your critical information is buried in 5 different pages with the same "Overview" title, that makes it harder for the agent.
+
+When the agent fetches, it programmatically strips the HTML down to markdown or plain text, or fetch the markdown version of the page directly. Code blocks, tables, and headings survive this conversion well. Images, certain diagrams, and anything loaded dynamically via JavaScript don't.
+
+This means that it's better to avoid references like "click the green button in the upper-left corner of the screenshot below." (As LLMs become more natively multimodal this will matter less, but fewer dependencies is always better.)
+
+The "minimum retrievable unit" in web fetch is the full page. Unlike RAG, the agent doesn't get a targeted chunk — the entire page gets retrieved and appended to its working context.
+
+### 2. RAG systems (support bots)
 
 Tools like Kapa, Intercom’s Fin, doc platform “Ask AI” features, and many in-house support chatbots fall into this category. They ingest your docs, split them into chunks, and retrieve relevant chunks when a user asks a question.
 
-Most often, the chunking strategies will follow the heading structure. The text under an `## H2` or `### H3` often becomes a retrievable unit. Now imagine ten of those units pulled from very different parts of the docs getting stuffed into the context window (the working memory an LLM holds during a task) at once. That’s what the LLM is frequently working with under this system.
+Most often, the chunking strategies will follow the heading structure. The text under an `## H2` or `### H3` often becomes a retrievable unit. Now combine tens of those units pulled from very different parts of the docs and add them to the context at once. That’s what the LLM/agent usually sees.
 
-### 2. File system (`docs/`, `AGENTS.md`)
+### 3. MCP/tool calling (via tool descriptions)
+The [Model Context Protocol](https://modelcontextprotocol.io/) is an open standard that lets agents programmatically interact with external tools and services. If your team is building an MCP server on top of your product's API, then your tool names, descriptions, and parameter schemas become a first-class citizen of your documentation.
 
-When you're developing on an open source project, or an internal repo, coding agents will consume docs directly from the repository filesystem. When an agent runs inside a workspace (such as Cursor, Claude Code, or Codex), it can read files like `README.md`, `docs/`, `CONTRIBUTING.md`, and specialized files such as `AGENTS.md`.
+One interesting paper ([Trilcke et al. 2025](https://arxiv.org/abs/2508.13774)) found that terminology consistency in tool descriptions matters more than you'd expect. If your system alternates between `rate limit`, `quota`, and `throttle`, or between `deploy`, `publish` and `release`, you are forcing the model to guess whether those are synonyms or distinct concepts. That guesswork shows up as worse tool use. And it's not just words: inconsistent function names, vague parameter descriptions, overlapping tool scopes — it all adds up. A good rule of thumb is to try to reduce ambiguity for the agent every step of the way when writing tool descriptions.
 
-Some studies, like this [one](https://arxiv.org/pdf/2601.20404), argue that repository-level context files (such as `AGENTS.md`) are strictly better. But the sample size there is too small (10 repos). A more nuanced 2026 study ([Gloaguen et al. 2026](https://arxiv.org/abs/2602.11988)) offers more actionable findings:
+Research on tool selection confirms that LLMs evaluate tools almost entirely on their metadata (names, descriptions, parameter labels), since most often they have no visibility into the underlying implementation ([Blankenstein et al. 2025](https://arxiv.org/html/2510.00307v1)). Yet in practice, developers (like myself) routinely spend hours writing clean, well-tested tool code and then slap on a description like "Handles rate limiting stuff."
 
-- **LLM-generated** context files reduced performance by ~3% on average while increasing cost by ~20%.
-- **Developer-written** context files improved task success rate by +4% on average.
-- The benefit came from including information that wasn’t already in the repo: tooling preferences, workflow requirements, and conventions that lived in developers’ heads rather than documentation.
-
-The takeaway: if you want to have an `AGENTS.md` file, it's worth investing the time to write some of it yourself. That said, since the gains are still in the low single digits, this article focuses primarily on improving your existing docs.
-
-### 3. MCP servers
-
-
-The [Model Context Protocol](https://modelcontextprotocol.io/) is an open standard that lets agents programmatically interact with external tools and services. Many companies now expose their product's API as an MCP server — Stripe, Asana, and Cloudflare are early examples. When you do this, you're defining tool names, descriptions, and parameter schemas that agents read to decide which tool to call and how to call it.
-
-This makes your tool metadata a first-class part of your documentation. One interesting paper ([Trilcke et al. 2025](https://arxiv.org/abs/2508.13774)) found that LLMs rely heavily on docstrings, and to a lesser extent parameter descriptions and type annotations, to decide which tool to call and how to call it. They also found that terminology consistency matters more than you'd expect. If your system alternates between `rate limit`, `quota`, and `throttle`, or between `deploy`, `publish` and `release`, you are forcing the model to guess whether those are synonyms or distinct concepts. That guesswork shows up as worse tool use. And it's not just words: inconsistent function names, vague parameter descriptions, overlapping tool scopes — it all adds up. A good rule of thumb is to reduce ambiguity for the agent every step of the way.
-
-Research on tool selection shows that LLMs choose tools primarily based on metadata (names, descriptions, and parameter labels), _not_ the underlying implementation quality ([Blankenstein et al. 2025](https://arxiv.org/html/2510.00307v1)). Imagine an LLM choosing between your tool and a competitor's. Both do the same thing. Yours has elegant, well-tested code with a description that reads like a TODO comment, while theirs has spaghetti code but clear, precise descriptions. The LLM will more often pick theirs. In practice, good description + bad code beats bad description + good code (!).
-
-(Some MCP servers also serve docs as searchable content rather than exposing API tools directly — in that case, the guidance is closer to the RAG section above.)
-
-### 4. Web search and crawling
-
-When agents like ChatGPT, Perplexity, and Claude browse the web, they find your docs the same way Google does: through indexable pages, site structure, and links.
-
-After getting search results, the agent fetches the raw HTML (or rendered text) from those pages. The main difference from RAG is that the “retrievable unit” is usually the page itself, not smaller chunks.
+Imagine an LLM trying to choose between your tool and a competitor's. Both do the same thing. Yours has elegant implementation but a vague description; theirs has spagetti code but clear, precise descriptions. The LLM will pick theirs.
 
 ## The llms.txt myth
 
-What about our well-intentioned friend, the llms.txt file (a newly proposed standard to help AI models ingest your docs directly in markdown. eg. [link](https://docs.stripe.com/llms.txt))? Articles from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), [SE Ranking](https://seranking.com/blog/llms-txt/), [Daydream](https://www.withdaydream.com/library/llms-txt-hype-vs-reality), and [Publii](https://getpublii.com/blog/llms-txt-complete-guide.html) all show that there doesn’t seem to be a measurable difference in AI citations between sites that have llms.txt and sites that don’t (one study was done with 300k websites).
+What about our well-intentioned friend, the llms.txt file (a newly proposed standard to help AI models ingest your docs directly in markdown — for example, [Stripe’s llms.txt](https://docs.stripe.com/llms.txt))?
 
-You _could_ argue that GEO (Generative Engine Optimization) and SEO isn’t the same as agent support. But even setting that aside, it seems that there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), and as of March 2026, according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those llms.txt files appeared to be indexed. If they aren’t indexed, then agents doing web browsing are effectively just landing on the same human-facing docs pages anyway.
+The most direct argument against prioritizing it: as of March 2026, there are ~800k sites hosting llms.txt ([Publii](https://getpublii.com/blog/llms-txt-complete-guide.html)), but according to the method from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), fewer than 10% of those files appear to be indexed by Google. If they aren’t indexed, then agents doing web browsing are landing on the same human-facing docs pages anyway — the llms.txt file might as well not exist for that pathway.
+
+On the GEO (Generative Engine Optimization) side — whether llms.txt improves how often AI search tools like Perplexity or ChatGPT cite your content — the evidence is similarly unimpressive. Articles from [Wix](https://www.wix.com/studio/ai-search-lab/llms-txt-myths), [SE Ranking](https://seranking.com/blog/llms-txt/), [Daydream](https://www.withdaydream.com/library/llms-txt-hype-vs-reality), and [Publii](https://getpublii.com/blog/llms-txt-complete-guide.html) all find no measurable difference in AI citations between sites that have llms.txt and sites that don’t (one study covered 300k websites). GEO isn’t the same as agent support, but it’s a reasonable proxy — and the signal there is flat too.
 
 <Frame caption="Google search for site:*/llms.txt - about 79,900 results indexed out of ~800,000 sites with llms.txt files">
   <img src="/assets/llms-txt-google-indexed.png" alt="Google search showing only ~79,900 llms.txt files indexed out of 800,000 sites" />
@@ -87,8 +92,6 @@ You _could_ argue that GEO (Generative Engine Optimization) and SEO isn’t the 
   </span>
 </div>
 
-This is the recommendation we feel most strongly about, and it’s also one that many technical writers already follow as standard good practice.
-
 When an agent retrieves a chunk of your docs, it often gets that chunk without the surrounding context. So if the chunk says something like “use the payment object from above,” the agent may have no idea what “above” refers to. Some agents will try to chase the reference, but many RAG setups only support semantic search (finding content by meaning rather than exact keywords) rather than letting the agent reliably fetch “the chunk above this one.”
 
 Now add two practical constraints. First, when an agent can’t find a referenced piece of information, it doesn’t always stop and say so, instead it'll make a plausible-sounding guess. This is one of the main sources of hallucination ([Kalai et al. 2025](https://arxiv.org/abs/2509.04664)). Second, most agents have an upper limit on how many steps they can take before stopping, usually around 100–200. Lots of “see above / previous page” phrases can lead to agents burning through that budget hunting for context, and stopping before they’ve found what actually matters.
@@ -97,7 +100,7 @@ There’s also empirical evidence that spreading content across too many files c
 
 > Write as if you’re doing a radio interview and you don’t want to be quoted out of context.
 
--– November 2025 Write the Docs [Newsletter](https://www.writethedocs.org/blog/newsletter-november-2025/#optimizing-docs-for-llms)
+— November 2025 Write the Docs [Newsletter](https://www.writethedocs.org/blog/newsletter-november-2025/#optimizing-docs-for-llms)
 
 **What to do**: Avoid forward and backward references like “see above,” “as described in the previous section,” or “same as before.” Instead, restate the key information. This doesn’t mean duplicating entire sections - just the critical bits that make each section stand on its own. Kubernetes does this well by including a “Before you begin” block at the top of related pages (for example, [Adding Linux nodes](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/adding-linux-nodes/)).
 
@@ -119,7 +122,7 @@ This is the recommendation where optimizing for agents and optimizing for humans
 
 Research on coding agents ([Dong et al. 2025](https://arxiv.org/pdf/2508.00083)) found that agents struggle particularly with “unwritten team conventions” and “non-public, highly contextualized information.” Separately, research on agent self-recovery ([Del Rosario et al. 2025](https://arxiv.org/abs/2509.08646)) found that agents with access to structured failure information performed significantly better than agents trying to reason about errors from their general knowledge. (Side note: I think agent self-recovery and self-evolution will matter even more over time.)
 
-A related result comes from work on automated prompt optimization for LLM agents ([Brookes et al. 2025](https://arxiv.org/abs/2512.09108)). The authors found that pre-optimized, human-written prompts often rely on vague guidance like “consider edge cases” or “be thorough.” During auto-optimization, the LLM rewrote these into more explicit, structured instructions with concrete examples and edge cases, and accuracy improved by 10.1%–36.9%.
+A related result comes from work on automated prompt optimization for LLM agents ([Brookes et al. 2025](https://arxiv.org/abs/2512.09108)). The paper is specifically about system prompt optimization, not documentation, but the principle transfers: the authors found that vague guidance like “consider edge cases” or “be thorough” consistently underperformed once an LLM rewrote it into explicit, structured instructions with concrete examples and edge cases — improving accuracy by 10.1%–36.9%. Docs that spell out edge cases and error conditions give agents the same kind of concrete grounding.
 
 Stripe is also a good example of documenting failure modes. Its [error codes page](https://docs.stripe.com/error-codes) maps each code to a description (and often resolution steps), and the API returns a `doc_url` field that points directly to the relevant documentation entry.
 
@@ -155,7 +158,7 @@ Failed to complete request due to a bad request
 * Verify if the resource to be modified exists and is in a valid state.
 ```
 
-Supabase has a debugging section under each product area. [link](https://supabase.com/docs/guides/auth/debugging/error-codes)
+Supabase has a [debugging section](https://supabase.com/docs/guides/auth/debugging/error-codes) under each product area.
 
 <Frame caption="Supabase docs - dedicated Debugging section under each product area in the sidebar">
   <img src="/assets/supabase-debugging-section.png" alt="Supabase database docs showing a Debugging section in the sidebar with Timeouts, Debugging and monitoring, Debugging performance issues, Supavisor, and Troubleshooting" />
@@ -167,6 +170,7 @@ If you want to go further, add edge cases and known issues. In general, centrali
 - GitHub issues or Jira tickets marked with "WON'T FIX" 
 - changelogs or release notes
 - support threads and customer conversations
+
 You can point an LLM at these sources and have it synthesize the recurring patterns into docs.
 
 One important caveat: expandable sections only work for agents if the content is already in the page’s HTML and just visually hidden. Content that loads dynamically on click is invisible to agents. To check, ask an agent to fetch one of your docs pages with the component in question and save the output to a file. If the content is there, you're good; if not, a dedicated sidebar section is the safer bet. (Thank you [Lois](https://www.linkedin.com/in/loispatterson/) for raising this!)
@@ -187,15 +191,17 @@ In the Next.js [docs](https://nextjs.org/docs/app/getting-started/updating-data)
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#fefce8;color:#a16207;padding:0.22rem 0.55rem;">medium</span></span>
 </div>
 
-Human docs often include only one or two examples per point. But research on LLM performance shows meaningful gains when you provide more examples - sometimes even 10+ ([Agarwal et al. 2024](https://arxiv.org/abs/2404.11018)). Interestingly, LLMs also seem to benefit from negative examples more than humans do: “don’t do this”-type examples can be especially effective ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)).
+It's a well-researched phenomenon that LLMs benefit from examples. For areas of your docs that are particularly complex, adding more examples is worth the effort.
 
-That said, this is also just good documentation practice. More examples help humans too, especially when they cover common use cases. The difference, however, is that humans hit a point of diminishing returns quickly, and too many examples can make a page less helpful. LLMs seem to saturate differently: the model may still benefit from an 11th example even if there are already 10, even though a human reader is more likely to feel overwhelmed at this point. 
+Interestingly, LLMs seem to benefit from negative examples more than humans do. Research on contrastive in-context learning ([Mo et al. 2024](https://arxiv.org/abs/2402.11254)) — originally studied in information extraction tasks — found that examples near the decision boundary are particularly effective. The principle generalizes well: try to add "subtly wrong" instead of "blatantly wrong" examples.
 
 The main downside of having many examples is maintenance overhead. (or, you can try Promptless 😊)
 
-**What to do**: For your most critical endpoints, expand the number of examples and add a few negative examples showing what agents shouldn’t do. Aim for breadth without repetition.
+**What to do**: Add more examples throughout your docs where you can. For your most critical endpoints, add a few subtly negative examples to help the agent learn what not to do.
 
-Not many teams do this extensively in production yet, but top dev tools are clearly trending in this direction. Some maintain dedicated examples directories in their repos (for instance [Vercel](https://github.com/vercel/vercel/tree/main/examples)). Others publish cookbooks (for instance [OpenAI](https://github.com/openai/openai-cookbook)), which this author has personally found very helpful. Publishing examples in an open-source repo can also help expose real usage patterns to models during pre-training. As labs are increasingly selective about what they include in the pre-training corpus, reputable github repos are a good source of high quality data. Note that repetitive examples won’t move the needle much; high-quality, representative workflows will. Here, support tickets are often a great source of inspiration.
+Examples can range from 5-line code snippets, to entire directories. At the directory level, no need to add negative examples as that will more likely to confuse the agent than to help.
+
+Not many teams do this extensively in production yet, but top dev tools are clearly trending in this direction. Some maintain dedicated examples directories in their repos (for instance [Vercel](https://github.com/vercel/vercel/tree/main/examples)). Others publish cookbooks (for instance [OpenAI](https://github.com/openai/openai-cookbook)), which this author has personally found very helpful. Note that repetitive examples won’t move the needle much; high-quality, representative workflows will. Support tickets are often a great source of inspiration for what those workflows should cover.
 
 ### 4. Put the most important information first
 
@@ -207,7 +213,7 @@ Not many teams do this extensively in production yet, but top dev tools are clea
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
 </div>
 
-Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2025](https://research.trychroma.com/context-rot)) have documented the “Lost in the Middle” effect: LLMs tend to use information near the beginning and end of a context window more reliably than information buried in the middle. Anthropic’s [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) also notes that long-running agents periodically compress their working memory to free up space — and that compression process has the same bias: content in the middle gets dropped first. 
+Multiple studies ([Liu et al. 2023](https://arxiv.org/abs/2307.03172), [Chroma 2025](https://research.trychroma.com/context-rot)) have documented the “Lost in the Middle” effect: LLMs tend to use information near the beginning and end of a context window more reliably than information buried in the middle. Frontier models have improved on this, but the problem doesn’t disappear — it shows up most acutely during summarization and compression. Anthropic’s [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) notes that long-running agents periodically compress their working memory to free up space, and that compression process carries a similar bias: content in the middle gets deprioritized first. 
 
 **What to do**: Put the most important information first in every section ([Wu et al. 2025](https://arxiv.org/abs/2502.01951)). LLMs don’t benefit from a gradual buildup to the key point the way humans do. If your API has required parameters, list them before optional ones. If there’s a critical constraint, put it in the first few sentences, not the fourth paragraph. (Author’s aside: my perpetual struggle is that I only realize the important assumptions after I’ve been writing for a while.)
 
@@ -230,18 +236,18 @@ Much better version: [link](https://kubernetes.io/docs/tasks/inject-data-applica
   <span style="display:inline-flex;font-size:0.72rem;font-weight:600;border-radius:999px;overflow:hidden;border:1px solid #e2e8f0;letter-spacing:0.01em;"><span style="background:#f8fafc;color:#64748b;padding:0.22rem 0.55rem;">web browsing</span><span style="background:#e7efff;color:#396df1;padding:0.22rem 0.55rem;">high</span></span>
 </div>
 
-Long context is not free. Chroma’s 2025 [Context rot report](https://research.trychroma.com/context-rot) found that model performance worsens as input length grows. There's not one universal failure threshold, but most research points to noticable degradation at 30k+ tokens — roughly 22,000 words (as of 2025).
+Long context is not free. Chroma’s 2025 [Context rot report](https://research.trychroma.com/context-rot) found noticeable degradation above 30k tokens (~22k words), which is longer than 99.9% of individual doc pages, so the more relevant constraint here is task complexity. 
 
-Unsurprisingly, too little context hurts too. [Zhang et al. 2025](https://arxiv.org/abs/2510.04618) showed that aggressively compressing a ~10,000-word context down to less than 200 words causes a sudden drop in accuracy from 66.7% to 57.1%.
+[Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that simple lookups can handle very long contexts well (even at 1M+ tokens), but multi-step tasks requiring planning and reasoning start failing around 16k–32k tokens, because they need more working memory headroom for reasoning. So, counterintuitively, a REST endpoint reference can afford to be much longer than a walkthrough of a complex workflow with branching logic and states.
 
-You might be wondering: if most of the advice so far has been about adding more content, won't that make agents truncate my docs and lose important information? (Hat tip to Lois for raising this.)
+Even then, 12k words (16k tokens) per page is a high ceiling. But you might be thinking: agents can hold multiple docs in their working memory at once, and I don't control which chunks get picked up. If most of the advice so far has been about adding more content, won't that make agents truncate my docs and lose important information? (Hat tip to Lois for raising this.)
 
-Let's look at agent behavior to answer this question. [Li et al. 2024](https://arxiv.org/pdf/2410.12388v2) and a [post](https://www.morphllm.com/compaction-vs-summarization) by Morph converge on the two most common approaches agents use to compress context when it gets too long:
+To answer that, it helps to look at how agents handle context pressure. According to Anthropic's [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), when agents run low on context headroom they go through compaction. [Li et al. 2024](https://arxiv.org/pdf/2410.12388v2) and a [post](https://www.morphllm.com/compaction-vs-summarization) by Morph converge on the two most common approaches agents use to compress context when it gets too long:
 
 1. **LLM Summarization** (most common — used by Anthropic, Cursor): An LLM rewrites conversation history into a natural language summary.
 2. **Opaque Compression** (used by OpenAI): Server-side, non-human-readable compression.
 
-We can’t optimize for #2 — it’s a black box. But for #1, research on what LLM summarization typically discard ([Kang et al. 2025](https://arxiv.org/abs/2510.00615)) shows a consistent pattern:
+We can't optimize for #2 — it's a black box. But for #1, research on what LLM summarization typically discards ([Kang et al. 2025](https://arxiv.org/abs/2510.00615)) shows a consistent pattern:
 - repetitive/redundant information
 - verbose logs
 - greetings
@@ -250,38 +256,27 @@ We can’t optimize for #2 — it’s a black box. But for #1, research on what 
 
 Mapping this onto the four [Diátaxis](https://diataxis.fr/) doc types:
 
-| Doc type | Doc characteristic | Discard rate | Page length ceiling |
+| Doc type | Doc characteristic | Risk during compression | Practical guidance |
 |---|---|---|---|
-| Tutorials | More narrative, more verbose | Medium | Medium |
-| How-to guides | Goal-oriented step-by-step instructions | Low | Short |
-| Reference | Technical facts such as parameters | Lowest | Shortest |
-| Explanation | Conceptional information that's more narrative | High | Long |
+| Reference | Technical facts such as parameters | Lowest — facts survive summarization well | Safe to be detailed; prioritize completeness |
+| How-to guides | Goal-oriented step-by-step instructions | Low — concrete steps tend to survive | Keep focused; avoid padding |
+| Tutorials | More narrative, more verbose | Medium — prose gets condensed | Trim narrative; front-load the goal |
+| Explanation | Conceptual and narrative | High — nuance gets flattened | Keep tighter than you think; key concepts in the first paragraph |
+
+
+
+You might notice a tension with the earlier advice to make sections self-contained — adding context inevitably adds length. The resolution: self-contained context (prerequisites, boilerplate, error explanations) belongs in expandable sections, not inline prose. That way agents get the full picture while length-sensitive reasoning tasks aren’t burdened by surrounding context.
 
 **What to do**:
-- Try to keep each individual page under 22k words
 - Signal importance explicitly — use words like “key,” “critical,” “required,” “optional,” or “forbidden” to help agents distinguish high-value from low-value content
-- Adjust chunk and page length based on how your docs are consumed:
+- Match page length to the task’s reasoning complexity: for simple tasks (authentication, parameter references, error code tables), include as much detail as you want; for complex multi-step workflows, keep pages tighter
+- Adjust how you write based on how your docs are consumed:
 
-| Access method | Retrievable unit | Length guidance |
+| Access method | Retrievable unit | What to do |
 |---|---|---|
-| RAG systems | Content between headings | Keep chunks under ~3,000 tokens (~2,250 words) |
-| Coding agents on filesystems | Usually the whole file | Length matters less — agents can grep and jump around |
-| MCP servers | The tool's docstring and parameter descriptions | Length matters less |
-| Web search | The page | Split pages that cover multiple distinct topics |
-
-### 6. Tailor doc length to task complexity (advanced)
-
-One important caveat: the ideal amount of context can depend on what the agent is trying to do. [Zhang et al. 2025](https://arxiv.org/abs/2512.24601) found that more complex problems degrade at shorter context lengths than simpler ones. For example, simple lookups (finding one specific fact buried in a large document) work fine even in very long contexts with 1M+ tokens, but multi-step tasks that require planning and reasoning start failing much earlier at ~16,000–32,000 tokens.
-
-In practice, that suggests something counterintuitive: a page explaining a straightforward REST endpoint can often afford to be longer and more verbose than a page explaining a complex multi-step workflow with branching logic and states. One hypothesis is that harder tasks require more working memory headroom for reasoning. Therefore overly long docs can crowd out the model’s ability to think during the task execution.
-
-**What to do**: Match doc length to the task’s reasoning complexity. For simple tasks (authentication, parameter references, error code tables), include as much relevant detail as you want. For complex problems, consider splitting long pages into several relatively independent workflows.
-
-### 7. Keep your style guide and `AGENTS.md` separate (advanced)
-
-This one only had single digit gains, so it's last. But this is probably the easiest one to implement. The research shows that when the context has task-level instructions (requires reasoning) and formatting requirements mixed up together, models often do worse on the actual task ([Deng et al. 2025](https://arxiv.org/abs/2510.03595)). 
-
-**What to do**: Keep execution-critical guidance in your `AGENTS.md` or other agent instruction files; keep style guide as a separate file if you can.
+| Web search | The full page | One main topic per page; split pages that cover multiple distinct concepts into separate pages |
+| RAG systems | Content between each heading | Keep each `h2` section under ~2,250 words; put the most important information first within each section |
+| MCP servers | The tool’s docstring and parameter descriptions | Write precise, consistent docstrings; prioritize clarity and terminology consistency over brevity |
 
 ## Conclusion
 
