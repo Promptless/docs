@@ -76,14 +76,7 @@ starlight-theme-select {
 @media (max-width: 50rem) {
   :root {
     --sl-content-width: 100%;
-  }
-
-  :root[data-has-sidebar] {
-    --pl-docs-nav-height: 4.15rem;
-  }
-
-  :root:not([data-has-sidebar]) {
-    --pl-docs-nav-height: 5.75rem;
+    --pl-docs-nav-height: 3.65rem;
   }
 }
 
@@ -265,26 +258,12 @@ starlight-theme-select {
     display: none !important;
   }
 
-  :root[data-has-sidebar] .pl-site-cta-row {
+  .pl-site-cta-row {
     display: none;
   }
 
-  :root[data-has-sidebar] .pl-site-nav-row {
+  .pl-site-nav-row {
     display: none;
-  }
-
-  :root:not([data-has-sidebar]) .pl-site-tabs {
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  :root:not([data-has-sidebar]) .pl-site-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .pl-site-tab {
-    padding-inline: 0.48rem;
-    font-size: 0.88rem;
   }
 }
 
@@ -383,6 +362,10 @@ starlight-theme-select {
 
 .sidebar-content a[data-site-icon='meet']::before {
   mask-image: url('/site/icons/meet.svg');
+}
+
+.sidebar-content a[data-site-icon='jobs']::before {
+  mask-image: url('/site/icons/jobs.svg');
 }
 
 .sidebar-content a[data-site-icon='calendar']::before {

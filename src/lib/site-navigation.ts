@@ -41,6 +41,7 @@ export function getActiveSection(pathname: string): SiteSection {
     normalized === '/demo' ||
     normalized === '/pricing' ||
     normalized === '/meet' ||
+    normalized === '/jobs' ||
     normalized === '/wtd-portland-2026' ||
     normalized.startsWith('/site')
   ) {
