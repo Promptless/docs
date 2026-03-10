@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-const siteUrl = import.meta.env.SITE || 'https://promptless.ai';
+const siteUrl = (import.meta.env.SITE || 'https://promptless.ai').trim();
 const pageUrl = `${siteUrl}/blog/${entry.slug}`;
 const socialImageHead = entry.data.socialImage
   ? [
