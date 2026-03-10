@@ -12,6 +12,14 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const siteUrl = import.meta.env.SITE || 'https://promptless.ai';
+const socialImageHead = entry.data.socialImage
+  ? [
+      { tag: 'meta', attrs: { property: 'og:image', content: `${siteUrl}${entry.data.socialImage}` } },
+      { tag: 'meta', attrs: { name: 'twitter:image', content: `${siteUrl}${entry.data.socialImage}` } },
+    ]
+  : [];
 ---
 
 <StarlightPage
@@ -22,6 +30,7 @@ const { Content, headings } = await render(entry);
     description: entry.data.description,
     template: 'doc',
     editUrl: false,
+    head: socialImageHead,
   }}
 >
   <p class="collection-back-link">
