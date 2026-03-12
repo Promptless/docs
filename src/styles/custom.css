@@ -310,6 +310,12 @@ starlight-theme-select {
   text-transform: uppercase;
 }
 
+/* Remove right margin/padding from nested ul to allow caret alignment */
+.sidebar-content details > ul {
+  margin-right: 0;
+  padding-right: 0;
+}
+
 /* Nested group headers (e.g. Triggers, Context Sources) — tone down to match links */
 .sidebar-content details details > summary {
   font-size: 0.875rem;
