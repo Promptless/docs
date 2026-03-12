@@ -299,7 +299,7 @@ starlight-theme-select {
 }
 
 .sidebar-content .top-level > li > details > summary {
-  padding: 0.18rem 0.35rem;
+  padding: 0.18rem 0 0.18rem 0.35rem;
 }
 
 .sidebar-content .top-level > li > details > summary .large {
