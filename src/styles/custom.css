@@ -411,6 +411,10 @@ starlight-theme-select {
   transform: translateY(-50%);
 }
 
+.sidebar-content details[open] > summary .caret {
+  transform: translateY(-50%) rotate(90deg);
+}
+
 .main-frame {
   background: var(--sl-color-bg);
 }
