@@ -315,7 +315,7 @@ starlight-theme-select {
   font-size: 0.875rem;
   font-weight: 500;
   color: color-mix(in srgb, var(--sl-color-text) 84%, #374151);
-  padding: 0.42rem 0.58rem;
+  padding: 0.42rem 0 0.42rem 0.58rem;
 }
 
 .sidebar-content details details > summary .large {
@@ -397,22 +397,8 @@ starlight-theme-select {
   color: #fff;
 }
 
-/* Align carets consistently to the right edge of the sidebar */
-.sidebar-content details > summary {
-  position: relative;
-  padding-right: 1.5rem;
-}
-
 .sidebar-content details > summary .caret {
   color: color-mix(in srgb, var(--sl-color-text) 40%, #9ca3af);
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.sidebar-content details[open] > summary .caret {
-  transform: translateY(-50%) rotate(90deg);
 }
 
 .main-frame {
