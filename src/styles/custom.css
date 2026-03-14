@@ -278,7 +278,7 @@ starlight-theme-select {
 }
 
 .sidebar-content .top-level > li > details > summary {
-  padding: 0.18rem 0.35rem;
+  padding: 0.18rem 0 0.18rem 0.35rem;
 }
 
 .sidebar-content .top-level > li > details > summary .large {
@@ -289,12 +289,18 @@ starlight-theme-select {
   text-transform: uppercase;
 }
 
+/* Remove right margin/padding from nested ul to allow caret alignment */
+.sidebar-content details > ul {
+  margin-right: 0;
+  padding-right: 0;
+}
+
 /* Nested group headers (e.g. Triggers, Context Sources) — tone down to match links */
 .sidebar-content details details > summary {
   font-size: 0.875rem;
   font-weight: 500;
   color: color-mix(in srgb, var(--sl-color-text) 84%, #374151);
-  padding: 0.42rem 0.58rem;
+  padding: 0.42rem 0 0.42rem 0.58rem;
 }
 
 .sidebar-content details details > summary .large {
