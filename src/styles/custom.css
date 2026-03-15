@@ -719,7 +719,7 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
 
 .fern-card {
   height: 100%;
-  border: 1px solid var(--sl-color-hairline);
+  border: 1px solid #c9d1dc;
   border-radius: 12px;
   padding: 1rem;
   background: color-mix(in srgb, var(--sl-color-bg) 97%, var(--sl-color-accent-low));
@@ -756,7 +756,7 @@ a.fern-card .fern-card-body p {
 }
 
 a.fern-card:hover {
-  border-color: color-mix(in srgb, var(--sl-color-accent) 35%, var(--sl-color-hairline));
+  border-color: color-mix(in srgb, var(--sl-color-accent) 35%, #c9d1dc);
   box-shadow: 0 8px 18px color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
   transform: translateY(-1px);
 }
