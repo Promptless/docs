@@ -339,8 +339,8 @@
   {
     "sourcePath": "fern/docs/integrations/zendesk.mdx",
     "contentType": "docs",
-    "routePath": "/docs/integrations/zendesk-integration",
-    "title": "Zendesk Integration",
+    "routePath": "/docs/integrations/zendesk-integration-beta",
+    "title": "Zendesk Integration (Beta)",
     "hidden": false,
     "order": 35,
     "section": "Integrations",

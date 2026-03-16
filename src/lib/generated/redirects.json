@@ -132,7 +132,12 @@
     },
     {
       "source": "/docs/integrations/zendesk",
-      "destination": "/docs/integrations/zendesk-integration",
+      "destination": "/docs/integrations/zendesk-integration-beta",
+      "permanent": true
+    },
+    {
+      "source": "/docs/integrations/zendesk-integration",
+      "destination": "/docs/integrations/zendesk-integration-beta",
       "permanent": true
     },
     {

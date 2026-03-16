@@ -161,8 +161,8 @@
         "slug": "docs/integrations/microsoft-teams-integration"
       },
       {
-        "label": "Zendesk Integration",
-        "slug": "docs/integrations/zendesk-integration"
+        "label": "Zendesk Integration (Beta)",
+        "slug": "docs/integrations/zendesk-integration-beta"
       },
       {
         "label": "Intercom Integration (Beta)",
