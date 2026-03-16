@@ -1,0 +1,38 @@
+---
+title: Trigger Replay Skill
+slug: docs/internal/trigger-replay-skill
+sidebar:
+  hidden: true
+---
+import Warning from '@components/fern/Warning.astro';
+import Note from '@components/fern/Note.astro';
+
+## OVERVIEW
+
+The trigger replay skill allows you to replay historical triggers for testing and debugging purposes. This is useful when you need to re-process a trigger event without waiting for a new event to occur.
+
+<Warning>
+The trigger replay skill is currently only supported for the legacy `server/` architecture. It is **not yet supported** for the new `runtime/` architecture.
+</Warning>
+
+## USAGE
+
+To replay a trigger, use the `/replay` command followed by the trigger ID:
+
+```
+/replay <trigger_id>
+```
+
+## LIMITATIONS
+
+<Note>
+This is an internal development tool. The following limitations apply:
+
+- Only works with legacy `server/` triggers
+- Does not support `runtime/` triggers (coming soon)
+- Requires appropriate permissions to access trigger data
+</Note>
+
+## SUPPORT
+
+If you encounter issues with trigger replay or need to replay a `runtime/` trigger, contact the Promptless engineering team for assistance.
