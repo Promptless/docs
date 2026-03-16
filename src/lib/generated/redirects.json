@@ -82,7 +82,12 @@
     },
     {
       "source": "/docs/configuration/triggers/microsoft-teams",
-      "destination": "/docs/configuring-promptless/triggers/microsoft-teams-messages",
+      "destination": "/docs/configuring-promptless/triggers/microsoft-teams-messages-beta",
+      "permanent": true
+    },
+    {
+      "source": "/docs/configuring-promptless/triggers/microsoft-teams-messages",
+      "destination": "/docs/configuring-promptless/triggers/microsoft-teams-messages-beta",
       "permanent": true
     },
     {
