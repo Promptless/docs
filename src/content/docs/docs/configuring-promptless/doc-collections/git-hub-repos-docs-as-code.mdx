@@ -53,6 +53,14 @@ After setting up the GitHub integration, you'll create a project in the [project
 
 In the example above, Promptless can read the `promptless` and `promptless-dashboard` repos, but can read and write to the `promptless-docs` repo.
 
+## Branch Naming Convention
+
+Promptless creates branches with the `promptless/` prefix (e.g., `promptless/update-api-docs`). This consistent naming convention makes it easy to identify Promptless-created branches and configure branch protection rules.
+
+<Tip>
+If your repository uses branch protection rules or rulesets that restrict branch creation, ensure the `promptless/*` pattern is allowed. This lets Promptless create documentation branches while maintaining your protection policies.
+</Tip>
+
 ## Auto-publish Mode
 
 When auto-publish is enabled for your project:
