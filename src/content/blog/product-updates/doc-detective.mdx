@@ -25,42 +25,74 @@ documentation or escalate software issues whenever Doc Detective tests fail!
 
 ## If you have Promptless, why do you need Doc Detective?
 
-Promptless and Doc Detective solve related but different problems. Promptless
-reduces documentation drift by watching for product changes and proactively
-updating your docs. That is valuable, but it is not the whole picture.
-Promptless is an AI system, and AI systems can produce content that reads well
-but is subtly wrong. Human writers can too. The source of the content does not
-matter — what matters is whether the documented procedure actually works.
+Promptless fixes docs drift. When a pull request renames an API field or changes
+a workflow, Promptless identifies what needs to be updated in the docs before the
+code ships. It monitors pull requests, Slack, Discord, and support channels so
+your writers do not have to manually track every engineering change. The most
+valuable thing Promptless does is catch drift before it reaches your customers.
 
-Doc Detective answers that question. It takes the claims your documentation
-makes ("click this button", "you should see this", "send this request," "run
-this command") and executes them against the real product. If the result does
-not match what the docs say, the test fails. It verifies that the documentation
-that all your customers, lead, and prospectssd see continues to accurately reflect the product.
+But products are complex and teams move fast. Not every change that affects the
+docs will be caught before it ships. Doc Detective is your safety net. It takes
+the procedures your docs describe ("click this button," "send this request,"
+"run this command") and executes them against the real product. If the result
+does not match what the docs say, the test fails. No interpretation, no
+inference. It is a test suite for your documentation, closer to Cucumber than to
+an AI agent, and cheap enough to run on every PR or on a schedule.
 
-Doc Detective and Promptless play different roles. Doc Detective gives you
-precise, high-confidence verification that your docs are correct by executing
-what they claim. Promptless listens for product and code changes that suggest
-your docs are about to become stale, incomplete, or wrong, then helps you
-respond. Promptless wields Doc Detective as a tool: suggesting new tests,
-generating them, and using failures to drive targeted doc updates or escalate
-product issues. In practice, Doc Detective is the rigorous foundation, and
-Promptless is the eager, adaptive brick-layer on the job site that keeps
-improving coverage over time.
+When a Doc Detective test fails, that is definitive proof that your docs have
+drifted. Promptless picks up that failure, figures out what the documentation
+needs to say to match the behavior Doc Detective actually observed, and makes
+the fix. Promptless also uses your product directly to write new Doc Detective
+tests, so your test coverage grows as your docs grow.
+
 
 ## Why should you test your docs?
 
-Good documentation is expensive. Not because writing is hard (though it is), but because the thinking behind it is hard. You have to understand the problems your users face, figure out how to structure information so that someone with a specific problem can find the right page, the right section, and get unstuck. You have to think about information architecture, about progressive disclosure, about the right level of detail for each audience. That work takes real effort and real expertise.
+Good documentation is hard. Not because writing is hard (though it is), but
+because the thinking behind it is hard. You have to understand the problems your
+users face, figure out how to structure information so that someone with a
+specific problem can find the right page, the right section, and get unstuck.
+You have to think about information architecture, about progressive disclosure,
+about the right level of detail for each audience. That work takes a bunch of
+effort that is repaid in tiny increments as your customers, leads, and prospects
+find the answers they need.
 
-And once you have done all that thinking and planning, you end up with documentation that is tightly coupled to your product. The docs describe specific screens, specific API responses, specific command outputs. That coupling is the whole point. Your docs are valuable precisely because they reflect what the product actually does.
+The tricky bit is once you have done all that thinking and planning, you end up
+with documentation that is tightly coupled to your product. The docs describe
+specific screens, specific API responses, specific command outputs. That
+coupling is the whole point. Your docs are valuable precisely because they
+reflect what the product actually does.
 
-But coupling has a cost. Anyone on the team can change the product. A developer renames an API field. A designer moves a button. A backend change alters a response format. The product changes, the docs don't, and now your carefully structured documentation is lying to your users. All that time you spent thinking about how to guide people through their problems? Wasted, because step 3 no longer matches what they see on screen.
+That coupling has a cost. Anyone on the team can change the product. A developer
+fixes deficiencies in the API to make it more useful. A designer moves a button.
+A backend change alters a response format. The product changes, the docs don't,
+and now your carefully structured documentation is lying to your users. All that
+time you spent thinking about how to guide people through their problems?
+Wasted, because step 3 no longer matches what they see on screen.
 
-This is fundamentally a coordination problem between engineering and technical writing. Engineers are experimenting with ways to ship changes faster and faster. Technical writers are responsible for communicating to customers exactly how to solve their problems with the product. Every time a writer documents a procedure, they are making assumptions about how the product works. Without tooling, the only way to check those assumptions is to manually verify each procedure — and that does not scale.
+People typicall allude to a coordination problem between engineering and
+technical writing.
 
-Doc Detective gives technical writers the ability to automatically verify every assumption they made when they wrote the docs. When something in the product changes and breaks the contract with the documentation, the doc tests fail. Writers do not have to spend their time manually checking up on engineering. They can focus on the hard, valuable work — understanding users and structuring information — and let the tests tell them when something needs attention.
+Engineers are experimenting with ways to ship changes faster
+and faster. Technical writers are responsible for communicating to customers
+exactly how to solve their problems with the product. Every time a writer
+documents a procedure, they are making assumptions about how the product works.
+Without tooling, the only way to check those assumptions is to manually verify
+each procedure — and that does not scale.
 
-It also shifts responsibility. Put doc tests in CI, and when an engineer's PR breaks the docs, they get that feedback directly. The engineer who made the change is the one who sees the failure. The technical writer does not have to be the one communicating "hey, you broke the docs" — the test suite does that for them. It is an unbiased signal that scales across every engineer on the team without requiring the writer to be in the loop on every change.
+Doc Detective gives technical writers the ability to automatically verify every
+assumption they made when they wrote the docs. When something in the product
+changes and breaks the contract with the documentation, the doc tests fail.
+Writers do not have to spend their time manually checking up on engineering.
+They can focus on the hard, valuable work — understanding users and structuring
+information — and let the tests tell them when something needs attention.
+
+It also shifts responsibility. Put doc tests in CI, and when an engineer's PR
+breaks the docs, they get that feedback directly. The engineer who made the
+change is the one who sees the failure. The technical writer does not have to be
+the one communicating "hey, you broke the docs" — the test suite does that for
+them. It scales across every engineer on the team. The writer
+does not have to be in the loop on every change.
 
 ## What is Doc Detective?
 
