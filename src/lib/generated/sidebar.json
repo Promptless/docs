@@ -68,7 +68,7 @@
         "label": "Context Sources",
         "items": [
           {
-            "label": "Context Sources",
+            "label": "Overview",
             "slug": "docs/configuring-promptless/context-sources"
           },
           {
@@ -104,7 +104,7 @@
     "label": "How to use Promptless",
     "items": [
       {
-        "label": "How to use Promptless",
+        "label": "Overview",
         "slug": "docs/how-to-use-promptless"
       },
       {
@@ -129,7 +129,7 @@
     "label": "Integrations",
     "items": [
       {
-        "label": "Integrations",
+        "label": "Overview",
         "slug": "docs/integrations"
       },
       {
@@ -174,7 +174,7 @@
     "label": "Account Management",
     "items": [
       {
-        "label": "Account Management",
+        "label": "Overview",
         "slug": "docs/account-management/account-management"
       }
     ]
@@ -183,7 +183,7 @@
     "label": "Security and Privacy",
     "items": [
       {
-        "label": "Security and Privacy",
+        "label": "Overview",
         "slug": "docs/security-and-privacy"
       },
       {
@@ -216,7 +216,7 @@
     "label": "Frequently Asked Questions",
     "items": [
       {
-        "label": "Frequently Asked Questions",
+        "label": "Overview",
         "slug": "docs/frequently-asked-questions/frequently-asked-questions"
       }
     ]
