@@ -50,26 +50,18 @@ suggestion!
 
 ## How tests are structured
 
-A specification contains tests, each test is a sequence of steps, and each step is an action:
+Here's an example test from our own Slack Integration docs page:
 
-```json
-{
-  "tests": [
-    {
-      "steps": [
-        { "goTo": "https://myapp.example.com/login" },
-        { "find": { "selector": "#email", "click": true } },
-        { "type": "user@example.com" },
-        { "find": { "selector": "#password", "click": true } },
-        { "type": "correct-horse-battery-staple" },
-        { "click": "button[type=submit]" },
-        { "find": "Welcome back" },
-        { "screenshot": "dashboard.png" }
-      ]
-    }
-  ]
-}
+```mdx
+{/* test {"testId": "slack-integration-content"} */}
+## Installation
+
+{/* step {"checkLink": {"url": "https://app.gopromptless.ai/integrations"}} */}
+1. Click "Connect Slack" from the [integrations page](https://app.gopromptless.ai/integrations).
 ```
+
+See the full source file in our docs repo:
+[https://github.com/Promptless/docs/blob/main/src/content/docs/docs/integrations/slack-integration.mdx](https://github.com/Promptless/docs/blob/main/src/content/docs/docs/integrations/slack-integration.mdx).
 
 You can also embed tests directly in Markdown as comments, or use automatic
 markup detection. Doc Detective can parse the natural language of your docs. For
@@ -86,10 +78,9 @@ you actively monitor, not something that silently degrades.
 
 ## My Final thoughts
 
-I hate it when my investment in good documentation is squandered when the docs fall
-out of sync with the product. Doc Detective protects that investment by testing
-the coupling continuously. It won't write your docs for you, but it will tell
-you, with certainty, when they stop being true.
+Doc Detective protects your investment in great documentation by testing the
+coupling continuously. It won't write your docs for you, but it will tell you,
+with certainty, when they stop being true.
 
 ## Appendix A: Use Cases
 
