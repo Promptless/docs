@@ -23,122 +23,30 @@ would work perfectly together.
 Promptless can create/update Doc Detective tests automatically and fix
 documentation or escalate software issues whenever Doc Detective tests fail!
 
-## If you have Promptless, why do you need Doc Detective?
-
-Promptless fixes docs drift. When a pull request renames an API field or changes
-a workflow, Promptless identifies what needs to be updated in the docs before the
-code ships. It monitors pull requests, Slack, Discord, and support channels so
-your writers do not have to manually track every engineering change. The most
-valuable thing Promptless does is catch drift before it reaches your customers.
-
-But products are complex and teams move fast. Not every change that affects the
-docs will be caught before it ships. Doc Detective is your safety net. It takes
-the procedures your docs describe ("click this button," "send this request,"
-"run this command") and executes them against the real product. If the result
-does not match what the docs say, the test fails. No interpretation, no
-inference. It is a test suite for your documentation, closer to Cucumber than to
-an AI agent, and cheap enough to run on every PR or on a schedule.
-
-When a Doc Detective test fails, that is definitive proof that your docs have
-drifted. Promptless picks up that failure, figures out what the documentation
-needs to say to match the behavior Doc Detective actually observed, and makes
-the fix. Promptless also uses your product directly to write new Doc Detective
-tests, so your test coverage grows as your docs grow.
-
-
-## Why should you test your docs?
-
-Good documentation is hard. Not because writing is hard (though it is), but
-because the thinking behind it is hard. You have to understand the problems your
-users face, figure out how to structure information so that someone with a
-specific problem can find the right page, the right section, and get unstuck.
-You have to think about information architecture, about progressive disclosure,
-about the right level of detail for each audience. That work takes a bunch of
-effort that is repaid in tiny increments as your customers, leads, and prospects
-find the answers they need.
-
-The tricky bit is once you have done all that thinking and planning, you end up
-with documentation that is tightly coupled to your product. The docs describe
-specific screens, specific API responses, specific command outputs. That
-coupling is the whole point. Your docs are valuable precisely because they
-reflect what the product actually does.
-
-That coupling has a cost. Anyone on the team can change the product. A developer
-fixes deficiencies in the API to make it more useful. A designer moves a button.
-A backend change alters a response format. The product changes, the docs don't,
-and now your carefully structured documentation is lying to your users. All that
-time you spent thinking about how to guide people through their problems?
-Wasted, because step 3 no longer matches what they see on screen.
-
-People typicall allude to a coordination problem between engineering and
-technical writing.
-
-Engineers are experimenting with ways to ship changes faster
-and faster. Technical writers are responsible for communicating to customers
-exactly how to solve their problems with the product. Every time a writer
-documents a procedure, they are making assumptions about how the product works.
-Without tooling, the only way to check those assumptions is to manually verify
-each procedure — and that does not scale.
-
-Doc Detective gives technical writers the ability to automatically verify every
-assumption they made when they wrote the docs. When something in the product
-changes and breaks the contract with the documentation, the doc tests fail.
-Writers do not have to spend their time manually checking up on engineering.
-They can focus on the hard, valuable work — understanding users and structuring
-information — and let the tests tell them when something needs attention.
-
-It also shifts responsibility. Put doc tests in CI, and when an engineer's PR
-breaks the docs, they get that feedback directly. The engineer who made the
-change is the one who sees the failure. The technical writer does not have to be
-the one communicating "hey, you broke the docs" — the test suite does that for
-them. It scales across every engineer on the team. The writer
-does not have to be in the loop on every change.
 
 ## What is Doc Detective?
 
-Doc Detective is a documentation testing framework. You write test specifications (in JSON, YAML, or inline in your Markdown files) that describe the procedures in your docs, and Doc Detective executes them against the real product. It opens a browser, navigates pages, clicks elements, fills in forms, takes screenshots, makes API calls, runs shell commands. If what happens doesn't match what your docs say should happen, the test fails.
+Doc Detective is a documentation testing framework. You write test
+specifications (in JSON, YAML, or inline in your Markdown files) that describe
+the procedures in your docs, and Doc Detective executes them against the real
+product. It opens a browser, navigates pages, clicks elements, fills in forms,
+takes screenshots, makes API calls, runs shell commands. If what happens doesn't
+match what your docs say should happen, the test fails.
 
-Think of it as end-to-end testing, but the source of truth is your documentation rather than a product spec.
+Think of it as end-to-end testing, but the source of truth is your documentation
+rather than a product spec.
 
-## Use case 1: Your product has a UI, and your docs walk users through it
+## Why should you test your docs?
 
-Your docs say: go to this page, click this button, fill in this field, see this result. Doc Detective does exactly that. It navigates to a URL with `goTo`, finds elements with `find` (by CSS selector, text content, ARIA label, test ID, whatever matches your situation), clicks them, types into input fields, and takes screenshots.
+We see Promptless and Doc Detective as two sides of the same coin. Promptless
+helps prevent and remediate docs drift, and Doc Detective _deterministically
+validates_ that any content, whether written by Promptless or a human, is
+faithful to the product that it documents.
 
-It handles the messiness of real web applications too. You can configure wait conditions that monitor network activity and DOM mutations, so the test only proceeds once the page has actually finished loading. Useful when your single-page app is still fetching data three seconds after navigation.
-
-The screenshot capability goes further than just capturing images. Doc Detective compares screenshots against reference images pixel by pixel. You set a variation threshold (say 5%), and if the current state of the UI has drifted beyond that, the test flags it. So when someone changes the product and the docs still show the old screenshots, you find out from your test suite, not from a confused user filing a support ticket.
-
-## Use case 2: Your product is API-driven
-
-API documentation is full of example requests and expected responses. These are promises to your users: "Send this, get that back." When someone changes the API and forgets the docs, those promises fail silently.
-
-Doc Detective's `httpRequest` action lets you define requests and validate responses: status codes, headers, body fields. If you maintain an OpenAPI specification, it can pull examples directly from the spec, validate request bodies against your schemas, and verify that responses match what the spec defines. That gives you a feedback loop between the spec, the docs, and the actual API.
-
-## Use case 3: Your docs include shell commands or code snippets
-
-Every tutorial that says "run this command and you should see this output" is making a testable claim. With `runShell` and `runCode`, Doc Detective executes those commands (Python, JavaScript, Bash) and checks the results: exit codes, stdout matching (literal or regex), stderr. When someone changes the CLI output format and doesn't update the tutorial, the test catches it.
-
-## Use case 4: Cross-browser and cross-platform verification
-
-Doc Detective supports Firefox, Chrome, and Safari. You define multiple contexts for a test (Chrome on macOS, Firefox on Linux) and the same specification runs across all of them. If your docs describe a flow that works in Chrome but fails in Firefox, you will know.
-
-## Use case 5: Authenticated flows
-
-Most useful documentation covers features behind a login. Doc Detective provides building blocks for handling auth: you can use `before` and `beforeAny` hooks to run login steps before your tests, and `saveCookie` / `loadCookie` actions to manage cookies.
-
-The challenge is that each Doc Detective test starts in a fresh browser instance. That means you will be logging in over and over again unless you find a way to persist authentication state between tests. How hard that is depends entirely on your auth provider. Some providers make it straightforward to save and reload session cookies. Others make it genuinely difficult.
-
-For example, if you use Clerk, their auth cookies have a 60-second lifetime and are refreshed by client-side JavaScript. This is how Clerk implements SSO sign-out — since they cannot push token revocation to your servers, they keep cookie lifetimes very short and rely on the browser to refresh them. That design is reasonable from Clerk's perspective, but it means you cannot simply save a cookie and reload it in a new browser instance. You will need to come up with a workaround, like re-authenticating at the start of each test or finding a way to inject a valid session outside of Clerk's normal flow.
-
-This is an area where you will need to invest some effort to match your specific auth setup. Doc Detective gives you the primitives, but the solution depends on your provider.
-
-## Use case 6: Visual regression for documentation screenshots
-
-You have dozens or hundreds of screenshots in your docs. A new release ships. Which screenshots are now wrong? Without tooling, someone has to check each one manually. With Doc Detective, every screenshot is retaken during the test run and compared against the reference. If the UI has changed beyond your threshold, the test flags it. You can even set it to auto-update reference images, so your docs stay current without manual intervention.
-
-## Use case 7: Recording procedures
-
-Doc Detective can record browser sessions as WebM video. Start a recording, run through a documented procedure, stop the recording. You get an up-to-date video artifact every time the tests run.
+Companies that are the most serious about guaranteeing the accuracy of their
+docs should use Promptless and Doc Detective together, and now Promptless users
+can get Doc Detective tests created automatically with every Promptless
+suggestion!
 
 ## How tests are structured
 
@@ -163,12 +71,109 @@ A specification contains tests, each test is a sequence of steps, and each step 
 }
 ```
 
-You can also embed tests directly in Markdown as comments, or use automatic markup detection. Doc Detective can parse instructions like "Go to [the dashboard](https://app.example.com/)" and generate the corresponding test action from the Markdown itself.
+You can also embed tests directly in Markdown as comments, or use automatic
+markup detection. Doc Detective can parse the natural language of your docs. For
+example if you write "Go to [the dashboard](https://app.example.com/)", Doc
+Detective will parse and perform the corresponding test action.
 
 ## Where does it fit in your workflow?
 
-Doc Detective runs from the command line. Put it in your CI/CD pipeline. Every time someone changes the docs or the product, the doc tests run. Failures show up alongside your code test failures. The coupling between docs and product becomes something you actively monitor, not something that silently degrades.
+Doc Detective runs from the command line. Put it in your CI/CD pipeline. Every
+time someone changes the docs or the product, the doc tests run. When you run
+Doc Detective in CI, doc test failures appear in the same pipeline results as
+your code test failures. The coupling between docs and product becomes something
+you actively monitor, not something that silently degrades.
 
-## Final thoughts
+## My Final thoughts
 
-The hard part of documentation is the thinking: understanding your users' problems and structuring information so they can find answers. That investment is wasted when the docs fall out of sync with the product. Doc Detective protects that investment by testing the coupling continuously. It won't write your docs for you, but it will tell you, with certainty, when they stop being true.
+I hate it when my investment in good documentation is squandered when the docs fall
+out of sync with the product. Doc Detective protects that investment by testing
+the coupling continuously. It won't write your docs for you, but it will tell
+you, with certainty, when they stop being true.
+
+## Appendix A: Use Cases
+
+I wanted you some concrete ideas of how to use Doc Detective becuase it can do
+quite a lot! So don't be overwhelmed by the list below.
+
+### Use case 1: Your product has a UI, and your docs walk users through it
+
+Your docs say: go to this page, click this button, fill in this field, see this
+result. Doc Detective does exactly that. It navigates to a URL with `goTo`,
+finds elements with `find` (by CSS selector, text content, ARIA label, test ID,
+whatever matches your situation), clicks them, types into input fields, and
+takes screenshots.
+
+It handles the messiness of real web applications too. You can configure wait
+conditions that monitor network activity and DOM mutations, so the test only
+proceeds once the page has actually finished loading. Useful when your
+single-page app is still fetching data three seconds after navigation.
+
+The screenshot capability goes further than just capturing images. Doc Detective
+compares screenshots against reference images pixel by pixel. You set a
+variation threshold (say 5%), and if the current state of the UI has drifted
+beyond that, the test flags it. So when someone changes the product and the docs
+still show the old screenshots, you find out from your test suite, not from a
+confused user filing a support ticket.
+
+### Use case 2: Your product is API-driven
+
+API documentation is full of example requests and expected responses. These are
+promises to your users: "Send this, get that back." When someone changes the API
+and forgets the docs, those promises fail silently.
+
+Doc Detective's `httpRequest` action lets you define requests and validate
+responses: status codes, headers, body fields. If you maintain an OpenAPI
+specification, it can pull examples directly from the spec, validate request
+bodies against your schemas, and verify that responses match what the spec
+defines. That gives you a feedback loop between the spec, the docs, and the
+actual API.
+
+## Use case 3: Your docs include shell commands or code snippets
+
+Every tutorial that says "run this command and you should see this output" is
+making a testable claim. With `runShell` and `runCode`, Doc Detective executes
+those commands (Python, JavaScript, Bash) and checks the results: exit codes,
+stdout matching (literal or regex), stderr. When someone changes the CLI output
+format and doesn't update the tutorial, the test catches it.
+
+### Use case 4: Cross-browser and cross-platform verification
+
+Doc Detective supports Firefox, Chrome, and Safari. You define multiple contexts
+for a test (Chrome on macOS, Firefox on Linux) and the same specification runs
+across all of them. If your docs describe a flow that works in Chrome but fails
+in Firefox, you will know.
+
+### Use case 5: Authenticated flows
+
+Most useful documentation covers features behind a login. Doc Detective provides
+building blocks for handling auth: you can use `before` and `beforeAny` hooks to
+run login steps before your tests, and `saveCookie` / `loadCookie` actions to
+manage cookies.
+
+The challenge is that each Doc Detective test starts in a fresh browser
+instance. That means you will be logging in over and over again unless you find
+a way to persist authentication state between tests. How hard that is depends
+entirely on your auth provider. Some providers make it straightforward to save
+and reload session cookies. Others make it genuinely difficult.
+
+For example, if you use Clerk, their auth cookies have a 60-second lifetime and
+are refreshed by client-side JavaScript. This is how Clerk implements SSO
+sign-out — since they cannot push token revocation to your servers, they keep
+cookie lifetimes very short and rely on the browser to refresh them. That design
+is reasonable from Clerk's perspective, but it means you cannot simply save a
+cookie and reload it in a new browser instance. You will need to come up with a
+workaround, like re-authenticating at the start of each test or finding a way to
+inject a valid session outside of Clerk's normal flow.
+
+This is an area where you will need to invest some effort to match your specific
+auth setup. Doc Detective gives you the primitives, but the solution depends on
+your provider.
+
+### Use case 6: Visual regression for documentation screenshots
+
+You have dozens or hundreds of screenshots in your docs. A new release ships. Which screenshots are now wrong? Without tooling, someone has to check each one manually. With Doc Detective, every screenshot is retaken during the test run and compared against the reference. If the UI has changed beyond your threshold, the test flags it. You can even set it to auto-update reference images, so your docs stay current without manual intervention.
+
+### Use case 7: Recording procedures
+
+Doc Detective can record browser sessions as WebM video. Start a recording, run through a documented procedure, stop the recording. You get an up-to-date video artifact every time the tests run.
