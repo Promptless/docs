@@ -102,7 +102,22 @@
     },
     {
       "source": "/docs/core-concepts/doc-c-m-ss",
-      "destination": "/docs/core-concepts/doc-locations",
+      "destination": "/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code",
+      "permanent": true
+    },
+    {
+      "source": "/docs/core-concepts/triggers",
+      "destination": "/docs/configuring-promptless/triggers",
+      "permanent": true
+    },
+    {
+      "source": "/docs/core-concepts/context-sources",
+      "destination": "/docs/configuring-promptless/context-sources",
+      "permanent": true
+    },
+    {
+      "source": "/docs/core-concepts/doc-locations",
+      "destination": "/docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code",
       "permanent": true
     },
     {
