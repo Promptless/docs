@@ -63,6 +63,11 @@
 
         if (!res.ok) throw new Error('Submission failed');
 
+        window.posthog?.capture('blog_demo_requested', {
+          location: 'blog',
+          $set: { email },
+        });
+
         window.location.assign('https://promptless.ai/meet');
       } catch {
         setStatus('Something went wrong. Please try again.', 'error');

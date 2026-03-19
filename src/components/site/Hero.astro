@@ -71,6 +71,12 @@ const {
         });
       }
 
+      const email = (form.querySelector('input[name="email"]') as HTMLInputElement)?.value?.trim();
+      (window as any).posthog?.capture('demo_requested', {
+        location: 'hero',
+        ...(email ? { $set: { email } } : {}),
+      });
+
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
