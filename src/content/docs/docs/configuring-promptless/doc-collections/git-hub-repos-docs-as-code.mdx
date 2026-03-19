@@ -84,6 +84,27 @@ Promptless can publish to multiple documentation repositories simultaneously, al
 For teams using multiple doc sites, create separate projects for each documentation location to maintain clear separation of content and workflows.
 </Tip>
 
+## Configuring PR Target Branch
+
+By default, Promptless creates documentation PRs that target your repository's default branch (typically `main` or `master`). You can override this at the doc collection level to target a different branch.
+
+This is useful for teams that maintain versioned documentation across multiple branches—for example, if you have separate branches for different product versions like `docs-v5`, `docs-v6`, and `docs-v7`.
+
+To configure a custom target branch:
+
+1. Navigate to your [doc collection settings](https://app.gopromptless.ai/projects)
+2. Select the doc collection you want to configure
+3. Set the **Target branch** field to specify which branch documentation PRs should target
+
+When Promptless creates a PR, it uses the following priority order to determine the target branch:
+
+1. **Doc collection target branch** (if configured)
+2. **Repository default branch** (fallback)
+
+<Tip>
+For versioned documentation, create separate doc collections for each version branch. This lets you route documentation updates to the correct version based on the trigger source.
+</Tip>
+
 ## Requesting Additional Platforms
 
 Need integration with a Git-hosted platform not currently supported? We're continuously expanding platform support based on user feedback. Contact [help@gopromptless.ai](mailto:help@gopromptless.ai). Also contact us if you're hoping to migrate to a new docs platform and we'll be happy to help you choose and set up.
