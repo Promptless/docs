@@ -9,6 +9,7 @@ import Frame from '@components/fern/Frame.astro';
 import Accordion from '@components/fern/Accordion.astro';
 import AccordionGroup from '@components/fern/AccordionGroup.astro';
 import Info from '@components/fern/Info.astro';
+import Tip from '@components/fern/Tip.astro';
 
 **Used for: Triggers, Context, and Publishing**
 
@@ -98,6 +99,10 @@ When connected to GitHub, the Promptless agent can interact with your pull reque
 <Info>
 Promptless has read access to repository contents but does not modify your code directly. Documentation changes are always proposed through pull requests in your documentation repository.
 </Info>
+
+<Tip>
+**For older installations:** Features like labeling and assigning reviewers require elevated GitHub App permissions. If you installed the Promptless GitHub App before these features were available, you may need to re-approve the app to enable them. Visit your GitHub organization settings, go to "Third-party Access" → "GitHub Apps" → "Promptless" → "Configure", and review the requested permissions. The Promptless agent will continue to work for documentation automation even without these elevated permissions.
+</Tip>
 
 ## Frequently Asked Questions
 
