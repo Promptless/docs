@@ -33,8 +33,8 @@ product. It opens a browser, navigates pages, clicks elements, fills in forms,
 takes screenshots, makes API calls, runs shell commands. If what happens doesn't
 match what your docs say should happen, the test fails.
 
-Think of it as end-to-end testing, but the source of truth is your documentation
-rather than a product spec.
+It's end-to-end testing, where the source of truth is your documentation
+rather than what the engineers integration.
 
 ## Why should you test your docs?
 
@@ -120,7 +120,7 @@ bodies against your schemas, and verify that responses match what the spec
 defines. That gives you a feedback loop between the spec, the docs, and the
 actual API.
 
-## Use case 3: Your docs include shell commands or code snippets
+### Use case 3: Your docs include shell commands or code snippets
 
 Every tutorial that says "run this command and you should see this output" is
 making a testable claim. With `runShell` and `runCode`, Doc Detective executes
@@ -163,8 +163,15 @@ your provider.
 
 ### Use case 6: Visual regression for documentation screenshots
 
-You have dozens or hundreds of screenshots in your docs. A new release ships. Which screenshots are now wrong? Without tooling, someone has to check each one manually. With Doc Detective, every screenshot is retaken during the test run and compared against the reference. If the UI has changed beyond your threshold, the test flags it. You can even set it to auto-update reference images, so your docs stay current without manual intervention.
+You have dozens or hundreds of screenshots in your docs. A new release ships.
+Which screenshots are now wrong? Without tooling, someone has to check each one
+manually. With Doc Detective, every screenshot is retaken during the test run
+and compared against the reference. If the UI has changed beyond your threshold,
+the test flags it. You can even set it to auto-update reference images, so your
+docs stay current without manual intervention.
 
 ### Use case 7: Recording procedures
 
-Doc Detective can record browser sessions as WebM video. Start a recording, run through a documented procedure, stop the recording. You get an up-to-date video artifact every time the tests run.
+Doc Detective can record browser sessions as WebM video. Start a recording, run
+through a documented procedure, stop the recording. You get an up-to-date video
+artifact every time the tests run.
