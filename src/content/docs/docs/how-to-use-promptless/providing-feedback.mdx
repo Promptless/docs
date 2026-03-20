@@ -7,6 +7,7 @@ sidebar:
   order: 26
 ---
 import Frame from '@components/fern/Frame.astro';
+import Info from '@components/fern/Info.astro';
 
 Provide feedback on suggestions through request changes, inline comments, overall comments, or close feedback. Each method lets you request immediate changes or save preferences for future suggestions.
 
@@ -102,6 +103,10 @@ You can also provide additional context in the feedback field. Check "Remember t
 ## 5. GitHub PR Comments
 
 Leave comments directly in the GitHub PR interface to provide feedback. Tag @Promptless in any line comment to request changes.
+
+<Info>
+Tagging @Promptless in PR comments only works on documentation PRs that Promptless has opened. It does not work on source code PRs in your application repositories.
+</Info>
 
 Promptless reads all previous comments in the thread to understand context, so you can give brief instructions like "same change here" or "apply this to the other sections too."
 
