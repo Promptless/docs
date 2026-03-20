@@ -278,6 +278,44 @@
   }
 }
 
+/* Shared CTA reset */
+.pl-jobs-cta {
+  margin: 2rem 0;
+}
+
+.pl-jobs-cta-context {
+  margin: 0 0 0.35rem;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.pl-jobs-cta a {
+  text-decoration: none;
+}
+
+.pl-jobs-cta a:hover {
+  text-decoration: none;
+}
+
+/* V1: Blue left border accent */
+.pl-jobs-cta-v1 {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #506aea;
+  background: #f8f9ff;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.pl-jobs-cta-v1 a {
+  color: #506aea;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.pl-jobs-cta-v1 a:hover {
+  color: #3b50c9;
+}
+
+
 .pl-site-steps {
   margin-top: 3.5rem;
 }
