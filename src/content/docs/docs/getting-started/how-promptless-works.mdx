@@ -1,0 +1,166 @@
+---
+title: How Promptless Works
+description: >-
+  Promptless is one product with three depths of engagement. The more you invest
+  in teaching it, the more it can do for you.
+slug: docs/getting-started/how-promptless-works
+sidebar:
+  hidden: false
+  order: 2
+---
+
+Promptless isn't a single interaction pattern—it's a relationship that deepens as you invest in it. Think of it like working with a new team member who's already connected to all your tools. They can help immediately, but the more you teach them about how your team works, the more autonomous they become.
+
+There are three depths to this relationship:
+
+## 1. The Watchdog
+
+When you first connect Promptless to your GitHub, Slack, and support tools, it immediately starts watching for changes that might affect your docs.
+
+**What happens:** Promptless monitors your PRs, Slack conversations, and support tickets. When it spots something that contradicts your existing documentation—or reveals a gap—it creates a suggestion and notifies your team.
+
+**What this looks like:**
+- An engineer opens a PR that changes how authentication works. Promptless comments on the PR: "This change affects the authentication guide. Here's a suggested update."
+- A support conversation reveals that customers don't understand a feature. Promptless creates a suggestion to expand the relevant docs page.
+- A Slack thread between engineers clarifies a technical detail that's not documented. Promptless drafts an addition.
+
+```
+[GRAPHIC: The Watchdog mode]
+
+Show Promptless as a central node connected to:
+- GitHub (PRs flowing in)
+- Slack (messages flowing in)
+- Support tools (tickets flowing in)
+- Your docs repo (suggestions flowing out)
+
+Each connection has small indicators showing activity:
+- "PR #423 merged → Docs suggestion created"
+- "Slack thread detected → Gap identified"
+- "Support pattern detected → New section drafted"
+
+At the bottom: "Your team reviews and approves. Nothing publishes without human sign-off."
+```
+
+**Who this is for:** Everyone on your team benefits from the watchdog. Engineers get PR comments. Product managers see docs suggestions linked to their features. Tech writers have a queue of pre-researched, pre-drafted updates waiting for review.
+
+**The value:** You stop missing things. The gap between "what shipped" and "what's documented" shrinks because someone (something) is always watching.
+
+## 2. The Coworker
+
+Beyond automatic monitoring, anyone on your team can task Promptless directly. Just @mention it in Slack or on a GitHub PR and tell it what you need.
+
+**What happens:** Promptless reads your message, gathers the relevant context, and does the work. No special syntax. No learning a new tool. Just ask like you'd ask a coworker.
+
+**Example requests:**
+- `@Promptless document this conversation for our API reference`
+- `@Promptless this PR changes the retry behavior, update the error handling guide`
+- `@Promptless look at this support thread and add a troubleshooting section`
+- `@Promptless we're deprecating this feature, update all the pages that reference it`
+
+```
+[GRAPHIC: The Coworker mode]
+
+Show a Slack interface with a conversation:
+
+Engineer: "Hey @Promptless, this PR changes how webhooks are validated. Can you update the webhook docs?"
+
+Promptless: "Looking at PR #892 now. I see you've changed the signature verification from HMAC-SHA256 to HMAC-SHA512 and added a timestamp check.
+
+I've created a suggestion that updates:
+- The webhook security section (new algorithm)
+- The verification code examples (all 4 languages)
+- A new troubleshooting section for timestamp drift
+
+→ View suggestion"
+
+Engineer reacts with a thumbs up.
+```
+
+**Who this is for:** Anyone who notices something that should be documented. Engineers can flag changes without switching tools. Product managers can request docs for new features. Support can escalate patterns they're seeing. The barrier is as low as sending a Slack message.
+
+**The value:** Documentation becomes ambient. Instead of "file a ticket with the docs team," it's "just tell Promptless." The gruntwork is distributed across everyone who notices things, but the actual work is handled automatically.
+
+## 3. The Workshop
+
+This is where tech writers become powerful. The workshop mode is for focused sessions where you're teaching Promptless to work the way your team works.
+
+**What happens:** You open the Promptless dashboard and start iterating. Describe a bigger project. Upload additional context. Add instructions that persist across all future suggestions. Define skills that Promptless can use—like running your linter, following your style guide, or generating screenshots.
+
+**Workshop activities:**
+- **Style training:** Upload your style guide and have Promptless internalize it. Every future suggestion follows your conventions.
+- **Skill building:** Define reusable workflows. "When documenting API changes, always include a code example in Python, JavaScript, and Go."
+- **Large-scale projects:** "Translate all our getting-started guides into tutorial format" or "Reorganize the API reference around use cases instead of endpoints."
+- **Tool integration:** Connect Vale for linting. Set up Doc Detective for integration tests. Add screenshot automation so Promptless keeps your UI images current.
+
+```
+[GRAPHIC: The Workshop mode]
+
+Show a split-screen dashboard interface:
+
+LEFT PANEL: "Conversation with Promptless"
+- Tech writer: "I want to restructure our authentication docs. Right now it's organized by method (OAuth, API keys, SSO). I want it organized by use case (backend service, mobile app, browser extension)."
+- Promptless: "I see 12 pages in the authentication section. Here's a proposed new structure..."
+- Tech writer: "Good start, but we need a migration guide for existing users. Also, always mention the security implications of each approach."
+- Promptless: "Updated. I've added a migration section and security callouts to each page. Creating suggestion now..."
+
+RIGHT PANEL: "Your persistent customizations"
+- Style guide: Active ✓
+- Voice model: Trained on 847 pages ✓
+- Custom skills:
+  - Generate code examples (Python, JS, Go)
+  - Run Vale linter
+  - Screenshot automation
+- Instructions: 23 active rules
+```
+
+**Who this is for:** Your technical writing team. This is where expertise compounds. Every improvement you make—every style rule, every skill, every instruction—becomes part of how Promptless works for your organization going forward.
+
+**The value:** Your tech writers stop doing repetitive work and start designing systems. They're not writing the same boilerplate for every API endpoint—they're defining patterns that Promptless executes at scale. One hour of workshop time can save dozens of hours of manual work.
+
+## One Product, Three Depths
+
+These aren't three separate products. They're three depths of engagement with the same system.
+
+The watchdog runs continuously. Anyone can task the coworker at any time. Workshop improvements persist and make both other modes smarter. A style rule you add in the workshop automatically applies to every watchdog suggestion and every coworker request.
+
+```
+[GRAPHIC: The three depths as layers]
+
+Show three concentric circles:
+
+OUTER RING: "Watchdog"
+- Runs automatically
+- Catches drift
+- Everyone benefits
+
+MIDDLE RING: "Coworker"
+- On-demand help
+- Anyone can use
+- Just @mention
+
+INNER RING: "Workshop"
+- Deep customization
+- Tech writer expertise
+- Improvements compound
+
+Arrows showing how improvements flow outward:
+"Add a style rule in the workshop → It applies to every coworker request → It shapes every watchdog suggestion"
+```
+
+Most teams start with the watchdog. They connect their tools, and within days they're getting useful suggestions. Some never go deeper than that, and that's fine—the floor is already raised.
+
+But the teams that invest in the workshop? Their docs start to look different. Not just accurate—*good*. Strategic. The kind of documentation that drives business, not just deflects support tickets.
+
+## Next Steps
+
+<div class="pl-site-cards">
+  <a href="/docs/getting-started/build-vs-buy" class="pl-site-card">
+    <strong>Build vs. Buy</strong>
+    <p>Understand what it would take to build this yourself versus using Promptless.</p>
+  </a>
+
+  <a href="/docs/getting-started/setup-quickstart" class="pl-site-card">
+    <strong>Get Started</strong>
+    <p>Connect your tools and see your first documentation suggestion in 15 minutes.</p>
+  </a>
+</div>

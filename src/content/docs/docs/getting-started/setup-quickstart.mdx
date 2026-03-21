@@ -1,45 +1,76 @@
 ---
-title: Setup & Quickstart
+title: Get Started
 slug: docs/getting-started/setup-quickstart
 sidebar:
   hidden: false
-  order: 3
+  order: 4
 ---
 import HowItWorks from '@components/site/HowItWorks.astro';
 import Success from '@components/fern/Success.astro';
 import Tip from '@components/fern/Tip.astro';
+import Info from '@components/fern/Info.astro';
 
-{/* test {"testId": "setup-quickstart-content"} */}
-{/* step {"goTo": "https://promptless.ai/docs/getting-started/setup-quickstart"} */}
-{/* step {"find": "Setup & Quickstart"} */}
+In 15 minutes, you'll have Promptless watching your repositories and communication channels for documentation opportunities. Within a day, you'll have your first suggestions to review.
 
-Promptless automatically updates your docs, saving your team time and improving your customer experience.
+## What You'll Set Up
 
-{/* step {"find": "Before You Start"} */}
+The setup wizard connects three types of systems:
+
+**Where Promptless watches for changes (triggers)**
+- GitHub PRs and commits that might affect docs
+- Slack conversations that reveal documentation gaps
+- Support tickets that surface common questions
+
+**Where your documentation lives**
+- Your docs repository (any git-based platform)
+- Promptless will learn your structure, style, and conventions
+
+**Where Promptless gathers additional context**
+- Project management tools (Linear, Jira)
+- Internal wikis (Confluence)
+- Anything that helps Promptless understand *why* changes are happening
+
+```
+[GRAPHIC: Setup overview]
+
+Simple flow diagram:
+
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  TRIGGERS   │     │   CONTEXT   │     │    DOCS     │
+│             │     │             │     │             │
+│  GitHub     │     │  Linear     │     │  Your repo  │
+│  Slack      │ ──► │  Jira       │ ──► │  on GitHub  │
+│  Support    │     │  Confluence │     │  or GitLab  │
+└─────────────┘     └─────────────┘     └─────────────┘
+      │                   │                    │
+      └───────────────────┴────────────────────┘
+                          │
+                          ▼
+              ┌─────────────────────┐
+              │  Suggestions for    │
+              │  your team to       │
+              │  review             │
+              └─────────────────────┘
+```
+
 ## Before You Start
 
-Sign up for a free account at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
+**Create your account** at [accounts.gopromptless.ai](https://accounts.gopromptless.ai)
 
-### What permissions are needed?
+**Check your access levels.** Connecting integrations may require admin permissions:
 
-Connecting integrations may require admin-level access depending on your organization's settings:
-
-- **Slack**: Workspace admin permissions to install the Promptless app
-- **GitHub**: Organization admin or sufficient repository access to install the GitHub App
-- **Jira/Confluence**: Atlassian admin permissions to authorize the OAuth connection
-- **Linear**: Workspace admin permissions to connect the integration
-
-Don't have the required permissions? No problem—you can invite teammates during setup.
+- **Slack**: Workspace admin to install the Promptless app
+- **GitHub**: Organization admin or sufficient repository access
+- **Jira/Confluence**: Atlassian admin permissions
+- **Linear**: Workspace admin permissions
 
 <Tip>
-If you don't have admin access to connect a particular integration, you can invite someone from your IT or Engineering team directly from the onboarding wizard. The invited person receives an email that brings them to the same onboarding page you're on, and they can pick up exactly where you left off.
+Don't have all the permissions yourself? No problem. The setup wizard lets you invite teammates to help. They'll receive an email and can pick up exactly where you left off. One person can connect Slack, another can connect GitHub, and so on.
 </Tip>
 
-{/* step {"find": "Guided Setup Wizard"} */}
-## Guided Setup Wizard
+## The Setup Wizard
 
-{/* step {"find": "Connect Slack"} */}
-When you first sign in, a 6-step wizard guides you through setup:
+When you first sign in, a guided wizard walks you through setup:
 
 <HowItWorks
   id="guided-setup-wizard-steps"
@@ -49,64 +80,99 @@ When you first sign in, a 6-step wizard guides you through setup:
     {
       id: 'connect-slack',
       label: 'Connect Slack',
-      description: 'Set up Slack for notifications and to trigger documentation updates via @mentions.',
+      description: 'Enable @mentions and automatic monitoring of channels you choose.',
     },
     {
       id: 'connect-docs',
-      label: 'Connect docs',
-      description: 'Connect your documentation repository (GitHub or other Git providers).',
+      label: 'Connect your docs',
+      description: 'Point Promptless at your documentation repository.',
     },
     {
       id: 'configure-triggers',
       label: 'Configure triggers',
-      description: 'Choose which events trigger documentation updates (GitHub PRs, Slack messages, etc.).',
+      description: 'Choose which events should prompt Promptless to look for docs updates.',
     },
     {
       id: 'additional-context',
-      label: 'Additional context',
-      description: 'Optionally connect Linear, Jira, or Confluence for better suggestions.',
+      label: 'Add context sources',
+      description: 'Connect Linear, Jira, or Confluence for richer suggestions.',
     },
     {
       id: 'agent-preferences',
-      label: 'Agent preferences',
+      label: 'Set preferences',
       description: 'Configure how Promptless behaves when creating suggestions.',
     },
     {
       id: 'start-trial',
-      label: 'Start trial',
-      description: 'Begin your 30-day trial.',
+      label: 'Start your trial',
+      description: 'Begin your 30-day trial with full access.',
     },
   ]}
 />
 
-Your progress saves automatically—if you leave and come back later, you'll pick up where you left off. Setup doesn't need to be completed by a single person: any teammate you invite can continue from the current step, making it easy to hand off to someone with the right permissions for a specific integration.
+Your progress saves automatically. If you need to step away, you'll pick up where you left off.
 
-{/* step {"find": "What Gets Configured"} */}
-## What Gets Configured
+## What Unlocks at Each Step
 
-During setup, you'll connect:
+As you connect systems, Promptless can do more:
 
-**Triggers** - Events that prompt Promptless to generate documentation suggestions
-- **GitHub/Bitbucket**: Auto-trigger from pull requests
-- **Slack**: Manual triggers via @mentions or message actions
-  
-**Documentation Platform** - Where your docs live
-- **GitHub repos**: Supports docs-as-code platforms like ReadMe, Mintlify, Fern, Docusaurus, and more 
+**After connecting Slack:**
+- Anyone can @mention Promptless to request documentation work
+- Promptless can notify your team about new suggestions in a channel you choose
+- You can enable passive monitoring of specific channels
 
-**Enhanced Context (optional)** - Connect **Linear**, **Jira**, **Confluence**, or **Slack** to provide Promptless with additional context for better suggestions.
+**After connecting your docs:**
+- Promptless learns your documentation structure and patterns
+- It can match the voice and style of your existing content
+- Suggestions are formatted to fit your conventions
 
-## What's Next?
+**After connecting GitHub as a trigger:**
+- Every PR is analyzed for documentation impact
+- Promptless comments directly on PRs when docs updates are needed
+- Engineers see documentation feedback in their normal workflow
 
-After creating a project, Promptless will start ingesting and indexing your documentation. This process helps Promptless learn your documentation structure and content, and remember it for future suggestions. This can take 5-30 minutes, depending on the size of your docs.
+**After connecting context sources:**
+- Suggestions include business context from tickets and issues
+- Promptless understands *why* changes are being made, not just *what* changed
+- Links back to original sources help reviewers validate suggestions
 
-Once setup is complete, Promptless will:
-- Listen for trigger events from your configured sources
-- Analyze changes and gather relevant context
-- Generate documentation suggestions for your review
+## After Setup
+
+Once connected, Promptless immediately starts:
+
+1. **Indexing your documentation** - Learning your structure, voice, and patterns (takes 5-30 minutes depending on size)
+2. **Monitoring connected triggers** - Watching for events that might need docs attention
+3. **Building context** - Understanding your product through the sources you've connected
+
+Your first suggestions typically appear within 24 hours of setup—often sooner if there's active development.
 
 <Success>
-You're all set! Promptless is now ready to help automate your documentation updates.
+That's it. You now have a system that watches for documentation opportunities across your entire workflow, suggests updates, and keeps your docs from drifting behind your product.
 </Success>
 
-Need help with integrations? Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) - we add new integrations every week.
-{/* test end */}
+## What's Next
+
+Your team can start using Promptless immediately in [coworker mode](/docs/getting-started/how-promptless-works#2-the-coworker)—@mention it in Slack or on PRs.
+
+When you're ready to go deeper, explore [workshop mode](/docs/getting-started/how-promptless-works#3-the-workshop) to customize how Promptless works for your specific docs.
+
+<div class="pl-site-cards">
+  <a href="/docs/how-to-use-promptless/working-with-slack" class="pl-site-card">
+    <strong>Working with Slack</strong>
+    <p>Learn how to task Promptless from Slack and configure which channels it monitors.</p>
+  </a>
+
+  <a href="/docs/how-to-use-promptless/using-the-web-interface" class="pl-site-card">
+    <strong>Using the Dashboard</strong>
+    <p>Review suggestions, provide feedback, and manage your documentation projects.</p>
+  </a>
+
+  <a href="/docs/configuring-promptless/triggers" class="pl-site-card">
+    <strong>Configure Triggers</strong>
+    <p>Fine-tune which events prompt Promptless to look for documentation updates.</p>
+  </a>
+</div>
+
+<Info>
+Need help getting set up? Email us at [help@gopromptless.ai](mailto:help@gopromptless.ai) or [book a call](https://cal.com/team/promptless/30m-all) with our team. We're happy to walk through setup with you.
+</Info>

@@ -1,0 +1,210 @@
+---
+title: Build vs. Buy
+description: >-
+  Tech writers face a choice when integrating AI into their workflow. Here's
+  what it actually takes to build it yourself versus using Promptless.
+slug: docs/getting-started/build-vs-buy
+sidebar:
+  hidden: false
+  order: 3
+---
+
+AI can transform documentation workflows. That's not in question. The question is: should you build your own system or use Promptless?
+
+This isn't a trick question with an obvious answer. Building your own system is a legitimate choice—some teams do it successfully. But it's worth understanding what you're signing up for either way.
+
+## What Building Yourself Looks Like
+
+To build a system that does what Promptless does, you need:
+
+**1. Integration infrastructure**
+
+Connect to every system where docs-relevant information lives:
+- GitHub (PRs, commits, comments, issues)
+- Slack (messages, threads, reactions)
+- Your docs repo (content, structure, history)
+- Project management (Jira, Linear, Asana)
+- Support tools (Zendesk, Intercom, Freshdesk)
+- Internal wikis (Confluence, Notion)
+
+Each integration requires OAuth setup, webhook handlers, rate limit management, and ongoing maintenance as APIs change.
+
+**2. Event processing**
+
+Build the logic to:
+- Filter noise from signal (not every PR needs docs)
+- Understand what changed and why it matters
+- Connect related events across systems
+- Maintain context over time
+
+**3. AI orchestration**
+
+Set up the AI components:
+- Prompt engineering for different tasks
+- Context window management
+- Model selection and fallbacks
+- Output validation and error handling
+- Cost monitoring and optimization
+
+**4. Content generation**
+
+Build the documentation-specific logic:
+- Understand your docs structure
+- Match your voice and style
+- Generate accurate technical content
+- Handle code examples, screenshots, diagrams
+- Respect your formatting conventions
+
+**5. Review workflow**
+
+Create the human-in-the-loop system:
+- Present suggestions for review
+- Handle approvals, rejections, and edits
+- Learn from feedback
+- Track what's been addressed
+
+**6. Operations**
+
+Keep it all running:
+- Monitoring and alerting
+- Security and compliance
+- Scaling as usage grows
+- Debugging when things break
+
+```
+[GRAPHIC: The build-it-yourself stack]
+
+Show a vertical stack of components, each with estimated setup time:
+
+┌─────────────────────────────────────┐
+│ Review Workflow UI                  │ 2-4 weeks
+├─────────────────────────────────────┤
+│ AI Orchestration Layer              │ 4-8 weeks
+├─────────────────────────────────────┤
+│ Content Generation Logic            │ 6-12 weeks
+├─────────────────────────────────────┤
+│ Event Processing Pipeline           │ 4-6 weeks
+├─────────────────────────────────────┤
+│ Integration Connectors              │ 2-3 weeks per integration
+├─────────────────────────────────────┤
+│ Infrastructure & Operations         │ Ongoing
+└─────────────────────────────────────┘
+
+Side note: "Time estimates assume a team familiar with each component.
+Add 2-4x for learning curves."
+```
+
+### The Hidden Costs
+
+Beyond the initial build, there's ongoing work:
+
+- **API changes:** GitHub's webhooks change. Slack's event API evolves. Every integration requires maintenance.
+- **Model updates:** When Claude or GPT releases a new version, prompts often need adjustment.
+- **Edge cases:** Real-world usage surfaces scenarios you didn't anticipate.
+- **Feature gaps:** Users will want capabilities you haven't built yet.
+
+And the biggest hidden cost: **your tech writers become dependent on engineering for their core workflow.** Every improvement, every bug fix, every new integration requires engineering time.
+
+## What Using Promptless Looks Like
+
+When you use Promptless, you skip all of that infrastructure work.
+
+**Day one:**
+- Connect GitHub, Slack, and your docs repo
+- Point Promptless at any project management or support tools you use
+- Start receiving suggestions within hours
+
+**Week one:**
+- Your team gets comfortable with the review workflow
+- Anyone can @mention Promptless in Slack to request updates
+- You see what the baseline system catches automatically
+
+**Month one:**
+- Tech writers start customizing: style guides, voice training, custom instructions
+- You add skills for your specific needs (code example patterns, screenshot automation)
+- The system gets noticeably smarter about your docs
+
+```
+[GRAPHIC: Build vs. Buy comparison timeline]
+
+Two parallel timelines:
+
+BUILD IT YOURSELF:
+Month 1: ░░░░░░░░ Infrastructure setup
+Month 2: ░░░░░░░░ Core integrations
+Month 3: ░░░░░░░░ AI layer development
+Month 4: ░░░░░░░░ Content generation logic
+Month 5: ░░░░░░░░ Testing and debugging
+Month 6: ░░░░░░░░ First suggestions flowing
+Month 7+: ░░░░░░░░ Ongoing maintenance
+
+USE PROMPTLESS:
+Week 1:  █████████ Connected and receiving suggestions
+Week 2:  █████████ Team using daily
+Week 4:  █████████ Customization started
+Month 2: █████████ System trained to your style
+Month 3: █████████ Working on strategic docs improvements
+
+Arrow pointing from Month 6 of "Build" to Week 1 of "Promptless":
+"Skip straight to the value"
+```
+
+### What You're Really Buying
+
+Promptless isn't just the software. It's partnership with a team that's obsessively focused on making AI work well for documentation.
+
+**Continuous R&D:** We're constantly improving how AI handles technical writing. Voice matching gets better. Screenshot automation gets smarter. New integrations ship. You benefit from what we learn working with hundreds of documentation teams—without doing any of that research yourself.
+
+**Best practices at scale:** Should you use Vale? What's the best prompt structure for API docs? How do you handle versioned documentation? We've solved these problems across many teams. You get the accumulated knowledge.
+
+**Rising floor:** Every month, Promptless can do more than it could before. New capabilities ship. Existing features improve. Your tech writers focus on customization specific to your product while the platform rises underneath them.
+
+Think of it like Stripe for payments. You *could* build your own payment infrastructure. Some companies do. But most companies use Stripe because payment processing isn't their core competency—they'd rather Stripe's team obsess over chargebacks and fraud detection while they focus on their actual product.
+
+Promptless is that bet for documentation.
+
+## When Building Makes Sense
+
+Building your own system might be the right choice if:
+
+- **You have unusual requirements** that off-the-shelf solutions can't meet
+- **Documentation is core to your business model** (e.g., you're a documentation platform)
+- **You have engineering capacity** that's not better used elsewhere
+- **You want maximum control** over every aspect of the system
+- **You're doing something novel** that no existing tool supports
+
+## When Buying Makes Sense
+
+Promptless is likely the better choice if:
+
+- **You want results now,** not in six months
+- **Your tech writers shouldn't depend on engineering** for their core workflow
+- **You'd rather customize than build** from scratch
+- **You want the platform to improve** without your ongoing investment
+- **Documentation is important but not your core product**
+
+## The Real Question
+
+The build vs. buy question isn't really about capability. A sufficiently determined team can build anything.
+
+The real question is: **what do you want your team working on?**
+
+If your tech writers spend the next six months waiting for engineering to build a docs automation system, that's six months of maintenance treadmill. Six months of chasing changes manually. Six months of cost-center work.
+
+Or they could be using that time to improve your documentation. Actually improve it—not just keep it from falling behind, but make it genuinely good. Strategic. The kind of docs that drive business.
+
+That's the real cost of building: not the engineering time, but the opportunity cost for your documentation team.
+
+## Get Started
+
+<div class="pl-site-cards">
+  <a href="/docs/getting-started/setup-quickstart" class="pl-site-card">
+    <strong>Set Up Promptless</strong>
+    <p>Connect your tools and see your first documentation suggestion in 15 minutes.</p>
+  </a>
+
+  <a href="https://cal.com/team/promptless/30m-all" class="pl-site-card">
+    <strong>Talk to Us</strong>
+    <p>Not sure if Promptless is right for your team? Schedule a call and we'll help you figure it out.</p>
+  </a>
+</div>
