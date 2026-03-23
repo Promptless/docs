@@ -22,6 +22,14 @@
           link_url: linkUrl,
         });
       }
+
+      window.posthog?.capture('cta_clicked', {
+        action: action,
+        funnel_stage: funnel,
+        location: location,
+        campaign: campaign,
+        link_url: linkUrl,
+      });
     }, true);
   }
 

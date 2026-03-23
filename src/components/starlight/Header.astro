@@ -3,6 +3,7 @@ import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from './SiteTitle.astro';
 import TopHeader from '@components/shared/TopHeader.astro';
 import AnalyticsClickTracker from '@components/shared/AnalyticsClickTracker.astro';
+import PostHog from '@components/posthog.astro';
 ---
 
 <TopHeader showNavTools>
@@ -12,6 +13,7 @@ import AnalyticsClickTracker from '@components/shared/AnalyticsClickTracker.astr
   <Search slot="nav-tools" />
 </TopHeader>
 <AnalyticsClickTracker />
+<PostHog />
 
 <style>
   @layer starlight.core {
