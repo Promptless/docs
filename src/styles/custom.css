@@ -250,7 +250,9 @@ starlight-theme-select {
     padding-inline: 0.78rem;
   }
 
-  .pl-site-header-row {
+  .pl-site-header-row,
+  .pl-site-header-row.has-tools {
+    display: flex;
     min-height: 2.9rem;
   }
 
@@ -259,7 +261,16 @@ starlight-theme-select {
   }
 
   .pl-site-cta-row {
+    margin-inline-start: auto;
+  }
+
+  .pl-site-cta-secondary {
     display: none;
+  }
+
+  .pl-site-cta {
+    font-size: 0.875rem;
+    padding: 0.55rem 0.9rem;
   }
 
   .pl-site-nav-row {
@@ -378,11 +389,11 @@ starlight-theme-select {
   mask-image: url('/site/icons/calendar.svg');
 }
 
-.sidebar-content .pl-mobile-menu-primary {
+.sidebar-content a[href].pl-mobile-menu-primary {
   color: #fff;
 }
 
-.sidebar-content .pl-mobile-menu-primary:hover {
+.sidebar-content a[href].pl-mobile-menu-primary:hover {
   color: #fff;
 }
 
@@ -763,6 +774,18 @@ a.fern-card:hover {
 
 .welcome-intro-card {
   margin-top: 1rem;
+}
+
+.pl-docs-cta {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--sl-color-accent) 8%, var(--sl-color-bg));
+  border: 1px solid color-mix(in srgb, var(--sl-color-accent) 25%, var(--sl-color-hairline));
+}
+
+.pl-docs-cta a {
+  font-weight: 600;
 }
 
 .fern-card h3 {
