@@ -100,6 +100,30 @@ The diagram below illustrates how triggers, context sources, and documentation p
 Context sources are queried in real-time and no customer data is stored by Promptless, ensuring your sensitive information remains secure.
 </Note>
 
+## The Promptless Agent
+
+At the heart of Promptless is an AI-powered agent that orchestrates the entire documentation workflow. It receives trigger events, gathers context from your connected sources, decides whether docs need updating, and creates suggestions for your review.
+
+### Dispatch Agent Orchestration
+
+When a trigger event occurs, the dispatch agent receives it. This is Promptless's central orchestration layer—the coordinator for all documentation work across your organization.
+
+Here's how the dispatch agent handles incoming triggers:
+
+1. **Receives the trigger event**: Whether it's a merged pull request, a Slack conversation, or a support ticket, the dispatch agent determines what type of documentation work may be needed.
+
+2. **Spawns specialized runtime agents**: For each piece of work, it creates a dedicated runtime agent with the specific context and tools needed for that task. These runtime agents operate autonomously to analyze changes, gather additional context, and draft documentation updates.
+
+3. **Coordinates the workflow**: The dispatch agent manages communication between agents, handles notifications to your team, and ensures suggestions are properly tracked and delivered.
+
+4. **Aggregates results**: When runtime agents complete their work, the dispatch agent collects results and coordinates delivery—whether that's a Slack notification, a GitHub PR comment, or an update in the Promptless dashboard.
+
+This architecture lets Promptless handle multiple triggers simultaneously while keeping your documentation consistent. Each runtime agent has access to the same context sources and style preferences, so all suggestions match your organization's voice and standards.
+
+<Note>
+The dispatch agent orchestration pattern is the default architecture for all Promptless customers, replacing the previous single-agent system with a more scalable approach.
+</Note>
+
 ## Key Benefits of This Architecture
 
 <CardGroup cols={2}>
