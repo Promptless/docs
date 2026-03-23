@@ -7,7 +7,8 @@
   if (apiKey && apiHost) {
     posthog.init(apiKey, {
       api_host: apiHost,
-      defaults: '2026-01-30'
+      defaults: '2026-01-30',
+      debug: location.hostname === 'localhost' || location.hostname === '127.0.0.1'
     })
 
     // Unmask the Pagefind search input so we can see what people search for in session replays.
