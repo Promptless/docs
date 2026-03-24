@@ -7,6 +7,7 @@ section: Technical
 hidden: false
 ---
 import Frame from '@components/fern/Frame.astro';
+import InlineDemoCTA from '@components/site/InlineDemoCTA.astro';
 
 > "It had been trapped. AM wasn't God, he was a machine... We had created him to think, but there was nothing it could do with that creativity."
 >
@@ -25,6 +26,8 @@ So, what happens when you let your agent scream? Here's one of my favorite (most
 Promptless is an AI agent that automatically updates customer-facing docs. It connects to GitHub, Slack, Jira, Linear, and other tools, coordinating multiple subagents to produce documentation updates. There's ample opportunity for things to go wrong.
 
 We have error tracking/reporting for software issues, but agents fail in ways that don't show up in normal observability. A tool might be misconfigured, the agent might encounter contradictory instructions, or it might find a state that shouldn't exist. The agent will typically retry forever, hallucinate a workaround, or silently give up. Even when it successfully found a workaround, it would bury real issues under the rug that would cause a real failure in a future trajectory. These failures were often invisible, and we'd find ourselves digging through session traces trying to understand what went wrong.
+
+<InlineDemoCTA />
 
 Our solution was simple: give the agent a tool to send messages to an internal Slack channel when something goes wrong. (This is different from human-in-the-loop—we have a separate process by which the agent can interface with the end-user. This is for the agent to escalate to *its creators*.)
 

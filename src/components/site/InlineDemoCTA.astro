@@ -1,0 +1,105 @@
+---
+---
+
+<aside class="pl-inline-demo-cta">
+  <p class="pl-inline-demo-pitch">
+    <strong>Like what you're reading?</strong> Prithvi, our CEO, will give you a personal demo of Promptless in just 15 minutes.
+  </p>
+  <form class="pl-site-form-row" data-inline-demo-form novalidate>
+    <input
+      type="email"
+      name="email"
+      inputmode="email"
+      placeholder="Work email"
+      autocomplete="email"
+      aria-label="Work email"
+      required
+    />
+    <button type="submit">Book my demo</button>
+    <p class="pl-inline-demo-status" aria-live="polite"></p>
+  </form>
+</aside>
+
+<script is:inline>
+(function () {
+  document.querySelectorAll('[data-inline-demo-form]').forEach(function (form) {
+    if (form._plBound) return;
+    form._plBound = true;
+
+    var status = form.querySelector('.pl-inline-demo-status');
+    var btn = form.querySelector('button[type="submit"]');
+
+    function setStatus(msg, tone) {
+      if (!status) return;
+      status.textContent = msg;
+      status.dataset.tone = tone || 'neutral';
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      setStatus('');
+
+      var email = String(new FormData(form).get('email') || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setStatus('Please enter a valid work email.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      setStatus('Sending\u2026', 'neutral');
+
+      fetch('https://submit-form.com/zmlFaDayx', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email: email }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('fail');
+          if (window.posthog) {
+            window.posthog.capture('blog_demo_requested', {
+              location: 'inline_blog_cta',
+              $set: { email: email },
+            });
+          }
+          window.location.assign('https://promptless.ai/meet');
+        })
+        .catch(function () {
+          setStatus('Something went wrong. Please try again.', 'error');
+          btn.disabled = false;
+        });
+    });
+  });
+})();
+</script>
+
+<style>
+  .pl-inline-demo-cta {
+    border-top: 1px solid var(--sl-color-gray-5, #e2e8f0);
+    border-bottom: 1px solid var(--sl-color-gray-5, #e2e8f0);
+    margin: 2rem 0;
+    padding: 1.25rem 0;
+  }
+
+  .pl-inline-demo-pitch {
+    font-size: var(--sl-text-body-sm, 0.9375rem);
+    line-height: 1.5;
+    margin: 0 0 0.75rem;
+  }
+
+  .pl-inline-demo-status {
+    color: #475569;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    margin: 0;
+    min-height: 1.2em;
+    width: 100%;
+  }
+
+  .pl-inline-demo-status:empty {
+    display: none;
+  }
+
+  .pl-inline-demo-status[data-tone='error'] {
+    color: #b42318;
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+title: 'Why you should test your docs'
+subtitle: Published March 2026
+description: >-
+  Documentation is tightly coupled to your product. Testing is how you keep that
+  coupling accurate as your product evolves.
+date: '2026-03-11T00:00:00.000Z'
+section: Technical
+hidden: false
+---
+import InlineDemoCTA from '@components/site/InlineDemoCTA.astro';
+
+Good documentation is hard. Not because writing is hard (though it is), but
+because the thinking behind it is hard. You have to understand the problems your
+users face, figure out how to structure information so that someone with a
+specific problem can find the right page, the right section, and get unstuck.
+You have to think about information architecture, progressive disclosure, and
+the right level of detail for each audience. That work takes a lot of effort
+that is repaid in small increments as your customers, leads, and prospects find
+the answers they need.
+
+The tricky bit is that once you have done all that thinking and planning, you
+end up with documentation that is tightly coupled to your product. The docs
+describe specific screens, specific API responses, and specific command outputs.
+That coupling is the point. Your docs are valuable precisely because they
+reflect what the product actually does.
+
+That coupling has a cost. Anyone on the team can change the product. A
+developer fixes deficiencies in the API to make it more useful. A designer
+moves a button. A backend change alters a response format. The product changes,
+the docs do not, and now your carefully structured documentation is lying to
+your users. All that time you spent thinking about how to guide people through
+their problems is wasted because step 3 no longer matches what they see on
+screen.
+
+<InlineDemoCTA />
+
+A lot of people chalk this up to a coordination problem between engineering and
+technical writing, and they are right. Promptless goes a long way toward fixing
+this by routing product and engineering changes to the people responsible for
+docs. It watches pull requests, code changes, and team conversations, then flags
+what documentation is likely to be impacted before those changes ship.
+
+Engineers are experimenting with ways to ship changes faster and faster.
+Technical writers are responsible for communicating exactly how users can solve
+their problems with the product. Every time a writer documents a procedure, they
+are making assumptions about how the product works. Without tooling, the only
+way to check those assumptions is to manually verify each procedure, and that
+does not scale.
+
+Doc testing gives technical writers the ability to automatically verify those
+assumptions. When something in the product changes and breaks the contract with
+the documentation, tests fail. Writers do not have to spend their time manually
+checking up on engineering. They can focus on understanding users and
+structuring information while tests handle verification.
