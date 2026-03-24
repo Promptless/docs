@@ -4,6 +4,45 @@ This is a running log of identified conversion rate problems on the Promptless m
 
 ---
 
+## Problem #3: Documentation section is a conversion dead end -- 51 of 52 docs pages have zero CTAs, wasting the site's most engaged audience
+
+**Date identified**: 2026-03-24
+
+**Category**: CTA / Structure
+
+**Hypothesis**: The documentation section (`/docs/...`) receives 21% of total site traffic (273 pageviews, 43 unique users in the last 30 days), yet only 1 of 52 docs pages (the welcome page) contains any call-to-action linking to `/demo`. The remaining 51 pages -- which account for 72% of docs traffic (198 pageviews) -- end without any conversion mechanism. Docs visitors are the most deeply engaged audience on the entire site, averaging 6.35 pages per user, and they are actively evaluating the product's capabilities, integrations, and security posture. Despite this high intent, the docs section converts at 0% to `demo_requested` because there is simply no place to convert. The Starlight docs layout has no global CTA injection mechanism: the desktop sidebar has no CTA, the content footer shows only on website pages (not docs), and no component inserts a demo prompt at the end of docs content. The only conversion path available is the small "Book demo" button in the top-right header, which is easy to overlook while reading documentation. This is a significant missed opportunity because docs readers represent late-funnel evaluators -- people who are past the awareness stage and actively assessing whether Promptless fits their technical requirements.
+
+**Evidence**:
+- PostHog pageview data (last 30 days): `/docs` pages received 273 pageviews from 43 unique users, making it the second-largest traffic section after the homepage. Top docs pages include: welcome (75 views), core-concepts (16), setup-quickstart (16), promptless-oss (12), promptless-1-0 (11), getting-help (8), security-and-privacy (6), and many more.
+- PostHog funnel (last 30 days): 43 unique docs visitors -> 0 fired `demo_requested`. This is a **0.0% conversion rate** -- a complete dead end despite being the most engaged audience segment on the site.
+- PostHog docs-to-demo-page funnel (last 30 days): 43 docs visitors, 12 (27.91%) eventually navigated to `/demo` -- proving these visitors have active conversion intent. They sought out the demo page on their own through header navigation, yet none completed the email form. The median time from docs to demo page was only 38 seconds, indicating urgency.
+- PostHog engagement depth (last 30 days): Docs visitors averaged **6.35 pageviews per user** -- far higher than any other section. These are not casual browsers; they are reading multiple pages about triggers, integrations, security, and setup, which are classic late-funnel evaluation behaviors.
+- Code inspection: Only `src/content/docs/docs/getting-started/welcome.mdx` contains a CTA (`<div class="pl-docs-cta">... <a href="/demo">Book a demo</a></div>`). The other 51 `.mdx` files in `src/content/docs/` have zero links to `/demo`, zero email capture forms, and zero conversion prompts.
+- Code inspection of `src/components/starlight/Footer.astro`: The website footer (with support email and privacy link) only renders when `activeSection === 'website'` -- it does not render on docs pages. Docs pages have no footer CTA.
+- Code inspection of `src/components/starlight/Sidebar.astro`: The desktop sidebar is a pure navigation tree (`SidebarSublist`). The `MobileMenuFooter` (which contains a "Book demo" link) only renders inside a `md:sl-hidden` div, meaning it is visible only on mobile, not desktop. Desktop docs users have no sidebar CTA.
+- Screenshot of `/docs/getting-started/core-concepts/` confirms: the page content ends with an "Advanced Configuration" section that trails off into whitespace. No CTA, no demo prompt, no next-step conversion action appears anywhere in the content body. The only "Book demo" link is the small button in the top-right header bar.
+
+**Testable prediction**: I predict that adding a persistent "Book a demo" CTA to all docs pages -- either as a global component at the bottom of every docs page content area, or as a sidebar CTA visible on desktop -- will increase the docs-to-demo conversion rate from 0% to at least 2-3% within 30 days, generating an estimated 1-2 additional demo requests per month from the current 43 monthly docs visitors. This is a conservative estimate: 28% of docs visitors already self-navigate to `/demo` (12 of 43), proving high intent. Even converting a fraction of the remaining 31 visitors who never reach `/demo` would be incremental. Furthermore, the CTA will provide a measurable signal (`demo_requested` with `location: "docs"`) that allows the team to attribute conversions to documentation content for the first time, informing content strategy decisions.
+
+**Recommended fix**:
+- Create a `DocsBottomCTA.astro` component with a brief, contextual prompt (e.g., "Want to see Promptless in action? Book a 15-minute demo." with a button linking to `/demo`) and include `data-track-location="docs_bottom_cta"` for tracking
+- Override the Starlight `ContentPanel` or inject the CTA via a custom `PageFrame` override so it appears at the bottom of every docs page's content area -- this avoids editing all 52 individual `.mdx` files
+- Alternatively, add a CTA to the desktop sidebar in `src/components/starlight/Sidebar.astro` (currently the desktop sidebar has no CTA; only the mobile menu does via `MobileMenuFooter.astro`), placed below the navigation tree as a sticky element
+- Remove the `md:sl-hidden` restriction on the sidebar CTA so desktop users also see a "Book demo" link in the sidebar, or create a separate desktop-visible sidebar CTA component
+- Track clicks with `cta_clicked` (location: `docs_sidebar` or `docs_bottom_cta`) and submissions with `demo_requested` (location: `docs`) to measure which placement drives more conversions
+- Vary the CTA copy contextually based on the docs section: security pages could say "See how Promptless keeps your data safe -- book a demo", integration pages could say "Ready to connect Promptless to your stack?"
+
+**Research sources**:
+- LandingPageFlow CTA Placement Strategies 2026: End-of-page CTAs are critical for users who consume the full content -- "a well-timed end-of-page CTA offers a final push toward conversion after consuming the full value story." Multiple placement strategies (hero, mid-page, end-of-page, sticky) should be used together. (https://www.landingpageflow.com/post/best-cta-placement-strategies-for-landing-pages)
+- Webstacks 2026 SaaS Conversion Guide: Personalized CTAs convert 202% better than generic ones. Every page needs a clear, prominent CTA guiding visitors forward. "Multiple CTAs on long pages maintain conversion opportunities as visitors scroll." (https://www.webstacks.com/blog/website-conversions-for-saas-businesses)
+- Powered by Search B2B SaaS Funnel Benchmarks: Documentation and technical content readers represent late-funnel evaluators with higher conversion potential than top-of-funnel blog readers. "Smart B2B SaaS CRO accounts for multi-stakeholder buying by building landing pages for distinct personas -- creating separate pages that speak directly to technical users." Documentation is the technical user's landing page. (https://www.poweredbysearch.com/learn/b2b-saas-funnel-conversion-benchmarks/)
+- Kalungi B2B SaaS CTA Guide: "Every page needs a clear and prominent CTA guiding visitors forward. Use action-oriented language... Multiple CTAs on long pages maintain conversion opportunities." Including a CTA with clear purpose can push conversion from under 1% up to 20% on focused pages. (https://www.kalungi.com/blog/conversion-rates-for-saas-companies)
+- First Page Sage CTA Conversion Rates Report 2026: Meta-analysis of CTA conversion rates by placement and style confirms that contextually placed CTAs within content (not just header navigation) significantly outperform header-only CTAs because they meet users at the point of engagement. (https://firstpagesage.com/reports/cta-conversion-rates-report/)
+
+**Applies to**: All documentation pages (`/docs/...`), specifically `src/components/starlight/Sidebar.astro` (desktop sidebar CTA), `src/components/starlight/Footer.astro` (docs footer), and potentially a new Starlight content override component. The welcome page CTA pattern in `src/content/docs/docs/getting-started/welcome.mdx` can serve as the template.
+
+---
+
 ## Problem #2: Pricing page "Book demo" CTAs link directly to external Cal.com, bypassing email capture and making pricing-page conversions invisible
 
 **Date identified**: 2026-03-24
