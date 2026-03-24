@@ -90,6 +90,27 @@ Once connected, you can use GitHub for:
 ## Frequently Asked Questions
 
 <AccordionGroup>
+  <Accordion title="Why does Promptless request write access to my repositories?">
+    Promptless uses a single GitHub App with read and write permissions, but applies these permissions differently depending on the repository's role:
+
+    - **Documentation repositories**: Promptless creates branches and pull requests to suggest documentation updates
+    - **Code repositories (triggers)**: Promptless reads PR content to understand code changes, and writes comments on PRs to link back to documentation suggestions
+
+    Promptless never modifies code files, pushes commits to code branches, or makes changes to your source code. Write access to code repositories is used only for PR comments.
+  </Accordion>
+
+  <Accordion title="What safeguards prevent unintended writes to my code repositories?">
+    Several safeguards protect your code repositories:
+
+    - **Project configuration**: When you create a project, you explicitly designate which repositories are triggers (read code changes) versus documentation targets (receive PR updates). Promptless only creates branches and file changes in repositories you configure as doc collections.
+    - **PR-only workflow**: All documentation updates go through pull requests—Promptless never pushes directly to protected branches or merges without your approval (unless you explicitly enable auto-merge for commit triggers).
+    - **Audit trail**: Every action Promptless takes is logged and visible in your Promptless dashboard, providing full transparency into what changes were made and why.
+  </Accordion>
+
+  <Accordion title="Can Promptless modify files directly, or only through pull requests?">
+    All Promptless write activity goes through pull requests. Promptless creates a branch, commits documentation changes to that branch, and opens a PR for your review. It cannot push directly to your main branch or modify files outside of the PR workflow (unless you enable auto-merge, which automatically merges documentation PRs after creation).
+  </Accordion>
+
   <Accordion title="How do I add more repositories after installing the GitHub integration?">
     Add additional repositories anytime by visiting your GitHub organization settings. In GitHub, head to `Settings -> Third-party Access -> GitHub Apps` then find the Promptless GitHub App and click "Configure." Add or remove repositories in the "Repository access" section, then click "Save." You'll be able to choose from the newly added repositories when creating or editing your Promptless projects.
   </Accordion>
