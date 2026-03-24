@@ -28,6 +28,32 @@ Suggestions are automatically archived after 30 days by default. Organizations w
 
 Promptless offers several ways to provide feedback on suggestions. Learn about all available feedback methods in the [Providing Feedback](/docs/how-to-use-promptless/providing-feedback) guide.
 
+### Projects page
+
+The Projects page shows all configured projects in your organization. Each project card displays the project name, connected doc collection, and status.
+
+#### Pausing and resuming projects
+
+You can pause any project without deleting it. When a project is paused:
+
+- Automatic webhook triggers stop processing (GitHub PRs, Slack mentions, support tickets, etc.)
+- Manual tasks from the New Task page still work normally
+- The project card shows a "Paused" badge with amber styling
+
+To pause a project, click **Pause project** on the project card. To resume, click **Resume project**.
+
+#### When to pause a project
+
+Pause a project when you want to:
+
+- Temporarily disable automatic documentation updates without removing the project configuration
+- Perform maintenance or testing without generating unwanted suggestions
+- Review and catch up on existing suggestions before processing new triggers
+
+#### Manual tasks on paused projects
+
+When you select a paused project on the New Task page, you'll see a "(Paused - manual only)" label next to the project name and a warning alert. This indicates that webhook-triggered events are not being processed for that project, but manual tasks still work.
+
 ### Triggers page
 
 The Triggers page shows all events that triggered Promptless over the last 30 days. Each entry displays:
