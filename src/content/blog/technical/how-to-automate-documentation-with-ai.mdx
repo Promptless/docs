@@ -1,0 +1,123 @@
+---
+title: How to Automate Documentation With AI
+subtitle: Published March 2026
+description: >-
+  Most documentation automation focuses on the wrong thing. The hard part isn't
+  generating text — it's knowing what changed, knowing what matters, and keeping
+  your docs in sync with a product that never stops moving.
+date: '2026-03-23T00:00:00.000Z'
+section: Technical
+hidden: false
+---
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+import InlineDemoCTA from '@components/site/InlineDemoCTA.astro';
+
+Most people asking "how do I automate documentation with AI" are imagining the wrong thing. They picture a button that ingests their codebase and spits out a docs site. That's not automation. That's a fancy export.
+
+The actual problem is harder, more interesting, and — if you've been paying attention to what's happening in engineering — more urgent than it was six months ago.
+
+## The real problem isn't writing
+
+Your engineers adopted Claude Code. Or Cursor. Or Codex. Maybe all three. The ones who used to ship a PR or two a day are now shipping five. Ten. Some of them are running parallel agents across multiple workstreams. The codebase is moving faster than it ever has, and that's genuinely great — for engineering.
+
+For documentation, it's a firehose.
+
+A technical writer supporting a team that ships 5–10 PRs a day per engineer cannot review all of them. They attend standups, skim Slack threads, chase down engineers for context, scan Jira tickets, and check support queues — all to answer one question: _did anything change that affects the docs?_ About 90% of the time, the answer is no. But they have to check all of it to find the 10% that matters. And "all of it" just got a lot bigger.
+
+The bottleneck was never writing speed. Technical writers are fast. Give a good writer the right information and they'll produce clean, accurate docs before most engineers expect a first draft. The bottleneck is everything that happens _before_ the writing — the detection, the triage, the context gathering. AI coding tools made engineers dramatically faster. They did not make documentation faster. That gap is the problem.
+
+<InlineDemoCTA />
+
+## The documentation lifecycle nobody talks about
+
+Documentation goes through a maturity arc that most teams don't recognize until they're deep into it.
+
+**Phase 1: Handwritten docs.** You have 10 pages. A founder or early engineer writes them. They're great because the person writing them understands the product deeply.
+
+**Phase 2: Auto-generated docs.** You scale. You start generating API references from code, pulling docstrings, automating changelogs. Coverage goes up. Quality often goes down, because the output maps to code structure, not customer problems.
+
+**Phase 3: Back to handwritten.** You realize your customers don't think in terms of your microservice boundaries. They need guides, conceptual overviews, worked examples — things that require judgment about what matters and how to explain it. You can't annotate your source code with enough context to generate that. So you go back to curated, handcrafted documentation.
+
+Phase 3 is where most serious docs teams land. And it's exactly where documentation drift enters, because the docs are _intentionally_ disconnected from the code. That disconnect is the whole point — you're writing for customers, not for compilers. But it means that every time an engineer changes the product, someone has to notice, gather context, and update the docs. Manually. Every time.
+
+This was already hard when engineers shipped at a human pace. Now that AI coding tools have multiplied engineering output by 3x or 5x or 10x — depending on who you ask and what you're measuring — the rate of change has outrun any process that depends on a person manually reviewing every commit. The documentation treadmill didn't just speed up. It broke.
+
+## Three things worth automating
+
+If you want to automate documentation with AI in a way that actually works, focus on these three layers — in this order.
+
+### 1. Change detection
+
+This is the highest-value automation and the one almost nobody has. The question isn't "can AI write docs?" It's "can AI tell me _when_ docs need writing?"
+
+When your engineers are shipping 5–10 PRs a day with AI coding tools, the volume of potentially docs-relevant changes is enormous. A good detection system monitors the places where those changes actually surface — pull requests, Slack conversations, support tickets, Jira updates — and cross-references them against your existing documentation. Not every PR needs a docs update. Not every Slack thread is relevant. The system needs judgment, not just pattern matching, to filter signal from noise at a pace that no human can sustain manually.
+
+This is what we call [ambient capture](/blog/technical/ambient-capture) — continuous, intelligent monitoring across your organization's communication channels. Think of it like a motion-detection system for documentation. It doesn't flag every tree branch moving in the wind. It's tuned to detect real movement — a product behavior changing, a customer hitting a gap in the docs, an engineer discussing a feature that contradicts what the docs say.
+
+When you get this right, your technical writers stop spending half their day hunting for signals. The signals come to them.
+
+### 2. Context assembly
+
+Even when a writer _knows_ something changed, they still have to go gather the ingredients. Read the PR description. Find the Jira ticket. Search Slack for the product discussion. Check if support has customer reports about the old behavior. Maybe look at a design document in Notion or a customer call transcript.
+
+That detective work can take half a day per significant update. AI is genuinely good at this — pulling together information from scattered sources, synthesizing it, and presenting it with citations so the writer can verify quickly.
+
+The output isn't a finished doc. It's a brief: here's what changed, here's why, here's what the docs currently say, here are the sources. Everything a writer needs to make a decision and start editing, without the hours of hunting.
+
+### 3. Draft generation
+
+_Now_ you can generate text. But notice — this is layer three, not layer one. A draft is only as good as the detection that triggered it and the context that informed it. An AI drafting docs without understanding what changed and why is just autocomplete with extra steps.
+
+Good draft generation matches your existing voice and style. It references your glossary. It follows your information architecture. And critically, it produces a _suggestion_ that a human reviews before anything publishes. The technical writer is still the chef. The AI assembled the ingredients and did the prep work.
+
+## What doesn't work
+
+Before we go further — a few patterns that sound promising and consistently disappoint.
+
+**"Generate docs from code" as a complete solution.** Code comments and docstrings are useful for API references, but they can't explain _why_ a customer should use a feature, _when_ it applies to their workflow, or _how_ it combines with other features to solve a real problem. The customer's problem doesn't map to your code architecture.
+
+**One-shot docs generation from a codebase.** You feed in your repo and get back 50 pages. Cool. Now what? The generated docs are a snapshot — they're stale by the afternoon when your engineers have merged another dozen PRs. And they lack the judgment about what matters to customers versus what matters to engineers.
+
+**Chatbot-as-docs.** Letting users ask an AI questions instead of maintaining docs. This sounds efficient until you realize the AI is only as good as the documentation it was trained on. If your docs are out of date, the chatbot confidently repeats outdated information. You haven't solved the problem. You've added a friendly interface to it.
+
+**AI linters as a substitute for AI judgment.** Style and grammar tools are useful, but fixing passive voice doesn't help when the docs say "click the Settings button" and the button was renamed to "Preferences" three releases ago. The linter won't catch that. You need something that understands the _product_, not just the _prose_.
+
+## What a working system looks like
+
+Here's the shape of a documentation automation system that actually holds up in practice.
+
+**It plugs into where your team already works.** GitHub, Slack, Jira, Linear, support tools. Not a separate dashboard you have to remember to check. It's ambient — always present, always watching.
+
+**It watches, compares, and triages.** Every PR, every Slack thread, every support ticket gets evaluated: does this change how the product works in a way that affects the docs? Most of the time, no. When the answer is yes, it surfaces a notification with context and a draft.
+
+**Anyone can interact with it.** An engineer can @mention it on a PR: "hey, should this be documented?" A support lead can tag it in a Slack thread: "customers keep asking about this, can we add it to the docs?" A tech writer can give it a bigger project: "reorganize the authentication section using this new structure I've outlined." The barrier to contributing to docs drops dramatically.
+
+**Tech writers stay in control.** Every suggestion is reviewable. Every draft is editable. Citations point back to the source — the PR, the Slack message, the support ticket. Nothing publishes without a human deciding it should.
+
+**It gets smarter over time.** As your writers review suggestions, accept some, reject others, edit drafts — the system learns what matters for your specific documentation and what doesn't. The floor keeps rising.
+
+## The ceiling goes up, not the headcount down
+
+Here's the thing most people get wrong about documentation automation. The value isn't "do more with fewer writers." It's "your writers can finally do the work they've always wanted to do."
+
+Every technical writer has a list in their head. The information architecture redesign they've been planning. The conceptual overview that would actually explain how the product fits into a customer's workflow. The guide that would make the docs a genuine pre-sales tool instead of just a reference manual. They never get to that list because all their time gets eaten by maintenance — updating screenshots, chasing down what changed, fixing the doc that says "click Settings" when the button is now "Preferences."
+
+Most documentation is stuck at "good enough." Not because the writers lack skill, but because the maintenance treadmill never stops long enough for them to build something great. And AI coding tools just made the treadmill faster. Stripe-quality docs aren't rare because of rare talent. They're rare because most teams can't get off the treadmill long enough to do the work that would get them there.
+
+Automate the treadmill and the ceiling goes up. Your writers spend their time on the high-judgment work — understanding customers, translating product capabilities into clear explanations, building the narrative that makes your docs something you're proud to send to prospects. That's the work that actually moves the needle on customer activation, support ticket deflection, and pre-sales conversions.
+
+## What Promptless does
+
+[Promptless](/) is how we've built this. It connects to your GitHub, Slack, Jira, Linear, Intercom, Zendesk, and support tools. It monitors every signal — PRs, conversations, tickets — and compares them against your existing documentation.
+
+When it detects a gap, it assembles context from across your tools, drafts an update that matches your existing voice and style, and notifies your team. Tech writers review the suggestion, edit it, and publish — or reject it. Engineers can handle straightforward updates directly. Anyone can @mention Promptless in Slack or on a PR to ask a question or request a change.
+
+And for bigger projects — translating your docs into multiple languages, reorganizing your information architecture, evaluating older pages against new standards — your writers can use Promptless as a workbench. Describe what you want, iterate on the instructions, and let Promptless execute at scale while you stay in the editorial seat. One tech writer used this approach to produce translation suggestions across 80 pages of the [Helm](https://helm.sh/) documentation — roughly 24,000 lines — in a single workday of iteration, followed by three days of review before shipping.
+
+Promptless works with your existing docs platform. [Mintlify](https://mintlify.com/), [ReadMe](https://readme.com/), [GitBook](https://www.gitbook.com/), Zendesk, or a plain markdown repo — it publishes where you already publish. It's not a new place to host your docs. It's the upstream work of keeping them current and making them better.
+
+---
+
+If you want to see what this looks like for your docs, book a call with Prithvi, our founder ↓↓↓
+
+<BlogRequestDemo />
