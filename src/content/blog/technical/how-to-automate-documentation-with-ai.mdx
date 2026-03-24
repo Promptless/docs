@@ -2,9 +2,10 @@
 title: How to Automate Documentation With AI
 subtitle: Published March 2026
 description: >-
-  Most documentation automation focuses on the wrong thing. The hard part isn't
-  generating text — it's knowing what changed, knowing what matters, and keeping
-  your docs in sync with a product that never stops moving.
+  Your engineers are shipping 5–10 PRs a day with AI coding tools. Your docs
+  process wasn't built for that. The answer isn't generating text from code — it's
+  automating the detection, context assembly, and drafting that keeps your docs
+  in sync with a product that never stops moving.
 date: '2026-03-23T00:00:00.000Z'
 section: Technical
 hidden: false
@@ -12,11 +13,25 @@ hidden: false
 import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 import InlineDemoCTA from '@components/site/InlineDemoCTA.astro';
 
-Most people asking "how do I automate documentation with AI" are imagining the wrong thing. They picture a button that ingests their codebase and spits out a docs site. That's not automation. That's a fancy export.
+Most people asking "how do I automate documentation with AI" are imagining the wrong thing. They picture a button that ingests their codebase and spits out a docs site. That's not automation. That's [docs theatre](https://idratherbewriting.com/blog/podcast-episode-3-documentation-theater-acceleration-paradox).
 
-The actual problem is harder, more interesting, and — if you've been paying attention to what's happening in engineering — more urgent than it was six months ago.
+To understand why, you have to understand what documentation actually _is_ when it's working.
 
-## The real problem isn't writing
+## Docs are how your customers learn to solve their problems with your product
+
+Your product isn't a single capability. It's a suite of connected capabilities that work together — and the value your customers pay for usually comes from the _emergent behavior_ between those capabilities. Authentication, permissions, webhooks, and the API compose into a workflow that solves a real business problem. But the customer doesn't see it that way when they arrive. They see a list of features and a problem they need solved. Someone has to bridge that gap.
+
+That's what technical writers do. They understand the customer's problem, they understand the product's capabilities, and they translate one into the other. Here's what you're trying to do. Here's how these pieces fit together. Here's the integration you need, the outcome you should expect, the edge case you'll hit on step three. Good documentation doesn't just list what the product can do — it shows people how to get value out of it.
+
+This matters more than most companies realize. Documentation is usually treated as a cost center — something you maintain to deflect support tickets. And it does deflect support tickets. But that's the floor, not the ceiling. When your docs are genuinely good, they become a profit center. Your sales team sends a prospect a link instead of scheduling another call: "yes, we do this — here's exactly how it works." Your docs show up when someone Googles the problem your product solves. AI agents recommend your product because your documentation clearly articulates the problems it addresses. Prospects read your docs during evaluation, send them to their team, and the docs do the selling.
+
+The difference between docs-as-cost-center and docs-as-profit-center is the difference between a dry listing of capabilities that customers have to mentally assemble themselves and a clear explanation of problems being solved. One is a reference manual. The other is the reason someone picks up the phone.
+
+You can't generate that from code. Docstrings don't know what your customers are struggling with. Code comments don't know which three features combine to solve an onboarding workflow. That translation — from capabilities to customer outcomes — requires human judgment about what matters and how to explain it.
+
+Which brings us to the problem.
+
+## Engineering got faster. Documentation didn't.
 
 Your engineers adopted Claude Code. Or Cursor. Or Codex. Maybe all three. The ones who used to ship a PR or two a day are now shipping five. Ten. Some of them are running parallel agents across multiple workstreams. The codebase is moving faster than it ever has, and that's genuinely great — for engineering.
 
@@ -36,7 +51,7 @@ Documentation goes through a maturity arc that most teams don't recognize until 
 
 **Phase 2: Auto-generated docs.** You scale. You start generating API references from code, pulling docstrings, automating changelogs. Coverage goes up. Quality often goes down, because the output maps to code structure, not customer problems.
 
-**Phase 3: Back to handwritten.** You realize your customers don't think in terms of your microservice boundaries. They need guides, conceptual overviews, worked examples — things that require judgment about what matters and how to explain it. You can't annotate your source code with enough context to generate that. So you go back to curated, handcrafted documentation.
+**Phase 3: Back to handwritten.** You realize your customers don't think in terms of your microservice boundaries. They need someone to explain how the capabilities compose into solutions — the emergent behavior that makes the product worth buying. That requires judgment about customers, about workflows, about what matters. You can't derive it from source code. So you go back to curated, handcrafted documentation.
 
 Phase 3 is where most serious docs teams land. And it's exactly where documentation drift enters, because the docs are _intentionally_ disconnected from the code. That disconnect is the whole point — you're writing for customers, not for compilers. But it means that every time an engineer changes the product, someone has to notice, gather context, and update the docs. Manually. Every time.
 
@@ -74,7 +89,7 @@ Good draft generation matches your existing voice and style. It references your 
 
 Before we go further — a few patterns that sound promising and consistently disappoint.
 
-**"Generate docs from code" as a complete solution.** Code comments and docstrings are useful for API references, but they can't explain _why_ a customer should use a feature, _when_ it applies to their workflow, or _how_ it combines with other features to solve a real problem. The customer's problem doesn't map to your code architecture.
+**"Generate docs from code" as a complete solution.** Code comments and docstrings are useful for API references. But the value your customers pay for lives in the _emergent behavior_ between capabilities — the way authentication, webhooks, and the API compose into a workflow that solves a real problem. No amount of docstring extraction will explain that. The customer's problem doesn't map to your code architecture, and the translation from capabilities to outcomes is exactly the judgment that makes documentation worth having.
 
 **One-shot docs generation from a codebase.** You feed in your repo and get back 50 pages. Cool. Now what? The generated docs are a snapshot — they're stale by the afternoon when your engineers have merged another dozen PRs. And they lack the judgment about what matters to customers versus what matters to engineers.
 
@@ -100,11 +115,11 @@ Here's the shape of a documentation automation system that actually holds up in 
 
 Here's the thing most people get wrong about documentation automation. The value isn't "do more with fewer writers." It's "your writers can finally do the work they've always wanted to do."
 
-Every technical writer has a list in their head. The information architecture redesign they've been planning. The conceptual overview that would actually explain how the product fits into a customer's workflow. The guide that would make the docs a genuine pre-sales tool instead of just a reference manual. They never get to that list because all their time gets eaten by maintenance — updating screenshots, chasing down what changed, fixing the doc that says "click Settings" when the button is now "Preferences."
+Every technical writer has a list in their head. The information architecture redesign they've been planning. The conceptual overview that would actually explain how the product fits into a customer's workflow. The guide that would turn the docs from a reference manual into genuine sales collateral — something your sales team sends to prospects instead of scheduling another call. They never get to that list because all their time gets eaten by maintenance — updating screenshots, chasing down what changed, fixing the doc that says "click Settings" when the button is now "Preferences."
 
 Most documentation is stuck at "good enough." Not because the writers lack skill, but because the maintenance treadmill never stops long enough for them to build something great. And AI coding tools just made the treadmill faster. Stripe-quality docs aren't rare because of rare talent. They're rare because most teams can't get off the treadmill long enough to do the work that would get them there.
 
-Automate the treadmill and the ceiling goes up. Your writers spend their time on the high-judgment work — understanding customers, translating product capabilities into clear explanations, building the narrative that makes your docs something you're proud to send to prospects. That's the work that actually moves the needle on customer activation, support ticket deflection, and pre-sales conversions.
+Automate the treadmill and the ceiling goes up. Your writers spend their time on the high-judgment work — understanding customers, translating capabilities into solutions, building the narrative that makes your docs a profit center instead of a cost center. That's the work that moves docs from "technically contains the information" to "the reason someone signs the contract."
 
 ## What Promptless does
 
