@@ -553,16 +553,8 @@
   font-size: 0.92rem;
 }
 
-.pl-what-to-expect {
-  margin-bottom: -0.5rem;
-}
-
-.pl-what-to-expect ul {
-  margin-bottom: 0;
-}
-
 .pl-site-video-embed {
-  margin-top: 2.5rem;
+  margin-top: 0.2rem;
   position: relative;
   overflow: hidden;
   border-radius: 0.75rem;
