@@ -17,7 +17,6 @@ interface Props {
   badge?: string;
   priceDataAttr?: string;
   usageDataAttr?: string;
-  ctaSubtext?: string;
 }
 
 const {
@@ -35,7 +34,6 @@ const {
   badge,
   priceDataAttr,
   usageDataAttr,
-  ctaSubtext,
 } = Astro.props;
 
 const priceAttrs = priceDataAttr ? { [priceDataAttr]: '' } : {};
@@ -83,30 +81,5 @@ const PlanIcon = PLAN_ICONS[planId];
     </ul>
   </div>
 
-  {planId === 'startup' ? (
-    <div class="pl-site-pricing-cta-wrap">
-      <button
-        type="button"
-        class="pl-site-pricing-cta-trigger"
-        data-track-action={ctaAction}
-        data-track-funnel="conversion"
-        data-track-location={`pricing_${planId}`}
-        data-signup-href={ctaHref}
-      >
-        {ctaLabel}
-      </button>
-      {ctaSubtext ? <span class="pl-site-pricing-cta-subtext">{ctaSubtext}</span> : null}
-
-      <div class="pl-site-pricing-wizard" data-wizard hidden>
-        <p class="pl-site-pricing-wizard-q">How do you manage your docs?</p>
-        <div class="pl-site-pricing-wizard-opts">
-          <button type="button" data-wizard-choice="docs-as-code">Docs-as-code</button>
-          <button type="button" data-wizard-choice="cms">CMS</button>
-          <button type="button" data-wizard-choice="custom">Something custom</button>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <a href={ctaHref} data-track-action={ctaAction} data-track-funnel="conversion" data-track-location={`pricing_${planId}`}>{ctaLabel}</a>
-  )}
+  <a href={ctaHref} data-track-action={ctaAction} data-track-funnel="conversion" data-track-location={`pricing_${planId}`}>{ctaLabel}</a>
 </article>
