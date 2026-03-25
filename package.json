@@ -14,7 +14,6 @@
   "dependencies": {
     "@astrojs/mdx": "^4.3.3",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/starlight": "^0.37.6",
     "@calcom/embed-react": "^1.5.3",

@@ -29,7 +29,7 @@ export const STARTUP_PLAN: PricingPlanConfig = {
   id: 'startup',
   title: 'Startup',
   summary: 'For teams with small docs sites and standard integration needs.',
-  ctaLabel: 'Start a free trial',
+  ctaLabel: 'Sign up',
   ctaHref: 'https://accounts.gopromptless.ai/sign-up',
   ctaAction: 'sign_up',
 };
