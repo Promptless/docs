@@ -13,6 +13,7 @@ const {
 <section id="overview">
   <div class="pl-site-video-embed">
     <iframe
+      id="demo-video"
       src={src}
       title={title}
       allowfullscreen
@@ -20,3 +21,56 @@ const {
     />
   </div>
 </section>
+
+<script is:inline>
+(() => {
+  const iframe = document.getElementById('demo-video');
+  if (!iframe) return;
+  const ph = () => window.posthog;
+
+  // 1. Track clicks into the iframe (proxy for "started watching")
+  // When a user clicks an iframe, the main window loses focus.
+  let clicked = false;
+  window.addEventListener('blur', () => {
+    if (clicked) return;
+    // Check after a tick so activeElement updates
+    setTimeout(() => {
+      if (document.activeElement === iframe) {
+        clicked = true;
+        ph()?.capture('demo:video_clicked');
+      }
+    }, 0);
+  });
+
+  // 3. Track cumulative time the video was visible on page leave
+  let visibleSeconds = 0;
+  let lastTick = null;
+
+  const tickObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      lastTick = Date.now();
+    } else if (lastTick) {
+      visibleSeconds += (Date.now() - lastTick) / 1000;
+      lastTick = null;
+    }
+  }, { threshold: 0.5 });
+  tickObs.observe(iframe);
+
+  const sendEngagement = () => {
+    if (lastTick) {
+      visibleSeconds += (Date.now() - lastTick) / 1000;
+      lastTick = null;
+    }
+    if (visibleSeconds > 1) {
+      ph()?.capture('demo:video_watched', {
+        watch_time_seconds: Math.round(visibleSeconds),
+        clicked_video: clicked,
+      }, { transport: 'sendBeacon' });
+    }
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') sendEngagement();
+  });
+})();
+</script>
