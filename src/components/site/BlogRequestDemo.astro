@@ -63,14 +63,12 @@
 
         if (!res.ok) throw new Error('Submission failed');
 
-        try { sessionStorage.setItem('pl_demo_email', email); } catch {}
-
         window.posthog?.capture('blog_demo_requested', {
           location: 'blog',
           $set: { email },
         });
 
-        window.location.assign('https://promptless.ai/demo');
+        window.location.assign('https://promptless.ai/meet');
       } catch {
         setStatus('Something went wrong. Please try again.', 'error');
         submitBtn.disabled = false;

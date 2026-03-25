@@ -20,46 +20,10 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
 
 <section class="pl-site-pricing" id="plans">
   <p class="pl-site-pricing-trial-badge">All plans include a 30-day free trial.</p>
+  <p class="pl-site-pricing-intro">Pricing scales with the size and complexity of your docs site.</p>
   <p class="pl-site-pricing-oss-line">
     Open-source, non-commercial project? <a href="https://promptless.ai/docs/getting-started/promptless-oss">Learn about our OSS program</a>.
   </p>
-
-  <div class="pl-site-page-calc">
-    <p class="pl-site-page-calc-heading">Not sure which plan fits? Estimate your page count.</p>
-    <form class="pl-site-page-calc-form" id="page-calc-form">
-      <input
-        type="url"
-        id="page-calc-url"
-        class="pl-site-page-calc-input"
-        placeholder="https://docs.example.com"
-        required
-      />
-      <button type="submit" class="pl-site-page-calc-btn">Estimate pages</button>
-    </form>
-
-    <div class="pl-site-page-calc-drawer" id="page-calc-drawer" aria-hidden="true">
-      <div class="pl-site-page-calc-drawer-inner">
-        <p class="pl-site-page-calc-drawer-msg">
-          Hey, I'm Prithvi. I'll be honest&mdash;I didn't actually automate this yet. When you submit your site, it sends me a message in Slack and I run a script manually.
-          Here's <a href="/docs/concepts/normalized-pages">how we calculate normalized pages</a> if you're curious about the methodology.
-        </p>
-        <p class="pl-site-page-calc-drawer-msg">Drop your email below and I'll send you the results.</p>
-        <form class="pl-site-page-calc-email-form" id="page-calc-email-form">
-          <input
-            type="email"
-            id="page-calc-email"
-            class="pl-site-page-calc-input"
-            placeholder="you@company.com"
-            required
-          />
-          <button type="submit" class="pl-site-page-calc-btn">Send me the estimate</button>
-        </form>
-        <p class="pl-site-page-calc-success" id="page-calc-success" hidden>
-          Got it! I'll get back to you soon.
-        </p>
-      </div>
-    </div>
-  </div>
 
   <div class="pl-site-pricing-grid">
     <PricingCard
@@ -72,7 +36,6 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
       ctaLabel={STARTUP_PLAN.ctaLabel}
       ctaHref={STARTUP_PLAN.ctaHref}
       ctaAction={STARTUP_PLAN.ctaAction}
-      ctaSubtext="No credit card required"
     />
 
     <PricingCard
@@ -108,52 +71,3 @@ const defaultGrowthBundle = GROWTH_BUNDLE_OPTIONS[0];
     * Pages are normalized—a long API reference counts as multiple pages, while short changelog entries may share one.
   </p>
 </section>
-
-<script>
-  const calcForm = document.getElementById('page-calc-form') as HTMLFormElement;
-  const drawer = document.getElementById('page-calc-drawer') as HTMLElement;
-  const emailForm = document.getElementById('page-calc-email-form') as HTMLFormElement;
-  const successMsg = document.getElementById('page-calc-success') as HTMLElement;
-
-  calcForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    drawer.classList.add('open');
-    drawer.setAttribute('aria-hidden', 'false');
-  });
-
-  emailForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const url = (document.getElementById('page-calc-url') as HTMLInputElement).value;
-    const email = (document.getElementById('page-calc-email') as HTMLInputElement).value;
-
-    try {
-      await fetch('https://hooks.slack.com/triggers/promptless/page-calc', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors',
-        body: JSON.stringify({ docs_url: url, email }),
-      });
-    } catch {
-      // Fire-and-forget; success UI shown regardless
-    }
-
-    emailForm.hidden = true;
-    successMsg.hidden = false;
-  });
-
-  // Startup plan wizard
-  const triggerBtn = document.querySelector('.pl-site-pricing-cta-trigger') as HTMLButtonElement;
-  const wizard = document.querySelector('[data-wizard]') as HTMLElement;
-
-  triggerBtn?.addEventListener('click', () => {
-    wizard.hidden = !wizard.hidden;
-  });
-
-  wizard?.querySelectorAll('[data-wizard-choice]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const choice = (btn as HTMLElement).dataset.wizardChoice;
-      const href = triggerBtn.dataset.signupHref;
-      window.location.href = `${href}?docs_type=${choice}`;
-    });
-  });
-</script>
