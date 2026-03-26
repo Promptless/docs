@@ -5,8 +5,6 @@ sidebar:
   hidden: true
   order: 7
 ---
-import Steps from '@components/fern/Steps.astro';
-import Step from '@components/fern/Step.astro';
 import Card from '@components/fern/Card.astro';
 import CardGroup from '@components/fern/CardGroup.astro';
 import Info from '@components/fern/Info.astro';
@@ -14,8 +12,7 @@ import Tip from '@components/fern/Tip.astro';
 
 # Your Promptless Pilot
 
-Promptless offers pilot periods for enterprise customers. This pilot period allows you to see how Promptless works with your own documentation, team workflows, and trigger events. The pilot period is 30 days. Below you'll get a sense of what you can expect during your Promptless pilot. 
-
+Promptless offers pilot periods for enterprise customers. This pilot period allows you to see how Promptless works with your own documentation, team workflows, and trigger events. The pilot period is 30 days. Below you'll get a sense of what you can expect during your Promptless pilot.
 
 The 30-day pilot lets you:
 
@@ -29,27 +26,37 @@ Your pilot starts when Promptless creates your first suggestion—not when you s
 
 ## Before Your Pilot Begins
 
-Before the pilot begins, you'll need to connect Promptless to your relevant workspaces and share resources with the Promptless team so that the Promptless agent can draft an initial batch of suggestions. 
+Before the pilot begins, you'll need to connect Promptless to your relevant workspaces and share resources with the Promptless team so that the Promptless agent can draft an initial batch of suggestions.
 
 ### Setting up Promptless Connectors
 
-<Steps>
-  <Step title="Connect source code repositories">
-    Connect GitHub, GitHub Enterprise, GitLab, or Bitbucket
-  </Step>
+<section id="promptless-connectors-setup" class="pl-site-steps is-compact" data-sticky-heading="false">
+  <div class="pl-site-step-list">
+    <article class="pl-site-step" id="connect-source-code-repos">
+      <span class="pl-site-step-num">1</span>
+      <h3>Connect source code repositories</h3>
+      <p>Connect GitHub, GitHub Enterprise, GitLab, or Bitbucket</p>
+    </article>
 
-  <Step title="Connect documentation repositories">
-    Connect your docs repository on GitHub, GitLab, or Bitbucket (e.g. if you use Mintlify, Fern, ReadMe, Docusaurus, etc.)
-  </Step>
-  
-  <Step title="Connect communication platforms">
-    Connect Slack or Microsoft Teams to get notified about new suggestions and to tag Promptless in threads or messages to request doc updates directly
-  </Step>
-  
-  <Step title="Connect project management tools (optional)">
-    Connect Jira or Linear—this is optional, but recommended to give Promptless better context about the customer-facing impact of new features
-  </Step>
-</Steps>
+    <article class="pl-site-step" id="connect-documentation-repos">
+      <span class="pl-site-step-num">2</span>
+      <h3>Connect documentation repositories</h3>
+      <p>Connect your docs repository on GitHub, GitLab, or Bitbucket (e.g. if you use Mintlify, Fern, ReadMe, Docusaurus, etc.)</p>
+    </article>
+
+    <article class="pl-site-step" id="connect-communication-platforms">
+      <span class="pl-site-step-num">3</span>
+      <h3>Connect communication platforms</h3>
+      <p>Connect Slack or Microsoft Teams to get notified about new suggestions and to tag Promptless in threads or messages to request doc updates directly</p>
+    </article>
+
+    <article class="pl-site-step" id="connect-project-management">
+      <span class="pl-site-step-num">4</span>
+      <h3>Connect project management tools (optional)</h3>
+      <p>Connect Jira or Linear—this is optional, but recommended to give Promptless better context about the customer-facing impact of new features</p>
+    </article>
+  </div>
+</section>
 
 See our [Setup & Quickstart guide](/docs/getting-started/setup-quickstart) for integration instructions.
 
@@ -89,17 +96,29 @@ We always recommend kicking off customer pilots with an in-person workshop.
 
 ### Workshop Goals
 
-<Steps>
-  <Step title="Understand your Promptless setup">
-    Review your configuration and how [triggers](/docs/core-concepts/triggers), [context sources](/docs/core-concepts/context-sources), and [documentation platforms](/docs/core-concepts/doc-locations) work for your team
-  </Step>
-  <Step title="Publish your first updates">
-    Review suggestions together and publish documentation updates during the session
-  </Step>
-  <Step title="Define success criteria">
-    Agree on what a successful pilot with Promptless would look like for your team
-  </Step>
-</Steps>
+<section id="workshop-goals" class="pl-site-steps is-compact" data-sticky-heading="false">
+  <div class="pl-site-step-list">
+    <article class="pl-site-step" id="understand-setup">
+      <span class="pl-site-step-num">1</span>
+      <h3>Understand your Promptless setup</h3>
+      <p>
+        Review your configuration and how <a href="/docs/core-concepts/triggers">triggers</a>, <a href="/docs/core-concepts/context-sources">context sources</a>, and <a href="/docs/core-concepts/doc-locations">documentation platforms</a> work for your team
+      </p>
+    </article>
+
+    <article class="pl-site-step" id="publish-first-updates">
+      <span class="pl-site-step-num">2</span>
+      <h3>Publish your first updates</h3>
+      <p>Review suggestions together and publish documentation updates during the session</p>
+    </article>
+
+    <article class="pl-site-step" id="define-success-criteria">
+      <span class="pl-site-step-num">3</span>
+      <h3>Define success criteria</h3>
+      <p>Agree on what a successful pilot with Promptless would look like for your team</p>
+    </article>
+  </div>
+</section>
 
 ## Measuring Success for your Pilot
 
