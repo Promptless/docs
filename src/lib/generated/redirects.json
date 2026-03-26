@@ -86,11 +86,6 @@
       "permanent": true
     },
     {
-      "source": "/docs/configuring-promptless/triggers/microsoft-teams-messages",
-      "destination": "/docs/configuring-promptless/triggers/microsoft-teams-messages-beta",
-      "permanent": true
-    },
-    {
       "source": "/docs/configuration/triggers/slack",
       "destination": "/docs/configuring-promptless/triggers/slack-messages",
       "permanent": true
