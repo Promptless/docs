@@ -518,6 +518,7 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
   border-radius: 10px;
 }
 
+main:has(.collection-back-link) .content-panel > .sl-container,
 main:has(.collection-back-link) .sl-markdown-content {
   max-width: 72ch;
   margin-inline: auto;
