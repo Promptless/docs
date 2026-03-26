@@ -51,7 +51,7 @@
             "slug": "docs/configuring-promptless/triggers/slack-messages"
           },
           {
-            "label": "Microsoft Teams Messages",
+            "label": "Microsoft Teams Messages (Beta)",
             "slug": "docs/configuring-promptless/triggers/microsoft-teams-messages"
           },
           {
@@ -157,7 +157,7 @@
         "slug": "docs/integrations/slack-integration"
       },
       {
-        "label": "Microsoft Teams Integration",
+        "label": "Microsoft Teams Integration (Beta)",
         "slug": "docs/integrations/microsoft-teams-integration"
       },
       {
