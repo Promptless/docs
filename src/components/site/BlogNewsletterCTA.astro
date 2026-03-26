@@ -94,6 +94,7 @@
     display: flex;
     justify-content: center;
     gap: 0;
+    margin-top: 2rem;
   }
 
   .newsletter-form input {
@@ -139,12 +140,15 @@
     cursor: not-allowed;
   }
 
+  .newsletter-status:empty {
+    display: none;
+  }
+
   .newsletter-status {
     margin: 0.4rem 0 0;
     font-size: 0.84rem;
     line-height: 1.4;
     color: #475569;
-    min-height: 1.2em;
   }
 
   .newsletter-status[data-tone='error'] {
