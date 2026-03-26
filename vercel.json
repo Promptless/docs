@@ -277,6 +277,11 @@
       "source": "/support",
       "destination": "/docs/getting-started/getting-help",
       "permanent": true
+    },
+    {
+      "source": "/oss",
+      "destination": "/docs/getting-started/promptless-oss",
+      "permanent": true
     }
   ]
 }
