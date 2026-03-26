@@ -114,7 +114,7 @@
   {
     "sourcePath": "fern/docs/configuration/triggers/microsoft-teams.md",
     "contentType": "docs",
-    "routePath": "/docs/configuring-promptless/triggers/microsoft-teams-messages-beta",
+    "routePath": "/docs/configuring-promptless/triggers/microsoft-teams-messages",
     "title": "Microsoft Teams Messages (Beta)",
     "hidden": false,
     "order": 12,

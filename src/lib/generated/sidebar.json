@@ -52,7 +52,7 @@
           },
           {
             "label": "Microsoft Teams Messages (Beta)",
-            "slug": "docs/configuring-promptless/triggers/microsoft-teams-messages-beta"
+            "slug": "docs/configuring-promptless/triggers/microsoft-teams-messages"
           },
           {
             "label": "Zendesk Tickets (Beta)",
