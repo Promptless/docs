@@ -1,0 +1,43 @@
+---
+title: March 2026
+subtitle: Project pause controls, customizable notifications, and enhanced screenshot capture.
+date: '2026-03-01T00:00:00.000Z'
+hidden: false
+---
+import Frame from '@components/fern/Frame.astro';
+
+**New Features:**
+
+* **Project Pause/Resume Controls:** Temporarily pause automatic trigger processing without deleting your project configuration. Paused projects skip webhook triggers (GitHub PRs, Slack mentions, support tickets) but remain visible in the dashboard and can still be used for manual tasks from the New Task page. Resume at any time to restore automatic processing.
+
+* **Customizable Notifications via Long-Term Context:** Take control of how Promptless notifies your team about documentation suggestions. Edit `doc_workflow/notification_skill.md` in your organization's Long-Term Context to customize notification defaults, templates, tone, and delivery preferences. Slack notifications now support interactive buttons, diff file attachments, and channel routing.
+
+* **PR Target Branch Configuration:** Configure which branch documentation PRs target—useful for teams maintaining versioned documentation across multiple branches (e.g., v5, v6, v7). Set a default target branch at the doc collection level, or let Promptless use your repository's default branch.
+
+* **GitHub PR and Issue Management:** Promptless can now add labels and assign reviewers on GitHub PRs and issues. Older GitHub App installations may need to re-approve permissions to enable these capabilities.
+
+**Improvements:**
+
+* **Enhanced Screenshot Capture:** Screenshots now capture at 2x retina resolution with DOM-aware element annotations, producing sharper images that highlight the UI elements users need to see. The screenshot workflow also runs faster with improved browser automation.
+
+* **Screenshot Editor Viewport Fitting:** Large screenshots now fit properly within the editor dialog viewport instead of being clipped. The editor automatically scales images to fit your screen while preserving full resolution for exports.
+
+* **Scoped Doc Collection Visibility:** Doc collection directory scope is now visible throughout the dashboard—in project creation modals, project cards, doc collection lists, and settings pages. Quickly see which directories each doc collection covers without opening configuration details.
+
+* **Dynamic Browser Tab Titles:** Dashboard pages now show descriptive browser tab titles (e.g., "Update API docs - Promptless" instead of just the URL). When you have multiple suggestion tabs open, each tab shows its suggestion title—making it much easier to find the right tab.
+
+* **Improved Trigger Reliability:** Trigger processing is now more reliable with queue-driven dispatch. Triggers are delivered through an inbox-based system that prevents orphaned events and ensures consistent processing even when multiple triggers arrive simultaneously.
+
+* **Large PR Sync Handling:** Doc sync now handles GitHub PRs with more than 300 file changes. When the GitHub Compare API truncates results, Promptless falls back to a full tree diff—preventing sync corruption for large refactoring PRs.
+
+* **Slack File Uploads:** Slack diff file attachments now use the official Slack SDK for more reliable uploads. Messages also include permalinks for easier reference.
+
+**Bug Fixes:**
+
+* **GitHub Token Resolution:** Fixed an issue where GitHub tokens weren't properly resolved for dispatch sessions, which could cause GitHub operations to fail intermittently.
+
+* **Trigger List Performance:** Fixed performance regressions on the Triggers page that could cause slow loading with large trigger histories.
+
+* **OSS Fork Branch Sync:** Fixed default branch sync handling for open-source fork repositories.
+
+* **Notification Thread Consistency:** Fixed Slack notification formatting to use consistent thread replies and message structure across all notification types.
