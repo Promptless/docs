@@ -12,12 +12,9 @@ import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
 ## What Is Agent Context Engineering?
 
+For the last few years, prompt engineering had been the focus of attention in applied AI, starting last year, the term context engineering has come to the foreground. Building with language models is becoming less about finding the right words and phrases for the instructions, and more about answering the broader question of "does the model have everything it needs to complete the task?"
 
-For the last few years, prompt engineering had been the focus of attention in applied AI, starting last year, the term context engineering has come to the foreground. Building with language models is becoming less about finding the right words and phrases for your prompts, and more about answering the broader question of "does the model have everything it needs to complete the task?"
-
-
-As LLMs get better at long-horizon tasks (agents running for a long time independently without asking for human's help), some context engineering is automated by the agent (eg. Claude code will automatically compact the context). So it becomes more about the surrounding file system, skills, docs, tool descriptions, examples, and constraints.
-
+As agents become capable of longer-horizon tasks — running autonomously across many steps without human intervention — agents have started handling some of this automatically. Claude Code, for example, will compact its context window when it fills up. But what agents can't manage themselves is the quality of the external environment they draw from: the file system, the knowledge base, the tool descriptions, the docs, the examples, the constraints. That part remains a human responsibility, and it's where most of the real work lives.
 
 The phrase was popularized by developers like Shopify's CEO Tobi Lütke and AI leader Andrej Karpathy in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy emphatically agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
 
