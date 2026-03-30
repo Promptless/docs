@@ -1,4 +1,4 @@
-# Keywords for Promptless content farm
+# Keywords for Promptless education campaign
 # One keyword per line. Lines starting with # are ignored.
 # Audience: technical writers, DevRel, developer advocates, solutions engineers, EMs
 # at companies with developer-facing products.
