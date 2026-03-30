@@ -14,31 +14,20 @@ import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
 For the last few years, prompt engineering had been the focus of attention in applied AI, starting last year, the term context engineering has come to the foreground. Building with language models is becoming less about finding the right words and phrases for the instructions, and more about answering the broader question of "does the model have everything it needs to complete the task?"
 
-As agents become capable of longer-horizon tasks — running autonomously across many steps without human intervention — agents have started handling some of this automatically. Claude Code, for example, will compact its context window when it fills up. But what agents can't manage themselves is the quality of the external environment they draw from: the file system, the knowledge base, the tool descriptions, the docs, the examples, the constraints. That part remains a human responsibility, and it's where most of the real work lives.
+AI agents are capable of context engineering by themselves via context compression and maintaining memory. Claude Code, for example, will compact its context window when it fills up. But what agents can't manage themselves is the quality of the external environment they draw from: the file system, the knowledge base, the tool descriptions, the docs, the examples, the constraints. That part remains a human responsibility, and it's where most of the real work lives.
 
-The phrase was popularized by developers like Shopify's CEO Tobi Lütke and AI leader Andrej Karpathy in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy emphatically agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
+The phrase was popularized by developers like Shopify's CEO Tobi Lütke and AI thought leader Andrej Karpathy in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy emphatically agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
 
 
 ## Context Engineering vs. Prompt Engineering
 
-The distinction is not just semantic. 
-Prompt engineering focuses on how you communicate with the model. Context engineering focuses on what information the model has access to when it generates responses.
+Prompt engineering mattered more when models were worse at understanding intent. The early practice of carefully phrasing instructions — specific role definitions, elaborate chain-of-thought triggers, exact wording to get the desired format — was a workaround for models that needed heavy guidance to stay on track. Modern LLMs have largely solved the "what to do" problem. They follow instructions well. You don't need to spend much time engineering the prompt itself.
 
+What they can't solve on their own is the "how we do it here" problem. Every organization has internal knowledge that doesn't exist on the public internet: your API conventions, your escalation policies, your product edge cases, the way your team handles exceptions, the decisions that were made and why. A general-purpose model has no access to any of that. Context engineering is the work of making that knowledge available to the agent at the right time, in a form it can actually use.
 
-Prompt engineering is the craft of writing instructions — role definitions, formatting rules, chain-of-thought elicitation. It optimizes a single message. 
-Prompt engineering is what you do inside the context window. Context engineering is how you decide what fills the window.
+Andrej Karpathy's analogy is useful here: think of the LLM as a CPU and its context window as RAM. The CPU can only operate on what's in RAM. It doesn't matter how capable the processor is if the wrong data is loaded. Context engineering is the discipline of deciding what gets loaded — and ensuring it's accurate, current, and well-structured enough to be useful.
 
-
-
-Context engineering rebuilds the information assembly pipeline that feeds the model — what it should know, when it should know it, and how that information should be structured.
- For agents specifically, this is critical because agents don't operate in single turns. 
-The distinction matters because modern AI agents don't operate in single turns. An agent running in a loop generates an ever-expanding universe of information: tool outputs, retrieved documents, conversation history, intermediate reasoning.
-
-
-
-Prompt engineering can request tool use and describe what tools should do. Context engineering decides which tools to make available, what information to pass them, and how their outputs flow back into context.
- The analogy that has gained traction comes from Andrej Karpathy: 
-as Karpathy puts it, LLMs are like a new kind of operating system. The LLM is like the CPU and its context window is like the RAM, serving as the model's working memory. Just like RAM, the LLM context window has limited capacity to handle various sources of context. And just as an operating system curates what fits into a CPU's RAM, we can think about "context engineering" playing a similar role.
+For agents specifically, this problem compounds. A single-turn assistant only needs good context for one response. An agent running across many steps accumulates tool outputs, retrieved documents, prior reasoning, and conversation history — and has to make decisions about what to keep, what to discard, and what to retrieve next. Each step is a new opportunity for bad context to corrupt the output.
 
 
 ## Most Agent Failures Are Context Failures
