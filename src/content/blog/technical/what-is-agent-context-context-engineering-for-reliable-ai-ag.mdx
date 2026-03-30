@@ -28,7 +28,7 @@ What they can't solve on their own is the "how we do it _here_" problem. Models 
 
 Andrej Karpathy's analogy is useful here: think of the LLM as a CPU and its context window as RAM. The CPU can only operate on what's in RAM. It doesn't matter how capable the processor is if the wrong data is loaded. Context engineering is the discipline of deciding what gets loaded — and ensuring it's accurate, current, and well-structured enough to be useful.
 
-For agents specifically, this problem compounds in a way it doesn't for single-turn assistants. If an agent retrieves a stale policy or an outdated API name in step two, it doesn't just get that step wrong — it builds every subsequent decision on top of that bad information. It's like giving a new employee wrong onboarding docs on day one: every habit they form, every decision they make in their first weeks is downstream of what they learned then. By the time you realize something is off, the damage isn't just one wrong answer. It's a chain of actions that all made sense given what the agent thought it knew.
+For agents specifically, this problem compounds in a way it doesn't for single-turn assistants. A single bad piece of context doesn't stay contained — each step in an agent's execution uses the outputs of prior steps as inputs. A stale policy retrieved in step two becomes the assumption underlying steps three, four, and five. By the time the agent produces a final answer, it may be confidently wrong in ways that are hard to trace — not because of a reasoning failure, but because the information it reasoned from was bad from the start.
 
 
 ## Most Agent Failures Are Context Failures
