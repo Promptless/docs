@@ -30,25 +30,13 @@ Andrej Karpathy's analogy is useful here: think of the LLM as a CPU and its cont
 
 For agents specifically, this problem compounds in a way it doesn't for single-turn assistants. A single bad piece of context doesn't stay contained — each step in an agent's execution uses the outputs of prior steps as inputs. A stale policy retrieved in step two becomes the assumption underlying steps three, four, and five. By the time the agent produces a final answer, it may be confidently wrong in ways that are hard to trace — not because of a reasoning failure, but because the information it reasoned from was bad from the start.
 
-
 ## Most Agent Failures Are Context Failures
 
-
 The main thing that determines whether an agent succeeds or fails is the quality of the context you give it. Most agent failures are not model failures — they are context failures.
- This claim is backed by practitioners across the industry.
-
-
-After deploying hundreds of AI agents for enterprise customer experience, Inkeep has seen the truth: most production failures aren't model failures — they're context failures. The problem isn't that Claude or GPT-5 can't reason. It's that we're drowning them in irrelevant information, giving them ambiguous tools, and asking them to maintain coherence across bloated conversation histories.
-
-
-The failure modes are concrete and predictable:
 
 - **Stale knowledge:** 
-If the knowledge base hasn't been updated to reflect a new 30-day return policy, and the AI still references an old 14-day policy, the customer might be incorrectly denied a refund.
- A pricing agent that quotes last quarter's rates to a Fortune 500 prospect can cause real financial damage.
-- **Bloated or vague tool descriptions:** 
-Amazon's engineering team found that poorly defined tool schemas and imprecise semantic descriptions result in erroneous tool selection during agent runtime, leading to the invocation of irrelevant APIs that unnecessarily expand the context window, increase inference latency, and escalate computational costs through redundant LLM calls.
-
+  - If the knowledge base hasn't been updated to reflect a new 30-day return policy, and the AI still references an old 14-day policy, the customer might be incorrectly denied a refund.
+- **Bloated, vague, or overlapping tool descriptions:** When tool schemas are poorly defined or semantically ambiguous, agents select the wrong tool, invoke irrelevant APIs, and fill the context window with noise — increasing latency and cost while degrading output quality.
 - **Signal dilution from overstuffed context:** 
 Models exhibit "context rot" where accuracy drops even on simple tasks. A Databricks study found model correctness begins falling around 32,000 tokens for Llama 3.1 405b, and earlier for smaller models.
  Bigger context windows don't solve this; they merely delay the onset.
@@ -57,9 +45,6 @@ If the failure is fragmentation, the data is already there. The agent just can't
  When the agent has access to both current and outdated information, it may anchor on whichever version it encountered first.
 - **Tool calling errors at the action layer:** 
 Tool calling — the mechanism by which AI agents interact with systems — fails between 3% to 15% of the time in production. Even well-engineered systems experience these failure rates.
-
-
-These aren't edge cases. They are the default outcome when context is treated as an afterthought rather than an engineered system.
 
 <BlogNewsletterCTA />
 
