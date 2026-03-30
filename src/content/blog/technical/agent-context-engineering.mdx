@@ -33,13 +33,13 @@ For agents specifically, wrong context compounds in a way it doesn't for single-
 
 ## Context Engineering vs. Harness Engineering
 
-Context engineering is often conflated with harness engineering, but they're different problems that fail in different ways.
+Context engineering is often conflated with harness engineering, but they're different layers of the same system and they fail in different ways.
 
-Harness engineering is about how the agent runs: the orchestration layer that handles retry logic, tool dispatch, routing between sub-agents, error recovery, and loop control. Frameworks like LangChain and LlamaIndex are harness infrastructure. When the harness fails, you see things like infinite loops, tool calls that never resolve, agents taking wrong branches, or retries that don't back off.
+Harness engineering is about how the agent is structured and orchestrated. For long-running agents, Anthropic describes [the core challenge](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) as agents having to work across discrete sessions where "each new session begins with no memory of what came before." The harness solves this: it manages state handoffs between sessions, structures tasks into increments, handles retry logic and error recovery, and routes work between specialized sub-agents. Anthropic's own internal harnesses use a planner-generator-evaluator pattern, where a separate evaluator agent reviews the generator's work, because agents are reliably uncritical of their own output. The harness defines when to reset context, how to track progress, and what a "clean state" looks like at the end of each session.
 
-Context engineering is about what the agent works with: the quality, freshness, and structure of the information it draws from at each step. When context fails, the agent runs fine but produces wrong answers, follows outdated procedures, or makes decisions based on information that was never accurate to begin with.
+Context engineering operates at a different level entirely. It's not about how the agent runs but what it works with: the accuracy and structure of the information it retrieves, the quality of the tool descriptions it uses, the freshness of the knowledge it draws from. A well-designed harness doesn't fix bad context. You can have a perfectly orchestrated planner-generator-evaluator pipeline and still get systematically wrong answers if the knowledge base the agents draw from is stale, missing, or poorly structured. The harness ensures the agent makes progress; context engineering ensures that progress is in the right direction.
 
-The distinction matters because they require different fixes. A harness failure is a code problem; you instrument, debug, and redeploy. A context failure is a knowledge problem; the agent behaves exactly as designed, it just had bad inputs. That's harder to catch and easier to miss, because nothing obviously breaks. The agent keeps running, keeps answering, just increasingly incorrectly.
+When the harness fails, something breaks visibly: sessions don't complete, retries loop, sub-agents contradict each other, state gets corrupted. When context fails, nothing breaks. The agent runs exactly as designed. It just does the wrong thing, confidently, with no signal that anything is off.
 
 ## Most Agent Failures Are Context Failures
 
