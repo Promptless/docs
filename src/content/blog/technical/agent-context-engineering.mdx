@@ -31,6 +31,16 @@ Andrej Karpathy's analogy is useful here: think of the LLM as a CPU and its cont
 
 For agents specifically, wrong context compounds in a way it doesn't for single-turn assistants. Each step in an agent's execution uses the outputs of prior steps as inputs. A stale policy retrieved in step two becomes the assumption underlying steps three, four, and five. By the time the agent produces a final answer, it may be confidently wrong, which is worse than saying "I don't know." And this wouldn't be a reasoning failure; it would be because the information it reasoned from was bad from the start.
 
+## Context Engineering vs. Harness Engineering
+
+Context engineering is often conflated with harness engineering, but they're different problems that fail in different ways.
+
+Harness engineering is about how the agent runs: the orchestration layer that handles retry logic, tool dispatch, routing between sub-agents, error recovery, and loop control. Frameworks like LangChain and LlamaIndex are harness infrastructure. When the harness fails, you see things like infinite loops, tool calls that never resolve, agents taking wrong branches, or retries that don't back off.
+
+Context engineering is about what the agent works with: the quality, freshness, and structure of the information it draws from at each step. When context fails, the agent runs fine but produces wrong answers, follows outdated procedures, or makes decisions based on information that was never accurate to begin with.
+
+The distinction matters because they require different fixes. A harness failure is a code problem; you instrument, debug, and redeploy. A context failure is a knowledge problem; the agent behaves exactly as designed, it just had bad inputs. That's harder to catch and easier to miss, because nothing obviously breaks. The agent keeps running, keeps answering, just increasingly incorrectly.
+
 ## Most Agent Failures Are Context Failures
 
 Most agent failures aren't model failures. They fall into three categories:
@@ -57,7 +67,7 @@ The instruction layer sets the agent's identity and operating boundaries, but it
 
 This is where documentation, examples, retrieved content, and domain knowledge live. It's the layer most directly affected by retrieval pipelines and knowledge base quality, and it's where the difference between a demo and a production system usually lives. Not in which model you're using, but in how carefully information is selected, structured, and delivered at each step.
 
-Knowledge context is also the layer most vulnerable to staleness. Instruction files, knowledge bases, and retrieval stores are snapshots of what was true at the time they were written. They don't update themselves when an upstream product ships a breaking change. Without active maintenance, they rot silently.
+This is also the layer most vulnerable to drift. Teams tend to treat knowledge systems as one-time projects: ingest documents, deploy, done. But sources change silently. Policy documents, product specs, and internal guides update regularly, while the agent's knowledge doesn't, because there's no automated sync. The result is a knowledge base that was accurate at launch and quietly wrong six months later, with no visible signal that anything has changed. The software engineering discipline has spent decades building tools to manage change in code (version control, continuous integration, automated testing); agent knowledge needs the same rigor.
 
 ### Layer 3: Operational Context
 
@@ -80,14 +90,6 @@ With models like Claude, GPT-4o, or Gemini, you do not actually decide which pie
 This distinction matters practically. Teams who think of themselves as "doing context engineering" often focus on prompt structure, retrieval tuning, and token budgeting. Those things matter. But the lever you actually have the most control over, and that has the most impact on output quality, is the accuracy and structure of the underlying information the agent can access. If your docs are wrong, stale, or inconsistently structured, no amount of retrieval tuning fixes it. The model will confidently surface the wrong answer, because that is what it found.
 
 Context engineering, properly understood, is less about controlling what goes into the context window at runtime and more about maintaining the information environment that the agent draws from. The question stops being "how do I get the right chunk into the context window?" and becomes "is everything in my knowledge layer accurate enough that it doesn't matter which chunk the model retrieves?"
-
-## Context Engineering Is a Living Discipline
-
-Context engineering is not a one-time setup. Agents degrade as the world changes. APIs update, products ship new features, policies are revised, support teams discover new edge cases, and unless context is actively maintained, the agent silently becomes worse.
-
-Teams tend to build knowledge systems as one-time projects: ingest documents, deploy, done. Nobody owns ongoing updates. Sources change silently. Policy documents, product specs, and internal guides update regularly, but the AI's knowledge doesn't, because there's no automated sync. The result is content drift: a knowledge base that was accurate at launch and quietly wrong six months later, with no visible signal that anything has changed.
-
-The software engineering discipline has spent decades building tools to manage change in code: version control, dependency management, continuous integration, automated testing. Agent knowledge needs the same rigor, not because it's glamorous work, but because the alternative is agents that slowly get worse at their jobs while everyone assumes they're fine.
 
 ## How Promptless Keeps the Knowledge Layer Fresh
 
