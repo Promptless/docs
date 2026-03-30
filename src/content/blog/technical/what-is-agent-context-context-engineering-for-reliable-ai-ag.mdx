@@ -1,12 +1,9 @@
-Now I have extensive research. Let me write the article.
-
 ---
-title: 'What Is Agent Context? Context Engineering for Reliable AI Agents'
+title: 'What is Agent Context Engineering? and how is it different from prompt or harness engineering'
 subtitle: Published March 2026
 description: >-
   Learn what agent context engineering is, how it differs from prompt engineering, why most agent failures are context failures, and a four-layer framework for building reliable AI agents.
 date: '2026-03-30T00:00:00.000Z'
-author: Frances
 section: Technical
 hidden: true
 ---
@@ -15,25 +12,15 @@ import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
 ## What Is Agent Context Engineering?
 
-If you're building or maintaining documentation that feeds AI agents, you need to understand the concept reshaping how those agents work: **context engineering**.
+
+For the last few years, prompt engineering had been the focus of attention in applied AI, starting last year, the term context engineering has come to the foreground. Building with language models is becoming less about finding the right words and phrases for your prompts, and more about answering the broader question of "does the model have everything it needs to complete the task?"
 
 
-After a few years of prompt engineering being the focus of attention in applied AI, a new term has come to prominence: context engineering. Building with language models is becoming less about finding the right words and phrases for your prompts, and more about answering the broader question of "what configuration of context is most likely to generate our model's desired behavior?"
-
-
-
-Context refers to the set of tokens included when sampling from a large-language model (LLM). The engineering problem at hand is optimizing the utility of those tokens against the inherent constraints of LLMs in order to consistently achieve a desired outcome.
- But agent context is not just the prompt window. It is the full set of information and affordances that shape an agent's decisions at runtime — instructions, retrieved docs, tool descriptions, memory, examples, state, environment signals, and constraints.
+As LLMs get better at long-horizon tasks (agents running for a long time independently without asking for human's help), some context engineering is automated by the agent (eg. Claude code will automatically compact the context). So it becomes more about the surrounding file system, skills, docs, tool descriptions, examples, and constraints.
 
 
 The phrase was popularized by developers like Shopify's CEO Tobi Lütke and AI leader Andrej Karpathy in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy emphatically agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
 
-
-This matters because agent adoption is accelerating at a pace that outstrips most teams' ability to manage context well. 
-Gartner forecasts that 40% of enterprise applications will embed task-specific AI agents by 2026, up from less than 5% in 2025.
- Meanwhile, 
-the 79% adoption vs. 11% production gap is the defining challenge of 2026: almost four in five enterprises have adopted AI agents in some form, yet only one in nine runs them in production.
- The gap between demo and deployment is, overwhelmingly, a context problem.
 
 ## Context Engineering vs. Prompt Engineering
 
@@ -160,6 +147,20 @@ is built around the thesis that context is a compiled view over a richer statefu
 ## How Promptless Keeps the Knowledge Layer Fresh
 
 Of the four layers described above, the knowledge layer — the documentation, examples, and retrieved content your agents depend on — is the one that drifts the fastest and is hardest to maintain manually.
+
+## What You Actually Control
+
+There's a quiet misnomer in "context engineering" that becomes obvious once you deploy against a closed-source model.
+
+With models like Claude, GPT-4o, or Gemini, you do not actually decide which piece of context the agent retrieves, attends to, or weighs at each step. The model does. You can shape the retrieval pipeline — what goes into your vector store, how chunks are sized, what metadata is attached — but the moment the agent is running, the model determines what it finds relevant. You are not engineering the context. You are engineering the environment the agent operates inside.
+
+This distinction matters practically. Teams who think of themselves as "doing context engineering" often focus on prompt structure, retrieval tuning, and token budgeting. Those things matter. But the lever you actually have the most control over — and that has the most impact on output quality — is the accuracy and structure of the underlying information the agent can access. If your docs are wrong, stale, or inconsistently structured, no amount of retrieval tuning fixes it. The model will confidently surface the wrong answer, because that is what it found.
+
+Context engineering, properly understood, is less about controlling what goes into the context window at runtime and more about maintaining the information environment that the agent draws from. It extends beyond "context" in the narrow sense — beyond the window, beyond the retrieval call — into the ongoing discipline of keeping your knowledge layer honest. You are not curating a prompt. You are curating a file system, a knowledge base, a set of policies and docs and tool descriptions, and trusting that the model will make good use of what it finds there.
+
+That reframing changes what good practice looks like. The question stops being "how do I get the right chunk into the context window?" and becomes "is everything in my knowledge layer accurate enough that it doesn't matter which chunk the model retrieves?"
+
+## How Promptless Keeps the Knowledge Layer Fresh
 
 Every time your product ships a new feature, deprecates an API endpoint, or changes a pricing tier, the docs that feed your agents risk becoming stale. And stale docs don't throw errors. They produce confident, wrong answers that erode customer trust.
 
