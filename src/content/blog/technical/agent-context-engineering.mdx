@@ -13,7 +13,7 @@ import Frame from '@components/fern/Frame.astro';
 
 For the past few years, prompt engineering was the dominant focus in applied AI. More recently, the term context engineering has come to the foreground. Building with language models is becoming less about carefully phrasing instructions and more about answering a broader question: does the model have everything it needs to complete the task?
 
-AI agents can manage some of their own context within a session, through compression and memory maintenance. Claude Code, for example, will compact its context window when it fills up. But what agents can't manage is the quality of the information environment external to themselves: the file system, the knowledge base, the tool descriptions, the docs, the examples, the constraints. That part remains a human responsibility, and it's where most of the real work lives.
+AI agents can manage some of their own context within a session, through compression and memory maintenance. Claude Code, for example, will compact its context window when it fills up. But what agents can't manage is the quality of the information environment external to themselves: the underlying knowledge, tool definitions, and behavioral guardrails that sit outside any given session. That part remains a human responsibility, and it's where most of the real work lives.
 
 Shopify's CEO Tobi Lütke and AI researcher Andrej Karpathy both wrote about the shift in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
 
@@ -35,11 +35,11 @@ For agents specifically, wrong context compounds in a way it doesn't for single-
 
 Context engineering is often conflated with harness engineering, but they're different layers of the same system and they fail in different ways.
 
-Harness engineering is about how the agent is structured and orchestrated. For long-running agents, Anthropic describes [the core challenge](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) as agents having to work across discrete sessions where "each new session begins with no memory of what came before." The harness solves this: it manages state handoffs between sessions, structures tasks into increments, handles retry logic and error recovery, and routes work between specialized sub-agents.
+Harness engineering is about how the agent is structured and orchestrated. For long-running agents, Anthropic describes [the core challenge](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) as agents having to work across discrete sessions where "each new session begins with no memory of what came before." The harness solves this: it coordinates how work gets broken down and handed off across sessions, handles retry logic and error recovery, and routes tasks between specialized sub-agents.
 
 Context engineering operates at a different level entirely. A well-designed harness doesn't fix bad context. You can have a perfectly orchestrated planner-generator-evaluator pipeline and still get systematically wrong answers if the knowledge base the agents draw from is stale, missing, or poorly structured. The harness ensures the agent makes progress; context engineering ensures that progress is in the right direction.
 
-When the harness fails, the agent breaks visibly: sessions don't complete, retries loop, sub-agents contradict each other, state gets corrupted. When context fails, nothing breaks. The agent runs exactly as designed, does the wrong thing confidently, and gives no signal that anything is off.
+When the harness fails, the agent breaks visibly: sessions stall, retries loop endlessly, state gets corrupted. When context fails, nothing breaks. The agent runs exactly as designed, does the wrong thing confidently, and gives no signal that anything is off.
 
 ## Most Agent Failures Are Context Failures
 
@@ -59,7 +59,7 @@ To reason about agent context systematically, it helps to decompose it into four
 
 ### Layer 1: Instruction Context
 
-This is the layer most teams invest in first: system prompts, goals, rules, policies, persona definitions, and behavioral constraints. Few-shot examples belong here too. Rather than trying to enumerate every possible edge case in the prompt, the more effective approach is to provide a set of diverse, representative examples that demonstrate the expected behavior, since a long laundry list of rules is harder for a model to apply consistently than a handful of well-chosen examples.
+This is the layer most teams invest in first: the system prompt, the agent's goals and behavioral constraints, and any persona or policy definitions. Few-shot examples belong here too. Rather than trying to enumerate every possible edge case in the prompt, the more effective approach is to provide a set of diverse, representative examples that demonstrate the expected behavior, since a long laundry list of rules is harder for a model to apply consistently than a handful of well-chosen examples.
 
 ### Layer 2: Knowledge Context
 
@@ -69,13 +69,13 @@ This is also the layer most vulnerable to drift. Teams tend to treat knowledge s
 
 ### Layer 3: Operational Context
 
-This is the runtime state: the current conversation history, prior tool outputs, the user's immediate request, and environmental signals like timestamps or session metadata. Managing this layer means deciding what to keep, what to summarize, and what to drop as the agent runs.
+This is the runtime state: the conversation so far, prior tool outputs, and any environmental signals like timestamps or session metadata. Managing this layer means deciding what to keep, what to summarize, and what to drop as the agent runs.
 
 For teams building their own agentic systems, this is an active engineering problem. Long-running agents accumulate tokens across many LLM and tool calls, and left unmanaged this balloons cost, increases latency, and degrades performance. But if you're using a managed agent like Claude Code, much of this is handled automatically: the agent compresses its own context, manages memory, and decides what to carry forward. In that case, your leverage sits almost entirely in the knowledge layer, not here.
 
 ### Layer 4: Action Context
 
-This layer comprises the tools available to the agent: their schemas, descriptions, permissions, and affordances. If a human engineer can't definitively say which tool should be used in a given situation, an agent can't be expected to do better. Bloated tool sets and ambiguous descriptions are among the most common sources of agent misbehavior in production.
+This layer comprises the tools available to the agent: how they're defined, described, and scoped. If a human engineer can't definitively say which tool should be used in a given situation, an agent can't be expected to do better. Bloated tool sets and ambiguous descriptions are among the most common sources of agent misbehavior in production.
 
 Action context also includes what the agent is *not* allowed to do: the permission boundaries and escalation policies that prevent it from taking actions that are technically available but outside acceptable scope. Defining these constraints explicitly is as important as defining the tools themselves.
 
