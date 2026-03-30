@@ -1,0 +1,170 @@
+Now I have extensive research. Let me write the article.
+
+---
+title: 'What Is Agent Context? Context Engineering for Reliable AI Agents'
+subtitle: Published March 2026
+description: >-
+  Learn what agent context engineering is, how it differs from prompt engineering, why most agent failures are context failures, and a four-layer framework for building reliable AI agents.
+date: '2026-03-30T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+## What Is Agent Context Engineering?
+
+If you're building or maintaining documentation that feeds AI agents, you need to understand the concept reshaping how those agents work: **context engineering**.
+
+
+After a few years of prompt engineering being the focus of attention in applied AI, a new term has come to prominence: context engineering. Building with language models is becoming less about finding the right words and phrases for your prompts, and more about answering the broader question of "what configuration of context is most likely to generate our model's desired behavior?"
+
+
+
+Context refers to the set of tokens included when sampling from a large-language model (LLM). The engineering problem at hand is optimizing the utility of those tokens against the inherent constraints of LLMs in order to consistently achieve a desired outcome.
+ But agent context is not just the prompt window. It is the full set of information and affordances that shape an agent's decisions at runtime — instructions, retrieved docs, tool descriptions, memory, examples, state, environment signals, and constraints.
+
+
+The phrase was popularized by developers like Shopify's CEO Tobi Lütke and AI leader Andrej Karpathy in mid-2025. "I really like the term 'context engineering' over prompt engineering," wrote Tobi. Karpathy emphatically agreed, noting that people associate prompts with short instructions, whereas in every serious LLM application, context engineering is "the delicate art and science of filling the context window with just the right information for each step."
+
+
+This matters because agent adoption is accelerating at a pace that outstrips most teams' ability to manage context well. 
+Gartner forecasts that 40% of enterprise applications will embed task-specific AI agents by 2026, up from less than 5% in 2025.
+ Meanwhile, 
+the 79% adoption vs. 11% production gap is the defining challenge of 2026: almost four in five enterprises have adopted AI agents in some form, yet only one in nine runs them in production.
+ The gap between demo and deployment is, overwhelmingly, a context problem.
+
+## Context Engineering vs. Prompt Engineering
+
+The distinction is not just semantic. 
+Prompt engineering focuses on how you communicate with the model. Context engineering focuses on what information the model has access to when it generates responses.
+
+
+Prompt engineering is the craft of writing instructions — role definitions, formatting rules, chain-of-thought elicitation. It optimizes a single message. 
+Prompt engineering is what you do inside the context window. Context engineering is how you decide what fills the window.
+
+
+
+Context engineering rebuilds the information assembly pipeline that feeds the model — what it should know, when it should know it, and how that information should be structured.
+ For agents specifically, this is critical because agents don't operate in single turns. 
+The distinction matters because modern AI agents don't operate in single turns. An agent running in a loop generates an ever-expanding universe of information: tool outputs, retrieved documents, conversation history, intermediate reasoning.
+
+
+
+Prompt engineering can request tool use and describe what tools should do. Context engineering decides which tools to make available, what information to pass them, and how their outputs flow back into context.
+ The analogy that has gained traction comes from Andrej Karpathy: 
+as Karpathy puts it, LLMs are like a new kind of operating system. The LLM is like the CPU and its context window is like the RAM, serving as the model's working memory. Just like RAM, the LLM context window has limited capacity to handle various sources of context. And just as an operating system curates what fits into a CPU's RAM, we can think about "context engineering" playing a similar role.
+
+
+## Most Agent Failures Are Context Failures
+
+
+The main thing that determines whether an agent succeeds or fails is the quality of the context you give it. Most agent failures are not model failures — they are context failures.
+ This claim is backed by practitioners across the industry.
+
+
+After deploying hundreds of AI agents for enterprise customer experience, Inkeep has seen the truth: most production failures aren't model failures — they're context failures. The problem isn't that Claude or GPT-5 can't reason. It's that we're drowning them in irrelevant information, giving them ambiguous tools, and asking them to maintain coherence across bloated conversation histories.
+
+
+The failure modes are concrete and predictable:
+
+- **Stale knowledge:** 
+If the knowledge base hasn't been updated to reflect a new 30-day return policy, and the AI still references an old 14-day policy, the customer might be incorrectly denied a refund.
+ A pricing agent that quotes last quarter's rates to a Fortune 500 prospect can cause real financial damage.
+- **Bloated or vague tool descriptions:** 
+Amazon's engineering team found that poorly defined tool schemas and imprecise semantic descriptions result in erroneous tool selection during agent runtime, leading to the invocation of irrelevant APIs that unnecessarily expand the context window, increase inference latency, and escalate computational costs through redundant LLM calls.
+
+- **Signal dilution from overstuffed context:** 
+Models exhibit "context rot" where accuracy drops even on simple tasks. A Databricks study found model correctness begins falling around 32,000 tokens for Llama 3.1 405b, and earlier for smaller models.
+ Bigger context windows don't solve this; they merely delay the onset.
+- **Contradictory or fragmented retrieval:** 
+If the failure is fragmentation, the data is already there. The agent just can't connect it.
+ When the agent has access to both current and outdated information, it may anchor on whichever version it encountered first.
+- **Tool calling errors at the action layer:** 
+Tool calling — the mechanism by which AI agents interact with systems — fails between 3% to 15% of the time in production. Even well-engineered systems experience these failure rates.
+
+
+These aren't edge cases. They are the default outcome when context is treated as an afterthought rather than an engineered system.
+
+<BlogNewsletterCTA />
+
+## A Four-Layer Framework for Agent Context
+
+To reason about agent context systematically, it helps to decompose it into four layers. This framework synthesizes how practitioners at Anthropic, LangChain, Google, and others describe the components of agent context.
+
+### Layer 1: Instruction Context
+
+This is the layer most teams invest in first: system prompts, goals, rules, policies, persona definitions, and behavioral constraints. 
+Providing examples (few-shot prompting) is a well-known best practice that Anthropic continues to strongly advise. However, teams will often stuff a laundry list of edge cases into a prompt in an attempt to articulate every possible rule. Anthropic does not recommend this. Instead, they recommend curating a set of diverse, canonical examples that effectively portray the expected behavior of the agent.
+
+
+The instruction layer sets the agent's identity and operating boundaries, but it's only one part of the picture.
+
+### Layer 2: Knowledge Context
+
+This is where documentation, examples, retrieved content, and domain knowledge live. It's the layer most directly affected by retrieval pipelines and knowledge base quality. 
+To build reliable agents, you need a system that combines the context window with long-term memory (retrieval from external stores like vector databases) and selectively decides what to include at each step. The difference between a flashy demo and a dependable production system isn't about switching to a "smarter" model. It's about how information is selected, structured, and delivered to the model at each step of a task. In other words, the difference is context.
+
+
+Knowledge context is also the layer most vulnerable to staleness. 
+If you've worked with AI coding agents, you've probably written some form of instruction files. These files tell the agent how to do things correctly for your stack. Here's what practitioners learn the hard way: those files are snapshots of knowledge at a point in time. They don't update themselves. They don't know when the upstream product ships a breaking change. They just sit there, each day getting a little more stale, slowly becoming wrong.
+
+
+### Layer 3: Operational Context
+
+This is the runtime state: the current conversation history, prior tool outputs, the user's immediate request, and environmental signals like timestamps or session metadata. 
+A context window flooded with irrelevant logs, stale tool outputs, or deprecated state can distract the model, causing it to fixate on past patterns rather than the immediate instruction.
+
+
+Managing operational context means deciding what to keep, what to summarize, and what to drop. 
+Agents interleave LLM calls and tool calls, using tool feedback to decide the next step. However, long-running tasks and accumulating feedback from tool calls mean that agents often utilize a large number of tokens. This can exceed the size of the context window, balloon cost and latency, or degrade agent performance.
+
+
+### Layer 4: Action Context
+
+This layer comprises the tools available to the agent — their schemas, descriptions, permissions, and affordances. 
+One of the most common failure modes Anthropic sees is bloated tool sets that cover too much functionality or lead to ambiguous decision points about which tool to use. If a human engineer can't definitively say which tool should be used in a given situation, an AI agent can't be expected to do better.
+
+
+
+Getting the agent to use tools correctly, safely, and efficiently is where context engineering work begins. This orchestration involves several moving parts, all happening inside the limited context window: the agent must know what tools it has access to. This is done by giving it a clear tool list and high-quality descriptions in the system prompt. These descriptions guide the agent in understanding how each tool works, when to use it, and when to avoid it.
+
+
+Action context also includes what the agent is *not* allowed to do — permission boundaries and escalation policies that prevent catastrophic misuse. The Amazon Kiro incident in December 2025, 
+where engineers gave their Kiro AI coding assistant a straightforward task to fix a minor issue, but Kiro had operator-level permissions and no mandatory peer review existed for AI-initiated production changes,
+ is a cautionary tale of what happens when action context lacks adequate constraints.
+
+## Context Engineering Is a Living Discipline
+
+Context engineering is not a one-time setup. Agents degrade as the world changes — APIs update, products ship new features, policies are revised, support teams discover new edge cases — and unless context is actively maintained, the agent silently becomes worse.
+
+
+We're building agents that write code, review code, and architect systems. But the knowledge that makes those agents effective is itself a maintenance burden. The agents are only as good as their instructions, and instructions rot. The software engineering discipline has spent decades building tools to manage change in code — version control, dependency management, continuous integration, automated testing. Agent knowledge needs the same rigor. Not because it's glamorous work, but because the alternative is agents that slowly get worse at their jobs while everyone assumes they're fine.
+
+
+
+Teams build knowledge systems as one-time projects: "Ingest documents, deploy, done." Nobody owns ongoing updates. Sources change silently: your policy documents, product specs, and org charts update regularly. Your AI's knowledge doesn't, because there's no automated sync.
+
+
+The problem is compounded in documentation-heavy environments. 
+A manual process for syncing knowledge is prone to failure. It leads to "content drift," where articles slowly become outdated. This makes it difficult to create a single source of truth that everyone, including your AI, can count on.
+
+
+
+To build production-grade agents that are reliable, efficient, and debuggable, the industry is exploring a new discipline: context engineering — treating context as a first-class system with its own architecture, lifecycle, and constraints.
+ Google's Agent Development Kit (ADK), for example, 
+is built around the thesis that context is a compiled view over a richer stateful system,
+ not a mutable string buffer that teams append to ad hoc.
+
+## How Promptless Keeps the Knowledge Layer Fresh
+
+Of the four layers described above, the knowledge layer — the documentation, examples, and retrieved content your agents depend on — is the one that drifts the fastest and is hardest to maintain manually.
+
+Every time your product ships a new feature, deprecates an API endpoint, or changes a pricing tier, the docs that feed your agents risk becoming stale. And stale docs don't throw errors. They produce confident, wrong answers that erode customer trust.
+
+Promptless is purpose-built for this problem. It continuously monitors your documentation against your actual product, codebase, and source-of-truth systems, automatically surfacing what's outdated, incomplete, or missing. Instead of waiting for a support ticket to reveal that your agent is recommending a deprecated API pattern, Promptless flags the gap before the agent ever serves it.
+
+For teams practicing context engineering, this means the knowledge context layer — the one that feeds RAG pipelines, agent skill files, and support bots — stays accurate without requiring manual audits or doc sprints. The result is agents that give correct answers not just on day one, but on day 100 and day 1,000.
+
+<BlogRequestDemo />
