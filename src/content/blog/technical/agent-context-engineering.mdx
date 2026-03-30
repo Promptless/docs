@@ -83,7 +83,7 @@ Action context also includes what the agent is *not* allowed to do: the permissi
 
 There's a quiet misnomer in "context engineering" that becomes obvious once you deploy against a closed-source model.
 
-With models like Claude, GPT-4o, or Gemini, you do not actually decide which piece of context the agent retrieves or weighs at each step. The model does. You can shape how your retrieval pipeline is configured, but once the agent is running, the model determines what it finds relevant. You are not engineering the context; you are engineering the environment the agent operates inside.
+With agents like Claude Code, Codex, or Gemini, you do not actually decide which piece of context the agent retrieves or weighs at each step. The agent does. You can shape how your retrieval pipeline is configured, but once the agent is running, the model determines what it finds relevant. You are not engineering the context; you are engineering the environment the agent operates inside.
 
 This distinction matters practically. Teams who think of themselves as "doing context engineering" often focus on prompt structure and retrieval tuning. Those things matter. But the lever you actually have the most control over, and that has the most impact on output quality, is the accuracy and structure of the underlying information the agent can access. If your docs are stale or poorly structured, no amount of retrieval tuning fixes it. The model will confidently surface the wrong answer, because that is what it found.
 
