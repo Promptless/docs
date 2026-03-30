@@ -57,13 +57,13 @@ The instruction layer sets the agent's identity and operating boundaries, but it
 
 This is where documentation, examples, retrieved content, and domain knowledge live. It's the layer most directly affected by retrieval pipelines and knowledge base quality, and it's where the difference between a demo and a production system usually lives. Not in which model you're using, but in how carefully information is selected, structured, and delivered at each step.
 
-Knowledge context is also the layer most vulnerable to staleness. Instruction files, knowledge bases, and retrieval stores are snapshots of what was true at the time they were written. They don't update themselves when an upstream product ships a breaking change. Without active maintenance, they accumulate inaccuracies silently.
+Knowledge context is also the layer most vulnerable to staleness. Instruction files, knowledge bases, and retrieval stores are snapshots of what was true at the time they were written. They don't update themselves when an upstream product ships a breaking change. Without active maintenance, they rot silently.
 
 ### Layer 3: Operational Context
 
-This is the runtime state: the current conversation history, prior tool outputs, the user's immediate request, and environmental signals like timestamps or session metadata. A context window flooded with irrelevant logs, stale tool outputs, or accumulated history can distract the model, causing it to fixate on earlier patterns rather than the immediate instruction.
+This is the runtime state: the current conversation history, prior tool outputs, the user's immediate request, and environmental signals like timestamps or session metadata. Managing this layer means deciding what to keep, what to summarize, and what to drop as the agent runs.
 
-Managing operational context means deciding what to keep, what to summarize, and what to drop. Long-running agents accumulate tokens across many LLM calls and tool calls. Left unmanaged, this balloons cost, increases latency, and degrades performance.
+For teams building their own agentic systems, this is an active engineering problem. Long-running agents accumulate tokens across many LLM and tool calls, and left unmanaged this balloons cost, increases latency, and degrades performance. But if you're using a managed agent like Claude Code, much of this is handled automatically. The agent compresses its own context, manages memory, and decides what to carry forward. In that case, your leverage sits almost entirely in the knowledge layer, not here.
 
 ### Layer 4: Action Context
 
