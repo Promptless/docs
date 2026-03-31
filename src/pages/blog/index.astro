@@ -16,10 +16,13 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 const getSectionLabel = (section?: string) => section || 'Other';
 
 const OTHER_SLUGS = new Set([
-  'technical/how-teams-keep-docs-up-to-date-with-promptless',
-  'technical/agent-context-engineering',
   'technical/parrots-are-underrated-pets-and-tools',
   'technical/writing-code-was-hard-actually',
+]);
+
+const USE_CASES_SLUGS = new Set([
+  'technical/how-teams-keep-docs-up-to-date-with-promptless',
+  'technical/agent-context-engineering',
 ]);
 
 const FEATURED_SLUGS = new Set([
@@ -29,6 +32,7 @@ const FEATURED_SLUGS = new Set([
 const getTab = (slug: string, section?: string) => {
   if (OTHER_SLUGS.has(slug)) return 'other';
   if (FEATURED_SLUGS.has(slug)) return 'featured';
+  if (USE_CASES_SLUGS.has(slug)) return 'use-cases';
   if (section === 'Customer Stories') return 'use-cases';
   if (!section || section === 'Technical' || section === 'Opinion') return 'featured';
   return 'other';
