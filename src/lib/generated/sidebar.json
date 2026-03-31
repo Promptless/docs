@@ -99,6 +99,10 @@
         ]
       },
       {
+        "label": "Environment Variables",
+        "slug": "docs/configuring-promptless/environment-variables"
+      },
+      {
         "label": "Promptless Capture",
         "slug": "docs/configuring-promptless/promptless-capture"
       }
