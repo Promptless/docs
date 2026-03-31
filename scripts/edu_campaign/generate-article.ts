@@ -129,17 +129,14 @@ Output ONLY the complete MDX file contents — frontmatter + article body. No pr
   type Message = Anthropic.MessageParam;
   const messages: Message[] = [{ role: "user", content: userPrompt }];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const webSearchTool = [{ type: "web_search_20250305", name: "web_search" }] as any;
+
   let response = await client.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 8000,
     system: systemPrompt,
-    tools: [
-      {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        type: "web_search_20250305" as any,
-        name: "web_search",
-      },
-    ],
+    tools: webSearchTool,
     messages,
   });
 
@@ -168,12 +165,7 @@ Output ONLY the complete MDX file contents — frontmatter + article body. No pr
       model: "claude-opus-4-6",
       max_tokens: 8000,
       system: systemPrompt,
-      tools: [
-        {
-          type: "web_search_20250305" as const,
-          name: "web_search",
-        },
-      ],
+      tools: webSearchTool,
       messages,
     });
   }
