@@ -135,7 +135,8 @@ Output ONLY the complete MDX file contents — frontmatter + article body. No pr
     system: systemPrompt,
     tools: [
       {
-        type: "web_search_20250305" as const,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        type: "web_search_20250305" as any,
         name: "web_search",
       },
     ],
