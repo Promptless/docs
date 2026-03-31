@@ -74,6 +74,7 @@ const getTab = (section?: string) => {
 <style>
   .blog-tabs {
     display: inline-flex;
+    align-items: center;
     gap: 0;
     margin-bottom: 1.25rem;
     background: var(--sl-color-hairline);
@@ -82,19 +83,19 @@ const getTab = (section?: string) => {
   }
 
   .blog-tab {
-    height: 2rem;
-    padding: 0 1rem;
+    padding: 0.375rem 1rem !important;
     border-radius: 8px;
     border: none;
     background: transparent;
     color: var(--pl-tab-fg);
     font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.4;
     cursor: pointer;
     transition: background 120ms ease, color 120ms ease;
     white-space: nowrap;
     outline: none;
+    box-sizing: border-box;
   }
 
   .blog-tab:hover {
