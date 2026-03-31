@@ -97,6 +97,10 @@
             "slug": "docs/configuring-promptless/doc-collections/git-hub-repos-docs-as-code"
           }
         ]
+      },
+      {
+        "label": "Promptless Capture",
+        "slug": "docs/configuring-promptless/promptless-capture"
       }
     ]
   },
