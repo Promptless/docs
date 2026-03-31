@@ -73,32 +73,35 @@ const getTab = (section?: string) => {
 
 <style>
   .blog-tabs {
-    display: flex;
-    gap: 0.25rem;
+    display: inline-flex;
+    gap: 0;
     margin-bottom: 1.25rem;
+    background: var(--sl-color-hairline);
+    border-radius: 10px;
+    padding: 3px;
   }
 
   .blog-tab {
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
-    border: 1px solid var(--sl-color-hairline);
+    padding: 0.35rem 1rem;
+    border-radius: 8px;
+    border: none;
     background: transparent;
     color: var(--pl-tab-fg);
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+    transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+    white-space: nowrap;
   }
 
   .blog-tab:hover {
-    background: var(--pl-tab-bg-hover);
     color: var(--pl-tab-fg-hover);
   }
 
   .blog-tab.active {
-    background: var(--sl-color-accent);
-    border-color: var(--sl-color-accent);
-    color: #fff;
+    background: #fff;
+    color: #396df1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .collection-feed li[data-tab] {
