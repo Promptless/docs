@@ -1,0 +1,69 @@
+---
+title: Intelligent Routing
+slug: docs/configuring-promptless/intelligent-routing
+sidebar:
+  hidden: false
+  order: 21
+---
+import Card from '@components/fern/Card.astro';
+import CardGroup from '@components/fern/CardGroup.astro';
+import Info from '@components/fern/Info.astro';
+import Tip from '@components/fern/Tip.astro';
+
+When your organization manages multiple documentation sets, Promptless automatically routes incoming trigger events to the appropriate doc collections. API changes go to your API reference, product updates go to your user guides, and internal knowledge goes to your internal docs.
+
+## How Intelligent Routing Works
+
+When a trigger event arrives (such as a GitHub PR, Slack message, or support ticket), Promptless analyzes the content to determine which doc collections should be updated:
+
+1. **Content Analysis**: Examines the trigger content, including code changes, file paths, linked issues, and conversation context
+2. **Collection Matching**: Identifies which doc collections are relevant to the changes
+3. **Parallel Processing**: If multiple doc collections need updates, processes them simultaneously
+4. **Coordinated Delivery**: Aggregates updates and delivers them together with clear context about which collections were affected
+
+## Benefits
+
+<CardGroup cols={2}>
+  <Card title="Automatic Triage" icon="fa-regular fa-filter">
+    No manual sorting required. Promptless determines which documentation needs updating based on the trigger content.
+  </Card>
+
+  <Card title="Multi-Collection Support" icon="fa-regular fa-folder-tree">
+    Manage API docs, user guides, internal wikis, and more from a single workflow without configuring separate pipelines.
+  </Card>
+
+  <Card title="Reduced Noise" icon="fa-regular fa-bell-slash">
+    Each doc collection only receives relevant updates, preventing unnecessary churn in unrelated documentation.
+  </Card>
+
+  <Card title="Consistent Updates" icon="fa-regular fa-check-double">
+    When a change affects multiple doc collections, all of them receive coordinated updates in the same session.
+  </Card>
+</CardGroup>
+
+## Example Scenarios
+
+**API and Product Docs**: A PR that adds a new endpoint triggers updates to both your API reference and product guides explaining how to use the feature.
+
+**Public and Internal Docs**: A support ticket revealing a common customer question triggers an update to your public FAQ while also adding troubleshooting notes to your internal runbook.
+
+**Multi-Product Documentation**: Organizations maintaining docs for multiple products benefit from automatic routing that keeps each product's docs separate but updated from the same trigger sources.
+
+## Configuration
+
+Intelligent routing works automatically once you have multiple doc collections configured. To set up multiple doc collections:
+
+1. Navigate to your [projects page](https://app.gopromptless.ai/projects)
+2. Select the project you want to configure
+3. Add additional doc collections using the **Add Doc Collection** option
+4. Configure each collection's repository, directories, and platform settings
+
+Promptless uses the configured directories and content patterns to match triggers with the appropriate collections.
+
+<Info>
+Intelligent routing is enabled by default for all projects with multiple doc collections. There are no additional settings to configure.
+</Info>
+
+<Tip>
+For best results, ensure your doc collections have clear scope definitions. For example, place API documentation in a separate repository or directory from your user guides.
+</Tip>
