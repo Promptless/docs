@@ -74,6 +74,7 @@ const getTab = (section?: string) => {
 <style>
   .blog-tabs {
     display: inline-flex;
+    align-items: stretch;
     gap: 0;
     margin-bottom: 1.25rem;
     background: var(--sl-color-hairline);
@@ -89,9 +90,12 @@ const getTab = (section?: string) => {
     color: var(--pl-tab-fg);
     font-size: 0.875rem;
     font-weight: 500;
+    line-height: 1.5;
     cursor: pointer;
     transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
   }
 
   .blog-tab:hover {
