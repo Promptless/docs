@@ -17,6 +17,10 @@ import Warning from '@components/fern/Warning.astro';
 
 Promptless Capture keeps product screenshots in sync with your UI. When code changes affect a documented feature, Promptless Capture identifies which screenshots need updating and regenerates them from your current interface.
 
+<Info>
+Promptless Capture must be enabled for your organization by the Promptless team. Reach out to help@gopromptless.ai or contact us via Slack to get started.
+</Info>
+
 ## How Promptless Capture Works
 
 When a trigger fires that might affect documented UI elements, Promptless Capture:
@@ -58,13 +62,15 @@ Promptless Capture needs credentials to authenticate with your application. Conf
   </Step>
 
   <Step title="Add Credential Variables">
-    Add the following variables for your application:
+    Add variables for your application's login credentials. The variable names are flexible—use whatever naming convention works for your team. For example:
 
     | Variable Name | Description | Mark as Secret |
     |---------------|-------------|----------------|
     | `TEST_ACCOUNT_URL` | The login URL for your application | No |
     | `TEST_ACCOUNT_USER` | Username or email for the test account | No |
     | `TEST_ACCOUNT_PASS` | Password for the test account | Yes |
+
+    You might use names like `STAGING_LOGIN_URL`, `QA_USER`, or any descriptive names that fit your organization's conventions.
   </Step>
 
   <Step title="Save Variables">
@@ -93,7 +99,7 @@ Create a test account with access to all features you want to document. If certa
 
 ## Calibration
 
-Calibration is the process of ensuring Promptless Capture works correctly for your specific application. During calibration, you run test captures and refine the configuration until screenshots are captured reliably.
+Calibration ensures Promptless Capture works correctly for your application. A Promptless team member will typically set up a calibration session with you to review initial screenshots and refine the configuration. During this session, you'll identify any adjustments needed for your login flow, navigation, or screenshot cropping.
 
 ### Running Test Captures
 
