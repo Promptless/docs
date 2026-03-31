@@ -199,7 +199,6 @@ function createPR(articleContent: string, keyword: string): string {
   const date = todayISO();
   const branchName = `articles/${date}-${slug}`;
   const filePath = `src/content/blog/technical/${slug}.mdx`;
-  const absoluteFilePath = path.join(REPO_ROOT, filePath);
 
   // Use a worktree so we don't need a clean working directory
   const worktreePath = path.join(REPO_ROOT, ".worktrees", branchName.replace(/\//g, "-"));
@@ -210,6 +209,7 @@ function createPR(articleContent: string, keyword: string): string {
   fs.mkdirSync(path.dirname(worktreeFilePath), { recursive: true });
   console.log(`\n📝 Writing article to ${filePath}`);
   fs.writeFileSync(worktreeFilePath, articleContent + "\n");
+
 
   exec(`git add ${filePath}`, { cwd: worktreePath });
   exec(
