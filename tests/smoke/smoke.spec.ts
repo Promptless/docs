@@ -76,7 +76,7 @@ test('/blog and /changelog are browsable canonical index pages', async () => {
   const changelogHtml = await changelogResponse.text();
   assert.match(changelogHtml, /<h1[^>]*>\s*Changelog\s*<\/h1>/);
   assert.match(changelogHtml, /class="collection-feed[\s"]/);
-  assert.match(changelogHtml, /class="collection-feed-item[\s"]/);;
+  assert.match(changelogHtml, /class="collection-feed-item[\s"]/);
 });
 
 test('blog and changelog detail pages include top and bottom canonical back links', async () => {
