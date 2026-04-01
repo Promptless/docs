@@ -60,23 +60,19 @@ The caveat here is what actually changes from the user's perspective. A product 
 
 <BlogNewsletterCTA />
 
+If you're starting your docs from scratch, we'll always recommend docs-as-code. If you're already on help center, and moving will incur real cost, here are some reasons not to move.
+
 ## When Not to Move
-
-### Your writing team has no Git experience and no engineering support
-
-Git is consistently the hardest part of docs-as-code transitions, harder than learning Markdown or configuring a static site generator. [Tom Johnson](https://idratherbewriting.com/learnapidoc/pubapis_switching_to_docs_as_code.html) waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
 
 ### You have a large non-technical contributor base
 
-If compliance, legal, or support staff regularly author or review documentation, the Git barrier effectively excludes them. PR review is unfamiliar. Tracked changes don't exist in Git workflows natively. What you gain in developer contribution, you lose in coverage from the rest of the organization.
-
-That said, this is a weaker reason to stay put than it used to be. AI coding tools are making it easier for non-technical contributors to interact with Git-based workflows using natural language. The general direction is that people increasingly interact with computers through language rather than through specialized interfaces. Choosing a help center because your non-technical contributors don't know Git today is a bet that this won't change, and that is increasingly a bad bet to make.
+If compliance, legal, or support staff regularly author or review documentation, the git barrier makes it difficult for them. That said, this is a weaker reason to stay put than it used to be. AI coding tools are making it easier for non-technical contributors to interact with Git-based workflows using natural language, and that shift is accelerating.
 
 ### Your product is mature and the user-facing interface is stable
 
 If what users see and interact with changes slowly, most of your documentation work is supporting customers: answering recurring questions and helping users through a known set of issues. That is exactly what help centers are built for.
 
-Product velocity alone is not the right signal. A mature B2B SaaS with a stable API is a fine candidate for a help center even if the engineering team is active. What matters is whether the changes engineering ships affect what users need to know. If most of the work is behind the curtain, the documentation surface stays small and a help center handles it without friction.
+Product velocity alone is not the right signal. A mature B2B SaaS with a stable product is a fine candidate for a help center even if the engineering team is active. What matters is whether the changes engineering ships affect what users need to know. If most of the work is behind the curtain, the documentation surface stays small and a help center handles it without friction.
 
 ### Your audience is non-technical end users
 
@@ -98,12 +94,12 @@ First, audit the content. Not everything in a help center needs to move. Support
 
 Conversion takes weeks for a large site. You'll run both systems simultaneously while converting. Users can't wait for the migration to finish. URL structures change, which means redirect maps need to be built before you cut over. Translation workflows need to be solved before you start, not after; most localization vendors can't handle mixed Markdown and HTML.
 
-[HubSpot](https://developers.hubspot.com/blog/optimizing-developer-docs-in-the-age-of-ai-our-mintlify-migration-story) rebuilt their documentation platform internally three times before moving to Mintlify. [Tom Johnson's migration](https://idratherbewriting.com/learnapidoc/pubapis_switching_to_docs_as_code.html) involved a year of planning followed by months of writers maintaining dual systems. These are normal timelines for a migration at scale.
-
 ## What Migration Doesn't Solve
 
-Moving to docs-as-code makes it easier for engineers to contribute. It doesn't guarantee they will. Documentation decay comes from a structural timing gap: engineering ships continuously, documentation reviews happen in batches. Changing the tooling removes one barrier but doesn't close the gap between when a product changes and when the docs reflect that change.
+Moving to docs-as-code makes it easier for engineers to contribute. It doesn't guarantee they will. Documentation decay comes from a structural timing gap: engineering ships continuously, documentation reviews happen in batches. Changing the tooling removes one barrier but doesn't automatically close the gap between when a product changes and when the docs reflect that change.
 
-Regardless of which system you're in, you need a way to detect when [documentation has drifted](/blog/technical/documentation-drift-detection-problem) from the product it describes. That's a monitoring problem that exists on both sides of the migration. The teams with accurate documentation treat it as [a continuous monitoring task](/blog/technical/how-teams-keep-docs-up-to-date-with-promptless), not a periodic writing project.
+Regardless of which system you're in, you need a way to detect when [documentation has drifted](/blog/technical/documentation-drift-detection-problem) from the product it describes. That's a monitoring problem that exists on both sides of the migration. Teams with accurate documentation treat it as [a continuous monitoring task](/blog/technical/how-teams-keep-docs-up-to-date-with-promptless), not a periodic side project.
+
+If you want to put your docs on autopilot, see a demo here.
 
 <BlogRequestDemo />
