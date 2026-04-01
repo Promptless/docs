@@ -1,8 +1,8 @@
 ---
-title: 'When to Move from Help Center to Docs-as-Code'
+title: 'Help Center vs Docs-as-Code: When to Switch'
 subtitle: Published April 2026
 description: >-
-  Moving from a help center to docs-as-code solves a specific problem. Here's how to know if it's the right one for your team.
+  A practical guide to choosing between a help center and docs-as-code — with specific signals for when to migrate and when to stay.
 date: '2026-04-01T00:00:00.000Z'
 author: Frances
 section: Technical
@@ -22,6 +22,17 @@ Help centers (Zendesk, Confluence, Freshdesk, Notion) are built for non-technica
 Docs-as-code (Docusaurus, MkDocs, Starlight, Mintlify) inverts this. Documentation lives in Git alongside the codebase. Changes go through pull requests. Deployment happens via CI/CD pipeline. Engineers can contribute without leaving their environment.
 
 Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more — and that depends entirely on who actually writes and maintains your documentation.
+
+| | Help center | Docs-as-code |
+|---|---|---|
+| **Best for** | Customer support, FAQs, stable products | Developer-facing docs, APIs, fast-moving products |
+| **Authoring** | WYSIWYG, no technical knowledge needed | Markdown in Git, requires developer familiarity |
+| **Developer contribution** | High friction — context switch out of IDE | Low friction — same workflow as code changes |
+| **Non-technical contributors** | Low friction | High friction — Git barrier excludes most |
+| **Version control** | Article-level restore only | Full Git branching, concurrent version support |
+| **CI/CD integration** | Not supported | Native |
+| **Cost** | Per-seat licensing bundled with support suite | Free (open source) or per-seat (managed platforms) |
+| **Setup overhead** | Hours | Weeks to months |
 
 ## When to Move
 
