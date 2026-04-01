@@ -21,7 +21,7 @@
           clearTimeout(searchTimer);
           var q = input.value.trim();
           searchTimer = setTimeout(function() {
-            if (q.length >= 2) {
+            if (q.length >= 2 && typeof posthog.capture === 'function') {
               posthog.capture('site_searched', { query: q, page_url: location.pathname });
             }
           }, 1000);
