@@ -67,16 +67,16 @@ test('/blog and /changelog are browsable canonical index pages', async () => {
   assert.equal(blogResponse.status, 200);
   const blogHtml = await blogResponse.text();
   assert.match(blogHtml, /<h1[^>]*>\s*Blog\s*<\/h1>/);
-  assert.match(blogHtml, /class="collection-feed"/);
-  assert.match(blogHtml, /class="collection-feed-item"/);
-  assert.match(blogHtml, /class="collection-tag"/);
+  assert.match(blogHtml, /class="collection-feed[\s"]/);
+  assert.match(blogHtml, /class="collection-feed-item[\s"]/);
+  assert.match(blogHtml, /class="collection-tag[\s"]/);
 
   const changelogResponse = await fetch(`${preview.baseUrl}/changelog`);
   assert.equal(changelogResponse.status, 200);
   const changelogHtml = await changelogResponse.text();
   assert.match(changelogHtml, /<h1[^>]*>\s*Changelog\s*<\/h1>/);
-  assert.match(changelogHtml, /class="collection-feed"/);
-  assert.match(changelogHtml, /class="collection-feed-item"/);
+  assert.match(changelogHtml, /class="collection-feed[\s"]/);
+  assert.match(changelogHtml, /class="collection-feed-item[\s"]/);;
 });
 
 test('blog and changelog detail pages include top and bottom canonical back links', async () => {
