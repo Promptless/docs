@@ -2,7 +2,7 @@
 title: 'Help Center vs Docs-as-Code: When to Switch'
 subtitle: Published April 2026
 description: >-
-  A practical guide to choosing between a help center and docs-as-code — with specific signals for when to migrate and when to stay.
+  A practical guide to choosing between a help center and docs-as-code, with specific signals for when to migrate and when to stay.
 date: '2026-04-01T00:00:00.000Z'
 author: Frances
 section: Technical
@@ -13,7 +13,7 @@ import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
 Your developers won't update the help center. The browser-based editor is slow and the articles feel disconnected from the codebase they live in. Documentation falls behind. Support tickets pile up. Someone proposes moving to docs-as-code.
 
-Before you start the migration, it's worth understanding what you're actually solving — and what you're trading away.
+Before you start the migration, it's worth understanding what you're actually solving and what you're trading away.
 
 ## The Core Tradeoff
 
@@ -21,14 +21,14 @@ Help centers (Zendesk, Confluence, Freshdesk, Notion) are built for non-technica
 
 Docs-as-code (Docusaurus, MkDocs, Starlight, Mintlify) inverts this. Documentation lives in Git alongside the codebase. Changes go through pull requests. Deployment happens via CI/CD pipeline. Engineers can contribute without leaving their environment.
 
-Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more — and that depends entirely on who actually writes and maintains your documentation.
+Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more. That depends entirely on who actually writes and maintains your documentation.
 
 | | Help center | Docs-as-code |
 |---|---|---|
 | **Best for** | Customer support, FAQs, stable products | Developer-facing docs, APIs, fast-moving products |
 | **Authoring** | WYSIWYG, no technical knowledge needed | Markdown in Git, requires developer familiarity |
-| **Developer contribution** | High friction — context switch out of IDE | Low friction — same workflow as code changes |
-| **Non-technical contributors** | Low friction | High friction — Git barrier excludes most |
+| **Developer contribution** | High friction: context switch out of IDE | Low friction: same workflow as code changes |
+| **Non-technical contributors** | Low friction | High friction: Git barrier excludes most |
 | **Version control** | Article-level restore only | Full Git branching, concurrent version support |
 | **CI/CD integration** | Not supported | Native |
 | **Cost** | Per-seat licensing bundled with support suite | Free (open source) or per-seat (managed platforms) |
@@ -52,9 +52,9 @@ Help centers have article-level restore, not branching. Maintaining v1 and v2 AP
 
 ### Engineers are shipping frequently and documentation needs to keep pace
 
-When a product changes fast, the people with the most current knowledge are the engineers writing the code. If the tooling makes it hard for them to update documentation, it won't get updated. Docs-as-code lowers that barrier directly — a documentation change can travel in the same pull request as the code change that made it necessary.
+When a product changes fast, the people with the most current knowledge are the engineers writing the code. If the tooling makes it hard for them to update documentation, it won't get updated. Docs-as-code lowers that barrier directly. A documentation change can travel in the same pull request as the code change that made it necessary.
 
-The caveat here is what actually changes from the user's perspective. A product can have high internal velocity while exposing a stable interface. Think of how the ChatGPT interface has always been a text box — the underlying model and infrastructure changed constantly, but what users interacted with stayed the same. If most of the engineering work is below the surface and the user-facing product is relatively stable, documentation needs are still driven by customer support, and a help center handles that well. The relevant question is not how fast engineering ships, but how often what users see and interact with changes.
+The caveat here is what actually changes from the user's perspective. A product can have high internal velocity while exposing a stable interface. Think of how the ChatGPT interface has always been a text box. The underlying model and infrastructure changed constantly, but what users interacted with stayed the same. If most of the engineering work is below the surface and the user-facing product is relatively stable, documentation needs are still driven by customer support, and a help center handles that well. The relevant question is not how fast engineering ships, but how often what users see and interact with changes.
 
 ### Your documentation release process is a manual bottleneck
 
@@ -66,7 +66,7 @@ Tom Johnson's team migrated a large documentation site from a Java CMS to Jekyll
 
 ### Your writing team has no Git experience and no engineering support
 
-Git is consistently the hardest part of docs-as-code transitions — harder than learning Markdown, harder than configuring a static site generator. Tom Johnson waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
+Git is consistently the hardest part of docs-as-code transitions, harder than learning Markdown or configuring a static site generator. Tom Johnson waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
 
 ### You have a large non-technical contributor base
 
@@ -74,7 +74,7 @@ If compliance, legal, or support staff regularly author or review documentation,
 
 ### Your product is mature and the user-facing interface is stable
 
-If what users see and interact with changes slowly, most of your documentation work is supporting customers — answering recurring questions, maintaining a knowledge base, helping users through a known set of issues. That is exactly what help centers are built for.
+If what users see and interact with changes slowly, most of your documentation work is supporting customers: answering recurring questions and helping users through a known set of issues. That is exactly what help centers are built for.
 
 Product velocity alone is not the right signal. A mature B2B SaaS with a stable API is a fine candidate for a help center even if the engineering team is active. What matters is whether the changes engineering ships affect what users need to know. If most of the work is behind the curtain, the documentation surface stays small and a help center handles it without friction.
 
@@ -84,9 +84,9 @@ Docs-as-code is optimized for developer-facing products. If your product is a no
 
 ## The Middle Path
 
-Managed docs-as-code platforms — Mintlify, GitBook, ReadMe — layer visual editing on top of Git backends. Non-technical contributors get a WYSIWYG interface; engineers get Git-native workflows.
+Managed docs-as-code platforms like Mintlify and GitBook layer visual editing on top of Git backends. Non-technical contributors get a WYSIWYG interface; engineers get Git-native workflows.
 
-HubSpot moved from a custom-built internal documentation platform to Mintlify. Their description of the trigger was direct: the documentation team was functioning as an "accidental platform team," maintaining infrastructure instead of doing developer experience work. AI tooling made the problem visible — AI assistants were pulling from v1 and v3 API docs simultaneously, returning conflicting answers.
+HubSpot moved from a custom-built internal documentation platform to Mintlify. Their description of the trigger was direct: the documentation team was functioning as an "accidental platform team," maintaining infrastructure instead of doing developer experience work. AI tooling made the problem visible: assistants were pulling from v1 and v3 API docs simultaneously and returning conflicting answers.
 
 The tradeoff with managed platforms is per-seat licensing and vendor dependency. Pure static site generators are free and fully customizable but require engineering to set up and maintain.
 
@@ -96,7 +96,7 @@ Plan for the migration to take longer than expected.
 
 First, audit the content. Not everything in a help center needs to move. Support FAQs and account management articles may belong in the help center permanently. Technical reference and API docs are the migration candidates.
 
-Conversion takes weeks for a large site. You'll run both systems simultaneously while converting — users can't wait for the migration to finish. URL structures change, which means redirect maps need to be built before you cut over. Translation workflows need to be solved before you start, not after; most localization vendors can't handle mixed Markdown and HTML.
+Conversion takes weeks for a large site. You'll run both systems simultaneously while converting. Users can't wait for the migration to finish. URL structures change, which means redirect maps need to be built before you cut over. Translation workflows need to be solved before you start, not after; most localization vendors can't handle mixed Markdown and HTML.
 
 HubSpot rebuilt their documentation platform internally three times before moving to Mintlify. Tom Johnson's migration involved a year of planning followed by months of writers maintaining dual systems. These are normal timelines for a migration at scale.
 
@@ -104,6 +104,6 @@ HubSpot rebuilt their documentation platform internally three times before movin
 
 Moving to docs-as-code makes it easier for engineers to contribute. It doesn't guarantee they will. Documentation decay comes from a structural timing gap: engineering ships continuously, documentation reviews happen in batches. Changing the tooling removes one barrier but doesn't close the gap between when a product changes and when the docs reflect that change.
 
-Whichever system you're in — help center or static site — you need a way to detect when [documentation has drifted](/blog/technical/documentation-drift-detection-problem) from the product it describes. That's a monitoring problem that exists on both sides of the migration. The teams with accurate documentation treat it as [a continuous monitoring task](/blog/technical/how-teams-keep-docs-up-to-date-with-promptless), not a periodic writing project.
+Regardless of which system you're in, you need a way to detect when [documentation has drifted](/blog/technical/documentation-drift-detection-problem) from the product it describes. That's a monitoring problem that exists on both sides of the migration. The teams with accurate documentation treat it as [a continuous monitoring task](/blog/technical/how-teams-keep-docs-up-to-date-with-promptless), not a periodic writing project.
 
 <BlogRequestDemo />
