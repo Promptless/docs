@@ -18,39 +18,42 @@ Long-Term Context (LTC) is where Promptless stores persistent configuration and 
 
 Your Promptless team can help you access and configure your Long-Term Context files. Contact us at [help@gopromptless.ai](mailto:help@gopromptless.ai) to get started.
 
-## Notification Configuration File
+## Notification Preferences File
 
-Notification preferences are stored in the `doc_workflow/notification_skill.md` file within your Long-Term Context. When you first customize notifications, Promptless creates this file with sensible defaults.
+Notification preferences are stored in the `doc_workflow/notification_preferences.md` file within your Long-Term Context. This file is a lightweight scaffold where you add overrides and customizations—Promptless handles the underlying templates and message formatting automatically.
+
+<Note>
+  If your organization previously used a `notification_skill.md` file, Promptless automatically migrates it to the new `notification_preferences.md` format. Your customizations are preserved during migration.
+</Note>
 
 ### What You Can Customize
 
-The notification configuration file lets you control:
+The preferences file lets you override:
 
-- **Notification defaults**: Set your preferred notification channels and timing
-- **Message templates**: Customize how suggestion summaries appear in notifications
-- **Tone and style**: Adjust the voice and formality of notification messages
-- **Delivery preferences**: Configure which events trigger notifications and how they're formatted
+- **When to notify**: Control which events trigger notifications and when to skip them
+- **Delivery channels**: Set preferences for Slack vs. GitHub notifications
+- **Message style**: Adjust the tone and context included in notification messages
 
 ### Example Customizations
 
 Here are some common ways teams customize their notifications:
 
-**Change the notification tone:**
-```
-Use a casual, friendly tone in all notification messages.
-Avoid formal language like "please be advised" or "for your review."
-```
-
-**Customize message content:**
-```
-Always include the number of files changed in the notification summary.
-Mention the trigger source (PR, Slack message, etc.) prominently.
-```
-
-**Set delivery preferences:**
+**Change notification timing:**
 ```
 Only send notifications for suggestions that modify more than one file.
-Include diff file attachments for all Slack notifications.
+Skip notifications for automated triggers that don't yield documentation updates.
+```
+
+**Adjust delivery preferences:**
+```
+Always reply in the originating Slack thread when the trigger came from Slack.
+Use GitHub comments when reviewers are already engaged with the source PR.
+```
+
+**Customize message style:**
+```
+Use a casual, friendly tone in all notification messages.
+Include enough context that someone new to the thread can understand why Promptless is posting.
 ```
 
 ## Slack Notification Features
