@@ -42,7 +42,7 @@ Docs-as-code removes that barrier. A pull request that updates documentation alo
 
 ### You have an API or SDK and developers are your primary audience
 
-84% of developers use technical documentation as their primary learning resource (Stack Overflow 2024). When they evaluate your API, the docs signal product quality. A help center can publish technical reference content, but it can't branch documentation alongside software releases or participate in a CI/CD pipeline. Those gaps matter more as developer tooling evolves.
+[84% of developers](https://www.cherryleaf.com/2024/07/survey-shows-documentation-is-the-no-1-way-that-developers-learn-about-your-api/) use technical documentation as their primary learning resource (Stack Overflow 2024). When they evaluate your API, the docs signal product quality. A help center can publish technical reference content, but it can't branch documentation alongside software releases or participate in a CI/CD pipeline. Those gaps matter more as developer tooling evolves.
 
 ### You need concurrent documentation for multiple software versions
 
@@ -56,7 +56,7 @@ The caveat here is what actually changes from the user's perspective. A product 
 
 ### Your documentation release process is a manual bottleneck
 
-Tom Johnson's team migrated a large documentation site from a Java CMS to Jekyll and Git. A 40-page release that previously required hours of manual copy-paste now deploys in 10 minutes via a single `git push`. If the publishing step is where releases get stuck, the pipeline change pays for itself quickly.
+[Tom Johnson's team](https://idratherbewriting.com/learnapidoc/pubapis_switching_to_docs_as_code.html) migrated a large documentation site from a Java CMS to Jekyll and Git. A 40-page release that previously required hours of manual copy-paste now deploys in 10 minutes via a single `git push`. If the publishing step is where releases get stuck, the pipeline change pays for itself quickly.
 
 <BlogNewsletterCTA />
 
@@ -64,13 +64,13 @@ Tom Johnson's team migrated a large documentation site from a Java CMS to Jekyll
 
 ### Your writing team has no Git experience and no engineering support
 
-Git is consistently the hardest part of docs-as-code transitions, harder than learning Markdown or configuring a static site generator. Tom Johnson waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
+Git is consistently the hardest part of docs-as-code transitions, harder than learning Markdown or configuring a static site generator. [Tom Johnson](https://idratherbewriting.com/learnapidoc/pubapis_switching_to_docs_as_code.html) waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
 
 ### You have a large non-technical contributor base
 
 If compliance, legal, or support staff regularly author or review documentation, the Git barrier effectively excludes them. PR review is unfamiliar. Tracked changes don't exist in Git workflows natively. What you gain in developer contribution, you lose in coverage from the rest of the organization.
 
-That said, this is a weaker reason to stay put than it used to be. AI coding tools are making it easier for non-technical contributors to interact with Git-based workflows using natural language. The general direction is that people increasingly interact with computers through language rather than through specialized interfaces. Choosing a help center because your non-technical contributors don't know Git today is a bet that this won't change — which is increasingly a bad bet to make.
+That said, this is a weaker reason to stay put than it used to be. AI coding tools are making it easier for non-technical contributors to interact with Git-based workflows using natural language. The general direction is that people increasingly interact with computers through language rather than through specialized interfaces. Choosing a help center because your non-technical contributors don't know Git today is a bet that this won't change, and that is increasingly a bad bet to make.
 
 ### Your product is mature and the user-facing interface is stable
 
@@ -86,7 +86,7 @@ Docs-as-code is optimized for developer-facing products. If your product is a no
 
 Managed docs-as-code platforms like Mintlify and GitBook layer visual editing on top of Git backends. Non-technical contributors get a WYSIWYG interface; engineers get Git-native workflows.
 
-HubSpot moved from a custom-built internal documentation platform to Mintlify. Their description of the trigger was direct: the documentation team was functioning as an "accidental platform team," maintaining infrastructure instead of doing developer experience work. AI tooling made the problem visible: assistants were pulling from v1 and v3 API docs simultaneously and returning conflicting answers.
+[HubSpot moved](https://developers.hubspot.com/blog/optimizing-developer-docs-in-the-age-of-ai-our-mintlify-migration-story) from a custom-built internal documentation platform to Mintlify. Their description of the trigger was direct: the documentation team was functioning as an "accidental platform team," maintaining infrastructure instead of doing developer experience work. AI tooling made the problem visible: assistants were pulling from v1 and v3 API docs simultaneously and returning conflicting answers.
 
 The tradeoff with managed platforms is per-seat licensing and vendor dependency. Pure static site generators are free and fully customizable but require engineering to set up and maintain.
 
@@ -98,7 +98,7 @@ First, audit the content. Not everything in a help center needs to move. Support
 
 Conversion takes weeks for a large site. You'll run both systems simultaneously while converting. Users can't wait for the migration to finish. URL structures change, which means redirect maps need to be built before you cut over. Translation workflows need to be solved before you start, not after; most localization vendors can't handle mixed Markdown and HTML.
 
-HubSpot rebuilt their documentation platform internally three times before moving to Mintlify. Tom Johnson's migration involved a year of planning followed by months of writers maintaining dual systems. These are normal timelines for a migration at scale.
+[HubSpot](https://developers.hubspot.com/blog/optimizing-developer-docs-in-the-age-of-ai-our-mintlify-migration-story) rebuilt their documentation platform internally three times before moving to Mintlify. [Tom Johnson's migration](https://idratherbewriting.com/learnapidoc/pubapis_switching_to_docs_as_code.html) involved a year of planning followed by months of writers maintaining dual systems. These are normal timelines for a migration at scale.
 
 ## What Migration Doesn't Solve
 
