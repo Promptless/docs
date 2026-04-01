@@ -19,7 +19,7 @@ Help centers (Zendesk, Confluence, Freshdesk, Notion) are built for non-technica
 
 Docs-as-code (Docusaurus, MkDocs, Starlight, Mintlify) inverts this. Documentation lives in Git alongside the codebase. Changes go through pull requests. Deployment happens via CI/CD pipeline. Engineers can contribute without leaving their environment.
 
-Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more. That depends entirely on who actually writes and maintains your documentation.
+Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more. That depends on who writes and who consumes your documentation.
 
 | | Help center | Docs-as-code |
 |---|---|---|
@@ -69,6 +69,8 @@ Git is consistently the hardest part of docs-as-code transitions, harder than le
 ### You have a large non-technical contributor base
 
 If compliance, legal, or support staff regularly author or review documentation, the Git barrier effectively excludes them. PR review is unfamiliar. Tracked changes don't exist in Git workflows natively. What you gain in developer contribution, you lose in coverage from the rest of the organization.
+
+That said, this is a weaker reason to stay put than it used to be. AI coding tools are making it easier for non-technical contributors to interact with Git-based workflows using natural language. The general direction is that people increasingly interact with computers through language rather than through specialized interfaces. Choosing a help center because your non-technical contributors don't know Git today is a bet that this won't change — which is increasingly a bad bet to make.
 
 ### Your product is mature and the user-facing interface is stable
 
