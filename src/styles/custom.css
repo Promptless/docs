@@ -524,6 +524,15 @@ main:has(.collection-back-link) .sl-markdown-content {
   margin-inline: auto;
 }
 
+/* Keep blog prose at readable width, but let comparison tables use the full content width. */
+main:has(.collection-back-link) .sl-markdown-content table {
+  width: min(var(--sl-content-width), calc(100vw - 2 * var(--sl-content-pad-x)));
+  max-width: none;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .collection-back-link {
   margin: 0 0 1.1rem;
   font-size: var(--sl-text-sm);
