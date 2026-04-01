@@ -1,0 +1,141 @@
+---
+const rawApiBaseUrl = import.meta.env.PUBLIC_FREE_TOOLS_API_BASE_URL?.trim();
+const fallbackApiBaseUrl = import.meta.env.PROD ? 'https://api.gopromptless.ai' : 'http://127.0.0.1:8000';
+const apiBaseUrl = (rawApiBaseUrl || fallbackApiBaseUrl).replace(/\/+$/, '');
+---
+
+<form
+  class="pl-free-tools-form"
+  id="support-agent-audit-form"
+  data-api-base={apiBaseUrl}
+  novalidate
+>
+  <div class="pl-free-tools-form-grid">
+    <label class="pl-free-tools-field">
+      <span>Support platform</span>
+      <input
+        id="support-agent-audit-platform"
+        name="platform"
+        type="text"
+        placeholder="e.g. Zendesk, Intercom, Decagon"
+        autocomplete="off"
+        required
+      />
+      <small>Which platform handles your support tickets?</small>
+    </label>
+
+    <label class="pl-free-tools-field">
+      <span>Work email</span>
+      <input
+        id="support-agent-audit-email"
+        name="email"
+        type="email"
+        inputmode="email"
+        placeholder="you@company.com"
+        autocomplete="email"
+        required
+      />
+      <small>We will reach out to schedule the audit.</small>
+    </label>
+  </div>
+
+  <div class="pl-free-tools-honeypot" aria-hidden="true">
+    <label for="support-agent-audit-website">Website</label>
+    <input id="support-agent-audit-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="pl-free-tools-actions">
+    <button type="submit">Help me audit</button>
+    <p id="support-agent-audit-form-status" class="pl-free-tools-status" aria-live="polite"></p>
+  </div>
+</form>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('support-agent-audit-form');
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const status = document.getElementById('support-agent-audit-form-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (!(submitButton instanceof HTMLButtonElement)) return;
+
+    const apiBase = form.dataset.apiBase || 'http://127.0.0.1:5000';
+
+    const setStatus = (message, tone = 'neutral') => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.tone = tone;
+    };
+
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      setStatus('');
+
+      const formData = new FormData(form);
+      const platform = String(formData.get('platform') || '').trim();
+      const email = String(formData.get('email') || '').trim();
+      const website = String(formData.get('website') || '').trim();
+
+      if (!platform) {
+        setStatus('Please enter your support platform.', 'error');
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setStatus('Please enter a valid work email address.', 'error');
+        return;
+      }
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', {
+          funnel_stage: 'evaluation',
+          action: 'support_agent_audit',
+          location: 'free_tools',
+          campaign: '',
+          link_url: apiBase + '/public/free-tools/support-agent-audit',
+        });
+      }
+
+      submitButton.disabled = true;
+      submitButton.dataset.loading = 'true';
+      setStatus('Submitting request...', 'neutral');
+
+      try {
+        const response = await fetch(`${apiBase}/public/free-tools/support-agent-audit`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            platform,
+            email,
+            website,
+          }),
+        });
+
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          const message = payload?.error || payload?.message || 'Unable to submit request. Please try again.';
+          throw new Error(message);
+        }
+
+        setStatus("We've got your request. Expect an email from us within one business day.", 'success');
+
+        if (typeof window.posthog?.capture === 'function') {
+          window.posthog.capture('support_agent_audit_submitted', {
+            platform,
+            $set: { email },
+          });
+        }
+
+        form.reset();
+      } catch (error) {
+        setStatus(error instanceof Error ? error.message : 'Request failed. Please try again.', 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.dataset.loading = 'false';
+      }
+    });
+  })();
+</script>
