@@ -1,0 +1,86 @@
+---
+title: 'When to Move from Help Center to Docs-as-Code'
+subtitle: Published April 2026
+description: >-
+  Moving from a help center to docs-as-code solves a specific problem. Here's how to know if it's the right one for your team.
+date: '2026-04-01T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+Your developers won't update the help center. The browser-based editor is slow and the articles feel disconnected from the codebase they live in. Documentation falls behind. Support tickets pile up. Someone proposes moving to docs-as-code.
+
+Before you start the migration, it's worth understanding what you're actually solving — and what you're trading away.
+
+## The Core Tradeoff
+
+Help centers (Zendesk, Confluence, Freshdesk, Notion) are built for non-technical authors. WYSIWYG editors, inline commenting, article voting, ticketing integration. Anyone can publish without touching a command line.
+
+Docs-as-code (Docusaurus, MkDocs, Starlight, Mintlify) inverts this. Documentation lives in Git alongside the codebase. Changes go through pull requests. Deployment happens via CI/CD pipeline. Engineers can contribute without leaving their environment.
+
+Both approaches create friction for someone. Help centers create friction for developers. Docs-as-code creates friction for support staff, legal, and anyone who doesn't work in Git. The decision is about which direction of friction costs you more — and that depends entirely on who actually writes and maintains your documentation.
+
+## When to Move
+
+### Developers are your primary SMEs and they're refusing to contribute
+
+This is the most reliable signal. If engineers are the primary source of technical knowledge and they won't touch the help center, documentation will decay regardless of what processes you put in place. Context-switching from an IDE to a browser-based editor is real friction, and developers will choose the path of least resistance.
+
+Docs-as-code removes that barrier. A pull request that updates documentation alongside code uses the same workflow as one that fixes a bug. 56% of developer documentation teams already follow a docs-as-code approach, with another 22% doing so partially, per Tom Johnson's survey of 400+ developer documentation professionals.
+
+### You have an API or SDK and developers are your primary audience
+
+84% of developers use technical documentation as their primary learning resource (Stack Overflow 2024). When they evaluate your API, the docs signal product quality. A help center can publish technical reference content, but it can't branch documentation alongside software releases or participate in a CI/CD pipeline. Those gaps matter more as developer tooling evolves.
+
+### You need concurrent documentation for multiple software versions
+
+Help centers have article-level restore, not branching. Maintaining v1 and v2 API docs simultaneously in a help center has no clean answer. Git does. If your team is shipping multiple concurrent versions and manually juggling content between articles, this alone justifies the move.
+
+### Your documentation release process is a manual bottleneck
+
+Tom Johnson's team migrated a large documentation site from a Java CMS to Jekyll and Git. A 40-page release that previously required hours of manual copy-paste now deploys in 10 minutes via a single `git push`. If the publishing step is where releases get stuck, the pipeline change pays for itself quickly.
+
+<BlogNewsletterCTA />
+
+## When Not to Move
+
+### Your writing team has no Git experience and no engineering support
+
+Git is consistently the hardest part of docs-as-code transitions — harder than learning Markdown, harder than configuring a static site generator. Tom Johnson waited a full year before engineering resources were available for the migration, and still describes it as a multi-year process. A technical writer with no Git background will spend more time managing the system than writing documentation.
+
+### You have a large non-technical contributor base
+
+If compliance, legal, or support staff regularly author or review documentation, the Git barrier effectively excludes them. PR review is unfamiliar. Tracked changes don't exist in Git workflows natively. What you gain in developer contribution, you lose in coverage from the rest of the organization.
+
+### Your audience is non-technical end users
+
+Docs-as-code is optimized for developer-facing products. If your product is a no-code SaaS tool with a support-heavy customer base, the help center's ticketing integration, article voting, and familiar search UI are genuine advantages. Moving to a static site built for developers solves a problem you don't have.
+
+## The Middle Path
+
+Managed docs-as-code platforms — Mintlify, GitBook, ReadMe — layer visual editing on top of Git backends. Non-technical contributors get a WYSIWYG interface; engineers get Git-native workflows.
+
+HubSpot moved from a custom-built internal documentation platform to Mintlify. Their description of the trigger was direct: the documentation team was functioning as an "accidental platform team," maintaining infrastructure instead of doing developer experience work. AI tooling made the problem visible — AI assistants were pulling from v1 and v3 API docs simultaneously, returning conflicting answers.
+
+The tradeoff with managed platforms is per-seat licensing and vendor dependency. Pure static site generators are free and fully customizable but require engineering to set up and maintain.
+
+## What Migration Actually Costs
+
+Plan for the migration to take longer than expected.
+
+First, audit the content. Not everything in a help center needs to move. Support FAQs and account management articles may belong in the help center permanently. Technical reference and API docs are the migration candidates.
+
+Conversion takes weeks for a large site. You'll run both systems simultaneously while converting — users can't wait for the migration to finish. URL structures change, which means redirect maps need to be built before you cut over. Translation workflows need to be solved before you start, not after; most localization vendors can't handle mixed Markdown and HTML.
+
+HubSpot rebuilt their documentation platform internally three times before moving to Mintlify. Tom Johnson's migration involved a year of planning followed by months of writers maintaining dual systems. These are normal timelines for a migration at scale.
+
+## What Migration Doesn't Solve
+
+Moving to docs-as-code makes it easier for engineers to contribute. It doesn't guarantee they will. Documentation decay comes from a structural timing gap: engineering ships continuously, documentation reviews happen in batches. Changing the tooling removes one barrier but doesn't close the gap between when a product changes and when the docs reflect that change.
+
+Whichever system you're in — help center or static site — you need a way to detect when documentation has drifted from the product it describes. That's a monitoring problem that exists on both sides of the migration. The teams with accurate documentation treat it as a continuous monitoring task, not a periodic writing project.
+
+<BlogRequestDemo />
