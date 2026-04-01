@@ -28,6 +28,10 @@ Triggers when a pull request receives its first approval from a reviewer. Use th
 The first-approval mode only triggers once per PR—on the first approval. Subsequent approvals or re-approvals after requested changes do not trigger additional documentation updates.
 </Info>
 
+<Note>
+Replay is not available for first-approval triggers. To re-run documentation analysis on a PR, use the Slack or web interface to manually request an update.
+</Note>
+
 ## How It Works
 
 When a pull request event occurs in your monitored repositories (either opened or first approval, depending on your configuration):
@@ -46,13 +50,13 @@ Information from PRs is processed in real-time and not stored by Promptless. The
 Configure GitHub PR triggers in your [project settings](https://app.gopromptless.ai/projects):
 
 1. Select GitHub as your trigger source
-2. Choose the trigger mode: **Opened** (default) or **First approval**
+2. Choose the trigger mode: **When PR opens** (default) or **After first approval**
 3. Choose which repositories to monitor
 4. Optionally configure directory-specific triggers (see below)
 5. Set auto-publish preferences
 
-<Frame>
-  <img src="/assets/github-project.png" alt="GitHub project configuration showing trigger repository selection" />
+<Frame caption="GitHub PR trigger configuration with timing options">
+  <img src="https://promptless-customer-doc-assets.s3.us-east-2.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/github-pr-trigger-mode-27bc0fb4.png" alt="Edit Project modal showing PR trigger timing dropdown with 'When PR opens' and 'After first approval' options" />
 </Frame>
 
 ## Directory-Specific Triggers
