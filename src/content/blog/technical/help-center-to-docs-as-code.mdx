@@ -39,6 +39,12 @@ Docs-as-code removes that barrier. A pull request that updates documentation alo
 
 Help centers have article-level restore, not branching. Maintaining v1 and v2 API docs simultaneously in a help center has no clean answer. Git does. If your team is shipping multiple concurrent versions and manually juggling content between articles, this alone justifies the move.
 
+### Engineers are shipping frequently and documentation needs to keep pace
+
+When a product changes fast, the people with the most current knowledge are the engineers writing the code. If the tooling makes it hard for them to update documentation, it won't get updated. Docs-as-code lowers that barrier directly — a documentation change can travel in the same pull request as the code change that made it necessary.
+
+The caveat here is what actually changes from the user's perspective. A product can have high internal velocity while exposing a stable interface. Think of how the ChatGPT interface has always been a text box — the underlying model and infrastructure changed constantly, but what users interacted with stayed the same. If most of the engineering work is below the surface and the user-facing product is relatively stable, documentation needs are still driven by customer support, and a help center handles that well. The relevant question is not how fast engineering ships, but how often what users see and interact with changes.
+
 ### Your documentation release process is a manual bottleneck
 
 Tom Johnson's team migrated a large documentation site from a Java CMS to Jekyll and Git. A 40-page release that previously required hours of manual copy-paste now deploys in 10 minutes via a single `git push`. If the publishing step is where releases get stuck, the pipeline change pays for itself quickly.
@@ -55,13 +61,11 @@ Git is consistently the hardest part of docs-as-code transitions — harder than
 
 If compliance, legal, or support staff regularly author or review documentation, the Git barrier effectively excludes them. PR review is unfamiliar. Tracked changes don't exist in Git workflows natively. What you gain in developer contribution, you lose in coverage from the rest of the organization.
 
-### Your product is mature and changes infrequently
+### Your product is mature and the user-facing interface is stable
 
-If your product is stable, most of your documentation work is supporting customers — answering recurring questions, maintaining a knowledge base, helping users through the same set of issues. That is exactly what help centers are built for.
+If what users see and interact with changes slowly, most of your documentation work is supporting customers — answering recurring questions, maintaining a knowledge base, helping users through a known set of issues. That is exactly what help centers are built for.
 
-The calculation changes when engineers are shipping frequently. A fast-moving product means docs go stale fast. The people with the most current knowledge are the engineers writing the code, and if the tooling makes it hard for them to update documentation, it won't get updated. Docs-as-code lowers that barrier directly — documentation changes travel in the same pull request as the code changes that made them necessary.
-
-Product velocity is a better signal than product type. A mature B2B SaaS with a stable API is a fine candidate for a help center. The same company two years earlier, still iterating fast on that API, probably needed docs-as-code.
+Product velocity alone is not the right signal. A mature B2B SaaS with a stable API is a fine candidate for a help center even if the engineering team is active. What matters is whether the changes engineering ships affect what users need to know. If most of the work is behind the curtain, the documentation surface stays small and a help center handles it without friction.
 
 ### Your audience is non-technical end users
 
