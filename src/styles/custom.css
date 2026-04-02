@@ -3,7 +3,7 @@
   src: url('/fonts/InterVariable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -520,7 +520,9 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
 
 main:has(.collection-back-link) .content-panel > .sl-container,
 main:has(.collection-back-link) .sl-markdown-content {
-  max-width: 72ch;
+  /* Use rem instead of ch — ch is font-relative, so it changes size during
+     font swap, which combined with margin-inline:auto causes CLS. */
+  max-width: 38rem;
   margin-inline: auto;
 }
 
