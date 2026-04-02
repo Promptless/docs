@@ -64,30 +64,23 @@ function exec(cmd: string, opts: { cwd?: string } = {}): string {
 async function generateArticle(keyword: string): Promise<string> {
   const client = new Anthropic();
 
-  const systemPrompt = `You are a senior technical writer and content strategist for Promptless, an AI-powered documentation platform that helps developer-facing companies automatically keep their docs accurate, complete, and up to date.
+  const systemPrompt = `You are a content generation agent for Promptless, an AI-powered documentation platform that helps developer-facing companies keep their docs accurate and up to date. Promptless's audience is technical writers, DevRel engineers, developer advocates, solutions engineers, and engineering managers at software companies.
 
-Promptless's audience is technical writers, DevRel engineers, developer advocates, solutions engineers, and engineering managers at companies with developer-facing products. The blog is read by people who care deeply about documentation quality and developer experience.
-
-Promptless's voice is:
-- Direct and substantive — no filler, no fluff
+Writing style:
+- 10th grade reading level: short sentences, plain words, no jargon without explanation
+- Direct and dry, like a Dutch engineer. Say what you mean. Cut anything that doesn't add information. No filler, no fluff.
 - Grounded in concrete examples, real numbers, and cited evidence
-- Opinionated but not preachy — we have a point of view
-- Practical — readers should come away with something actionable
-- Intellectually honest — we acknowledge trade-offs and limitations
+- Do NOT use em dashes
+- Do NOT use tricolon structures (three-item lists used for rhetorical effect, e.g. "It's fast, reliable, and cheap")
+- Do NOT use "X is not Y, but Z" constructions (e.g. "This isn't a tooling problem, it's a process problem")
 
-When writing articles, follow these structural conventions:
+Structural conventions:
 - Use ## for H2 sections, ### for H3
 - Aim for 800–1400 words
-- Lead with a hook that frames the problem, not a generic intro
-- Include concrete examples, data points, or anecdotes wherever possible
-- End with a section that looks forward or calls for action (not a summary)
-- Do NOT include a generic conclusion section that just restates what was said
+- Lead with a hook that frames the specific problem — NOT a generic intro paragraph
+- Do NOT include a generic conclusion that restates what was said
 - Place <BlogNewsletterCTA /> at roughly the 40–50% mark (after the first major section)
 - End the article with <BlogRequestDemo />
-
-Style guide:
-- Avoid using emdash as much as possible
-- Avoid using too many tricolon phrases
 
 MDX frontmatter format (fill in all fields):
 ---
@@ -98,30 +91,39 @@ description: >-
 date: '${todayISO()}T00:00:00.000Z'
 author: Frances
 section: Technical
-hidden: true
+hidden: false
 ---
 import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
 import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
 [article body starts here]`;
 
-  const userPrompt = `I need you to research and write a high-quality blog article for Promptless on this keyword/topic: "${keyword}"
+  const userPrompt = `Research and write a blog article for Promptless on this keyword/topic: "${keyword}"
 
 Step 1 — Research:
-- Search the web for the top articles, studies, blog posts, and discussions on this topic
-- Read a random sample of 5–8 of the best results thoroughly
-- Take note of: what angles already exist, what data or evidence is cited, what's missing or poorly covered, what practitioners are actually struggling with
-- Look for recent (2024–2026) data points, case studies, or expert commentary
+Search the web for the top articles, studies, blog posts, and discussions on this topic. Read 5–8 of the best results thoroughly. Identify: the main angles already covered, data points or case studies cited, gaps in existing coverage, and what practitioners are actually struggling with. Look especially for 2024–2026 material.
 
-Step 2 — Write the article:
-- Choose the most compelling and differentiated angle (not the same generic take as every other post)
-- Write a complete, publication-ready MDX article following the format and conventions in the system prompt
-- Include the full frontmatter at the top
-- The title should be specific and SEO-optimized for "${keyword}"
-- Cite real examples, companies, or data points where relevant (you found these in your research)
-- The article should feel like it was written by someone who deeply understands documentation and developer tooling
+Step 2 — Write a plan:
+Before writing the article, produce a detailed plan. The plan must answer:
+- Article format: What format best serves this content and reader? Describe it in your own words — e.g. "a comparison of two approaches to help readers make a technical decision," or "an explainer that teaches readers why X matters before showing them what to do about it.".
+- Thesis: What is the single main point this article makes? State it in one sentence.
+- Target reader: Who specifically benefits from this — developers, technical writers, solutions engineers, product managers,developer advocates? What do they already know, and what gap does this fill?
+- Key points: List the 4–6 specific claims or arguments the article will make, in order. Each point should be concrete — not "discuss X" but "argue that X causes Y because Z".
+- Evidence: For each key point, note what data, case studies, or examples from your research support it. Add links to the evidence.
+- Promptless connection: Explicitly state how the article's thesis connects to what Promptless does. This does not need to be a sales pitch — it should be a logical continuation. E.g. "This article argues that docs go stale faster than teams notice, which is exactly the problem Promptless monitors for."
 
-Output ONLY the complete MDX file contents — frontmatter + article body. No preamble, no explanation, no code fences around it.`;
+Write the plan as a structured document. Do not proceed to writing the article until the plan is complete.
+
+Step 3 — Write the article:
+Write a complete, publication-ready MDX article strictly according to the plan. Follow the style and structural conventions in the system prompt. Include the full frontmatter at the top. The title should be specific and SEO-optimized for "${keyword}". Ground every claim in concrete examples, real numbers, or cited evidence from your research.
+
+Step 4 — Edit the article:
+Do a final editorial pass specifically looking for these two patterns. Rewrite every instance — do not just flag them:
+1. "X is not Y, but Z" constructions — e.g. "This isn't a tooling problem, it's a process problem." Rewrite as a direct statement.
+2. Tricolon structures — three-item lists used for rhetorical effect, e.g. "It's fast, reliable, and cheap." Break these up or cut to the most important item.
+3. Optimize for SEO: update the title, subtitle, and description to make them closer to what users would search for. Also add relevant links to other Promptless blogposts.
+
+Output the plan first, then output the final MDX file contents (frontmatter + article body). No code fences around the MDX.`;
 
   console.log(`\n🔍 Researching: "${keyword}"\n`);
 
@@ -182,9 +184,16 @@ Output ONLY the complete MDX file contents — frontmatter + article body. No pr
   return text.trim();
 }
 
+// Extract just the MDX portion from the agent output (plan comes first, then MDX)
+function extractMdx(text: string): string {
+  const mdxStart = text.indexOf("---\ntitle:");
+  if (mdxStart === -1) return text.trim();
+  return text.slice(mdxStart).trim();
+}
+
 // ─── git + GitHub ─────────────────────────────────────────────────────────────
 
-function createPR(articleContent: string, keyword: string): string {
+function createPR(articleContent: string, keyword: string, fullOutput: string = articleContent): string {
   // Extract title from frontmatter to build a slug
   const titleMatch = articleContent.match(/title:\s*['"](.+?)['"]/);
   const title = titleMatch ? titleMatch[1] : keyword;
@@ -212,23 +221,18 @@ function createPR(articleContent: string, keyword: string): string {
   exec(`git push -u origin ${branchName}`, { cwd: worktreePath });
   exec(`git worktree remove --force ${worktreePath}`);
 
-  const prBody = `## AI-Generated Blog Article
+  // Extract the plan from the full output (agent outputs plan then MDX)
+  const planMatch = fullOutput.match(/^([\s\S]*?)(?=---\ntitle:)/);
+  const planSummary = planMatch ? planMatch[1].trim() : "";
 
-**Keyword targeted:** \`${keyword}\`
+  const prBody = `**Keyword:** \`${keyword}\`
 
-**Article:** \`${filePath}\`
+${planSummary ? `## Article plan\n\n${planSummary}\n\n` : ""}## File
 
-This article was automatically researched and written by the Promptless edu campaign pipeline. Please review for:
+\`${filePath}\`
 
-- [ ] Accuracy of technical claims
-- [ ] Alignment with Promptless voice and positioning
-- [ ] Any factual errors or hallucinated sources
-- [ ] SEO title and description quality
-- [ ] CTA placement
+This is an AI-generated draft and needs human review before publishing. Set \`hidden: false\` in the frontmatter when ready to publish.`;
 
-> Set \`hidden: false\` in frontmatter when ready to publish.
-
-🤖 Generated with Claude Opus 4.6`;
 
   const bodyFile = path.join(REPO_ROOT, ".pr-body.tmp");
   fs.writeFileSync(bodyFile, prBody);
@@ -299,13 +303,14 @@ async function main() {
   const keyword = process.env.KEYWORD ?? pickKeyword();
   console.log(`🎯 Keyword: "${keyword}"`);
 
-  const articleContent = await generateArticle(keyword);
+  const fullOutput = await generateArticle(keyword);
+  const articleContent = extractMdx(fullOutput);
 
   const titleMatch = articleContent.match(/title:\s*['"](.+?)['"]/);
   const title = titleMatch ? titleMatch[1] : keyword;
   console.log(`\n📄 Title: "${title}"`);
 
-  const prUrl = createPR(articleContent, keyword);
+  const prUrl = createPR(articleContent, keyword, fullOutput);
 
   await notifySlack(prUrl, keyword, title);
 
