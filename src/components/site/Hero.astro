@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import ycLogo from '../../assets/site/yc_logo.svg.png';
+
 interface Props {
   prefix?: string;
   words?: string[];
@@ -38,7 +41,7 @@ const {
 
   <div class="pl-site-trust-row">
     <div class="pl-site-trust-badge">
-      <img src="/site/yc_logo.svg.png" alt="Y Combinator" width="20" height="20" />
+      <Image src={ycLogo} alt="Y Combinator" width={40} height={40} />
       <span>Backed by Y Combinator</span>
     </div>
     <span>Trusted by fast-growing startups and Fortune 500 enterprises alike</span>
