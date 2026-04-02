@@ -1,0 +1,72 @@
+---
+title: 'Documentation Quality and AI Agent Reliability'
+subtitle: Published April 2026
+description: >-
+  When AI agents answer from your documentation, docs quality becomes a production reliability issue. Here's what context rot, Dumb RAG, and the Air Canada ruling mean for your team.
+date: '2026-04-02T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+In February 2024, a Canadian tribunal ordered Air Canada to pay a customer CA$650 over a bereavement fare its AI chatbot invented. The chatbot retrieved the correct policy document. Then it generated the wrong answer. The court held that Air Canada "is responsible for all the information on its website" — including what its AI produced from that information.
+
+The core failure was a documentation-to-agent grounding failure. The correct policy existed. The agent still got it wrong. This is now a pattern with a name, a body of research behind it, and an organizational accountability problem that most companies haven't solved.
+
+## Where the context comes from
+
+In mid-2025, Andrej Karpathy introduced a term that crystallized quickly: context engineering. Shopify CEO Tobi Lütke described it as more accurate than "prompt engineering" because it names the real skill: providing the information that makes a task solvable. Anthropic's engineering team put the stakes plainly: "The quality of an agent often depends less on the model itself and more on how its context is structured and managed. Even a weaker LLM can perform well with the right context, but no state-of-the-art model can compensate for a poor one."
+
+[We covered the four-layer framework for agent context in detail here.](/blog/technical/agent-context-engineering) The short version: agents operate on a context window that functions like working memory. What goes into it — and how it is structured — determines what the agent produces.
+
+For developer-facing companies, the dominant source of that context is documentation. API references, guides, changelogs, and SDK docs are what agents retrieve and reason from when answering developer questions. That makes documentation quality a production reliability variable, whether or not your documentation team knows it.
+
+## How correct docs still fail agents
+
+Having correct documentation is necessary. It is not sufficient.
+
+Chroma Research tested 18 frontier models in July 2025 and found that every single one degrades as input length increases. The specific pattern — documented by Stanford's "Lost in the Middle" study in 2023 — shows that information placed at the beginning or end of a long context window is retrieved with 70–75% accuracy. Information buried in the middle drops to 55–60% accuracy. That is a 20-point accuracy penalty based on placement alone, independent of whether the content is correct.
+
+The mechanism is attention dilution. Transformer models compute attention relationships across every token in the context window. As context grows, critical information has to compete with low-signal tokens — navigation boilerplate, preamble, repeated definitions. Chroma named this accumulation "context rot." Their finding: "Bigger context windows delay context rot but do not eliminate it." All 18 models hit the wall.
+
+For documentation teams, this means a long page covering multiple topics isn't just harder for human readers to skim. It actively degrades agent performance on every query that touches it.
+
+<BlogNewsletterCTA />
+
+## The content authoring problem inside RAG
+
+The standard engineering solution to context length limits is retrieval-augmented generation (RAG): instead of loading all documentation at once, the agent retrieves relevant chunks at query time via semantic search.
+
+RAG solves the length problem. The content problem is upstream of it.
+
+Composio analyzed agent failures across hundreds of enterprise deployments and named "Dumb RAG" as the most common failure mode: loading an entire documentation corpus into a vector database and assuming semantic search will surface what the agent needs. Their comparison: "Dumping your entire hard drive into RAM and expecting the CPU to find one specific byte. You get thrashing and context-flooding, not reasoning."
+
+The retrieval failures in Dumb RAG often start at the content level. Ambiguous topic boundaries, pages covering two unrelated concepts, and inconsistent terminology for the same API endpoint across different guides all break retrieval regardless of how sophisticated the search system is. The chunking algorithm cannot fix a page that does not have a coherent topic.
+
+Research from ICLR 2025 adds a compounding effect. The "Curse of Instructions" study found that GPT-4o followed 10 simultaneous instructions correctly only 15% of the time. A documentation page covering installation requirements, configuration options, and three common error codes — written for a developer who reads selectively — presents exactly this problem to an agent that has to act on the entire thing at once.
+
+[For specific guidance on structuring pages for agent consumption, see our practical guide.](/blog/technical/agent-docs)
+
+## A format standard built for machine readers
+
+In September 2024, researcher Jeremy Howard proposed `llms.txt`: a lightweight Markdown standard for making documentation indexable by AI tools. The format is a curated table of contents with summaries and priority signals. It gives agents a structured navigation layer rather than raw HTML pages cluttered with sidebars and JavaScript.
+
+When Mintlify rolled out `llms.txt` support in November 2024, thousands of documentation sites gained the format overnight — including Anthropic and Cursor. By early 2026, Google, AWS, and Microsoft had each launched official MCP servers giving AI tools programmatic, real-time access to their developer documentation.
+
+Howard's summary of the shift in March 2025: "It's 2025 and most content is still written for humans instead of LLMs. 99.9% of attention is about to be LLM attention, not human attention."
+
+An `llms.txt` file is a curation decision — what to surface, in what order, with what context. Engineering teams tend to treat it as a build artifact and auto-generate it from navigation structure, which discards the judgment that makes it useful. Technical writers are the right people to own it.
+
+## The ownership gap
+
+88% of AI agent projects fail before production, according to a March 2026 survey of 650 enterprise technology leaders. LangChain's 2025 State of Agent Engineering report attributed failures specifically to information quality: "Agent failures are primarily context failures — not model failures."
+
+Most companies haven't assigned clear ownership of the knowledge layer feeding their agents. Engineering owns the agent infrastructure. The documentation team owns the docs. Legal owns compliance. When the agent's responses are grounded in docs that haven't been updated since the last API version, none of those functions are watching the gap between what's documented and what's deployed.
+
+[Documentation drift is a detection problem before it's a writing problem.](/blog/technical/documentation-drift-detection-problem) When an agent is in production, the detection problem has direct consequences: a support agent citing deprecated authentication flows, a developer assistant recommending a removed SDK method. The agent does not signal that anything is wrong. It answers from what it finds.
+
+The Air Canada ruling clarified the liability side of this gap. The question of who inside your organization owns the knowledge layer — and who is accountable when that knowledge is wrong — has not been answered clearly at most companies building on top of it.
+
+<BlogRequestDemo />
