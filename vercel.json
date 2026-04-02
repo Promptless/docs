@@ -2,17 +2,6 @@
   "outputDirectory": "dist",
   "redirects": [
     {
-      "source": "/docs/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "docs.promptless.ai"
-        }
-      ],
-      "destination": "https://promptless.ai/docs/:path*",
-      "permanent": true
-    },
-    {
       "source": "/changelog/:path*",
       "has": [
         {
@@ -29,17 +18,6 @@
         {
           "type": "host",
           "value": "docs.promptless.ai"
-        }
-      ],
-      "destination": "https://promptless.ai/docs/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/docs/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "docs.gopromptless.ai"
         }
       ],
       "destination": "https://promptless.ai/docs/:path*",
