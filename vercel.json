@@ -13,7 +13,7 @@
       "permanent": true
     },
     {
-      "source": "/changelogs/:path*",
+      "source": "/changelog/:path*",
       "has": [
         {
           "type": "host",
@@ -46,7 +46,7 @@
       "permanent": true
     },
     {
-      "source": "/changelogs/:path*",
+      "source": "/changelog/:path*",
       "has": [
         {
           "type": "host",
