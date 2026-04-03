@@ -45,6 +45,10 @@ Your users are developers. Developers use AI coding assistants constantly — Cu
 
 This is where `llms.txt` does something useful. It's not a ranking signal — it's a navigation layer. An agent trying to understand your product can read `llms.txt`, get a structured map of your documentation, and then fetch only the pages relevant to the task at hand. Cloudflare's implementation explicitly instructs AI agents to request Markdown versions of pages (via an `Accept: text/markdown` header or by appending `/index.md` to any URL) rather than HTML — because HTML wastes context window and burns tokens on navigation chrome that agents don't need.
 
+<Frame caption="Claude Code successfully retrieving llms.txt from clerk.com — a first in three months of daily use, illustrating how uncommon llms.txt adoption remains even among developer-facing companies.">
+  <img src="https://promptless-customer-doc-assets.s3.us-east-2.amazonaws.com/docs-images/org_2lvkgU9erOFxYhtEVVC0ymPrPdF/claude-code-llms-txt-fetch-0ea16b7a.png" alt="Terminal output showing Claude Code fetching URLs from clerk.com, with most returning 404 errors but llms.txt successfully returning 9.5KB" />
+</Frame>
+
 Companies have reported up to 10x token reductions when serving Markdown instead of HTML to agents. At scale, across a large developer customer base, that compounds. Faster, cheaper, more accurate agent interactions with your product.
 
 Microsoft's GenAIScript team takes this further: their `llms.txt` includes an explicit "Guidance for Code Generation" section that tells LLMs what to do when writing code that uses the tool. It's documentation written specifically for the agent, not the human.
