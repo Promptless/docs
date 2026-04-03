@@ -9,16 +9,12 @@ hidden: false
 
 * **First-Approval GitHub PR Trigger Mode:** Configure Promptless to trigger when a pull request receives its first approval instead of when it opens—useful for teams that want documentation suggestions only after code has been reviewed.
 
-* **Broken Link Checker:** Promptless now includes a built-in broken link checker that crawls your docs site, validates internal and external links, checks anchor fragments, and outputs issues as a CSV report.
-
 **Improvements:**
 
-* **PR Replay Status on Project Cards:** When you opt into replaying the last 30 days of PRs during project setup, the Projects page now shows replay progress directly on the project card.
-
-* **Cleaner Slack Notifications:** Slack notifications no longer display link previews—keeping your notification channels focused on the actual content.
+* **PR Replay Status on Project Cards:** During project setup when you opt into replaying the last 30 days of PRs, the Projects page now shows replay progress directly on the project card.
 
 **Bug Fixes:**
 
 * **Citation Popup Rendering:** Fixed citation popups incorrectly rendering file paths like `__init__.py` as bold text by treating double underscores as markdown syntax.
-* **Screenshot Editor Crop UX:** Fixed the screenshot editor not applying crops correctly—added proper Reset and Cancel controls.
+* **Screenshot Editor Crop UX:** Fixed the screenshot editor not applying crops correctly—added Reset and Cancel controls.
 * **Slack Diff Thread Failures:** Fixed failures when posting diff threads to Slack channels—error messages now clearly indicate when Slack permissions are missing.
