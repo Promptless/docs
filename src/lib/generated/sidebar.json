@@ -98,14 +98,6 @@
           }
         ]
       },
-      {
-        "label": "Environment Variables",
-        "slug": "docs/configuring-promptless/environment-variables"
-      },
-      {
-        "label": "Promptless Capture",
-        "slug": "docs/configuring-promptless/promptless-capture"
-      }
     ]
   },
   {
@@ -130,6 +122,14 @@
       {
         "label": "Providing Feedback",
         "slug": "docs/how-to-use-promptless/providing-feedback"
+      },
+      {
+        "label": "Managing Environment Variables",
+        "slug": "docs/how-to-use-promptless/managing-environment-variables"
+      },
+      {
+        "label": "Using Promptless Capture",
+        "slug": "docs/how-to-use-promptless/using-promptless-capture"
       }
     ]
   },

@@ -1,9 +1,9 @@
 ---
-title: Promptless Capture
-slug: docs/configuring-promptless/promptless-capture
+title: Using Promptless Capture
+slug: docs/how-to-use-promptless/using-promptless-capture
 sidebar:
   hidden: false
-  order: 25
+  order: 28
 ---
 import Frame from '@components/fern/Frame.astro';
 import Steps from '@components/fern/Steps.astro';
@@ -21,38 +21,7 @@ Promptless Capture keeps product screenshots in sync with your UI. When code cha
 Promptless Capture must be enabled for your organization by the Promptless team. Reach out to help@gopromptless.ai or contact us via Slack to get started.
 </Info>
 
-## How Promptless Capture Works
-
-When a trigger fires that might affect documented UI elements, Promptless Capture:
-
-- **Analyzes code changes** to identify which features were modified
-- **Cross-references your documentation** to find screenshots showing those features
-- **Navigates to your application** using stored credentials
-- **Captures fresh screenshots** of affected UI
-- **Crops images** to focus on relevant UI elements and draws annotations
-
-### Feature Detection from Code
-
-Promptless Capture examines code changes to understand which product features were modified, including:
-
-- Component names and file paths
-- UI element changes (buttons, forms, dialogs, navigation)
-- Route changes that affect page structure
-- CSS/styling changes that alter visual appearance
-
-This analysis identifies which existing documentation screenshots might be outdated.
-
-### Automatic Cropping
-
-After capturing a full-page screenshot, Promptless Capture automatically crops the image to focus on the relevant UI element. The cropping logic uses:
-
-- DOM element boundaries to identify interactive components
-- Visual heuristics to determine optimal crop regions
-- Context from the documentation to understand what the screenshot should highlight
-
-The result is clean, focused screenshots that show exactly what the documentation needs.
-
-## Setting Up Environment Variables
+## Setting Up Credentials
 
 Promptless Capture needs credentials to authenticate with your application. Configure these as environment variables in your organization settings.
 
@@ -82,28 +51,13 @@ Promptless Capture needs credentials to authenticate with your application. Conf
 Use a dedicated test account for screenshot capture rather than a personal or production account. This ensures screenshots don't contain sensitive data and provides a consistent UI state.
 </Warning>
 
-### How Variables Are Used
-
-Environment variables you define are automatically available to the Promptless agent with a `PROMPTLESS_` prefix. For example, if you create a variable named `TEST_ACCOUNT_USER`, the agent accesses it as `PROMPTLESS_TEST_ACCOUNT_USER`.
-
-The agent uses these credentials to:
-
-1. Navigate to your login page
-2. Authenticate with the stored credentials
-3. Navigate to the relevant product pages
-4. Capture screenshots of the documented features
-
 <Tip>
 Create a test account with access to all features you want to document. If certain features require specific permissions or plan tiers, ensure your test account has the appropriate access level.
 </Tip>
 
-## Calibration
+## Testing Your Setup
 
-Calibration ensures Promptless Capture works correctly for your application. A Promptless team member will typically set up a calibration session with you to review initial screenshots and refine the configuration. During this session, you'll identify any adjustments needed for your login flow, navigation, or screenshot cropping.
-
-### Running Test Captures
-
-To test screenshot capture:
+After adding your credentials, verify that Promptless can capture screenshots correctly.
 
 <Steps>
   <Step title="Start a Manual Task">
@@ -122,7 +76,7 @@ To test screenshot capture:
   </Step>
 </Steps>
 
-### Common Calibration Issues
+## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Screenshots show the login page">
