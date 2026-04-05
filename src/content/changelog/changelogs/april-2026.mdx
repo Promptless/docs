@@ -22,3 +22,4 @@ hidden: false
 * **Screenshot Login with Environment Variables:** Fixed screenshots failing to authenticate when using customer environment variables—the agent now correctly resolves `$PROMPTLESS_*` variable references to their configured values instead of typing the variable names literally.
 * **Doc Sync for Large PRs:** Fixed doc sync silently syncing only partial files when PRs had more than 300 changed files—large PRs now sync correctly.
 * **Stale Suggestion Cleanup:** Fixed stale suggestion cleanup unexpectedly closing customer docs PRs—suggestions with open PRs are now preserved.
+* **Archiving Soon Badge Accuracy:** Fixed the "Archiving soon" badge and digest warnings using a hardcoded 30-day threshold instead of respecting per-org stale TTL settings—customers with custom TTLs now see accurate warnings.
