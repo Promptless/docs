@@ -18,3 +18,4 @@ hidden: false
 * **Citation Popup Rendering:** Fixed citation popups incorrectly rendering file paths like `__init__.py` as bold text by treating double underscores as markdown syntax.
 * **Screenshot Editor Crop UX:** Fixed the screenshot editor not applying crops correctly—added Reset and Cancel controls.
 * **Slack Diff Thread Failures:** Fixed failures when posting diff threads to Slack channels—error messages now clearly indicate when Slack permissions are missing.
+* **Screenshot Login with Environment Variables:** Fixed screenshots failing to authenticate when using customer environment variables—the agent now correctly resolves `$PROMPTLESS_*` variable references to their configured values instead of typing the variable names literally.
