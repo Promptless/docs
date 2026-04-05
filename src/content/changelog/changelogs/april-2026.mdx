@@ -19,3 +19,4 @@ hidden: false
 * **Screenshot Editor Crop UX:** Fixed the screenshot editor not applying crops correctly—added Reset and Cancel controls.
 * **Slack Diff Thread Failures:** Fixed failures when posting diff threads to Slack channels—error messages now clearly indicate when Slack permissions are missing.
 * **Screenshot Login with Environment Variables:** Fixed screenshots failing to authenticate when using customer environment variables—the agent now correctly resolves `$PROMPTLESS_*` variable references to their configured values instead of typing the variable names literally.
+* **Doc Sync for Large PRs:** Fixed doc sync silently syncing only partial files when PRs had more than 300 changed files—large PRs now sync correctly.
