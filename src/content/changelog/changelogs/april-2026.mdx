@@ -7,10 +7,15 @@ hidden: false
 
 **New Features:**
 
+* **Starlight (Astro) Docs Platform Support:** Promptless now supports Starlight, the Astro-based documentation framework, as a hosting provider option during onboarding. Starlight is automatically detected via `astro.config.mjs`, `astro.config.ts`, or `astro.config.js` files in your docs repository.
 * **First-Approval GitHub PR Trigger Mode:** Configure Promptless to trigger when a pull request receives its first approval instead of when it opens—useful for teams that want documentation suggestions only after code has been reviewed.
+* **Process Recent Commits for GitHub Commit Triggers:** When creating a project with a GitHub commit trigger, you can now enable "Process last 30 days of commits" to generate initial documentation suggestions from your commit history—useful for teams using commit triggers or repositories without PR workflows.
 
 **Improvements:**
 
+* **GitHub Issue Trigger Feedback:** When you tag @Promptless in a GitHub issue, you now see a 👀 reaction to acknowledge the request, a helpful comment if no pipelines match, and result comments posted directly to the issue.
+* **Improved Comment Visibility in Suggestion Review:** Comments are now easier to find and manage. Each file displays a "Show N Comment(s)" toggle to quickly reveal inline comments, and overall comments appear in a compact expandable row at the top of the Review tab.
+* **Self-Serve Doc Collection Editing:** Edit doc collection settings directly in the dashboard without contacting support. Click the edit button on any doc collection card to update the docs framework, config path, published URL, Vale config, and Doc Detective settings.
 * **PR Replay Status on Project Cards:** During project setup when you opt into replaying the last 30 days of PRs, the Projects page now shows replay progress directly on the project card.
 
 **Bug Fixes:**
@@ -18,3 +23,11 @@ hidden: false
 * **Citation Popup Rendering:** Fixed citation popups incorrectly rendering file paths like `__init__.py` as bold text by treating double underscores as markdown syntax.
 * **Screenshot Editor Crop UX:** Fixed the screenshot editor not applying crops correctly—added Reset and Cancel controls.
 * **Slack Diff Thread Failures:** Fixed failures when posting diff threads to Slack channels—error messages now clearly indicate when Slack permissions are missing.
+* **Screenshot Login with Environment Variables:** Fixed screenshots failing to authenticate when using customer environment variables—credentials are now reliably passed to the screenshot agent regardless of whether the main agent uses explicit `$PROMPTLESS_*` references or natural language descriptions.
+* **Doc Sync for Large PRs:** Fixed doc sync silently syncing only partial files when PRs had more than 300 changed files—large PRs now sync correctly.
+* **Stale Suggestion Cleanup:** Fixed stale suggestion cleanup unexpectedly closing customer docs PRs—suggestions with open PRs are now preserved.
+* **Archiving Soon Badge Accuracy:** Fixed the "Archiving soon" badge and digest warnings using a hardcoded 30-day threshold instead of respecting per-org stale TTL settings—customers with custom TTLs now see accurate warnings.
+
+**Deprecated:**
+
+* **XWiki Integration Removed:** The XWiki integration has been discontinued. If you were using XWiki with Promptless, please contact help@gopromptless.ai to discuss alternative workflows.
