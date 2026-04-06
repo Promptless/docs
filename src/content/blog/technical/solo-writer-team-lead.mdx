@@ -12,19 +12,19 @@ import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
 import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 import Frame from '@components/fern/Frame.astro';
 
-Most tech writers work as part of a team. Most operational and career advice in tech writing is likely written by and for people on established docs teams. But being the only technical writer at a company or being the leader of a docs team comes with its own distinct challenges. We’ve had the pleasure of working with some of the best solo writers and docs team leads in the industry. Here’s what we learned.
+Most tech writers work as part of a team. Most operational and career advice in tech writing is likely written by and for people on established docs teams. But being the only technical writer at a company or being the leader of a docs team comes with its own distinct challenges. We've had the pleasure of working with some of the best solo writers and docs team leads in the industry. Here's what we learned.
 
 ## 1. You've probably inherited a mess
 
-Joining a company as the first technical writing hire almost always means inheriting docs cobbled together by engineers, PMs, and support staff. They’re partially accurate, inconsistently voiced, with information structure that once made sense when the product had two features.
+Joining a company as the first technical writing hire almost always means inheriting docs cobbled together by engineers, PMs, and support staff. They're partially accurate, inconsistently voiced, with information structure that once made sense when the product had two features.
 
-The instinct is to fix the content first, one section or product area at a time. But with AI, you should actually establish the style guide first. You shouldn’t rely solely on AI to rewrite your content, because the AI’s product knowledge is only as good as your current docs. So accurate content will have to come from you and your SMEs. However, AI is quite good at fixing voice, style, and formatting at scale with minimal supervision. You can even add the style guide to `CONTRIBUTING.md` for your docs repo. This way it gives other docs contributors’ AI agents a consistent voice, minimizing new style debt being introduced.
+The instinct is to fix the content first, one section or product area at a time. But with AI, you should actually establish the style guide first. You shouldn't rely solely on AI to rewrite your content, because the AI's product knowledge is only as good as your current docs. So accurate content will have to come from you and your SMEs. However, AI is quite good at fixing voice, style, and formatting at scale with minimal supervision. You can even add the style guide to `CONTRIBUTING.md` for your docs repo. This way it gives other docs contributors' AI agents a consistent voice, minimizing new style debt being introduced.
 
 A good example of a style guide can be found at [Kubernetes](https://kubernetes.io/docs/contribute/style/style-guide/). It's not just about formatting. Standizing reference terms like `A PodList object is a list of pods.` over `A Pod List object is a list of pods.` help both humans and AI agents. You can read more about optimizing for agent-facing style guides [here](https://promptless.ai/blog/technical/agent-docs) 
 
 ## 2. Build your operating system
 
-When you are the docs function, you may need to process more information than anyone else at the company. Signals from pull requests, Slack, forums, Discord, internal meetings, design reviews, and support tickets can all land on your desk. This requires building systems and automation — otherwise you’ll either be perpetually behind and reactive, or burn out within 18 months.
+When you are the docs function, you may need to process more information than anyone else at the company. Signals from pull requests, Slack, forums, Discord, internal meetings, design reviews, and support tickets can all land on your desk. This requires building systems and automation — otherwise you'll either be perpetually behind and reactive, or burn out within 18 months.
 
 ### 2.1 Build the information pipeline
 
@@ -65,7 +65,7 @@ Writing from specs produces docs that are technically accurate, but dogfooding i
 
 ## 3. Make your impact visible
 
-Documentation is invisible when it’s working. Users don’t thank you for clear instructions, they just complete the task. This makes impact systematically hard to demonstrate, which matters for headcount, compensation, and the organizational agency to do proactive work. You’ll have to build that visibility deliberately (and we’re here to help!).
+Documentation is invisible when it's working. Users don't thank you for clear instructions, they just complete the task. This makes impact systematically hard to demonstrate, which matters for headcount, compensation, and the organizational agency to do proactive work. You'll have to build that visibility deliberately (and we're here to help!).
 
 ### 3.1 Reporting to someone who doesn't know your craft
 
@@ -77,7 +77,7 @@ These metrics are often tracked by support or product teams already, so you can 
 
 ##### Time to first value
 - **Definition**: Onboarding means different things at different companies. It could be creating a first project, calling an API, spinning up a cluster, or adding an SDK to a codebase. But whatever it is, it's almost always the first time users need docs. If you're refactoring onboarding content or adding tutorials around first-use flows, this is the metric to watch before and after.
-- **How to track**: If calling an API is your clearest signal of first value, you can track the time between `user.created_at` and the user’s first successful API call, with `api_key.created_at` as a useful intermediate step to diagnose where people get stuck.
+- **How to track**: If calling an API is your clearest signal of first value, you can track the time between `user.created_at` and the user's first successful API call, with `api_key.created_at` as a useful intermediate step to diagnose where people get stuck.
 
 ##### Direct feedback from docs
 - **Definition**: For each page, you'll have the "This doc is helpful/not helpful" button, you can get very granular page-level signal before and after a major refactor.
@@ -111,7 +111,7 @@ This is where AI tooling adds the most leverage — agents can monitor PRs for d
 
 ### 4.1 Make friends with the Support team
 
-Your support team sees what users are struggling with before and after documentation changes. A doc that reduces handle time on a common question has a real dollar value. You’ll also hear anecdotes (e.g. a customer who had to be refunded a large credit because of a docs error), and those stories are exactly what you need when making the case for resources.
+Your support team sees what users are struggling with before and after documentation changes. A doc that reduces handle time on a common question has a real dollar value. You'll also hear anecdotes (e.g. a customer who had to be refunded a large credit because of a docs error), and those stories are exactly what you need when making the case for resources.
 
 Ask support to label tickets with `docs` when applicable. It takes each person a few seconds, but it gives you a clean data feed without additional manual work. A bi-weekly check-in with someone on support produces both better prioritization and impact data you can use elsewhere.
 
@@ -131,11 +131,11 @@ Information architecture still matters for human readers. But AI agents are incr
 
 ### 5.2 Shadow docs
 
-A human reader navigating your docs faces cognitive overload if there’s too much content. An AI agent doesn’t have the same problem. This opens up a category worth considering: content too niche or edge-case for your main doc tree, but that agents would use effectively. You can keep it as its own section of “For AI Agents” to avoid cluttering the human experience. Content can include real support cases with customer information redacted, known workarounds for uncommon configurations, etc. All of it leads to fewer support tickets and higher agent task success rate.
+A human reader navigating your docs faces cognitive overload if there's too much content. An AI agent doesn't have the same problem. This opens up a category worth considering: content too niche or edge-case for your main doc tree, but that agents would use effectively. You can keep it as its own section of “For AI Agents” to avoid cluttering the human experience. Content can include real support cases with customer information redacted, known workarounds for uncommon configurations, etc. All of it leads to fewer support tickets and higher agent task success rate.
 
 ### 5.3 Rethink form factors
 
-Think about customer education and agent education from first principles, because many of the constraints that shaped old conventions no longer apply. Most teams avoided screenshots because they were painful to maintain, not because they aren’t useful — but now screenshots can be updated automatically (let us know if you’re curious 😉). These new capabilities allow you to ask the question: Given how humans and agents actually ingest information, what helps them succeed fastest?
+Think about customer education and agent education from first principles, because many of the constraints that shaped old conventions no longer apply. Most teams avoided screenshots because they were painful to maintain, not because they aren't useful — but now screenshots can be updated automatically (let us know if you're curious 😉). These new capabilities allow you to ask the question: Given how humans and agents actually ingest information, what helps them succeed fastest?
 
 An example of building from first principles is PostHog's new [AI wizard](https://posthog.com/docs/ai-engineering/ai-wizard) managed by the docs team. It helps the user onboard with one single command. For more first principles on how agents process information, here's our piece on how to [write docs optimized for them](/blog/technical/agent-docs).
 
