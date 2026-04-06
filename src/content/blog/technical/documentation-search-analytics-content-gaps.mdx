@@ -1,0 +1,101 @@
+---
+title: 'Improving Documentation Search: How Zero-Results Data Reveals Content Gaps'
+subtitle: Published April 2026
+description: >-
+  Learn how to use documentation search analytics—especially zero-results queries—to identify content gaps and improve your developer docs site.
+date: '2026-04-06T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+A developer types `setState hook not updating` into your docs search. They get zero results. They close the tab and go to Stack Overflow.
+
+You never knew it happened.
+
+That's the default state for most documentation sites. Someone searched, found nothing, and left. No ticket, no feedback — just a user who decided your docs couldn't help them. The data recording it exists in your search analytics, untouched.
+
+## Why Docs Search Fails Developers by Default
+
+Most documentation is written in product vocabulary. Writers describe features using the names the team chose: "authentication flow," "session management," "resource endpoint."
+
+Developers don't search in product vocabulary. They search using the terms they're actually working with: error messages (`TypeError: Cannot read properties of undefined`), CLI flags (`--no-cache`), SDK method names (`client.send()`), or fragments of what they half-remember from a demo.
+
+The mismatch is systematic. The writer documents the feature. The developer searches for the symptom.
+
+AWS ran into this directly during their 2024–2025 documentation overhaul. Developer feedback kept surfacing the same request: "Don't make me read — just show me some code." Developers weren't starting from concept pages. They came with a task and searched for a shortcut. AWS responded by doubling their code samples and restructuring content around specific developer queries rather than product feature categories.
+
+Research from CHI 2024 on developer documentation behavior identified three distinct search patterns: systematic readers who start from the beginning, opportunistic users who jump straight to search with a task in mind, and pragmatic users who switch between modes. The opportunistic group — a large portion of real traffic — searches first and reads only if the result directly solves their problem.
+
+These users have no patience for search that returns nothing. They'll route around your docs entirely.
+
+## The Metric That Actually Matters
+
+According to the [State of Docs Report 2025](https://www.stateofdocs.com/2025/documentation-metrics-and-measurement), 39% of documentation teams track no metrics at all. Those that do mostly measure page views.
+
+Page views tell you what developers are reading. Zero-results rate tells you what developers can't find.
+
+These are different questions. A page with zero views might have the wrong heading — developers searched for the content and never landed there because search returned nothing. Page views hide that failure entirely. Zero-results rate surfaces it directly.
+
+A zero-results query is a content brief. If 300 developers per month search for "rate limit exceeded" and get no results, that's a documentation gap, not a search configuration problem. Either the page doesn't exist, or it exists but nothing in it matches how developers phrase the problem.
+
+Algolia, ReadMe, and Mintlify all expose zero-results data in their analytics dashboards. ReadMe surfaces what it calls "low-confidence searches" — queries where results came back but none were clearly relevant. If you're running a static site generator with self-hosted search (Pagefind, Typesense, Meilisearch), you need to build this monitoring yourself, or accept that gap data simply won't reach you.
+
+[Mux](https://www.algolia.com/blog/product/sailing-the-search-seas-with-algolia-docsearch) ran a custom search stack that required constant firefighting. When they switched to Algolia DocSearch, they rebuilt and shipped the entire search implementation in one day. An internal team member described the result as "life-changing." Custom search stacks tell you when they break. Managed search tells you when your content is failing users.
+
+<BlogNewsletterCTA />
+
+## Closing the Loop: From Search Data to Editorial Planning
+
+The teams doing this well treat their search query log as a content planning input.
+
+The process is direct. Pull your zero-results queries and your low-confidence queries on a regular cadence. Sort by volume. The top entries are your next documentation tasks.
+
+Some of what you'll find is vocabulary mismatch. Developers searched for `oauth callback url` and your page is titled "Redirect URI Configuration." Add the developer's term to your heading or a subheading. Search will pick it up. No new content required.
+
+Some will be genuine gaps. Developers searched for something that doesn't exist in your docs. Write it.
+
+AWS went further and built "decision guides" — content specifically addressing the "which service do I use?" question. Their search logs showed developers asking comparative questions that no single service page answered, because each page only described itself. The solution was content that crossed service boundaries. That insight came from watching what developers searched for and couldn't find — not from internal guesses about what they needed.
+
+Stack Overflow's 2024 Developer Survey found that 61% of developers spend more than 30 minutes per day searching for answers to problems. Some of that time is spent on your docs site, failing to find what they need. The zero-results log quantifies exactly where they're getting stuck.
+
+## Why Stale Search Results Break More Than Search
+
+When search surfaces outdated content — deprecated API versions, old authentication flows, endpoints that no longer exist — the damage spreads beyond that single query.
+
+Developers who find a page through search and follow instructions that don't work don't conclude that the search result was stale. They conclude that the documentation is unreliable. That judgment gets applied to the whole site.
+
+Once a developer decides your docs can't be trusted, they stop starting there. They go to Stack Overflow. They open a GitHub issue. They ask in Discord. Your docs become a last resort. Even after you fix the stale content, you've lost the habit.
+
+This is the mechanism behind a broader pattern: documentation teams that don't monitor search quality end up routing developer questions to support. Then they add support staff. The underlying problem — docs surfacing stale or missing content — never gets fixed because it's never measured.
+
+Keeping search results accurate requires keeping the pages those results point to accurate. Search optimization and documentation maintenance are the same problem viewed from different angles. [Documentation drift](/blog/technical/documentation-drift-detection-problem) — content that diverges from the product it describes — directly degrades search quality over time. Fixing search for good means having a process to catch drift before it reaches developers.
+
+## The Second Search Surface: AI
+
+In 2023, nearly all documentation discovery happened through site search or Google. By 2026, roughly 35% of documentation discovery happens through AI-powered search — ChatGPT, Perplexity, Claude, Google AI Overviews. (Source: [Mintlify](https://www.mintlify.com/blog/how-geo-is-reshaping-docs), State of Docs 2026)
+
+AI Overviews now appear in more than half of tracked searches. Organic click-through rates dropped 61% for queries where AI Overviews appear. That traffic isn't gone — it's landing on whatever AI decides to cite. For developer documentation, that's a significant shift in where discoverability happens.
+
+This creates a second surface to optimize for, with different requirements.
+
+Traditional site search needs your pages to be keyword-indexed and correctly titled. AI search needs your pages to be structured so a language model can extract a clear answer from them.
+
+The practical steps are straightforward:
+
+- Keep H2 sections short and self-contained. Each section should answer one question.
+- Use specific, descriptive headings ("How to rotate an API key") rather than category headings ("Security").
+- Add an `llms.txt` file at your domain root — a plain Markdown file listing key pages with brief descriptions. Stripe, Cloudflare, and Zapier have adopted this format. [The mechanics are less complicated than most coverage suggests.](/blog/technical/llms-txt-is-not-what-most-teams-think)
+- Check your `robots.txt` to confirm you're not accidentally blocking AI crawlers (GPTBot, ClaudeBot, PerplexityBot). This is a common mistake on docs sites originally configured before AI search existed.
+
+Structured data (FAQ and HowTo schema markup) helps as well — about 65% of pages cited by Google AI Mode include it.
+
+None of this is separate from the documentation maintenance question. An AI search that cites a stale page sends a developer down the wrong path as reliably as a site search that does the same.
+
+---
+
+Your docs search box is already collecting data about what developers can't find. The zero-results log is the most honest editorial feedback you have. Check it before your next planning cycle.
+
+<BlogRequestDemo />
