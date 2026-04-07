@@ -29,6 +29,7 @@ hidden: false
 * **Stale Suggestion Cleanup:** Fixed stale suggestion cleanup unexpectedly closing customer docs PRs—suggestions with open PRs are now preserved.
 * **Archiving Soon Badge Accuracy:** Fixed the "Archiving soon" badge and digest warnings using a hardcoded 30-day threshold instead of respecting per-org stale TTL settings—customers with custom TTLs now see accurate warnings.
 * **Directory-Specific Trigger Filtering:** Fixed GitHub PR and commit triggers dispatching for all files instead of respecting configured trigger directories—triggers now correctly filter based on which directories contain changed files.
+* **Slack OAuth for Large Workspaces:** Fixed Slack OAuth connections failing for large workspaces when channel listing exceeds the gateway timeout—installations are now saved immediately after OAuth exchange, so connection isn't lost if channel fetching times out.
 
 **Deprecated:**
 
