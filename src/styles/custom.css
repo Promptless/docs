@@ -486,6 +486,10 @@ main:has(.pl-site-page.pl-site-page-compact) .content-panel:first-of-type {
   padding-bottom: 0.5rem;
 }
 
+main:has(.pl-site-page.pl-site-page-no-title) .content-panel:first-of-type {
+  display: none;
+}
+
 main:has(.pl-site-page.pl-site-page-compact) .content-panel + .content-panel {
   padding-top: 0.5rem;
 }
