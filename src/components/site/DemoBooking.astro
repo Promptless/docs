@@ -157,8 +157,10 @@
       } catch (_) {}
 
       if (window.posthog) {
-        window.posthog.capture('demo_requested', {
+        window.posthog.capture('email_captured', {
+          intent: 'demo',
           location: 'demo_page',
+          campaign: '',
           $set: { email: email },
         });
       }

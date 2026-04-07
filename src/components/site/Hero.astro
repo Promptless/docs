@@ -78,8 +78,10 @@ const {
       if (email) {
         try { sessionStorage.setItem('pl_demo_email', email); } catch {}
       }
-      (window as any).posthog?.capture('demo_requested', {
+      (window as any).posthog?.capture('email_captured', {
+        intent: 'demo',
         location: 'hero',
+        campaign: '',
         ...(email ? { $set: { email } } : {}),
       });
 
