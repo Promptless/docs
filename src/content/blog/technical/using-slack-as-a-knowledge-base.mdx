@@ -1,0 +1,70 @@
+---
+title: 'Using Slack as a Knowledge Base? Here's What You're Losing'
+subtitle: Published April 2026
+description: >-
+  Slack feels like a knowledge store because answers happen there. Its design actively destroys institutional knowledge. Here's why docs-as-code fixes it.
+date: '2026-04-08T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+A new engineer joins your team. They need to set up their dev environment. The official docs are 18 months old and reference a tool you deprecated last spring. So they ask in `#engineering`. Someone helpful walks them through the real steps in a thread.
+
+That thread disappears within a week. The next new engineer asks the same question.
+
+This is Slack working exactly as designed. The problem is that it has become your default knowledge store.
+
+## The half-life of a Slack message
+
+Slack is optimized for the conversation happening right now. That optimization actively works against retention.
+
+A decision made in a thread on Monday is effectively unfindable by Friday. The information technically exists, but Slack's search relies on exact keywords and ignores context. Teams spend more than 30 minutes per week searching for things they know exist somewhere in Slack. The problem is not that people are searching badly. Retrieval is structurally broken.
+
+The deeper loss is the "why." When a technical decision gets made in a Slack thread, the reasoning disappears within days: the tradeoffs considered, the approach tried and rejected, the edge case knowingly deferred. What survives downstream is an artifact: a line of code, a config choice, a pattern in the codebase. The reasoning that produced it has scrolled away.
+
+This is what "[ephemeral knowledge](https://doclandscape.com/the-living-knowledge-system/the-knowledge-tiers/ephemeral-knowledge/)" refers to: information generated in real-time, in the flow of work, in a tool not designed to preserve it. Gartner puts the number at 47% of knowledge workers struggling to find information they need to do their job. Slack is a significant contributor.
+
+## Why stale docs make Slack worse
+
+Slack fills the knowledge gap partly because formal documentation fails people first.
+
+Documentation decays. Products ship, processes change. When someone follows a Confluence page and the steps are wrong, something shifts in how they relate to written docs. They file it as "docs are unreliable" and route around the whole system. The next time they need information, they ask a colleague on Slack. They're optimizing for reliability, choosing a source they trust over one they can't.
+
+This is rational. It's also a compounding problem.
+
+The more questions get answered through people, the more certain individuals become informal knowledge hubs. Knowledge concentrates in 2–3 people per team. When those people leave, that knowledge leaves with them. The docs don't get better during this cycle. They get worse, because fewer people use them and even fewer update them. The [trust collapse](/blog/technical/documentation-drift-detection-problem) is hard to reverse once it sets in.
+
+<BlogNewsletterCTA />
+
+## What docs-as-code actually fixes
+
+Moving internal documentation into a docs-as-code system (markdown files in a Git repository) changes the structural problem, not just the tooling.
+
+When docs live in the same repo as the code they describe, they go through the same review process. A pull request that changes an API also updates the documentation for that API. Ownership is unambiguous: whoever merged the code owns the context around it. There's no question about which version of the docs corresponds to which version of the product.
+
+Decay happens more slowly because the feedback loop is shorter. Engineers don't have to context-switch to a separate tool to update documentation. The change and the explanation travel together.
+
+For internal documentation specifically (team processes, architectural decisions, onboarding guides), the case is more direct than it is for external docs. Internal docs rarely have a non-technical audience that needs a WYSIWYG editor. They're read by developers and written by developers. Docs-as-code is the natural format. The [help center vs. docs-as-code](/blog/technical/help-center-to-docs-as-code) question is more nuanced for external-facing content, but for internal knowledge the answer is usually clear.
+
+## The automation that docs-as-code unlocks
+
+The more significant benefit is what docs-as-code makes possible downstream.
+
+Structured, version-controlled documentation is the prerequisite for programmatic updates. When docs live in a wiki or Confluence, there's no clean interface for automated changes. In a Git repository, there is. This matters because keeping internal docs current is where most teams actually fail. Writing docs once is the easy part. Keeping them current as the codebase moves and decisions accumulate in Slack threads is where the process breaks down.
+
+Promptless addresses both sides of this. It watches code changes and flags when a PR affects something currently documented. It also listens to Slack. When a decision gets made in a thread or institutional knowledge surfaces in a channel, Promptless can turn that signal into a documentation update. The context that used to disappear with the thread now has a place to land: the repo.
+
+One team using Promptless, Basis, takes this further. They pipe customer call transcripts into a Git repository. Promptless monitors the repo and maintains internal documentation around product usage patterns, recurring questions, and what's actually happening in the field. The internal knowledge base builds itself from conversation. Because it lives in their own repo, they can build agents on top of it and do useful things with the data. That leverage only exists because the documentation is in a format they control, not locked in a third-party system.
+
+## Where to start
+
+The Slack habit is hard to break because it works in the moment. Someone gets an answer in 20 minutes. The long-term cost is invisible at the time of the interaction: institutional knowledge that evaporates, the same question asked repeatedly across a year.
+
+Moving internal docs to a Git-based format doesn't require a large migration. Start with the highest-traffic knowledge: onboarding, environment setup, architectural decision records. Put those in a `docs/` folder in the relevant repo. Get engineers reviewing doc changes in PRs alongside code changes.
+
+That foundation is what makes the rest possible. Detection becomes automatable. Updates can be drafted rather than written from scratch. The knowledge that currently lives and dies in Slack threads has somewhere permanent to go.
+
+<BlogRequestDemo />
