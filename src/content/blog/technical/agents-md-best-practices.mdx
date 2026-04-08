@@ -1,0 +1,76 @@
+---
+title: 'AGENTS.md Best Practices: What the Research Actually Shows'
+subtitle: Published April 2026
+description: >-
+  Most teams auto-generate their AGENTS.md. A February 2026 ETH Zurich study shows this reduces coding agent success rates by 3% while adding 20% to inference costs.
+date: '2026-04-08T00:00:00.000Z'
+author: Frances
+section: Technical
+hidden: true
+---
+import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
+import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
+
+If you've auto-generated your AGENTS.md file, it's probably making your coding agents perform worse.
+
+That's the main finding from a February 2026 study by ETH Zurich, which evaluated context files across 5,694 pull requests and 138 repository instances. The researchers found that LLM-generated context files reduced task success rates by approximately 3% while increasing inference costs by over 20%. Teams using the most convenient method — prompting a language model to summarize the repository — are paying more for worse outcomes.
+
+AGENTS.md has become standard infrastructure. All major coding agents read it. In December 2025, the format was donated to the Agentic AI Foundation under the Linux Foundation, formalizing it as an open standard rather than a vendor convention. The question now is what to actually put in it.
+
+## Why auto-generation fails
+
+When you prompt an LLM to write AGENTS.md, it produces a comprehensive summary. It describes what the project does, how the framework is structured, what conventions the codebase follows, and how to run common operations. It looks thorough and well-organized.
+
+The problem: coding agents already know most of this. They were trained on the same public frameworks, the same standard conventions, the same common tooling. A paragraph explaining how a standard Django or Next.js project is organized occupies tokens in the context window on every request — and provides nothing an agent couldn't infer directly.
+
+Every token in a root-level context file loads on every agent request, regardless of whether it's relevant to the current task. The ETH Zurich researchers quantified this overhead: the 20% cost increase reflects this token burden running continuously across all agent activity. Meanwhile, the useful content — non-obvious, project-specific details — gets buried in blocks of standard conventions the agent already knows.
+
+The result is a context file that costs more to process and produces lower task success rates because the signal-to-noise ratio has been diluted.
+
+## What agents actually need from context files
+
+The same ETH Zurich study found that human-written context files improved task success rates by about 4%. The difference comes down to what experienced developers include versus what language models include.
+
+An experienced developer writing AGENTS.md starts from a different question than an LLM does. The LLM asks: "What should a reader know about this project?" The developer asks: "What would trip up a skilled engineer who hasn't worked here before?"
+
+That second question produces different content. It yields build commands that deviate from the framework default, test runner configurations requiring specific flags or environment variables, and in-house conventions that explicitly contradict the standard style guide. It yields references to custom tooling the agent won't recognize from its training data.
+
+What it does not yield: explanations of how the framework works, directory structure walkthroughs when that structure follows standard conventions, or general coding guidance the agent has seen thousands of times.
+
+The study found one additional pattern worth noting: pointing directly to real files as examples delivers more value than describing patterns in the abstract. Instead of writing "we use a service-repository pattern for our database layer," an effective context file links to a representative implementation. Agents extract more task-completion signal from seeing a pattern instantiated than from reading a description of it.
+
+On length: keep context files at or below 150 lines. Every line beyond that adds processing cost and pushes the high-signal content further from the front of the file.
+
+<BlogNewsletterCTA />
+
+## The staleness problem context files share with documentation
+
+Context files carry a maintenance obligation most teams don't budget for.
+
+The [documentation drift problem](/blog/technical/documentation-drift-detection-problem) that affects developer docs affects AGENTS.md at least as much — and often faster. AGENTS.md focuses precisely on the operational details that change most frequently: build commands, test configurations, tooling choices. These change when teams upgrade dependencies, switch CI providers, or restructure the development environment.
+
+When a context file is outdated, the harm exceeds the harm of having no file at all. Missing context creates a gap an agent may work around. Incorrect context carries authority: the agent follows the wrong instruction with confidence, because the file was explicitly written to guide its behavior.
+
+The [four-layer framework for agent context engineering](/blog/technical/agent-context-engineering) puts it plainly: the knowledge layer — where AGENTS.md lives — is the layer most vulnerable to drift, and most teams treat it as a one-time project rather than an ongoing maintenance commitment.
+
+In practice, AGENTS.md files accumulate outdated instructions through a predictable pattern. A developer upgrades the test framework; the test command in AGENTS.md still points to the old runner. The team switches from Yarn to pnpm; the install command still says `yarn install`. No one's wrong, no one noticed. The file quietly becomes a source of incorrect instructions for every agent that reads it.
+
+## A practical filter for what to include
+
+The research points to a simple question for deciding what belongs in a context file: would a capable coding agent with broad knowledge of the framework already know this?
+
+If yes, leave it out. Standard linter configurations, default directory structures, widely-adopted test runners without customization — none of this belongs in AGENTS.md. It's tokens without information.
+
+What passes the filter: the `--env=test-integration` flag your test suite requires that isn't documented anywhere. The custom migration tool your team built in-house. The project-specific naming convention that explicitly diverges from the framework default. The internal package alias that breaks things if the agent tries to import it the standard way.
+
+These are the details that distinguish your repository from any other repository using the same framework. They're what agents genuinely can't infer from training data.
+
+## What this means for documentation teams
+
+The AGENTS.md findings reflect a broader principle in agent context engineering: the information environment agents draw from must be actively maintained, not just created once. Creating a context file at project setup — however carefully — doesn't solve the problem past the first month of active development.
+
+For technical writers and DevRel teams, this adds a new maintenance category. Alongside keeping API references, tutorials, and guides current, there's the work of keeping machine-readable context accurate as codebases evolve. The two problems compound each other: a team that already struggles to keep user-facing docs current will find AGENTS.md drift even harder to catch, because there's no support ticket or user complaint when an agent follows a stale build command.
+
+Promptless is built for the detection side of this problem. It monitors your documentation and context files against the actual state of your product and surfaces what has drifted — so the test command that changed three sprints ago gets flagged before an agent follows the wrong instruction on a developer's behalf.
+
+<BlogRequestDemo />
