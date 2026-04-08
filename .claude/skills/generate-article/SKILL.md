@@ -39,10 +39,19 @@ Use the WebSearch tool to research the keyword. Search for 5-8 of the best recen
 
 Read the most relevant results thoroughly using WebFetch.
 
+After researching, extract from what you found:
+
+- **1-2 related keywords:** Terms or phrases that kept appearing alongside the main keyword — especially newer or more specific variants (e.g. searching "knowledge base" might surface "personal wiki" or "second brain"). These are candidates for targeting in the article instead of or alongside the original keyword.
+- **1-2 key ideas:** Specific insights, trends, or framings from the research worth building the article around (1-2 sentences each). These should be concrete and grounded in what you actually read — not generic observations.
+
+Report these to the user before moving on. Use them in Step 3 to sharpen the article's angle.
+
 ## Step 3: Plan the article
 
 Before writing, produce a detailed plan. The plan must answer:
 
+- **Keyword(s) to target:** Which keyword(s) — the original, the related ones from Step 2, or a combination — should this article target? Pick what gives the article the sharpest angle and best SEO fit.
+- **Key ideas to build on:** Which 1-2 ideas from Step 2 will anchor the article? State them clearly.
 - **Article format:** What format best serves this content and reader? Describe it concretely, e.g. "a comparison of two approaches to help readers make a technical decision" or "an explainer that teaches readers why X matters before showing them what to do about it."
 - **Thesis:** The single main point this article makes, in one sentence.
 - **Target reader:** Who specifically benefits — developers, technical writers, solutions engineers, product managers, developer advocates? What do they already know, and what gap does this fill?
@@ -92,8 +101,8 @@ description: >-
   One or two sentence SEO description, 120-160 characters.
 date: '{YYYY-MM-DD}T00:00:00.000Z'
 author: Frances
-section: Technical
-hidden: true
+section: Use Cases
+hidden: false
 ---
 import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
 import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
