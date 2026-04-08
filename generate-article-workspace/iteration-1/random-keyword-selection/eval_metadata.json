@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "random-keyword-selection",
+  "prompt": "Run the Promptless edu campaign content pipeline. Pick a random keyword from the keyword list and generate a blog article. Save the final MDX file to the outputs directory. Do NOT create a git branch, PR, or Slack notification -- this is a test run.",
+  "assertions": [
+    {"name": "has_complete_frontmatter", "description": "Article has all required frontmatter fields"},
+    {"name": "imports_components", "description": "Article imports both required Astro components"},
+    {"name": "uses_newsletter_cta", "description": "Article includes BlogNewsletterCTA component"},
+    {"name": "ends_with_request_demo", "description": "Article includes BlogRequestDemo component"},
+    {"name": "hidden_is_true", "description": "Article is hidden (not auto-published)"},
+    {"name": "no_em_dashes", "description": "Article contains no em dashes"},
+    {"name": "word_count_800_plus", "description": "Article is at least 800 words"},
+    {"name": "author_is_frances", "description": "Author is set to Frances"}
+  ]
+}

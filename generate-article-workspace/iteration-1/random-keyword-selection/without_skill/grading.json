@@ -1,0 +1,53 @@
+{
+  "eval_name": "random-keyword-selection",
+  "variant": "without_skill",
+  "word_count": 1733,
+  "expectations": [
+    {
+      "text": "has_complete_frontmatter",
+      "passed": true,
+      "evidence": "All fields present"
+    },
+    {
+      "text": "imports_components",
+      "passed": true,
+      "evidence": "Newsletter import: True, Demo import: True"
+    },
+    {
+      "text": "uses_newsletter_cta",
+      "passed": true,
+      "evidence": "Found <BlogNewsletterCTA />"
+    },
+    {
+      "text": "ends_with_request_demo",
+      "passed": true,
+      "evidence": "Found <BlogRequestDemo />"
+    },
+    {
+      "text": "hidden_is_true",
+      "passed": false,
+      "evidence": "hidden: true NOT found (may be hidden: false)"
+    },
+    {
+      "text": "no_em_dashes",
+      "passed": true,
+      "evidence": "No em dashes found"
+    },
+    {
+      "text": "word_count_800_plus",
+      "passed": true,
+      "evidence": "Word count: 1733"
+    },
+    {
+      "text": "word_count_1400_max",
+      "passed": false,
+      "evidence": "Word count: 1733"
+    },
+    {
+      "text": "author_is_frances",
+      "passed": true,
+      "evidence": "author: Frances found"
+    }
+  ],
+  "summary": "7/9 assertions passed"
+}
