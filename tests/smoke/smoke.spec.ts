@@ -279,7 +279,7 @@ test('homepage, demo, and pricing render website content', async () => {
   assert.match(pricingHtml, /Growth/);
   assert.match(pricingHtml, /Enterprise/);
   assert.match(pricingHtml, /\$500\s*\/\s*mo/);
-  assert.match(pricingHtml, /All plans include a 30-day free trial\./);
+  assert.match(pricingHtml, /All plans include a 14-day free trial\./);
   assert.match(pricingHtml, /Up to 200 Pages\*/);
   assert.match(pricingHtml, /Pages are normalized/);
   assert.match(pricingHtml, /name=\"growth_bundle\"/);
