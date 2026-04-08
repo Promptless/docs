@@ -16,6 +16,11 @@ const isWebsiteHome = pathname === '/';
       }
     </style>
   ) : (
-    <h1 id={PAGE_TITLE_ID}>{Astro.locals.starlightRoute.entry.data.title}</h1>
+    <>
+      <h1 id={PAGE_TITLE_ID}>{Astro.locals.starlightRoute.entry.data.title}</h1>
+      <blockquote class="sr-only">
+        For the complete documentation index, see <a href="/llms.txt">llms.txt</a>.
+      </blockquote>
+    </>
   )
 }
