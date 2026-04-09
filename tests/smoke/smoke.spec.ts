@@ -108,6 +108,16 @@ test('llms endpoints remain available', async () => {
   assert.match(llmsFullBody, /## Docs/i);
 });
 
+test('homepage and docs pages include the llms.txt directive in html', async () => {
+  const homepage = await fetch(`${preview.baseUrl}/`);
+  assert.equal(homepage.status, 200);
+  assert.match(await homepage.text(), /href="\/llms\.txt"[^>]*>llms\.txt<\/a>/i);
+
+  const docsPage = await fetch(`${preview.baseUrl}/docs/getting-started/welcome`);
+  assert.equal(docsPage.status, 200);
+  assert.match(await docsPage.text(), /href="\/llms\.txt"[^>]*>llms\.txt<\/a>/i);
+});
+
 test('primary nav keeps canonical routes with free tools tab', async () => {
   const response = await fetch(`${preview.baseUrl}/docs/getting-started/welcome`);
   assert.equal(response.status, 200);
