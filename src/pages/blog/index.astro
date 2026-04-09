@@ -13,7 +13,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 });
 
-const getSectionLabel = (section?: string) => section || 'Other';
+const getTagLabel = (tag?: string) => tag || 'Other';
 
 const getTab = (section?: string) => {
   if (section === 'Use Cases') return 'use-cases';
@@ -48,7 +48,7 @@ const getTab = (section?: string) => {
                 <p class="collection-feed-date">{dateFormatter.format(entry.data.date)}</p>
                 <ul class="collection-tag-list" role="list">
                   <li>
-                    <span class="collection-tag">{getSectionLabel(entry.data.section)}</span>
+                    <span class="collection-tag">{getTagLabel(entry.data.tag)}</span>
                   </li>
                 </ul>
               </div>
