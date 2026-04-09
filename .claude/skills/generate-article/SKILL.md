@@ -101,6 +101,7 @@ description: >-
   One or two sentence SEO description, 120-160 characters.
 date: '{YYYY-MM-DD}T00:00:00.000Z'
 author: Frances
+tag: {tag}
 section: Use Cases
 hidden: false
 ---
@@ -110,7 +111,7 @@ import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 [article body starts here]
 ```
 
-Fill in the current date and month/year. `hidden: true` ensures the article is not published until a human reviews it.
+Fill in the current date and month/year. For `tag`, choose the best fit from: `Technical`, `Opinion`, `Customer Stories`, `Life at Promptless`.
 
 ## Step 5: Edit pass
 
@@ -190,6 +191,6 @@ agent-slack message send --workspace promptless "#gtm" "New blog article draft r
 
 ## Important notes
 
-- Always set `hidden: true` in the frontmatter — articles need human review before publishing.
+- Always set `hidden: false` in the frontmatter.
 - If any step fails (e.g. git push, PR creation, Slack), report the error but continue with remaining steps.
 - The article should be genuinely useful content, not thinly-veiled marketing. Promptless connections should feel natural.
