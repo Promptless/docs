@@ -36,7 +36,7 @@ const getTab = (slug: string, section?: string) => {
   if (OTHER_SLUGS.has(slug)) return 'other';
   if (FEATURED_SLUGS.has(slug)) return 'featured';
   if (USE_CASES_SLUGS.has(slug)) return 'use-cases';
-  if (section === 'Customer Stories') return 'use-cases';
+  if (section === 'Customer Stories' || section === 'Use Cases') return 'use-cases';
   if (!section || section === 'Technical' || section === 'Opinion') return 'featured';
   return 'other';
 };
