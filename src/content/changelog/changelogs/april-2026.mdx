@@ -35,6 +35,7 @@ hidden: false
 * **Onboarding PR Count Accuracy:** Fixed the onboarding trial page showing a higher PR count than what would actually be replayed—draft PRs and closed-unmerged PRs are now correctly excluded from the displayed count.
 * **Slack Integration Reconnection:** Fixed an issue where Slack bot stopped responding to messages for some organizations after reconnecting their Slack integration—the reconnection process was inadvertently clearing connection data needed to route incoming events.
 * **Docs PR Draft Timing:** Fixed docs PRs being marked ready for review too early when linked to multiple source PRs—docs PRs now stay in draft until all linked source PRs have merged.
+* **Versioned Branch Diff Display:** Fixed suggestion diffs in the dashboard and Slack notifications incorrectly comparing against the default branch instead of the configured target branch—suggestions targeting versioned branches now show correct diffs.
 
 **Deprecated:**
 
