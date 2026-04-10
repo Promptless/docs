@@ -19,7 +19,7 @@ The documentation exists. It has drifted away from what the product actually doe
 
 Most teams treat documentation as a launch milestone. You ship the API, write the quickstart guide, and publish the reference docs. The next sprint begins.
 
-What follows is predictable. Engineers iterate on the API. Authentication flows change and endpoints get renamed. Code changes continuously; documentation changes when someone notices the gap.
+What follows is predictable. Engineers iterate on the API. Data structures change and endpoints get renamed. Code changes continuously; documentation changes when someone notices the gap.
 
 The [Postman 2024 survey](https://www.postman.com/state-of-api/2024) found that 39% of developers cite inconsistent documentation as the biggest API onboarding roadblock. Inconsistency between docs and actual product behavior is a staleness problem. Teams that launched with accurate docs six months ago now have accurate docs *from* six months ago.
 
@@ -41,7 +41,7 @@ Stripe benchmarks Time to First API Call under 90 seconds. [Postman's research](
 
 The documentation failures that destroy TTFC tend to be specific: a code sample referencing a deprecated method, an authentication section showing the old token format, a quickstart assuming an environment configuration that changed in version 2.1. All of them were accurate documentation at launch that became inaccurate as the product evolved.
 
-The [youngcopy.com TTFC benchmark](https://www.youngcopy.com/insights/how-fast-is-your-api-onboarding-benchmark-your-first-call-time-in-five-minutes) notes that even a two-minute TTFC puts you behind Stripe's standard. A stale quickstart can add 20 minutes of debugging to that number — and for many developers, 20 minutes of unexplained errors is the exit ramp.
+The [youngcopy.com TTFC benchmark](https://www.youngcopy.com/insights/how-fast-is-your-api-onboarding-benchmark-your-first-call-time-in-five-minutes) reports that work to get your TTFC under 2 minutes will pay off an a majore way: increase developer adoption rate by 3-4x. Even going from 10 minutes to 5 minutes can bring a 40-60% jump in conversion rates. Now think about stale docs! A stale quickstart can easily add 10 minutes of debugging. Boom! You just blew your whole budget. Thats the exit ramp for many developers.
 
 ## The Ownership Vacuum
 
@@ -61,7 +61,7 @@ In 2026, developers don't only read documentation. They paste it into AI coding 
 
 A human developer can often work around a stale code sample — recognize that a method has been renamed, check the changelog, adapt. An AI coding agent following your quickstart guide reproduces the stale pattern exactly and produces broken code. The developer debugs the AI's output, traces the error back to your documentation, and hits the same wall faster than they would have without the AI.
 
-The [llms.txt standard](https://medium.com/google-cloud/give-your-ai-agents-deep-understanding-with-llms-txt-4f948590332b) is an early attempt to give AI agents structured, machine-readable entry points into documentation. But machine-readable structure doesn't solve staleness — a well-structured pointer to outdated content is still a pointer to outdated content. As the [llms.txt post on this blog](https://promptless.ai/blog/technical/llms-txt-is-not-what-most-teams-think) covers, the format is beside the point if the underlying docs haven't kept pace.
+The [llms.txt standard](https://llmstxt.org/) is an early attempt (ha! only Sept 3 2024 but it's old already) to give AI agents structured, machine-readable entry points into documentation. But machine-readable structure doesn't solve staleness — a well-structured pointer to outdated content is still a pointer to outdated content. As the [llms.txt post on this blog](https://promptless.ai/blog/technical/llms-txt-is-not-what-most-teams-think) covers, the format is beside the point if the underlying docs haven't kept pace.
 
 Stale documentation that a human might navigate around becomes a hard blocker for AI-assisted integration. The tolerance for drift has dropped.
 
