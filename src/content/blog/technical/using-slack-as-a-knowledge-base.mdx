@@ -11,21 +11,19 @@ hidden: false
 import BlogNewsletterCTA from '@components/site/BlogNewsletterCTA.astro';
 import BlogRequestDemo from '@components/site/BlogRequestDemo.astro';
 
-A new engineer joins your team. They need to set up their dev environment. The official docs are 18 months old and reference a tool you deprecated last spring. So they ask in `#engineering`. Someone helpful walks them through the real steps in a thread.
+Most teams don't choose Slack as their knowledge base. It just ends up that way. Someone asks a question, someone else answers it, and over time the real answers to "how does this work" live in threads and DMs rather than in any official documentation. It makes sense: Slack is where your team already is, and getting an answer there is fast.
 
-That thread disappears within a week. The next new engineer asks the same question.
-
-This is Slack working exactly as designed. The problem is that it has become your default knowledge store.
+If you're reading this, you've probably already felt the cost. You've searched for a decision you know was made somewhere, scrolled through threads that almost had the answer, or watched a new hire re-ask the same onboarding question for the third time this quarter. You've decided that Slack shouldn't be where institutional knowledge lives. This article is about why that instinct is right and what actually works instead.
 
 ## The half-life of a Slack message
 
-Slack is optimized for the conversation happening right now. That optimization actively works against retention.
+Slack search relies on exact keywords and ignores context. If you're looking for "the decision about the auth migration," you need to already know which words someone used when they made it. Slack won't surface a thread where someone said "let's go with OAuth" in response to "what should we do about login" unless you search for exactly the right terms.
 
-A decision made in a thread on Monday is effectively unfindable by Friday. The information technically exists, but Slack's search relies on exact keywords and ignores context. Teams spend more than 30 minutes per week searching for things they know exist somewhere in Slack. The problem is not that people are searching badly. Retrieval is structurally broken.
+It gets worse over time. Nobody goes back and edits Slack messages. When someone corrects a previous answer or a process changes, the new information lands in a new message. But search doesn't know that. It will happily surface the original, outdated answer because it's a better keyword match for your query. You're effectively running last-write-wins, but the search engine doesn't respect the write order.
 
-The deeper loss is the "why." When a technical decision gets made in a Slack thread, the reasoning disappears within days: the tradeoffs considered, the approach tried and rejected, the edge case knowingly deferred. What survives downstream is an artifact: a line of code, a config choice, a pattern in the codebase. The reasoning that produced it has scrolled away.
+The deeper loss is the "why." When a technical decision gets made in a Slack thread, the reasoning lives there and only there: the tradeoffs considered, the approach tried and rejected, the edge case knowingly deferred. What survives downstream is an artifact — a line of code, a config choice, a pattern in the codebase. The reasoning that produced it has scrolled away.
 
-This is what "[ephemeral knowledge](https://doclandscape.com/the-living-knowledge-system/the-knowledge-tiers/ephemeral-knowledge/)" refers to: information generated in real-time, in the flow of work, in a tool not designed to preserve it. Gartner puts the number at 47% of knowledge workers struggling to find information they need to do their job. Slack is a significant contributor.
+This is what doclandscape.com calls "[ephemeral knowledge](https://doclandscape.com/the-living-knowledge-system/the-knowledge-tiers/ephemeral-knowledge/)": information generated in real-time, in the flow of work, in a tool not designed to preserve it. The volume of knowledge flowing through Slack channels every day is enormous, and none of it is being processed into anything durable. You need something that can watch this stream as it happens and pull the institutional knowledge out before it disappears.
 
 ## Why stale docs make Slack worse
 
